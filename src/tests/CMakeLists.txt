@@ -1,7 +1,7 @@
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-file(GLOB sources *.cc)
+file(GLOB sources *.cpp)
 add_executable(unittests ${sources})
 
 target_link_libraries (unittests
