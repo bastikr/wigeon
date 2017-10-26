@@ -42,6 +42,8 @@ class RotationMatrix {
     static RotationMatrix rotate_y(double);
     static RotationMatrix rotate_z(double);
 
+    RotationMatrix operator*(const RotationMatrix&);
+
   // private:
     Eigen::Matrix3d data;
 };

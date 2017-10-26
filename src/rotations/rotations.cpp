@@ -74,6 +74,10 @@ RotationMatrix RotationMatrix::rotate_z(double angle) {
   return RotationMatrix(R);
 }
 
+RotationMatrix RotationMatrix::operator*(const RotationMatrix& a) {
+  return RotationMatrix(data*a.data);
+}
+
 
 EulerAngles::EulerAngles(const RotationMatrix& R) {
   const Matrix3d& r = R.data;

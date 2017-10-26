@@ -41,6 +41,10 @@ TEST(Rotations, RotationMatrix) {
   ASSERT_TRUE(approx_equal(Rz, RotationMatrix(EulerAngles::rotate_z(gamma))));
   ASSERT_TRUE(approx_equal(Rz, RotationMatrix(AxisAngle::rotate_z(gamma))));
   ASSERT_TRUE(approx_equal(Rz, RotationMatrix(Quaternion::rotate_z(gamma))));
+
+  ASSERT_TRUE(approx_equal(Rx*Rx, RotationMatrix::rotate_x(2*alpha)));
+  ASSERT_TRUE(approx_equal(Ry*Ry, RotationMatrix::rotate_y(2*beta)));
+  ASSERT_TRUE(approx_equal(Rz*Rz, RotationMatrix::rotate_z(2*gamma)));
 }
 
 
