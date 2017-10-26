@@ -4,7 +4,8 @@
 using namespace geometry::rotations;
 
 TEST(Rotations, EulerAngles) {
-    EXPECT_EQ(eulerangles::x(0.1), eulerangles::x(0.1));
+  auto R = RotationMatrix::rotate_x(0.5);
+  EXPECT_EQ(RotationMatrix::rotate_x(0.1).data, RotationMatrix::rotate_x(0.1).data);
 }
 
 int main(int argc, char **argv) {
