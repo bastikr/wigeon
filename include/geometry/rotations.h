@@ -1,21 +1,26 @@
-// Provides several different representations of rotations.
-//
-// There exist the following types:
-// * RotationMatrix
-// * EulerAngles (ZYX version)
-// * AxisAngle
-// * Quaternion
-//
-// They all can be explicitly converted from one to another and provide a
-// common interface:
-// * rotate_x
-// * rotate_y
-// * rotate_z
+/*! \file rotations.h
+  \brief Provides several different representations of rotations.
+
+  There exist the following types:
+    - RotationMatrix
+    - EulerAngles (ZYX version)
+    - AxisAngle
+    - Quaternion
+
+  They all can be explicitly converted from one to another and provide a
+  common interface:
+    - `T::rotate_x(double angle)`
+    - `T::rotate_y(double angle)`
+    - `T::rotate_z(double angle)`
+*/
 
 #include <eigen3/Eigen/Dense>
 
 namespace geometry {
 
+/*!
+  \brief 3D rotations related functionality.
+*/
 namespace rotations {
 
 class RotationMatrix;
@@ -23,7 +28,9 @@ class EulerAngles;
 class AxisAngle;
 class Quaternion;
 
-
+/*!
+  \brief A 3x3 rotation matrix.
+*/
 class RotationMatrix {
   public:
     RotationMatrix(Eigen::Matrix3d data): data(data) {}
@@ -40,6 +47,7 @@ class RotationMatrix {
 };
 
 
+//! ZYX Euler angles
 class EulerAngles {
   public:
     EulerAngles(Eigen::Vector3d angles): angles(angles) {}
@@ -55,7 +63,7 @@ class EulerAngles {
     Eigen::Vector3d angles;
 };
 
-
+//! Rotation around the specified axis by the given angle
 class AxisAngle {
   public:
     AxisAngle(Eigen::Vector3d axis, double angle): axis(axis), angle(angle) {}
@@ -72,7 +80,7 @@ class AxisAngle {
     double angle;
 };
 
-
+//! Typical quaternion
 class Quaternion {
   public:
     Quaternion(Eigen::Vector4d data): data(data) {}
