@@ -17,6 +17,11 @@ bool approx_equal(const AxisAngle& A1, const AxisAngle& A2) {
   return A1.axis.isApprox(A2.axis) && (abs(A1.angle - A2.angle) < 1e-15);
 }
 
+bool approx_equal(const Quaternion& Q1, const Quaternion& Q2) {
+  return Q1.data.isApprox(Q2.data);
+}
+
+
 TEST(Rotations, RotationMatrix) {
   double alpha = 0.12;
   double beta = 0.23;
@@ -75,6 +80,26 @@ TEST(Rotations, AxisAngle) {
   ASSERT_TRUE(approx_equal(Rz, AxisAngle(RotationMatrix::rotate_z(gamma))));
   // ASSERT_TRUE(approx_equal(Rz, AxisAngle(EulerAngles::rotate_z(gamma))));
   ASSERT_TRUE(approx_equal(Rz, AxisAngle(Quaternion::rotate_z(gamma))));
+}
+
+TEST(Rotations, Quaternion) {
+  double alpha = 0.12;
+  double beta = 0.23;
+  double gamma = 0.71;
+  Quaternion Rx = Quaternion::rotate_x(alpha);
+  ASSERT_TRUE(approx_equal(Rx, Quaternion(RotationMatrix::rotate_x(alpha))));
+  ASSERT_TRUE(approx_equal(Rx, Quaternion(EulerAngles::rotate_x(alpha))));
+  ASSERT_TRUE(approx_equal(Rx, Quaternion(AxisAngle::rotate_x(alpha))));
+
+  Quaternion Ry = Quaternion::rotate_y(beta);
+  ASSERT_TRUE(approx_equal(Ry, Quaternion(RotationMatrix::rotate_y(beta))));
+  ASSERT_TRUE(approx_equal(Ry, Quaternion(EulerAngles::rotate_y(beta))));
+  ASSERT_TRUE(approx_equal(Ry, Quaternion(AxisAngle::rotate_y(beta))));
+
+  Quaternion Rz = Quaternion::rotate_z(gamma);
+  ASSERT_TRUE(approx_equal(Rz, Quaternion(RotationMatrix::rotate_z(gamma))));
+  ASSERT_TRUE(approx_equal(Rz, Quaternion(EulerAngles::rotate_z(gamma))));
+  ASSERT_TRUE(approx_equal(Rz, Quaternion(AxisAngle::rotate_z(gamma))));
 }
 
 int main(int argc, char **argv) {

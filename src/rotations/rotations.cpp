@@ -39,15 +39,15 @@ RotationMatrix::RotationMatrix(const AxisAngle& A) {
 
 RotationMatrix::RotationMatrix(const Quaternion& Q) {
   const Vector4d& q = Q.data;
-  data(0,0) = 1 - 2*q(1)*q(1) - 2*q(2)*q(2);
-  data(0,1) = 2*(q(0)*q(1) - q(2)*q(3));
-  data(0,2) = 2*(q(0)*q(2) + q(1)*q(3));
-  data(1,0) = 2*(q(0)*q(1) + q(2)*q(3));
-  data(1,1) = 1 - 2*q(0)*q(0) - 2*q(2)*q(2);
-  data(1,2) = 2*(q(1)*q(2) - q(0)*q(3));
-  data(2,0) = 2*(q(0)*q(2) - q(1)*q(3));
-  data(2,1) = 2*(q(0)*q(3) + q(1)*q(2));
-  data(2,2) = 1 - 2*q(0)*q(0) - 2*q(1)*q(1);
+  data(0,0) = 1 - 2*q(2)*q(2) - 2*q(3)*q(3);
+  data(0,1) = 2*(q(1)*q(2) - q(3)*q(0));
+  data(0,2) = 2*(q(1)*q(3) + q(2)*q(0));
+  data(1,0) = 2*(q(1)*q(2) + q(3)*q(0));
+  data(1,1) = 1 - 2*q(1)*q(1) - 2*q(3)*q(3);
+  data(1,2) = 2*(q(2)*q(3) - q(1)*q(0));
+  data(2,0) = 2*(q(1)*q(3) - q(2)*q(0));
+  data(2,1) = 2*(q(1)*q(0) + q(2)*q(3));
+  data(2,2) = 1 - 2*q(1)*q(1) - 2*q(2)*q(2);
 }
 
 RotationMatrix RotationMatrix::rotate_x(double angle) {
@@ -85,9 +85,9 @@ EulerAngles::EulerAngles(const RotationMatrix& R) {
 
 EulerAngles::EulerAngles(const Quaternion& Q) {
   const Vector4d& q = Q.data;
-  angles(2) = atan2(2*(q(3)*q(0) + q(1)*q(2)), 1 - 2*(q(0)*q(0) + q(1)*q(1)));
-  angles(1) = asin(2*(q(3)*q(1) - q(2)*q(0)));
-  angles(0) = atan2(2*(q(3)*q(2) + q(0)*q(1)), 1 - 2*(q(1)*q(1) + q(2)*q(2)));
+  angles(2) = atan2(2*(q(0)*q(1) + q(2)*q(3)), 1 - 2*(q(1)*q(1) + q(2)*q(2)));
+  angles(1) = asin(2*(q(0)*q(2) - q(3)*q(1)));
+  angles(0) = atan2(2*(q(0)*q(3) + q(1)*q(2)), 1 - 2*(q(2)*q(2) + q(3)*q(3)));
 }
 
 EulerAngles EulerAngles::rotate_x(double angle) {
@@ -113,11 +113,11 @@ AxisAngle::AxisAngle(const RotationMatrix& R) {
 }
 
 AxisAngle::AxisAngle(const Quaternion& Q) {
-  double n = sqrt(Q.data(0)*Q.data(0) + Q.data(1)*Q.data(1) + Q.data(2)*Q.data(2));
-  axis(0) = Q.data(0)/n;
-  axis(1) = Q.data(1)/n;
-  axis(2) = Q.data(2)/n;
-  angle = 2*acos(Q.data(3));
+  double n = sqrt(Q.data(1)*Q.data(1) + Q.data(2)*Q.data(2) + Q.data(3)*Q.data(3));
+  axis(0) = Q.data(1)/n;
+  axis(1) = Q.data(2)/n;
+  axis(2) = Q.data(3)/n;
+  angle = 2*acos(Q.data(0));
 }
 
 AxisAngle AxisAngle::rotate_x(double angle) {
@@ -135,10 +135,10 @@ AxisAngle AxisAngle::rotate_z(double angle) {
 
 Quaternion::Quaternion(const RotationMatrix& R) {
   const Matrix3d& r = R.data;
-  data(0) = sqrt(1 + r(0,0) - r(1,1) - r(2,2))/2;
-  data(1) = (r(0,1) + r(1,0))/(4*data(0));
-  data(2) = (r(0,2) + r(2,0))/(4*data(0));
-  data(3) = (r(2,1) + r(1,2))/(4*data(0));
+  data(0) = sqrt(1 + r(0,0) + r(1,1) + r(2,2))/2;
+  data(1) = (r(2,1) - r(1,2))/(4*data(0));
+  data(2) = (r(0,2) - r(2,0))/(4*data(0));
+  data(3) = (r(1,0) - r(0,1))/(4*data(0));
 }
 
 Quaternion::Quaternion(const EulerAngles& E) {
@@ -148,36 +148,36 @@ Quaternion::Quaternion(const EulerAngles& E) {
   double c0 = cos(E.angles(0)/2);
   double c1 = cos(E.angles(1)/2);
   double c2 = cos(E.angles(2)/2);
-  data(0) = c0*c1*s2 - s0*s1*c2;
-  data(1) = c0*s1*c2 + s0*c1*s2;
-  data(2) = s0*c1*c2 - c0*s1*s2;
-  data(3) = c0*c1*c2 + s0*s1*s2;
+  data(0) = c0*c1*c2 + s0*s1*s2;
+  data(1) = c0*c1*s2 - s0*s1*c2;
+  data(2) = c0*s1*c2 + s0*c1*s2;
+  data(3) = s0*c1*c2 - c0*s1*s2;
 }
 
 Quaternion::Quaternion(const AxisAngle& A) {
   double s = sin(A.angle/2);
-  data(0) = A.axis(0)*s;
-  data(1) = A.axis(1)*s;
-  data(2) = A.axis(2)*s;
-  data(3) = cos(A.angle/2);
+  data(0) = cos(A.angle/2);
+  data(1) = A.axis(0)*s;
+  data(2) = A.axis(1)*s;
+  data(3) = A.axis(2)*s;
 }
 
 Quaternion Quaternion::rotate_x(double angle) {
   double s = sin(angle/2);
   double c = cos(angle/2);
-  return Quaternion(Vector4d(s, 0, 0, c));
+  return Quaternion(Vector4d(c, s, 0, 0));
 }
 
 Quaternion Quaternion::rotate_y(double angle) {
   double s = sin(angle/2);
   double c = cos(angle/2);
-  return Quaternion(Vector4d(0, s, 0, c));
+  return Quaternion(Vector4d(c, 0, s, 0));
 }
 
 Quaternion Quaternion::rotate_z(double angle) {
   double s = sin(angle/2);
   double c = cos(angle/2);
-  return Quaternion(Vector4d(0, 0, s, c));
+  return Quaternion(Vector4d(c, 0, 0, s));
 }
 
 
