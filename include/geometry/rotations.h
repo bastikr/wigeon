@@ -75,6 +75,8 @@ class AxisAngle {
     static AxisAngle rotate_y(double);
     static AxisAngle rotate_z(double);
 
+    AxisAngle operator*(const AxisAngle&);
+
   // private:
     Eigen::Vector3d axis;
     double angle;

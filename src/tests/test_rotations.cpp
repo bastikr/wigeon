@@ -14,7 +14,7 @@ bool approx_equal(const EulerAngles& E1, const EulerAngles& E2) {
 }
 
 bool approx_equal(const AxisAngle& A1, const AxisAngle& A2) {
-  return A1.axis.isApprox(A2.axis) && (abs(A1.angle - A2.angle) < 1e-15);
+  return A1.axis.isApprox(A2.axis) && (abs(A1.angle - A2.angle) < 1e-14);
 }
 
 bool approx_equal(const Quaternion& Q1, const Quaternion& Q2) {
@@ -85,6 +85,10 @@ TEST(Rotations, AxisAngle) {
   ASSERT_TRUE(approx_equal(Az, AxisAngle(RotationMatrix::rotate_z(gamma))));
   // ASSERT_TRUE(approx_equal(Az, AxisAngle(EulerAngles::rotate_z(gamma))));
   ASSERT_TRUE(approx_equal(Az, AxisAngle(Quaternion::rotate_z(gamma))));
+
+  ASSERT_TRUE(approx_equal(Ax*Ax, AxisAngle::rotate_x(2*alpha)));
+  ASSERT_TRUE(approx_equal(Ay*Ay, AxisAngle::rotate_y(2*beta)));
+  ASSERT_TRUE(approx_equal(Az*Az, AxisAngle::rotate_z(2*gamma)));
 }
 
 

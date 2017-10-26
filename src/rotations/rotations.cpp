@@ -180,6 +180,17 @@ Quaternion Quaternion::rotate_z(double angle) {
   return Quaternion(Vector4d(c, 0, 0, s));
 }
 
+AxisAngle AxisAngle::operator*(const AxisAngle& a) {
+  double c_a = cos(angle/2);
+  double s_a = sin(angle/2);
+  double c_b = cos(a.angle/2);
+  double s_b = sin(a.angle/2);
+  const Vector3d& l = axis;
+  const Vector3d& m = a.axis;
+  double c = c_a*c_b - s_a*s_b*l.dot(m);
+  Vector3d n = s_a*c_b*l + c_a*s_b*m + s_a*s_b*l.cross(m);
+  return AxisAngle(n/sin(acos(c)), 2*acos(c));
+}
 
 } // namespace rotations
 
