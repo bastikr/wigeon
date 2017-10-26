@@ -1,10 +1,24 @@
+// Provides several different representations of rotations.
+//
+// There exist the following types:
+// * RotationMatrix
+// * EulerAngles (ZYX version)
+// * AxisAngle
+// * Quaternion
+//
+// They all can be explicitly converted from one to another and provide a
+// common interface:
+// * rotate_x
+// * rotate_y
+// * rotate_z
+
 #include <eigen3/Eigen/Dense>
 
 namespace geometry {
 
 namespace rotations {
 
-class RoationMatrix;
+class RotationMatrix;
 class EulerAngles;
 class AxisAngle;
 class Quaternion;
