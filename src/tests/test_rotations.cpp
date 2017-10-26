@@ -26,6 +26,7 @@ TEST(Rotations, RotationMatrix) {
   double alpha = 0.12;
   double beta = 0.23;
   double gamma = 0.71;
+
   RotationMatrix Rx = RotationMatrix::rotate_x(alpha);
   ASSERT_TRUE(approx_equal(Rx, RotationMatrix(EulerAngles::rotate_x(alpha))));
   ASSERT_TRUE(approx_equal(Rx, RotationMatrix(AxisAngle::rotate_x(alpha))));
@@ -42,65 +43,72 @@ TEST(Rotations, RotationMatrix) {
   ASSERT_TRUE(approx_equal(Rz, RotationMatrix(Quaternion::rotate_z(gamma))));
 }
 
+
 TEST(Rotations, EulerAngles) {
   double alpha = 0.12;
   double beta = 0.23;
   double gamma = 0.71;
-  EulerAngles Rx = EulerAngles::rotate_x(alpha);
-  ASSERT_TRUE(approx_equal(Rx, EulerAngles(RotationMatrix::rotate_x(alpha))));
-  // ASSERT_TRUE(approx_equal(Rx, EulerAngles(AxisAngle::rotate_x(alpha))));
-  ASSERT_TRUE(approx_equal(Rx, EulerAngles(Quaternion::rotate_x(alpha))));
 
-  EulerAngles Ry = EulerAngles::rotate_y(beta);
-  ASSERT_TRUE(approx_equal(Ry, EulerAngles(RotationMatrix::rotate_y(beta))));
-  // ASSERT_TRUE(approx_equal(Ry, EulerAngles(AxisAngle::rotate_y(beta))));
-  ASSERT_TRUE(approx_equal(Ry, EulerAngles(Quaternion::rotate_y(beta))));
+  EulerAngles Ex = EulerAngles::rotate_x(alpha);
+  ASSERT_TRUE(approx_equal(Ex, EulerAngles(RotationMatrix::rotate_x(alpha))));
+  // ASSERT_TRUE(approx_equal(Ex, EulerAngles(AxisAngle::rotate_x(alpha))));
+  ASSERT_TRUE(approx_equal(Ex, EulerAngles(Quaternion::rotate_x(alpha))));
 
-  EulerAngles Rz = EulerAngles::rotate_z(gamma);
-  ASSERT_TRUE(approx_equal(Rz, EulerAngles(RotationMatrix::rotate_z(gamma))));
-  // ASSERT_TRUE(approx_equal(Rz, EulerAngles(AxisAngle::rotate_z(gamma))));
-  ASSERT_TRUE(approx_equal(Rz, EulerAngles(Quaternion::rotate_z(gamma))));
+  EulerAngles Ey = EulerAngles::rotate_y(beta);
+  ASSERT_TRUE(approx_equal(Ey, EulerAngles(RotationMatrix::rotate_y(beta))));
+  // ASSERT_TRUE(approx_equal(Ey, EulerAngles(AxisAngle::rotate_y(beta))));
+  ASSERT_TRUE(approx_equal(Ey, EulerAngles(Quaternion::rotate_y(beta))));
+
+  EulerAngles Ez = EulerAngles::rotate_z(gamma);
+  ASSERT_TRUE(approx_equal(Ez, EulerAngles(RotationMatrix::rotate_z(gamma))));
+  // ASSERT_TRUE(approx_equal(Ez, EulerAngles(AxisAngle::rotate_z(gamma))));
+  ASSERT_TRUE(approx_equal(Ez, EulerAngles(Quaternion::rotate_z(gamma))));
 }
+
 
 TEST(Rotations, AxisAngle) {
   double alpha = 0.12;
   double beta = 0.23;
   double gamma = 0.71;
-  AxisAngle Rx = AxisAngle::rotate_x(alpha);
-  ASSERT_TRUE(approx_equal(Rx, AxisAngle(RotationMatrix::rotate_x(alpha))));
-  // ASSERT_TRUE(approx_equal(Rx, AxisAngle(EulerAngles::rotate_x(alpha))));
-  ASSERT_TRUE(approx_equal(Rx, AxisAngle(Quaternion::rotate_x(alpha))));
 
-  AxisAngle Ry = AxisAngle::rotate_y(beta);
-  ASSERT_TRUE(approx_equal(Ry, AxisAngle(RotationMatrix::rotate_y(beta))));
-  // ASSERT_TRUE(approx_equal(Ry, AxisAngle(EulerAngles::rotate_y(beta))));
-  ASSERT_TRUE(approx_equal(Ry, AxisAngle(Quaternion::rotate_y(beta))));
+  AxisAngle Ax = AxisAngle::rotate_x(alpha);
+  ASSERT_TRUE(approx_equal(Ax, AxisAngle(RotationMatrix::rotate_x(alpha))));
+  // ASSERT_TRUE(approx_equal(Ax, AxisAngle(EulerAngles::rotate_x(alpha))));
+  ASSERT_TRUE(approx_equal(Ax, AxisAngle(Quaternion::rotate_x(alpha))));
 
-  AxisAngle Rz = AxisAngle::rotate_z(gamma);
-  ASSERT_TRUE(approx_equal(Rz, AxisAngle(RotationMatrix::rotate_z(gamma))));
-  // ASSERT_TRUE(approx_equal(Rz, AxisAngle(EulerAngles::rotate_z(gamma))));
-  ASSERT_TRUE(approx_equal(Rz, AxisAngle(Quaternion::rotate_z(gamma))));
+  AxisAngle Ay = AxisAngle::rotate_y(beta);
+  ASSERT_TRUE(approx_equal(Ay, AxisAngle(RotationMatrix::rotate_y(beta))));
+  // ASSERT_TRUE(approx_equal(Ay, AxisAngle(EulerAngles::rotate_y(beta))));
+  ASSERT_TRUE(approx_equal(Ay, AxisAngle(Quaternion::rotate_y(beta))));
+
+  AxisAngle Az = AxisAngle::rotate_z(gamma);
+  ASSERT_TRUE(approx_equal(Az, AxisAngle(RotationMatrix::rotate_z(gamma))));
+  // ASSERT_TRUE(approx_equal(Az, AxisAngle(EulerAngles::rotate_z(gamma))));
+  ASSERT_TRUE(approx_equal(Az, AxisAngle(Quaternion::rotate_z(gamma))));
 }
+
 
 TEST(Rotations, Quaternion) {
   double alpha = 0.12;
   double beta = 0.23;
   double gamma = 0.71;
-  Quaternion Rx = Quaternion::rotate_x(alpha);
-  ASSERT_TRUE(approx_equal(Rx, Quaternion(RotationMatrix::rotate_x(alpha))));
-  ASSERT_TRUE(approx_equal(Rx, Quaternion(EulerAngles::rotate_x(alpha))));
-  ASSERT_TRUE(approx_equal(Rx, Quaternion(AxisAngle::rotate_x(alpha))));
 
-  Quaternion Ry = Quaternion::rotate_y(beta);
-  ASSERT_TRUE(approx_equal(Ry, Quaternion(RotationMatrix::rotate_y(beta))));
-  ASSERT_TRUE(approx_equal(Ry, Quaternion(EulerAngles::rotate_y(beta))));
-  ASSERT_TRUE(approx_equal(Ry, Quaternion(AxisAngle::rotate_y(beta))));
+  Quaternion Qx = Quaternion::rotate_x(alpha);
+  ASSERT_TRUE(approx_equal(Qx, Quaternion(RotationMatrix::rotate_x(alpha))));
+  ASSERT_TRUE(approx_equal(Qx, Quaternion(EulerAngles::rotate_x(alpha))));
+  ASSERT_TRUE(approx_equal(Qx, Quaternion(AxisAngle::rotate_x(alpha))));
 
-  Quaternion Rz = Quaternion::rotate_z(gamma);
-  ASSERT_TRUE(approx_equal(Rz, Quaternion(RotationMatrix::rotate_z(gamma))));
-  ASSERT_TRUE(approx_equal(Rz, Quaternion(EulerAngles::rotate_z(gamma))));
-  ASSERT_TRUE(approx_equal(Rz, Quaternion(AxisAngle::rotate_z(gamma))));
+  Quaternion Qy = Quaternion::rotate_y(beta);
+  ASSERT_TRUE(approx_equal(Qy, Quaternion(RotationMatrix::rotate_y(beta))));
+  ASSERT_TRUE(approx_equal(Qy, Quaternion(EulerAngles::rotate_y(beta))));
+  ASSERT_TRUE(approx_equal(Qy, Quaternion(AxisAngle::rotate_y(beta))));
+
+  Quaternion Qz = Quaternion::rotate_z(gamma);
+  ASSERT_TRUE(approx_equal(Qz, Quaternion(RotationMatrix::rotate_z(gamma))));
+  ASSERT_TRUE(approx_equal(Qz, Quaternion(EulerAngles::rotate_z(gamma))));
+  ASSERT_TRUE(approx_equal(Qz, Quaternion(AxisAngle::rotate_z(gamma))));
 }
+
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
