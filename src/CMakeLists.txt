@@ -5,4 +5,6 @@ project(robotworld)
 include_directories(../include)
 
 add_subdirectory(rotations)
+
+enable_testing()
 add_subdirectory(tests)

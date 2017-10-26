@@ -1,11 +1,11 @@
-file(GLOB sources *.cc)
-
-enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-add_executable(test_geometry ${sources})
-target_link_libraries(test_geometry ${GTEST_BOTH_LIBRARIES})
-target_link_libraries (test_geometry rotations)
+file(GLOB sources *.cc)
+add_executable(unittests ${sources})
 
-add_test(test_geometry test_geometry)
+target_link_libraries (unittests
+    ${GTEST_BOTH_LIBRARIES}
+    rotations)
+
+add_test(unit ${PROJECT_BINARY_DIR}/tests/unittests)
