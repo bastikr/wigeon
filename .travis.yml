@@ -1,17 +1,29 @@
 language:
   - cpp
 
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    # - llvm-toolchain-precise-3.7
 os:
   - linux
 
-# install:
-#   - sudo apt-get install libgtest-dev
-#   - pip install --user cpp-coveralls
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      # - g++-6
+      # - googletest
+      - libgtest-dev
+      - libeigen3-dev
+
+before_install:
+  # - eval "CC=gcc-6 && CXX=g++-6"
+
+install:
+  - cd /usr/src/gtest
+  - sudo cmake -DBUILD_SHARED_LIBS=ON .
+  - sudo make
+  - sudo mv libgtest* /usr/lib/
+  - cd "${TRAVIS_BUILD_DIR}"
+  - pip install --user cpp-coveralls
 
 script:
   - cd build
