@@ -23,16 +23,16 @@ install:
   - sudo make
   - sudo mv libgtest* /usr/lib/
   - cd "${TRAVIS_BUILD_DIR}"
-  - pip install --user cpp-coveralls
+  #- pip install --user cpp-coveralls
 
 script:
   - cd build
-  - cmake -DCOVERAGE=1 ../src
+  - cmake ..
   - make
   - ./tests/unittests
 
 after_success:
-  - coveralls --root ../src -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
+  #- coveralls --root ../src -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
 
 notifications:
   email: false
