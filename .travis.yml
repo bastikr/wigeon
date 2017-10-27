@@ -27,7 +27,7 @@ install:
 
 script:
   - cd build
-  - cmake ../src
+  - cmake -DCOVERAGE=1 ../src
   - make
   - ./tests/unittests
 
