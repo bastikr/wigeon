@@ -136,6 +136,18 @@ AxisAngle AxisAngle::rotate_z(double angle) {
   return AxisAngle(Vector3d(0, 0, 1), angle);
 }
 
+AxisAngle AxisAngle::operator*(const AxisAngle& a) {
+  double c_a = cos(angle/2);
+  double s_a = sin(angle/2);
+  double c_b = cos(a.angle/2);
+  double s_b = sin(a.angle/2);
+  const Vector3d& l = axis;
+  const Vector3d& m = a.axis;
+  double c = c_a*c_b - s_a*s_b*l.dot(m);
+  Vector3d n = s_a*c_b*l + c_a*s_b*m + s_a*s_b*l.cross(m);
+  return AxisAngle(n/sin(acos(c)), 2*acos(c));
+}
+
 
 Quaternion::Quaternion(const RotationMatrix& R) {
   const Matrix3d& r = R.data;
@@ -184,17 +196,17 @@ Quaternion Quaternion::rotate_z(double angle) {
   return Quaternion(Vector4d(c, 0, 0, s));
 }
 
-AxisAngle AxisAngle::operator*(const AxisAngle& a) {
-  double c_a = cos(angle/2);
-  double s_a = sin(angle/2);
-  double c_b = cos(a.angle/2);
-  double s_b = sin(a.angle/2);
-  const Vector3d& l = axis;
-  const Vector3d& m = a.axis;
-  double c = c_a*c_b - s_a*s_b*l.dot(m);
-  Vector3d n = s_a*c_b*l + c_a*s_b*m + s_a*s_b*l.cross(m);
-  return AxisAngle(n/sin(acos(c)), 2*acos(c));
+Quaternion Quaternion::operator*(const Quaternion& Q) {
+  const Vector4d& a = data;
+  const Vector4d& b = Q.data;
+  Vector4d q;
+  q(0) = a(0)*b(0) - a(1)*b(1) - a(2)*b(2) - a(3)*b(3);
+  q(1) = a(0)*b(1) + a(1)*b(0) + a(2)*b(3) - a(3)*b(2);
+  q(2) = a(0)*b(2) - a(1)*b(3) + a(2)*b(0) + a(3)*b(1);
+  q(3) = a(0)*b(3) + a(1)*b(2) - a(2)*b(1) + a(3)*b(0);
+  return Quaternion(q);
 }
+
 
 } // namespace rotations
 

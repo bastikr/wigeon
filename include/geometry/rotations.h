@@ -96,6 +96,8 @@ class Quaternion {
     static Quaternion rotate_y(double);
     static Quaternion rotate_z(double);
 
+    Quaternion operator*(const Quaternion&);
+
   // private:
     Eigen::Vector4d data;
 };

@@ -115,6 +115,10 @@ TEST(Rotations, Quaternion) {
   ASSERT_TRUE(approx_equal(Qz, Quaternion(RotationMatrix::rotate_z(gamma))));
   ASSERT_TRUE(approx_equal(Qz, Quaternion(EulerAngles::rotate_z(gamma))));
   ASSERT_TRUE(approx_equal(Qz, Quaternion(AxisAngle::rotate_z(gamma))));
+
+  ASSERT_TRUE(approx_equal(Qx*Qx, Quaternion::rotate_x(2*alpha)));
+  ASSERT_TRUE(approx_equal(Qy*Qy, Quaternion::rotate_y(2*beta)));
+  ASSERT_TRUE(approx_equal(Qz*Qz, Quaternion::rotate_z(2*gamma)));
 }
 
 
