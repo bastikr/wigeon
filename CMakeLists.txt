@@ -5,9 +5,9 @@ project(robotworld)
 set (CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_FLAGS "-Wall")
 
-include_directories(../include)
+include_directories(include)
 
-add_subdirectory(rotations)
+add_subdirectory(src/rotations)
 
 enable_testing()
 add_subdirectory(tests)
