@@ -13,17 +13,17 @@ This library is mostly written to learn about a few C++ related things:
   
 ## Development status
 
-  * Linux/Mac build: [![Travis build status][travis-img]][travis-url]
+  * Linux build: [![Travis build status][travis-img]][travis-url]
 
 
 ## Documentation
 
 At the moment it provides only functionality regarding rotations:
 
-  * rotation matrices: `RotationMatrix`
-  * ZYX euler angles: `EulerAngles`
-  * axis-angle approach: `AxisAngle`
-  * quaternions: `Quaternion`
+  * Rotation matrices: `geometry::rotations::RotationMatrix`
+  * ZYX euler angles: `geometry::rotations::EulerAngles`
+  * Axis-angle approach: `geometry::rotations::AxisAngle`
+  * Quaternions: `geometry::rotations::Quaternion`
 
 
 [travis-url]: https://travis-ci.org/bastikr/geometry
