@@ -5,6 +5,12 @@
 
 using namespace geometry::rotations;
 
+bool approx_equal(const RotationMatrix&, const RotationMatrix&);
+bool approx_equal(const EulerAngles&, const EulerAngles&);
+bool approx_equal(const AxisAngle&, const AxisAngle&);
+bool approx_equal(const Quaternion&, const Quaternion&);
+
+
 bool approx_equal(const RotationMatrix& R1, const RotationMatrix& R2) {
   return R1.data.isApprox(R2.data);
 }
