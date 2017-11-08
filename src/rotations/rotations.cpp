@@ -50,7 +50,7 @@ RotationMatrix::RotationMatrix(const Quaternion& Q) {
   data(2,2) = 1 - 2*q(1)*q(1) - 2*q(2)*q(2);
 }
 
-RotationMatrix RotationMatrix::rotate_x(double angle) {
+RotationMatrix RotationMatrix::RotateX(double angle) {
   Matrix3d R;
   R << 1, 0, 0,
        0, cos(angle), -sin(angle),
@@ -58,7 +58,7 @@ RotationMatrix RotationMatrix::rotate_x(double angle) {
   return RotationMatrix(R);
 }
 
-RotationMatrix RotationMatrix::rotate_y(double angle) {
+RotationMatrix RotationMatrix::RotateY(double angle) {
   Matrix3d R;
   R << cos(angle), 0, sin(angle),
        0, 1, 0,
@@ -66,7 +66,7 @@ RotationMatrix RotationMatrix::rotate_y(double angle) {
   return RotationMatrix(R);
 }
 
-RotationMatrix RotationMatrix::rotate_z(double angle) {
+RotationMatrix RotationMatrix::RotateZ(double angle) {
   Matrix3d R;
   R << cos(angle), -sin(angle), 0,
        sin(angle), cos(angle), 0,
@@ -94,15 +94,15 @@ EulerAngles::EulerAngles(const Quaternion& Q) {
   angles(0) = atan2(2*(q(0)*q(3) + q(1)*q(2)), 1 - 2*(q(2)*q(2) + q(3)*q(3)));
 }
 
-EulerAngles EulerAngles::rotate_x(double angle) {
+EulerAngles EulerAngles::RotateX(double angle) {
   return EulerAngles(Vector3d(0, 0, angle));
 }
 
-EulerAngles EulerAngles::rotate_y(double angle) {
+EulerAngles EulerAngles::RotateY(double angle) {
   return EulerAngles(Vector3d(0, angle, 0));
 }
 
-EulerAngles EulerAngles::rotate_z(double angle) {
+EulerAngles EulerAngles::RotateZ(double angle) {
   return EulerAngles(Vector3d(angle, 0, 0));
 }
 
@@ -124,15 +124,15 @@ AxisAngle::AxisAngle(const Quaternion& Q) {
   angle = 2*acos(Q.data(0));
 }
 
-AxisAngle AxisAngle::rotate_x(double angle) {
+AxisAngle AxisAngle::RotateX(double angle) {
   return AxisAngle(Vector3d(1, 0, 0), angle);
 }
 
-AxisAngle AxisAngle::rotate_y(double angle) {
+AxisAngle AxisAngle::RotateY(double angle) {
   return AxisAngle(Vector3d(0, 1, 0), angle);
 }
 
-AxisAngle AxisAngle::rotate_z(double angle) {
+AxisAngle AxisAngle::RotateZ(double angle) {
   return AxisAngle(Vector3d(0, 0, 1), angle);
 }
 
@@ -178,19 +178,19 @@ Quaternion::Quaternion(const AxisAngle& A) {
   data(3) = A.axis(2)*s;
 }
 
-Quaternion Quaternion::rotate_x(double angle) {
+Quaternion Quaternion::RotateX(double angle) {
   double s = sin(angle/2);
   double c = cos(angle/2);
   return Quaternion(Vector4d(c, s, 0, 0));
 }
 
-Quaternion Quaternion::rotate_y(double angle) {
+Quaternion Quaternion::RotateY(double angle) {
   double s = sin(angle/2);
   double c = cos(angle/2);
   return Quaternion(Vector4d(c, 0, s, 0));
 }
 
-Quaternion Quaternion::rotate_z(double angle) {
+Quaternion Quaternion::RotateZ(double angle) {
   double s = sin(angle/2);
   double c = cos(angle/2);
   return Quaternion(Vector4d(c, 0, 0, s));

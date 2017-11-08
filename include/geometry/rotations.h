@@ -9,9 +9,9 @@
 
   They all can be explicitly converted from one to another and provide a
   common interface:
-    - `T::rotate_x(double angle)`
-    - `T::rotate_y(double angle)`
-    - `T::rotate_z(double angle)`
+    - `T::RotateX(double angle)`
+    - `T::RotateY(double angle)`
+    - `T::RotateZ(double angle)`
 */
 
 #include <eigen3/Eigen/Dense>
@@ -38,9 +38,9 @@ class RotationMatrix {
     explicit RotationMatrix(const AxisAngle&);
     explicit RotationMatrix(const Quaternion&);
 
-    static RotationMatrix rotate_x(double);
-    static RotationMatrix rotate_y(double);
-    static RotationMatrix rotate_z(double);
+    static RotationMatrix RotateX(double);
+    static RotationMatrix RotateY(double);
+    static RotationMatrix RotateZ(double);
 
     RotationMatrix operator*(const RotationMatrix&);
 
@@ -57,9 +57,9 @@ class EulerAngles {
     explicit EulerAngles(const AxisAngle&);
     explicit EulerAngles(const Quaternion&);
 
-    static EulerAngles rotate_x(double);
-    static EulerAngles rotate_y(double);
-    static EulerAngles rotate_z(double);
+    static EulerAngles RotateX(double);
+    static EulerAngles RotateY(double);
+    static EulerAngles RotateZ(double);
 
   // private:
     Eigen::Vector3d angles;
@@ -73,9 +73,9 @@ class AxisAngle {
     explicit AxisAngle(const EulerAngles&);
     explicit AxisAngle(const Quaternion&);
 
-    static AxisAngle rotate_x(double);
-    static AxisAngle rotate_y(double);
-    static AxisAngle rotate_z(double);
+    static AxisAngle RotateX(double);
+    static AxisAngle RotateY(double);
+    static AxisAngle RotateZ(double);
 
     AxisAngle operator*(const AxisAngle&);
 
@@ -92,9 +92,9 @@ class Quaternion {
     explicit Quaternion(const EulerAngles&);
     explicit Quaternion(const AxisAngle&);
 
-    static Quaternion rotate_x(double);
-    static Quaternion rotate_y(double);
-    static Quaternion rotate_z(double);
+    static Quaternion RotateX(double);
+    static Quaternion RotateY(double);
+    static Quaternion RotateZ(double);
 
     Quaternion operator*(const Quaternion&);
 
