@@ -1,3 +1,5 @@
+#pragma once
+
 /*! \file rotations.h
   \brief Provides several different representations of rotations.
 
