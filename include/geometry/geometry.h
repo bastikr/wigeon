@@ -15,7 +15,8 @@ struct Point2D {
   double x() const {return data[0];}
   double y() const {return data[1];}
 
-  Point2D operator+(const Vector2D& vector);
+  Point2D operator+(const Vector2D& vector) const;
+  Vector2D operator-(const Point2D& point) const;
 
   std::array<double, 2> data;
 };
@@ -27,9 +28,13 @@ struct Vector2D {
   double x() const {return data[0];}
   double y() const {return data[1];}
 
-  Point2D operator+(Point2D point);
-  Point2D operator-(Point2D point);
-  Vector2D operator+(Vector2D vector);
+  Point2D operator+(Point2D point) const;
+  Vector2D operator+(Vector2D vector) const;
+
+  Vector2D operator-() const;
+  Point2D operator-(Point2D point) const;
+  Vector2D operator*(double a) const;
+  double operator*(const Vector2D& vector) const;
 
   std::array<double, 2> data;
 };
@@ -37,13 +42,13 @@ struct Vector2D {
 
 struct Line2D {
   Line2D(Point2D point, Vector2D direction) : point(point), direction(direction) {}
+
   Point2D getPoint() const {return point;}
   Vector2D getDirection() const {return direction;}
 
   Point2D point;
   Vector2D direction;
 };
-
 
 struct LineSegment2D {
   LineSegment2D(const LineSegment2D& segment)
@@ -65,7 +70,6 @@ struct LineSegment2D {
 
   std::array<double, 4> data;
 };
-
 
 struct Polygon2D {
   void append(const Point2D& point);
