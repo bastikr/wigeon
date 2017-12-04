@@ -50,6 +50,16 @@ struct Line2D {
   Vector2D direction;
 };
 
+struct Ray2D {
+  Ray2D(Point2D point, Vector2D direction): point(point), direction(direction) {}
+
+  Point2D getPoint() const {return point;}
+  Vector2D getDirection() const {return direction;}
+
+  Point2D point;
+  Vector2D direction;
+};
+
 struct LineSegment2D {
   LineSegment2D(const LineSegment2D& segment)
       : data(segment.data) {}
@@ -69,6 +79,11 @@ struct LineSegment2D {
   Point2D getPoint1() const;
 
   std::array<double, 4> data;
+};
+
+struct Circle2D {
+  Point2D center;
+  double radius;
 };
 
 struct Polygon2D {
