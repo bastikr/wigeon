@@ -64,6 +64,9 @@ struct Ray2D {
   Point2D getPoint() const {return point;}
   Vector2D getDirection() const {return direction;}
 
+  Ray2D operator+(const Vector2D&) const;
+  Ray2D operator-(const Vector2D&) const;
+
   Point2D point;
   Vector2D direction;
 };
