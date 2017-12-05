@@ -107,6 +107,7 @@ struct Polygon2D {
 
 // std::vector<double> weights(Polygon2D polygon)
 
+double cross(const Vector2D& vector0, const Vector2D& vector1);
 
 /*
 double distance2(const Point2D& point0, const Point2D& point1) {
