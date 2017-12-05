@@ -6,6 +6,6 @@ add_executable(unittests ${sources})
 
 target_link_libraries (unittests
     ${GTEST_BOTH_LIBRARIES}
-    rotations)
+    rotations geometry)
 
 add_test(unit ${PROJECT_BINARY_DIR}/tests/unittests)

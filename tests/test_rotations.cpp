@@ -126,9 +126,3 @@ TEST(Rotations, Quaternion) {
   ASSERT_TRUE(approx_equal(Qy*Qy, Quaternion::RotateY(2*beta)));
   ASSERT_TRUE(approx_equal(Qz*Qz, Quaternion::RotateZ(2*gamma)));
 }
-
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}

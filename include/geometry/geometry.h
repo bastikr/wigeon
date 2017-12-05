@@ -2,6 +2,7 @@
 
 #include <array>
 #include <vector>
+
 #include <boost/optional.hpp>
 
 
@@ -103,34 +104,23 @@ struct Polygon2D {
 };
 
 
-// weight(const Point2D& p0, const Point2D& p1, const Point2D& p2) {}
-
-// std::vector<double> weights(Polygon2D polygon)
-
 double cross(const Vector2D& vector0, const Vector2D& vector1);
 
-/*
-double distance2(const Point2D& point0, const Point2D& point1) {
-  double dx = point1.x() - point0.x();
-  double dy = point1.y() - point0.y();
-  return dx*dx + dy*dy;
-}
-double distance2(const Point& point0, const Segment& segment0);
-double distance2(const Segment& segment0, const Point& point0) {return distance2(point0, segment0);}
-double distance2(const Segment& segment0, const Segment& segment1);
-double distance2(const Point& point0, const Polygon& polygon0) {}
-double distance2(const Polygon& polygon0, const Point& point0) {}
 
-double distance2(const Point& point0, const Point& point1) {
-  double dx = point1.x - point0.x;
-  double dy = point1.y - point1.y;
-  return dx*dx + dy*dy;
-}*/
+double distance2(const Point2D& point0, const Point2D& point1);
 
-// double distance(const Point& p0, const Segment& s0) {
-//
-// }
+double distance2(const Point2D& point0, const LineSegment2D& segment0);
+double distance2(const LineSegment2D& segment0, const Point2D& point0);
 
+double distance2(const LineSegment2D& segment0, const LineSegment2D& segment1);
+
+double distance2(const Point2D& point0, const Polygon2D& polygon0);
+double distance2(const Polygon2D& polygon0, const Point2D& point0);
+
+double distance2(const LineSegment2D& segment, const Polygon2D& polygon);
+double distance2(const Polygon2D& polygon, const LineSegment2D& segment);
+
+double distance2(const Polygon2D& polygon0, const Polygon2D& polygon1);
 
 
 } // namespace geometry
