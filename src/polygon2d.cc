@@ -33,8 +33,9 @@ boost::optional<Point2D> Polygon2D::getPoint(int i) const {
 boost::optional<LineSegment2D> Polygon2D::getLineSegment(int i) const {
   if (i<0 || i>size()-1)
     return boost::optional<LineSegment2D>();
-  else
-    return LineSegment2D(data_x[i], data_y[i], data_x[i+1], data_y[i+1]);
+  if (i==size())
+    return LineSegment2D(data_x[i], data_y[i], data_x[0], data_y[0]);
+  return LineSegment2D(data_x[i], data_y[i], data_x[i+1], data_y[i+1]);
 }
 
 } // namespace geometry
