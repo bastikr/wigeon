@@ -32,6 +32,10 @@ double Vector2D::operator*(const Vector2D& vector) const {
   return vector.x()*x() + vector.y()*y();
 }
 
+Vector2D Vector2D::operator/(double a) const {
+  return Vector2D(x()/a, y()/a);
+}
+
 double cross(const Vector2D& vector0, const Vector2D& vector1) {
   return vector0.x()*vector1.y() - vector0.y()*vector1.x();
 }
