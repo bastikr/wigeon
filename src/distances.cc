@@ -1,9 +1,8 @@
-#include "geometry/geometry.h"
+#include "geometry/distances.h"
 
 #include <cmath>
 #include <algorithm>
 
-using namespace std;
 
 namespace geometry {
 
