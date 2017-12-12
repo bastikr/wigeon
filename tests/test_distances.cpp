@@ -86,4 +86,31 @@ TEST(DISTANCES, POINT_LINE) {
   d1 = distance2(p1, line1);
   ASSERT_DOUBLE_EQ(d0, 0);
   ASSERT_DOUBLE_EQ(d1, 0);
-}
+};
+
+TEST(DISTANCES, LINE_SEGMENT) {
+  Line2D line0(Point2D(1, 1), Vector2D(5, -5));
+  Line2D line1(Point2D(-1, 1), Vector2D(1.5, 0));
+  LineSegment2D segment0(Point2D(0, -1), Point2D(5,-1));
+  LineSegment2D segment1(Point2D(-10, -5), Point2D(-3, -3));
+
+  double d0 = distance2(line0, segment0);
+  double d1 = distance2(segment0, line0);
+  ASSERT_DOUBLE_EQ(d0, -2);
+  ASSERT_DOUBLE_EQ(d1, -2);
+
+  d0 = distance2(line1, segment0);
+  d1 = distance2(segment0, line1);
+  ASSERT_DOUBLE_EQ(d0, 4);
+  ASSERT_DOUBLE_EQ(d1, 4);
+
+  d0 = distance2(line0, segment1);
+  d1 = distance2(segment1, line0);
+  ASSERT_DOUBLE_EQ(d0, 32);
+  ASSERT_DOUBLE_EQ(d1, 32);
+
+  d0 = distance2(line1, segment1);
+  d1 = distance2(segment1, line1);
+  ASSERT_DOUBLE_EQ(d0, 16);
+  ASSERT_DOUBLE_EQ(d1, 16);
+};

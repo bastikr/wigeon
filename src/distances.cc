@@ -70,4 +70,27 @@ double distance2(const Point2D& point, const Line2D& line) {
   return distance2(line, point);
 }
 
+double distance2(const Line2D& line, const LineSegment2D& segment) {
+  Vector2D w0 = segment.getPoint0() - line.getPoint();
+  Vector2D w1 = segment.getPoint1() - line.getPoint();
+
+  double c0 = cross(line.direction, w0);
+  double c1 = cross(line.direction, w1);
+
+  double d0 = distance2(line, segment.getPoint0());
+  double d1 = distance2(line, segment.getPoint1());
+
+  double dmin = std::min(d0, d1);
+
+  if ((c0<0 && c1<0) || (c0>1 && c1>1)) {
+    return dmin;
+  } else {
+    return -dmin;
+  }
+}
+
+double distance2(const LineSegment2D segment, const Line2D& line) {
+  return distance2(line, segment);
+}
+
 } // namespace geometry
