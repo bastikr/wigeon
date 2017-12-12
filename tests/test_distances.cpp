@@ -1,5 +1,6 @@
 #include "geometry/geometry.h"
 #include "gtest/gtest.h"
+#include <cmath>
 
 using namespace geometry;
 
@@ -36,6 +37,33 @@ TEST(DISTANCES, POINT_LINESEGMENT) {
   ASSERT_DOUBLE_EQ(d0, 2.3*2.3 + 1.7*1.7);
   ASSERT_DOUBLE_EQ(d1, 2.3*2.3 + 1.7*1.7);
 };
+
+TEST(DISTANCES, POINT_CIRCLE) {
+  Point2D point0(-1, 0);
+  Point2D point1(-3, 1);
+  Circle2D circle0(Point2D(0, 0), 2);
+  Circle2D circle1(Point2D(2, -4), 0.5);
+
+  double d0 = distance2(point0, circle0);
+  double d1 = distance2(circle0, point0);
+  ASSERT_DOUBLE_EQ(d0, 1);
+  ASSERT_DOUBLE_EQ(d1, 1);
+
+  d0 = distance2(point0, circle1);
+  d1 = distance2(circle1, point0);
+  ASSERT_DOUBLE_EQ(d0, 4.5*4.5);
+  ASSERT_DOUBLE_EQ(d1, 4.5*4.5);
+
+  d0 = distance2(point1, circle0);
+  d1 = distance2(circle0, point1);
+  ASSERT_DOUBLE_EQ(d0, pow(sqrt(10)-2, 2));
+  ASSERT_DOUBLE_EQ(d1, pow(sqrt(10)-2, 2));
+
+  d0 = distance2(point1, circle1);
+  d1 = distance2(circle1, point1);
+  ASSERT_DOUBLE_EQ(d0, pow(sqrt(2)*5-0.5, 2));
+  ASSERT_DOUBLE_EQ(d1, pow(sqrt(2)*5-0.5, 2));
+}
 
 TEST(DISTANCES, SEGMENT_SEGMENT) {
   LineSegment2D segment0(Point2D(0, 0), Point2D(3, 0));

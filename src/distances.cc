@@ -41,6 +41,16 @@ double distance2(const Line2D& line, const Point2D& point) {
   return distance2(point, line);
 }
 
+double distance2(const Point2D& point, const Circle2D& circle) {
+  double d2 = distance2(point, circle.center);
+  double d = circle.radius - sqrt(d2);
+  return d*d;
+}
+
+double distance2(const Circle2D& circle, const Point2D& point) {
+  return distance2(point, circle);
+}
+
 
 // LineSegment - ...
 
