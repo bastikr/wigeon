@@ -6,6 +6,8 @@
 
 namespace geometry {
 
+// point - ...
+
 double distance2(const Point2D& point0, const Point2D& point1) {
   double dx = point1.x() - point0.x();
   double dy = point1.y() - point0.y();
@@ -27,6 +29,20 @@ double distance2(const Point2D& point0, const LineSegment2D& segment0) {
 double distance2(const LineSegment2D& segment0, const Point2D& point0) {
   return distance2(point0, segment0);
 }
+
+double distance2(const Point2D& point, const Line2D& line) {
+  const Vector2D& v = line.getDirection();
+  Vector2D w = point - line.getPoint();
+  double alpha = v*v;
+  return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
+}
+
+double distance2(const Line2D& line, const Point2D& point) {
+  return distance2(point, line);
+}
+
+
+// LineSegment - ...
 
 bool isintersecting(const LineSegment2D& segment0, const LineSegment2D& segment1) {
   Vector2D v = segment0.getPoint1() - segment0.getPoint0();
@@ -58,18 +74,7 @@ double distance2(const LineSegment2D& segment0, const LineSegment2D& segment1) {
   return d;
 }
 
-double distance2(const Line2D& line, const Point2D& point) {
-  const Vector2D& v = line.getDirection();
-  Vector2D w = point - line.getPoint();
-  double alpha = v*v;
-  return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
-}
-
-double distance2(const Point2D& point, const Line2D& line) {
-  return distance2(line, point);
-}
-
-double distance2(const Line2D& line, const LineSegment2D& segment) {
+double distance2(const LineSegment2D& segment, const Line2D& line) {
   Vector2D w0 = segment.getPoint0() - line.getPoint();
   Vector2D w1 = segment.getPoint1() - line.getPoint();
 
@@ -88,8 +93,8 @@ double distance2(const Line2D& line, const LineSegment2D& segment) {
   }
 }
 
-double distance2(const LineSegment2D segment, const Line2D& line) {
-  return distance2(line, segment);
+double distance2(const Line2D& line, const LineSegment2D& segment) {
+  return distance2(segment, line);
 }
 
 } // namespace geometry
