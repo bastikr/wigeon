@@ -60,3 +60,30 @@ TEST(DISTANCES, SEGMENT_SEGMENT) {
   d = distance2(segment2, segment3);
   ASSERT_DOUBLE_EQ(d, 1.5*1.5+0.2*0.2);
 };
+
+TEST(DISTANCES, POINT_LINE) {
+  Point2D p0(1, 3);
+  Point2D p1(1, -3);
+  Line2D line0(Point2D(-10, 1), Vector2D(1, 0));
+  Line2D line1(Point2D(1, 1), Vector2D(0, 1));
+
+  double d0 = distance2(line0, p0);
+  double d1 = distance2(p0, line0);
+  ASSERT_DOUBLE_EQ(d0, 4);
+  ASSERT_DOUBLE_EQ(d1, 4);
+
+  d0 = distance2(line0, p1);
+  d1 = distance2(p1, line0);
+  ASSERT_DOUBLE_EQ(d0, 16);
+  ASSERT_DOUBLE_EQ(d1, 16);
+
+  d0 = distance2(line1, p0);
+  d1 = distance2(p0, line1);
+  ASSERT_DOUBLE_EQ(d0, 0);
+  ASSERT_DOUBLE_EQ(d1, 0);
+
+  d0 = distance2(line1, p1);
+  d1 = distance2(p1, line1);
+  ASSERT_DOUBLE_EQ(d0, 0);
+  ASSERT_DOUBLE_EQ(d1, 0);
+}

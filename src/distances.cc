@@ -59,4 +59,15 @@ double distance2(const LineSegment2D& segment0, const LineSegment2D& segment1) {
   return d;
 }
 
+double distance2(const Line2D& line, const Point2D& point) {
+  const Vector2D& v = line.getDirection();
+  Vector2D w = point - line.getPoint();
+  double alpha = v*v;
+  return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
+}
+
+double distance2(const Point2D& point, const Line2D& line) {
+  return distance2(line, point);
+}
+
 } // namespace geometry
