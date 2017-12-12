@@ -13,6 +13,9 @@ struct Vector2D {
   double x() const {return data[0];}
   double y() const {return data[1];}
 
+  double length2() const;
+  double length() const;
+
   Point2D operator+(Point2D point) const;
   Vector2D operator+(Vector2D vector) const;
 

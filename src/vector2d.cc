@@ -1,6 +1,16 @@
 #include "geometry/vector2d.h"
 
+#include <cmath>
+
 namespace geometry {
+
+double Vector2D::length2() const {
+  return x()*x() + y()*y();
+}
+
+double Vector2D::length() const {
+  return sqrt(length2());
+}
 
 Point2D Vector2D::operator+(Point2D point) const {
   point.data[0] += data[0];
