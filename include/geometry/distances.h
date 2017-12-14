@@ -28,6 +28,9 @@ double distance2(const LineSegment2D& segment0, const Point2D& point0);
 double distance2(const Point2D& point, const Line2D& line);
 double distance2(const Line2D& line, const Point2D& point);
 
+double distance2(const Point2D& point, const Ray2D& ray);
+double distance2(const Ray2D& ray, const Point2D& point);
+
 double distance2(const Point2D& point, const Circle2D& circle);
 double distance2(const Circle2D& circle, const Point2D& point);
 

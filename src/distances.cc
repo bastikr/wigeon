@@ -41,6 +41,19 @@ double distance2(const Line2D& line, const Point2D& point) {
   return distance2(point, line);
 }
 
+double distance2(const Point2D& point, const Ray2D& ray) {
+  const Vector2D& v = ray.getDirection();
+  Vector2D w = point - ray.getPoint();
+  if (w*ray.getDirection()<=0)
+    return w.length2();
+  double alpha = v*v;
+  return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
+}
+
+double distance2(const Ray2D& ray, const Point2D& point) {
+  return distance2(point, ray);
+}
+
 double distance2(const Point2D& point, const Circle2D& circle) {
   double d2 = distance2(point, circle.center);
   double d = circle.radius - sqrt(d2);

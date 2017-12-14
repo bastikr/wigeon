@@ -116,6 +116,33 @@ TEST(DISTANCES, POINT_LINE) {
   ASSERT_DOUBLE_EQ(d1, 0);
 };
 
+TEST(DISTANCES, POINT_RAY) {
+  Point2D p0(1, 3);
+  Point2D p1(1, -3);
+  Ray2D ray0(Point2D(-10, 1), Vector2D(2.1, 0));
+  Ray2D ray1(Point2D(2, 2), Vector2D(0, -2.3));
+
+  double d0 = distance2(ray0, p0);
+  double d1 = distance2(p0, ray0);
+  ASSERT_DOUBLE_EQ(d0, 4);
+  ASSERT_DOUBLE_EQ(d1, 4);
+
+  d0 = distance2(ray0, p1);
+  d1 = distance2(p1, ray0);
+  ASSERT_DOUBLE_EQ(d0, 16);
+  ASSERT_DOUBLE_EQ(d1, 16);
+
+  d0 = distance2(ray1, p0);
+  d1 = distance2(p0, ray1);
+  ASSERT_DOUBLE_EQ(d0, 2);
+  ASSERT_DOUBLE_EQ(d1, 2);
+
+  d0 = distance2(ray1, p1);
+  d1 = distance2(p1, ray1);
+  ASSERT_DOUBLE_EQ(d0, 1);
+  ASSERT_DOUBLE_EQ(d1, 1);
+};
+
 TEST(DISTANCES, LINE_SEGMENT) {
   Line2D line0(Point2D(1, 1), Vector2D(5, -5));
   Line2D line1(Point2D(-1, 1), Vector2D(1.5, 0));
