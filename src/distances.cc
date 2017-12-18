@@ -120,4 +120,36 @@ double distance2(const Line2D& line, const LineSegment2D& segment) {
   return distance2(segment, line);
 }
 
+double isintersecting(const LineSegment2D& segment, const Ray2D& ray) {
+  const Vector2D& v = ray.getDirection();
+  Vector2D w1 = segment.getPoint0() - ray.getPoint();
+  Vector2D w2 = segment.getPoint1() - ray.getPoint();
+  double alpha = v*v;
+
+  double c1 = cross(v, w1);
+  double c2 = cross(v, w2);
+
+  if ((c1>=0 && c2>=0) || (c1<=0 && c2<=0))
+    return false;
+  double r1 = (v*w1)/alpha;
+  double r2 = (v*w2)/alpha;
+  Line2D line = Line2D(ray.getPoint(), ray.getDirection());
+  if (r1 + r2 > 0)
+    return true;
+  return false;
+}
+
+double distance2(const LineSegment2D& segment, const Ray2D& ray) {
+  double d = distance2(ray.getPoint(), segment);
+  d = std::min(d, distance2(segment.getPoint1(), ray));
+  d = std::min(d, distance2(segment.getPoint0(), ray));
+  if (isintersecting(segment, ray))
+    return -d;
+  return d;
+}
+
+double distance2(const Ray2D& ray, const LineSegment2D& segment) {
+  return distance2(segment, ray);
+}
+
 } // namespace geometry

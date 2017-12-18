@@ -44,6 +44,9 @@ double distance2(const LineSegment2D& segment0, const LineSegment2D& segment1);
 double distance2(const LineSegment2D& segment, const Line2D& line);
 double distance2(const Line2D& line, const LineSegment2D& segment);
 
+double distance2(const LineSegment2D& segment, const Ray2D& ray);
+double distance2(const Ray2D& ray, const LineSegment2D& segment);
+
 double distance2(const LineSegment2D& segment, const Polygon2D& polygon);
 double distance2(const Polygon2D& polygon, const LineSegment2D& segment);
 
