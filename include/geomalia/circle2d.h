@@ -1,9 +1,9 @@
 #pragma once
 
-#include "geometry/point2d.h"
+#include "geomalia/point2d.h"
 
 
-namespace geometry {
+namespace geomalia {
 
 struct Circle2D {
   Circle2D(Point2D center, double radius) : center(center), radius(radius) {}
@@ -12,4 +12,4 @@ struct Circle2D {
   double radius;
 };
 
-} // namespace geometry
+} // namespace geomalia

@@ -1,4 +1,4 @@
-#include "geometry/rotations.h"
+#include "geomalia/rotations.h"
 #include <iostream>
 #include <cmath>
 
@@ -7,7 +7,7 @@ using namespace std;
 using namespace Eigen;
 
 
-namespace geometry {
+namespace geomalia {
 
 namespace rotations {
 
@@ -210,7 +210,7 @@ Quaternion Quaternion::operator*(const Quaternion& Q) {
 
 } // namespace rotations
 
-} // namespace geometry
+} // namespace geomalia
 
 
 // int main() {

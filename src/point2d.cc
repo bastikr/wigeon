@@ -1,7 +1,7 @@
-#include "geometry/point2d.h"
-#include "geometry/vector2d.h"
+#include "geomalia/point2d.h"
+#include "geomalia/vector2d.h"
 
-namespace geometry {
+namespace geomalia {
 
 Point2D Point2D::operator+(const Vector2D& vector) const {
   return Point2D(vector.x() + x(), vector.y() + y());
@@ -15,4 +15,4 @@ Point2D Point2D::operator-(const Vector2D& vector) const {
   return Point2D(x()-vector.x(), y()-vector.y());
 }
 
-} // namespace geometry
+} // namespace geomalia

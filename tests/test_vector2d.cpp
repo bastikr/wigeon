@@ -1,7 +1,7 @@
-#include "geometry/vector2d.h"
+#include "geomalia/vector2d.h"
 #include "gtest/gtest.h"
 
-using namespace geometry;
+using namespace geomalia;
 
 TEST(VECTOR2D, LENGTH) {
     Vector2D v0(3, 4);

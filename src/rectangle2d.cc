@@ -1,7 +1,7 @@
-#include "geometry/rectangle2d.h"
+#include "geomalia/rectangle2d.h"
 
 
-namespace geometry {
+namespace geomalia {
 
 Rectangle2D::Rectangle2D(double xmin, double ymin, double xmax, double ymax) {
   data[0] = xmin;
@@ -17,4 +17,4 @@ Rectangle2D::Rectangle2D(Point2D pmin, Point2D pmax) {
   data[3] = pmax.y();
 }
 
-} // namespace geometry
+} // namespace geomalia

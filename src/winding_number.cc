@@ -1,7 +1,7 @@
-#include "geometry/winding_number.h"
+#include "geomalia/winding_number.h"
 
 
-namespace geometry {
+namespace geomalia {
 
 int delta_winding_number(const Point2D& point, const Point2D& p0, const Point2D& p1) {
   if (p0.y()<=point.y()) {
@@ -23,4 +23,4 @@ int winding_number(const Point2D& point, const Polygon2D& polygon) {
   return n + delta_winding_number(point, *polygon.getPoint(N-1), *polygon.getPoint(0));
 }
 
-} // namespace geometry
+} // namespace geomalia

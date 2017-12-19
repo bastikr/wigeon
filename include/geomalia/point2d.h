@@ -3,7 +3,7 @@
 #include <array>
 
 
-namespace geometry {
+namespace geomalia {
 
 struct Vector2D;
 
@@ -20,4 +20,4 @@ struct Point2D {
   std::array<double, 2> data;
 };
 
-} // namespace geometry
+} // namespace geomalia

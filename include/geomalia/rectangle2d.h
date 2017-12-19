@@ -2,10 +2,10 @@
 
 #include <array>
 
-#include "geometry/point2d.h"
+#include "geomalia/point2d.h"
 
 
-namespace geometry {
+namespace geomalia {
 
 struct Rectangle2D {
   Rectangle2D(double xmin, double ymin, double xmax, double ymax);
@@ -27,4 +27,4 @@ struct Rectangle2D {
   std::array<double, 4> data;
 };
 
-} // namespace geometry
+} // namespace geomalia

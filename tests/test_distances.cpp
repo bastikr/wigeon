@@ -1,8 +1,8 @@
-#include "geometry/geometry.h"
+#include "geomalia/geomalia.h"
 #include "gtest/gtest.h"
 #include <cmath>
 
-using namespace geometry;
+using namespace geomalia;
 
 TEST(DISTANCES, POINT_POINT) {
   Point2D p0(1.3, 2.7);

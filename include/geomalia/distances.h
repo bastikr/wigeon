@@ -1,12 +1,12 @@
 #pragma once
 
-#include "geometry/point2d.h"
-#include "geometry/line2d.h"
-#include "geometry/ray2d.h"
-#include "geometry/linesegment2d.h"
-#include "geometry/rectangle2d.h"
-#include "geometry/circle2d.h"
-#include "geometry/polygon2d.h"
+#include "geomalia/point2d.h"
+#include "geomalia/line2d.h"
+#include "geomalia/ray2d.h"
+#include "geomalia/linesegment2d.h"
+#include "geomalia/rectangle2d.h"
+#include "geomalia/circle2d.h"
+#include "geomalia/polygon2d.h"
 
 /*
 Point
@@ -19,7 +19,7 @@ Polygon
 */
 
 
-namespace geometry {
+namespace geomalia {
 
 // Point - ...
 double distance2(const Point2D& point0, const Point2D& point1);
@@ -59,4 +59,4 @@ double distance2(const Polygon2D& polygon, const LineSegment2D& segment);
 // Polygon - ...
 double distance2(const Polygon2D& polygon0, const Polygon2D& polygon1);
 
-} // namespace geometry
+} // namespace geomalia

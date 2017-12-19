@@ -1,10 +1,10 @@
 #pragma once
 
-#include "geometry/point2d.h"
-#include "geometry/vector2d.h"
+#include "geomalia/point2d.h"
+#include "geomalia/vector2d.h"
 
 
-namespace geometry {
+namespace geomalia {
 
 struct Ray2D {
   Ray2D(Point2D point, Vector2D direction): point(point), direction(direction) {}
@@ -20,4 +20,4 @@ struct Ray2D {
   Vector2D direction;
 };
 
-} // namespace geometry
+} // namespace geomalia

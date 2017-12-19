@@ -3,12 +3,12 @@
 #include <vector>
 #include <boost/optional.hpp>
 
-#include "geometry/point2d.h"
-#include "geometry/linesegment2d.h"
-#include "geometry/rectangle2d.h"
+#include "geomalia/point2d.h"
+#include "geomalia/linesegment2d.h"
+#include "geomalia/rectangle2d.h"
 
 
-namespace geometry {
+namespace geomalia {
 
 struct Polygon2D {
   void append(const Point2D& point);
@@ -26,4 +26,4 @@ struct Polygon2D {
   std::vector<double> data_y;
 };
 
-} // namespace geometry
+} // namespace geomalia

@@ -1,9 +1,9 @@
-#include "geometry/line2d.h"
+#include "geomalia/line2d.h"
 
-namespace geometry {
+namespace geomalia {
 
 Line2D Line2D::operator+(const Vector2D& vector) const {
   return Line2D(point + vector, direction);
 }
 
-} // namespace geometry
+} // namespace geomalia

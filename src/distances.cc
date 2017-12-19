@@ -1,10 +1,10 @@
-#include "geometry/distances.h"
+#include "geomalia/distances.h"
 
 #include <cmath>
 #include <algorithm>
 
 
-namespace geometry {
+namespace geomalia {
 
 // point - ...
 
@@ -164,4 +164,4 @@ double distance2(const Ray2D& ray, const LineSegment2D& segment) {
   return distance2(segment, ray);
 }
 
-} // namespace geometry
+} // namespace geomalia

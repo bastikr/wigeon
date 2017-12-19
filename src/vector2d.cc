@@ -1,8 +1,8 @@
-#include "geometry/vector2d.h"
+#include "geomalia/vector2d.h"
 
 #include <cmath>
 
-namespace geometry {
+namespace geomalia {
 
 double Vector2D::length2() const {
   return x()*x() + y()*y();
@@ -50,4 +50,4 @@ double cross(const Vector2D& vector0, const Vector2D& vector1) {
   return vector0.x()*vector1.y() - vector0.y()*vector1.x();
 }
 
-} // namepsace geometry
+} // namepsace geomalia

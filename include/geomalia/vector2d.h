@@ -2,10 +2,10 @@
 
 #include <array>
 
-#include "geometry/point2d.h"
+#include "geomalia/point2d.h"
 
 
-namespace geometry {
+namespace geomalia {
 
 struct Vector2D {
   Vector2D(double x, double y) : data({{x, y}}) {}
@@ -30,4 +30,4 @@ struct Vector2D {
 
 double cross(const Vector2D& vector0, const Vector2D& vector1);
 
-} // namespace geometry
+} // namespace geomalia

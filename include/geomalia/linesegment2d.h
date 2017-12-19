@@ -2,11 +2,11 @@
 
 #include <array>
 
-#include "geometry/point2d.h"
-#include "geometry/vector2d.h"
+#include "geomalia/point2d.h"
+#include "geomalia/vector2d.h"
 
 
-namespace geometry {
+namespace geomalia {
 
 struct LineSegment2D {
   LineSegment2D(const LineSegment2D& segment)
@@ -29,4 +29,4 @@ struct LineSegment2D {
   std::array<double, 4> data;
 };
 
-} // namespace geometry
+} // namespace geomalia

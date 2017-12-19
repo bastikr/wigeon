@@ -1,9 +1,9 @@
-# include "geometry/polygon2d.h"
+# include "geomalia/polygon2d.h"
 
 #include <algorithm>
 
 
-namespace geometry {
+namespace geomalia {
 
 void Polygon2D::append(const Point2D& point) {
   data_x.push_back(point.x());
@@ -57,4 +57,4 @@ boost::optional<LineSegment2D> Polygon2D::getLineSegment(int i) const {
   return LineSegment2D(data_x[i], data_y[i], data_x[i+1], data_y[i+1]);
 }
 
-} // namespace geometry
+} // namespace geomalia
