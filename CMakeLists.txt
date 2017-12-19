@@ -16,6 +16,8 @@ add_library(geometry
     src/polygon2d.cc
     src/line2d.cc
     src/ray2d.cc
+    src/point3d.cc
+    src/vector3d.cc
     src/distances.cc
     src/winding_number.cc
     src/isinside.cc)

@@ -8,6 +8,9 @@
 #include "geomalia/rectangle2d.h"
 #include "geomalia/circle2d.h"
 
+#include "geomalia/point3d.h"
+#include "geomalia/vector3d.h"
+
 #include "geomalia/distances.h"
 #include "geomalia/winding_number.h"
 #include "geomalia/isinside.h"
