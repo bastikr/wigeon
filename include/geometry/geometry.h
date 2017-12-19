@@ -10,3 +10,4 @@
 
 #include "geometry/distances.h"
 #include "geometry/winding_number.h"
+#include "geometry/isinside.h"

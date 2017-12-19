@@ -17,7 +17,8 @@ add_library(geometry
     src/line2d.cc
     src/ray2d.cc
     src/distances.cc
-    src/winding_number.cc)
+    src/winding_number.cc
+    src/isinside.cc)
 
 
 enable_testing()
