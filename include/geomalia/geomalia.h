@@ -1,5 +1,8 @@
 #pragma once
 
+#include "geomalia/point1d.h"
+#include "geomalia/vector1d.h"
+
 #include "geomalia/point2d.h"
 #include "geomalia/vector2d.h"
 #include "geomalia/line2d.h"

@@ -9,6 +9,8 @@ include_directories(include)
 
 add_subdirectory(src/rotations)
 add_library(geometry
+    src/point1d.cc
+    src/vector1d.cc
     src/point2d.cc
     src/vector2d.cc
     src/linesegment2d.cc
