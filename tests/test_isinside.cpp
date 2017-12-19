@@ -38,6 +38,17 @@ TEST(ISINSIDE, POINT_RECTANGLE) {
   ASSERT_TRUE(isinside(pi3, rectangle));
 };
 
+TEST(ISINSIDE, POINT_CIRCLE) {
+  Point2D p0(1.3, 2.7);
+  Point2D p1(0.5, 0.9);
+  Point2D p2(0.1, 0.4);
+
+  Circle2D circle(Point2D(0.5, 1.0), 1.2);
+
+  ASSERT_FALSE(isinside(p0, circle));
+  ASSERT_TRUE(isinside(p1, circle));
+  ASSERT_TRUE(isinside(p2, circle));
+};
 
 TEST(ISINSIDE, POINT_POLYGON) {
   Point2D p0(1.3, 2.7);
