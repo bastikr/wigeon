@@ -1,5 +1,8 @@
 # include "geometry/polygon2d.h"
 
+#include <algorithm>
+
+
 namespace geometry {
 
 void Polygon2D::append(const Point2D& point) {
@@ -23,8 +26,24 @@ int Polygon2D::size() const {
   return data_x.size();
 }
 
+boost::optional<Rectangle2D> Polygon2D::bounding_box() const {
+  if (size()==0)
+    return boost::optional<Rectangle2D>();
+  double xmin = data_x[0];
+  double xmax = data_x[0];
+  double ymin = data_y[0];
+  double ymax = data_y[0];
+  for (int i=1; i<size(); ++i) {
+    xmin = std::min(xmin, data_x[i]);
+    xmax = std::max(xmax, data_x[i]);
+    ymin = std::min(ymin, data_y[i]);
+    ymax = std::max(ymax, data_y[i]);
+  }
+  return Rectangle2D(xmin, ymin, xmax, ymax);
+}
+
 boost::optional<Point2D> Polygon2D::getPoint(int i) const {
-  if (i<0 || i>size())
+  if (i<0 || i>=size())
     return boost::optional<Point2D>();
   else
     return Point2D(data_x[i], data_y[i]);
