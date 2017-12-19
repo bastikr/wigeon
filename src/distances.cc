@@ -54,6 +54,18 @@ double distance2(const Ray2D& ray, const Point2D& point) {
   return distance2(point, ray);
 }
 
+double distance2(const Point2D& point, const Rectangle2D& rectangle) {
+  double d = distance2(point, LineSegment2D(rectangle.getPoint00(), rectangle.getPoint01()));
+  d = std::min(d, distance2(point, LineSegment2D(rectangle.getPoint01(), rectangle.getPoint11())));
+  d = std::min(d, distance2(point, LineSegment2D(rectangle.getPoint11(), rectangle.getPoint10())));
+  d = std::min(d, distance2(point, LineSegment2D(rectangle.getPoint10(), rectangle.getPoint00())));
+  return d;
+}
+
+double distance2(const Rectangle2D& rectangle, const Point2D& point) {
+  return distance2(point, rectangle);
+}
+
 double distance2(const Point2D& point, const Circle2D& circle) {
   double d2 = distance2(point, circle.center);
   double d = circle.radius - sqrt(d2);

@@ -38,6 +38,36 @@ TEST(DISTANCES, POINT_LINESEGMENT) {
   ASSERT_DOUBLE_EQ(d1, 2.3*2.3 + 1.7*1.7);
 };
 
+TEST(DISTANCES, POINT_RECTANGLE) {
+  Point2D p0(0, 0);
+  Point2D p1(-1, 0);
+  Point2D p2(-1, -1);
+  Point2D p3(0.5, 0.1);
+
+  Rectangle2D rectangle0(0, 0, 1, 1);
+
+  double d0 = distance2(p0, rectangle0);
+  double d1 = distance2(rectangle0, p0);
+  ASSERT_DOUBLE_EQ(d0, 0);
+  ASSERT_DOUBLE_EQ(d1, 0);
+
+  d0 = distance2(p1, rectangle0);
+  d1 = distance2(rectangle0, p1);
+  ASSERT_DOUBLE_EQ(d0, 1);
+  ASSERT_DOUBLE_EQ(d1, 1);
+
+  d0 = distance2(p2, rectangle0);
+  d1 = distance2(rectangle0, p2);
+  ASSERT_DOUBLE_EQ(d0, 2);
+  ASSERT_DOUBLE_EQ(d1, 2);
+
+  d0 = distance2(p3, rectangle0);
+  d1 = distance2(rectangle0, p3);
+  ASSERT_DOUBLE_EQ(d0, 0.1*0.1);
+  ASSERT_DOUBLE_EQ(d1, 0.1*0.1);
+}
+
+
 TEST(DISTANCES, POINT_CIRCLE) {
   Point2D point0(-1, 0);
   Point2D point1(-3, 1);

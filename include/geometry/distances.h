@@ -4,6 +4,7 @@
 #include "geometry/line2d.h"
 #include "geometry/ray2d.h"
 #include "geometry/linesegment2d.h"
+#include "geometry/rectangle2d.h"
 #include "geometry/circle2d.h"
 #include "geometry/polygon2d.h"
 
@@ -12,6 +13,7 @@ Point
 LineSegment
 Line
 Ray
+Rectangle
 Circle
 Polygon
 */
@@ -30,6 +32,9 @@ double distance2(const Line2D& line, const Point2D& point);
 
 double distance2(const Point2D& point, const Ray2D& ray);
 double distance2(const Ray2D& ray, const Point2D& point);
+
+double distance2(const Point2D& point, const Rectangle2D& circle);
+double distance2(const Rectangle2D& circle, const Point2D& point);
 
 double distance2(const Point2D& point, const Circle2D& circle);
 double distance2(const Circle2D& circle, const Point2D& point);
