@@ -28,6 +28,12 @@ Vector2D Vector2D::operator+(Vector2D vector) const {
   return vector;
 }
 
+Vector2D Vector2D::operator-(Vector2D vector) const {
+  vector.data[0] = data[0] - vector.data[0];
+  vector.data[1] = data[1] - vector.data[1];
+  return vector;
+}
+
 Vector2D Vector2D::operator*(double a) const {
   return Vector2D(a*x(), a*y());
 }
