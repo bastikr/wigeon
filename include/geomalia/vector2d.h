@@ -20,7 +20,7 @@ struct Vector2D {
   Vector2D operator+(Vector2D vector) const;
 
   Vector2D operator-() const;
-  Point2D operator-(Point2D point) const;
+  Vector2D operator-(Vector2D vector) const;
   Vector2D operator*(double a) const;
   double operator*(const Vector2D& vector) const;
   Vector2D operator/(double a) const;
