@@ -26,6 +26,24 @@ int Polygon2D::size() const {
   return data_x.size();
 }
 
+Polygon2D Polygon2D::operator+(const Vector2D& v) const {
+  Polygon2D polygon(*this);
+  for (int i=0; i<size(); ++i) {
+    polygon.data_x[i] += v.x();
+    polygon.data_y[i] += v.y();
+  }
+  return polygon;
+}
+
+Polygon2D Polygon2D::operator-(const Vector2D& v) const {
+  Polygon2D polygon(*this);
+  for (int i=0; i<size(); ++i) {
+    polygon.data_x[i] -= v.x();
+    polygon.data_y[i] -= v.y();
+  }
+  return polygon;
+}
+
 boost::optional<Rectangle2D> Polygon2D::bounding_box() const {
   if (size()==0)
     return boost::optional<Rectangle2D>();

@@ -17,6 +17,9 @@ struct Polygon2D {
 
   int size() const;
 
+  Polygon2D operator+(const Vector2D& v) const;
+  Polygon2D operator-(const Vector2D& v) const;
+
   boost::optional<Rectangle2D> bounding_box() const;
 
   boost::optional<Point2D> getPoint(int i) const;
