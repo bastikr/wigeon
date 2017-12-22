@@ -15,5 +15,6 @@
 #include "geomalia/vector3d.h"
 
 #include "geomalia/distances.h"
+#include "geomalia/intersections.h"
 #include "geomalia/winding_number.h"
 #include "geomalia/isinside.h"

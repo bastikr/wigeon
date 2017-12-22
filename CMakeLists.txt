@@ -21,6 +21,7 @@ add_library(geometry
     src/point3d.cc
     src/vector3d.cc
     src/distances.cc
+    src/intersections.cc
     src/winding_number.cc
     src/isinside.cc)
 
