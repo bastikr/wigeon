@@ -1,4 +1,4 @@
-#include "geomalia/vector2d.h"
+#include "geomalia/geomalia.h"
 #include "gtest/gtest.h"
 
 using namespace geomalia;
