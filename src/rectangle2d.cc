@@ -17,4 +17,21 @@ Rectangle2D::Rectangle2D(Point2D pmin, Point2D pmax) {
   data[3] = pmax.y();
 }
 
+Rectangle2D operator+(const Rectangle2D& segment, const Vector2D& vector) {
+  return Rectangle2D(segment.getPoint00() + vector, segment.getPoint11() + vector);
+}
+
+Rectangle2D operator+(const Vector2D& vector, const Rectangle2D& segment)  {
+  return Rectangle2D(vector + segment.getPoint00(), vector + segment.getPoint11());
+}
+
+Rectangle2D operator-(const Rectangle2D& segment, const Vector2D& vector) {
+  return Rectangle2D(segment.getPoint00() - vector, segment.getPoint11() - vector);
+}
+
+Rectangle2D operator-(const Vector2D& vector, const Rectangle2D& segment) {
+  return Rectangle2D(vector - segment.getPoint00(), vector - segment.getPoint11());
+}
+
+
 } // namespace geomalia
