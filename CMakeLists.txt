@@ -15,6 +15,7 @@ add_library(geometry
     src/vector2d.cc
     src/linesegment2d.cc
     src/rectangle2d.cc
+    src/circle2d.cc
     src/polygon2d.cc
     src/line2d.cc
     src/ray2d.cc
