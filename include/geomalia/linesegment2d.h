@@ -29,4 +29,10 @@ struct LineSegment2D {
   std::array<double, 4> data;
 };
 
+LineSegment2D operator+(const LineSegment2D& segment, const Vector2D& vector);
+LineSegment2D operator+(const Vector2D& vector, const LineSegment2D& segment);
+
+LineSegment2D operator-(const LineSegment2D& segment, const Vector2D& vector);
+LineSegment2D operator-(const Vector2D& vector, const LineSegment2D& segment);
+
 } // namespace geomalia
