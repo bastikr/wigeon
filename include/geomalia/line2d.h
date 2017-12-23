@@ -15,11 +15,14 @@ struct Line2D {
   Point2D getPoint() const {return point;}
   Vector2D getDirection() const {return direction;}
 
-  Line2D operator+(const Vector2D&) const;
-  Line2D operator-(const Vector2D&) const;
-
   Point2D point;
   Vector2D direction;
 };
+
+Line2D operator+(const Line2D&, const Vector2D&);
+Line2D operator+(const Vector2D&, const Line2D&);
+
+Line2D operator-(const Line2D&, const Vector2D&);
+Line2D operator-(const Vector2D&, const Line2D&);
 
 } // namespace geomalia
