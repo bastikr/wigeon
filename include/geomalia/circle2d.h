@@ -12,12 +12,14 @@ struct Circle2D {
   Point2D center() const {return center_;}
   double radius() const {return radius_;}
 
-  Circle2D operator+(const Vector2D& vector) const;
-  Circle2D operator-(const Vector2D& vector) const;
-
-
   Point2D center_;
   double radius_;
 };
+
+Circle2D operator+(const Circle2D& circle, const Vector2D& vector);
+Circle2D operator+(const Vector2D& vector, const Circle2D& circle);
+
+Circle2D operator-(const Circle2D& circle, const Vector2D& vector);
+Circle2D operator-(const Vector2D& vector, const Circle2D& circle);
 
 } // namespace geomalia
