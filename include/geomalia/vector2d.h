@@ -2,8 +2,6 @@
 
 #include <array>
 
-#include "geomalia/point2d.h"
-
 
 namespace geomalia {
 
@@ -16,7 +14,6 @@ struct Vector2D {
   double length2() const;
   double length() const;
 
-  Point2D operator+(Point2D point) const;
   Vector2D operator+(Vector2D vector) const;
 
   Vector2D operator-() const;

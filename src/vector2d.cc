@@ -12,12 +12,6 @@ double Vector2D::length() const {
   return sqrt(length2());
 }
 
-Point2D Vector2D::operator+(Point2D point) const {
-  point.data[0] += data[0];
-  point.data[1] += data[1];
-  return point;
-}
-
 Vector2D Vector2D::operator-() const {
   return Vector2D(-x(), -y());
 }
