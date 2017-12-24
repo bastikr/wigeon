@@ -79,6 +79,7 @@ double distance2(const Circle2D& circle, const Point2D& point) {
 
 // LineSegment - ...
 
+namespace {
 bool isintersecting(const LineSegment2D& segment0, const LineSegment2D& segment1) {
   Vector2D v = segment0.getPoint1() - segment0.getPoint0();
   Vector2D w1 = segment1.getPoint0() - segment0.getPoint0();
@@ -98,6 +99,7 @@ bool isintersecting(const LineSegment2D& segment0, const LineSegment2D& segment1
   }
   return false;
 }
+} // namespace
 
 double distance2(const LineSegment2D& segment0, const LineSegment2D& segment1) {
   double d = distance2(segment0.getPoint0(), segment1);
@@ -132,6 +134,8 @@ double distance2(const Line2D& line, const LineSegment2D& segment) {
   return distance2(segment, line);
 }
 
+
+namespace {
 double isintersecting(const LineSegment2D& segment, const Ray2D& ray) {
   const Vector2D& v = ray.getDirection();
   Vector2D w1 = segment.getPoint0() - ray.getPoint();
@@ -150,6 +154,7 @@ double isintersecting(const LineSegment2D& segment, const Ray2D& ray) {
     return true;
   return false;
 }
+} // namespace
 
 double distance2(const LineSegment2D& segment, const Ray2D& ray) {
   double d = distance2(ray.getPoint(), segment);
