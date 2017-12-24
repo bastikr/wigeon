@@ -3,6 +3,8 @@
 
 namespace geomalia {
 
+namespace {
+
 int delta_winding_number(const Point2D& point, const Point2D& p0, const Point2D& p1) {
   if (p0.y()<=point.y()) {
     if (p1.y()>point.y() && cross(p1-p0, point-p0)>0)
@@ -13,6 +15,8 @@ int delta_winding_number(const Point2D& point, const Point2D& p0, const Point2D&
   }
   return 0;
 }
+
+} // namespace
 
 int winding_number(const Point2D& point, const Polygon2D& polygon) {
   int n = 0;
