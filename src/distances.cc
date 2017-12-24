@@ -136,7 +136,7 @@ double distance2(const Line2D& line, const LineSegment2D& segment) {
 
 
 namespace {
-double isintersecting(const LineSegment2D& segment, const Ray2D& ray) {
+bool isintersecting(const LineSegment2D& segment, const Ray2D& ray) {
   const Vector2D& v = ray.getDirection();
   Vector2D w1 = segment.getPoint0() - ray.getPoint();
   Vector2D w2 = segment.getPoint1() - ray.getPoint();
@@ -149,7 +149,6 @@ double isintersecting(const LineSegment2D& segment, const Ray2D& ray) {
     return false;
   double r1 = (v*w1)/alpha;
   double r2 = (v*w2)/alpha;
-  Line2D line = Line2D(ray.getPoint(), ray.getDirection());
   if (r1 + r2 > 0)
     return true;
   return false;
