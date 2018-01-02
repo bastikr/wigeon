@@ -12,32 +12,35 @@ double Vector2D::length() const {
   return sqrt(length2());
 }
 
-Vector2D Vector2D::operator-() const {
-  return Vector2D(-x(), -y());
+Vector2D operator+(const Vector2D& vector0, const Vector2D& vector1) {
+  return Vector2D(vector0.x() + vector1.x(), vector0.y() + vector1.y());
 }
 
-Vector2D Vector2D::operator+(Vector2D vector) const {
-  vector.data[0] += data[0];
-  vector.data[1] += data[1];
-  return vector;
+
+Vector2D operator-(const Vector2D& vector) {
+  return Vector2D(-vector.x(), -vector.y());
 }
 
-Vector2D Vector2D::operator-(Vector2D vector) const {
-  vector.data[0] = data[0] - vector.data[0];
-  vector.data[1] = data[1] - vector.data[1];
-  return vector;
+Vector2D operator-(const Vector2D& vector0, const Vector2D& vector1) {
+  return Vector2D(vector0.x() - vector1.x(), vector0.y() - vector1.y());
 }
 
-Vector2D Vector2D::operator*(double a) const {
-  return Vector2D(a*x(), a*y());
+
+Vector2D operator*(const Vector2D& vector, double a) {
+  return Vector2D(vector.x()*a, vector.y()*a);
 }
 
-double Vector2D::operator*(const Vector2D& vector) const {
-  return vector.x()*x() + vector.y()*y();
+Vector2D operator*(double a, const Vector2D& vector) {
+  return Vector2D(a*vector.x(), a*vector.y());
 }
 
-Vector2D Vector2D::operator/(double a) const {
-  return Vector2D(x()/a, y()/a);
+double operator*(const Vector2D& vector0, const Vector2D& vector1) {
+  return vector0.x()*vector1.x() + vector0.y()*vector1.y();
+}
+
+
+Vector2D operator/(const Vector2D& vector, double a) {
+  return Vector2D(vector.x()/a, vector.y()/a);
 }
 
 double cross(const Vector2D& vector0, const Vector2D& vector1) {

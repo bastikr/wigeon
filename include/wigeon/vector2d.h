@@ -14,21 +14,27 @@ struct Vector2D {
   double length2() const;
   double length() const;
 
-  Vector2D operator+(Vector2D vector) const;
-
-  Vector2D operator-() const;
-  Vector2D operator-(Vector2D vector) const;
-  Vector2D operator*(double a) const;
-  double operator*(const Vector2D& vector) const;
-  Vector2D operator/(double a) const;
-
   std::array<double, 2> data;
 };
+
+
+Vector2D operator+(const Vector2D& vector0, const Vector2D& vector1);
+
+Vector2D operator-(const Vector2D& vector);
+Vector2D operator-(const Vector2D& vector0, const Vector2D& vector1);
+
+Vector2D operator*(const Vector2D& vector, double a);
+Vector2D operator*(double a, const Vector2D& vector);
+double operator*(const Vector2D& vector0, const Vector2D& vector1);
+
+Vector2D operator/(const Vector2D& vector, double a);
+
 
 struct UnitVector2D : public Vector2D {
   UnitVector2D(double x, double y);
   UnitVector2D(const Vector2D& v) : Vector2D(v/v.length()) {}
 };
+
 
 double cross(const Vector2D& vector0, const Vector2D& vector1);
 
