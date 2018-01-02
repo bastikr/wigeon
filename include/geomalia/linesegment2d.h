@@ -2,8 +2,8 @@
 
 #include <array>
 
-#include "geomalia/point2d.h"
 #include "geomalia/vector2d.h"
+#include "geomalia/point2d.h"
 
 
 namespace geomalia {
