@@ -12,45 +12,36 @@ double Vector3D::length() const {
   return sqrt(length2());
 }
 
-Point3D Vector3D::operator+(Point3D point) const {
-  point.data[0] += data[0];
-  point.data[1] += data[1];
-  point.data[2] += data[2];
-  return point;
+
+Vector3D operator+(const Vector3D& v0, const Vector3D& v1) {
+  return Vector3D(v0.x() + v1.x(), v0.y() + v1.y(), v0.z() + v1.z());
 }
 
-Vector3D Vector3D::operator-() const {
-  return Vector3D(-x(), -y(), -z());
+
+Vector3D operator-(const Vector3D& v) {
+  return Vector3D(-v.x(), -v.y(), -v.z());
 }
 
-Point3D Vector3D::operator-(Point3D point) const {
-  point.data[0] -= data[0];
-  point.data[1] -= data[1];
-  point.data[2] -= data[2];
-  return point;
+Vector3D operator-(const Vector3D& v0, const Vector3D& v1) {
+  return Vector3D(v0.x() - v1.x(), v0.y() - v1.y(), v0.z() - v1.z());
 }
 
-Vector3D Vector3D::operator+(Vector3D vector) const {
-  vector.data[0] += data[0];
-  vector.data[1] += data[1];
-  vector.data[2] += data[2];
-  return vector;
+
+Vector3D operator*(const Vector3D& v, double a) {
+  return Vector3D(v.x()*a, v.y()*a, v.z()*a);
 }
 
-Vector3D Vector3D::operator*(double a) const {
-  return Vector3D(a*x(), a*y(), a*z());
+Vector3D operator*(double a, const Vector3D& v) {
+  return Vector3D(a*v.x(), a*v.y(), a*v.z());
 }
 
-double Vector3D::operator*(const Vector3D& vector) const {
-  return vector.x()*x() + vector.y()*y() + vector.z()*z();
+double operator*(const Vector3D& v0, const Vector3D& v1) {
+  return v0.x()*v1.x() + v0.y()*v1.y() + v0.z()*v1.z();
 }
 
-Vector3D Vector3D::operator/(double a) const {
-  return Vector3D(x()/a, y()/a, z()/a);
-}
 
-// double cross(const Vector3D& vector0, const Vector3D& vector1) {
-//   return vector0.x()*vector1.y() - vector0.y()*vector1.x();
-// }
+Vector3D operator/(const Vector3D& v, double a) {
+  return Vector3D(v.x()/a, v.y()/a, v.z()/a);
+}
 
 } // namepsace wigeon

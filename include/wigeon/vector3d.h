@@ -2,8 +2,6 @@
 
 #include <array>
 
-#include "wigeon/point3d.h"
-
 
 namespace wigeon {
 
@@ -17,18 +15,29 @@ struct Vector3D {
   double length2() const;
   double length() const;
 
-  Point3D operator+(Point3D point) const;
-  Vector3D operator+(Vector3D vector) const;
-
-  Vector3D operator-() const;
-  Point3D operator-(Point3D point) const;
-  Vector3D operator*(double a) const;
-  double operator*(const Vector3D& vector) const;
-  Vector3D operator/(double a) const;
-
   std::array<double, 3> data;
 };
 
-// double cross(const Vector3D& vector0, const Vector3D& vector1);
+
+Vector3D operator+(const Vector3D& vector0, const Vector3D& vector1);
+
+Vector3D operator-(const Vector3D& vector);
+Vector3D operator-(const Vector3D& vector0, const Vector3D& vector1);
+
+Vector3D operator*(const Vector3D& vector, double a);
+Vector3D operator*(double a, const Vector3D& vector);
+double operator*(const Vector3D& vector0, const Vector3D& vector1);
+
+Vector3D operator/(const Vector3D& vector, double a);
+
+
+struct UnitVector3D : public Vector3D {
+  UnitVector3D(double x, double y, double z);
+  UnitVector3D(const Vector3D& v) : Vector3D(v/v.length()) {}
+};
+
+
+Vector3D cross(const Vector3D& vector0, const Vector3D& vector1);
+UnitVector3D cross(const UnitVector3D& vector0, const UnitVector3D& vector1);
 
 } // namespace wigeon
