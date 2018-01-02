@@ -1,5 +1,6 @@
-#include "wigeon/point2d.h"
 #include "wigeon/vector2d.h"
+#include "wigeon/point2d.h"
+
 
 namespace wigeon {
 

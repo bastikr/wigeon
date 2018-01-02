@@ -1,5 +1,5 @@
-#include "wigeon/point1d.h"
 #include "wigeon/vector1d.h"
+#include "wigeon/point1d.h"
 
 
 namespace wigeon {
