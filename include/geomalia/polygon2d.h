@@ -3,6 +3,7 @@
 #include <vector>
 #include <boost/optional.hpp>
 
+#include "geomalia/vector2d.h"
 #include "geomalia/point2d.h"
 #include "geomalia/linesegment2d.h"
 #include "geomalia/rectangle2d.h"
@@ -17,9 +18,6 @@ struct Polygon2D {
 
   int size() const;
 
-  Polygon2D operator+(const Vector2D& v) const;
-  Polygon2D operator-(const Vector2D& v) const;
-
   boost::optional<Rectangle2D> bounding_box() const;
 
   boost::optional<Point2D> point(int i) const;
@@ -28,5 +26,8 @@ struct Polygon2D {
   std::vector<double> data_x;
   std::vector<double> data_y;
 };
+
+Polygon2D operator+(Polygon2D polygon, const Vector2D& v);
+Polygon2D operator-(Polygon2D polygon, const Vector2D& v);
 
 } // namespace geomalia
