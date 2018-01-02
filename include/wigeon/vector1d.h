@@ -30,8 +30,8 @@ Vector1D operator/(const Vector1D& vector, double a);
 
 
 struct UnitVector1D : public Vector1D {
-  UnitVector1D(double x);
-  UnitVector1D(const Vector1D& v) : Vector1D(v.x()<0 ? -1 : 0) {}
+  UnitVector1D(double x): Vector1D(x<0 ? -1 : 1) {}
+  UnitVector1D(const Vector1D& v) : UnitVector1D(v.x()) {}
 };
 
 } // namespace wigeon

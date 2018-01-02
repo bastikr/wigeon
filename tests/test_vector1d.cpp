@@ -25,3 +25,11 @@ TEST(VECTOR1D, OPERATORS) {
   ASSERT_DOUBLE_EQ(v0*v1, -2);
   ASSERT_DOUBLE_EQ((v1/2).x(), 1);
 };
+
+TEST(VECTOR1D, UNITVECTOR) {
+  ASSERT_DOUBLE_EQ(UnitVector1D(5).x(), 1);
+  ASSERT_DOUBLE_EQ(UnitVector1D(-5).x(), -1);
+
+  ASSERT_DOUBLE_EQ(UnitVector1D(Vector1D(5)).x(), 1);
+  ASSERT_DOUBLE_EQ(UnitVector1D(Vector1D(-5)).x(), -1);
+}
