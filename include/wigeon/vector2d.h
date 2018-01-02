@@ -31,8 +31,8 @@ Vector2D operator/(const Vector2D& vector, double a);
 
 
 struct UnitVector2D : public Vector2D {
-  UnitVector2D(double x, double y);
   UnitVector2D(const Vector2D& v) : Vector2D(v/v.length()) {}
+  UnitVector2D(double x, double y) : UnitVector2D(Vector2D(x, y)) {};
 };
 
 
