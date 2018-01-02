@@ -12,35 +12,36 @@ double Vector1D::length() const {
   return abs(x());
 }
 
-Point1D Vector1D::operator+(Point1D point) const {
-  point.data[0] += data[0];
-  return point;
+
+Vector1D operator+(const Vector1D& vector0, const Vector1D& vector1) {
+  return Vector1D(vector0.x() + vector1.x());
 }
 
-Vector1D Vector1D::operator-() const {
-  return Vector1D(-x());
+
+Vector1D operator-(const Vector1D& vector) {
+  return Vector1D(-vector.x());
 }
 
-Point1D Vector1D::operator-(Point1D point) const {
-  point.data[0] -= data[0];
-  return point;
+Vector1D operator-(const Vector1D& vector0, const Vector1D& vector1) {
+  return Vector1D(vector0.x() - vector1.x());
 }
 
-Vector1D Vector1D::operator+(Vector1D vector) const {
-  vector.data[0] += data[0];
-  return vector;
+
+Vector1D operator*(const Vector1D& vector, double a) {
+  return Vector1D(vector.x()*a);
 }
 
-Vector1D Vector1D::operator*(double a) const {
-  return Vector1D(a*x());
+Vector1D operator*(double a, const Vector1D& vector) {
+  return Vector1D(a*vector.x());
 }
 
-double Vector1D::operator*(const Vector1D& vector) const {
-  return vector.x()*x();
+double operator*(const Vector1D& vector0, const Vector1D& vector1) {
+  return vector0.x()*vector1.x();
 }
 
-Vector1D Vector1D::operator/(double a) const {
-  return Vector1D(x()/a);
+
+Vector1D operator/(const Vector1D& vector, double a) {
+  return Vector1D(vector.x()/a);
 }
 
 } // namepsace wigeon
