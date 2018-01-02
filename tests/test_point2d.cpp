@@ -8,16 +8,23 @@ TEST(POINT2D, OPERATORS) {
   Point2D p1(-1, 4);
   Vector2D v(5, 7);
 
-  ASSERT_DOUBLE_EQ((p0-p1).x(), 3);
-  ASSERT_DOUBLE_EQ((p0-p1).y(), -1);
+  Point2D p = p0 + v;
+  ASSERT_DOUBLE_EQ(p.x(), 7);
+  ASSERT_DOUBLE_EQ(p.y(), 10);
 
-  ASSERT_DOUBLE_EQ((p0+v).x(), 7);
-  ASSERT_DOUBLE_EQ((p0+v).y(), 10);
-  ASSERT_DOUBLE_EQ((v+p0).x(), 7);
-  ASSERT_DOUBLE_EQ((v+p0).y(), 10);
+  p = v + p0;
+  ASSERT_DOUBLE_EQ(p.x(), 7);
+  ASSERT_DOUBLE_EQ(p.y(), 10);
 
-  ASSERT_DOUBLE_EQ((p0-v).x(), -3);
-  ASSERT_DOUBLE_EQ((p0-v).y(), -4);
-  ASSERT_DOUBLE_EQ((v-p0).x(), 3);
-  ASSERT_DOUBLE_EQ((v-p0).y(), 4);
+  p = p0 - v;
+  ASSERT_DOUBLE_EQ(p.x(), -3);
+  ASSERT_DOUBLE_EQ(p.y(), -4);
+
+  p = v - p0;
+  ASSERT_DOUBLE_EQ(p.x(), 3);
+  ASSERT_DOUBLE_EQ(p.y(), 4);
+
+  v = p0 - p1;
+  ASSERT_DOUBLE_EQ(v.x(), 3);
+  ASSERT_DOUBLE_EQ(v.y(), -1);
 }
