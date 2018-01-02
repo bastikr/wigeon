@@ -1,6 +1,8 @@
 #include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 
+#include <cmath>
+
 using namespace wigeon;
 
 TEST(VECTOR2D, LENGTH) {
@@ -43,6 +45,24 @@ TEST(VECTOR2D, OPERATORS) {
   ASSERT_DOUBLE_EQ(v.x(), 0.5);
   ASSERT_DOUBLE_EQ(v.y(), 1);
 };
+
+TEST(VECTOR2D, UNITVECTOR) {
+  UnitVector2D u0(5, 5);
+  ASSERT_DOUBLE_EQ(u0.x(), 1/sqrt(2));
+  ASSERT_DOUBLE_EQ(u0.y(), 1/sqrt(2));
+
+  UnitVector2D u1(Vector2D(5, 5));
+  ASSERT_DOUBLE_EQ(u1.x(), 1/sqrt(2));
+  ASSERT_DOUBLE_EQ(u1.y(), 1/sqrt(2));
+
+  UnitVector2D u2(5, 0);
+  ASSERT_DOUBLE_EQ(u2.x(), 1);
+  ASSERT_DOUBLE_EQ(u2.y(), 0);
+
+  UnitVector2D u3(Vector2D(5, 0));
+  ASSERT_DOUBLE_EQ(u3.x(), 1);
+  ASSERT_DOUBLE_EQ(u3.y(), 0);
+}
 
 TEST(VECTOR2D, CROSS) {
   UnitVector2D u0(1, 1);
