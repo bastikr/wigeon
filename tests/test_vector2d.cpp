@@ -37,6 +37,8 @@ TEST(VECTOR2D, OPERATORS) {
   ASSERT_DOUBLE_EQ(v.x(), 2);
   ASSERT_DOUBLE_EQ(v.y(), 4);
 
+  ASSERT_DOUBLE_EQ(v0*v1, 1);
+
   v = v0/2;
   ASSERT_DOUBLE_EQ(v.x(), 0.5);
   ASSERT_DOUBLE_EQ(v.y(), 1);
