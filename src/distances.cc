@@ -15,14 +15,14 @@ double distance2(const Point2D& point0, const Point2D& point1) {
 }
 
 double distance2(const Point2D& point0, const LineSegment2D& segment0) {
-  Vector2D v = segment0.getPoint1() - segment0.getPoint0();
-  Vector2D w = point0 - segment0.getPoint0();
+  Vector2D v = segment0.point1() - segment0.point0();
+  Vector2D w = point0 - segment0.point0();
   double alpha = v*v;
   double r = (v*w)/alpha;
   if (r <= 0)
-    return distance2(point0, segment0.getPoint0());
+    return distance2(point0, segment0.point0());
   if (r >= 1)
-    return distance2(point0, segment0.getPoint1());
+    return distance2(point0, segment0.point1());
   return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
 }
 
@@ -31,8 +31,8 @@ double distance2(const LineSegment2D& segment0, const Point2D& point0) {
 }
 
 double distance2(const Point2D& point, const Line2D& line) {
-  const Vector2D& v = line.getDirection();
-  Vector2D w = point - line.getPoint();
+  const Vector2D& v = line.direction();
+  Vector2D w = point - line.point();
   double alpha = v*v;
   return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
 }
@@ -42,9 +42,9 @@ double distance2(const Line2D& line, const Point2D& point) {
 }
 
 double distance2(const Point2D& point, const Ray2D& ray) {
-  const Vector2D& v = ray.getDirection();
-  Vector2D w = point - ray.getPoint();
-  if (w*ray.getDirection()<=0)
+  const Vector2D& v = ray.direction();
+  Vector2D w = point - ray.point();
+  if (w*ray.direction()<=0)
     return w.length2();
   double alpha = v*v;
   return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
@@ -55,10 +55,10 @@ double distance2(const Ray2D& ray, const Point2D& point) {
 }
 
 double distance2(const Point2D& point, const Rectangle2D& rectangle) {
-  double d = distance2(point, LineSegment2D(rectangle.getPoint00(), rectangle.getPoint01()));
-  d = std::min(d, distance2(point, LineSegment2D(rectangle.getPoint01(), rectangle.getPoint11())));
-  d = std::min(d, distance2(point, LineSegment2D(rectangle.getPoint11(), rectangle.getPoint10())));
-  d = std::min(d, distance2(point, LineSegment2D(rectangle.getPoint10(), rectangle.getPoint00())));
+  double d = distance2(point, LineSegment2D(rectangle.point00(), rectangle.point01()));
+  d = std::min(d, distance2(point, LineSegment2D(rectangle.point01(), rectangle.point11())));
+  d = std::min(d, distance2(point, LineSegment2D(rectangle.point11(), rectangle.point10())));
+  d = std::min(d, distance2(point, LineSegment2D(rectangle.point10(), rectangle.point00())));
   return d;
 }
 
@@ -81,9 +81,9 @@ double distance2(const Circle2D& circle, const Point2D& point) {
 
 namespace {
 bool isintersecting(const LineSegment2D& segment0, const LineSegment2D& segment1) {
-  Vector2D v = segment0.getPoint1() - segment0.getPoint0();
-  Vector2D w1 = segment1.getPoint0() - segment0.getPoint0();
-  Vector2D w2 = segment1.getPoint1() - segment0.getPoint0();
+  Vector2D v = segment0.point1() - segment0.point0();
+  Vector2D w1 = segment1.point0() - segment0.point0();
+  Vector2D w2 = segment1.point1() - segment0.point0();
   double alpha = v*v;
 
   double c1 = cross(v, w1);
@@ -102,24 +102,24 @@ bool isintersecting(const LineSegment2D& segment0, const LineSegment2D& segment1
 } // namespace
 
 double distance2(const LineSegment2D& segment0, const LineSegment2D& segment1) {
-  double d = distance2(segment0.getPoint0(), segment1);
-  d = std::min(d, distance2(segment0.getPoint1(), segment1));
-  d = std::min(d, distance2(segment1.getPoint0(), segment0));
-  d = std::min(d, distance2(segment1.getPoint1(), segment0));
+  double d = distance2(segment0.point0(), segment1);
+  d = std::min(d, distance2(segment0.point1(), segment1));
+  d = std::min(d, distance2(segment1.point0(), segment0));
+  d = std::min(d, distance2(segment1.point1(), segment0));
   if (isintersecting(segment0, segment1))
     return -d;
   return d;
 }
 
 double distance2(const LineSegment2D& segment, const Line2D& line) {
-  Vector2D w0 = segment.getPoint0() - line.getPoint();
-  Vector2D w1 = segment.getPoint1() - line.getPoint();
+  Vector2D w0 = segment.point0() - line.point();
+  Vector2D w1 = segment.point1() - line.point();
 
-  double c0 = cross(line.direction, w0);
-  double c1 = cross(line.direction, w1);
+  double c0 = cross(line.direction_, w0);
+  double c1 = cross(line.direction_, w1);
 
-  double d0 = distance2(line, segment.getPoint0());
-  double d1 = distance2(line, segment.getPoint1());
+  double d0 = distance2(line, segment.point0());
+  double d1 = distance2(line, segment.point1());
 
   double dmin = std::min(d0, d1);
 
@@ -137,9 +137,9 @@ double distance2(const Line2D& line, const LineSegment2D& segment) {
 
 namespace {
 bool isintersecting(const LineSegment2D& segment, const Ray2D& ray) {
-  const Vector2D& v = ray.getDirection();
-  Vector2D w1 = segment.getPoint0() - ray.getPoint();
-  Vector2D w2 = segment.getPoint1() - ray.getPoint();
+  const Vector2D& v = ray.direction();
+  Vector2D w1 = segment.point0() - ray.point();
+  Vector2D w2 = segment.point1() - ray.point();
   double alpha = v*v;
 
   double c1 = cross(v, w1);
@@ -156,9 +156,9 @@ bool isintersecting(const LineSegment2D& segment, const Ray2D& ray) {
 } // namespace
 
 double distance2(const LineSegment2D& segment, const Ray2D& ray) {
-  double d = distance2(ray.getPoint(), segment);
-  d = std::min(d, distance2(segment.getPoint1(), ray));
-  d = std::min(d, distance2(segment.getPoint0(), ray));
+  double d = distance2(ray.point(), segment);
+  d = std::min(d, distance2(segment.point1(), ray));
+  d = std::min(d, distance2(segment.point0(), ray));
   if (isintersecting(segment, ray))
     return -d;
   return d;

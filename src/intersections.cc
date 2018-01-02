@@ -6,10 +6,10 @@
 namespace geomalia {
 
 Points2D intersections(const Line2D& line0, const Line2D& line1) {
-  const Point2D& p0 = line0.getPoint();
-  const Point2D& p1 = line1.getPoint();
-  const Vector2D& w0 = line0.getDirection()/line0.getDirection().length();
-  const Vector2D& w1 = line1.getDirection()/line1.getDirection().length();
+  const Point2D& p0 = line0.point();
+  const Point2D& p1 = line1.point();
+  const Vector2D& w0 = line0.direction()/line0.direction().length();
+  const Vector2D& w1 = line1.direction()/line1.direction().length();
   double a = w0*w1;
   Points2D points;
   if (1-a*a < 1e-15)

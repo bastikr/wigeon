@@ -20,10 +20,10 @@ struct Rectangle2D {
   double ymin() const {return data[1];}
   double ymax() const {return data[3];}
 
-  Point2D getPoint00() const {return Point2D(xmin(), ymin());}
-  Point2D getPoint01() const {return Point2D(xmin(), ymax());}
-  Point2D getPoint10() const {return Point2D(xmax(), ymin());}
-  Point2D getPoint11() const {return Point2D(xmax(), ymax());}
+  Point2D point00() const {return Point2D(xmin(), ymin());}
+  Point2D point01() const {return Point2D(xmin(), ymax());}
+  Point2D point10() const {return Point2D(xmax(), ymin());}
+  Point2D point11() const {return Point2D(xmax(), ymax());}
 
   std::array<double, 4> data;
 };

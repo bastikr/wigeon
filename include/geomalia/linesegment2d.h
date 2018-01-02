@@ -23,8 +23,8 @@ struct LineSegment2D {
   double x1() const {return data[2];}
   double y1() const {return data[3];}
 
-  Point2D getPoint0() const;
-  Point2D getPoint1() const;
+  Point2D point0() const;
+  Point2D point1() const;
 
   std::array<double, 4> data;
 };

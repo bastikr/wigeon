@@ -9,14 +9,14 @@
 namespace geomalia {
 
 struct Line2D {
-  Line2D(Point2D point, Vector2D direction) : point(point), direction(direction) {}
-  Line2D(Point2D point0, Point2D point1) : point(point0), direction(point1-point0) {}
+  Line2D(Point2D point, Vector2D direction) : point_(point), direction_(direction) {}
+  Line2D(Point2D point0, Point2D point1) : point_(point0), direction_(point1-point0) {}
 
-  Point2D getPoint() const {return point;}
-  Vector2D getDirection() const {return direction;}
+  Point2D point() const {return point_;}
+  Vector2D direction() const {return direction_;}
 
-  Point2D point;
-  Vector2D direction;
+  Point2D point_;
+  Vector2D direction_;
 };
 
 Line2D operator+(const Line2D&, const Vector2D&);

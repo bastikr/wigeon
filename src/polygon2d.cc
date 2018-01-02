@@ -60,14 +60,14 @@ boost::optional<Rectangle2D> Polygon2D::bounding_box() const {
   return Rectangle2D(xmin, ymin, xmax, ymax);
 }
 
-boost::optional<Point2D> Polygon2D::getPoint(int i) const {
+boost::optional<Point2D> Polygon2D::point(int i) const {
   if (i<0 || i>=size())
     return boost::optional<Point2D>();
   else
     return Point2D(data_x[i], data_y[i]);
 }
 
-boost::optional<LineSegment2D> Polygon2D::getLineSegment(int i) const {
+boost::optional<LineSegment2D> Polygon2D::edge(int i) const {
   if (i<0 || i>size()-1)
     return boost::optional<LineSegment2D>();
   if (i==size())

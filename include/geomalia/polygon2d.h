@@ -22,8 +22,8 @@ struct Polygon2D {
 
   boost::optional<Rectangle2D> bounding_box() const;
 
-  boost::optional<Point2D> getPoint(int i) const;
-  boost::optional<LineSegment2D> getLineSegment(int i) const;
+  boost::optional<Point2D> point(int i) const;
+  boost::optional<LineSegment2D> edge(int i) const;
 
   std::vector<double> data_x;
   std::vector<double> data_y;

@@ -22,9 +22,9 @@ int winding_number(const Point2D& point, const Polygon2D& polygon) {
   int n = 0;
   int N = polygon.size();
   for (int i=0; i<N-1; ++i) {
-    n += delta_winding_number(point, *polygon.getPoint(i), *polygon.getPoint(i+1));
+    n += delta_winding_number(point, *polygon.point(i), *polygon.point(i+1));
   }
-  return n + delta_winding_number(point, *polygon.getPoint(N-1), *polygon.getPoint(0));
+  return n + delta_winding_number(point, *polygon.point(N-1), *polygon.point(0));
 }
 
 } // namespace geomalia
