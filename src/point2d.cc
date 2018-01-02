@@ -1,7 +1,7 @@
-#include "geomalia/point2d.h"
-#include "geomalia/vector2d.h"
+#include "wigeon/point2d.h"
+#include "wigeon/vector2d.h"
 
-namespace geomalia {
+namespace wigeon {
 
 Point2D operator+(const Point2D& point, const Vector2D& vector) {
   return Point2D(point.x() + vector.x(), point.y() + vector.y());
@@ -23,4 +23,4 @@ Vector2D operator-(const Point2D& point0, const Point2D& point1) {
   return Vector2D(point0.x() - point1.x(), point0.y()-point1.y());
 }
 
-} // namespace geomalia
+} // namespace wigeon

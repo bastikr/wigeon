@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(geomalia)
+project(wigeon)
 
 set (CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_FLAGS "-Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wwrite-strings -Wlogical-op -Wmissing-declarations -Wredundant-decls -Woverloaded-virtual")
@@ -8,7 +8,7 @@ set (CMAKE_CXX_FLAGS "-Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wwrite-s
 include_directories(include)
 
 add_subdirectory(src/rotations)
-add_library(geometry
+add_library(wigeon SHARED
     src/point1d.cc
     src/vector1d.cc
     src/point2d.cc

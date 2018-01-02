@@ -1,8 +1,8 @@
-#include "geomalia/vector1d.h"
+#include "wigeon/vector1d.h"
 
 #include <cmath>
 
-namespace geomalia {
+namespace wigeon {
 
 double Vector1D::length2() const {
   return x()*x();
@@ -43,4 +43,4 @@ Vector1D Vector1D::operator/(double a) const {
   return Vector1D(x()/a);
 }
 
-} // namepsace geomalia
+} // namepsace wigeon

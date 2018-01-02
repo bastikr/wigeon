@@ -1,6 +1,6 @@
-#include "geomalia/linesegment2d.h"
+#include "wigeon/linesegment2d.h"
 
-namespace geomalia {
+namespace wigeon {
 
 Point2D LineSegment2D::point0() const {
     return Point2D(data[0], data[2]);
@@ -27,4 +27,4 @@ LineSegment2D operator-(const Vector2D& vector, const LineSegment2D& segment) {
 }
 
 
-} // namespace geomalia
+} // namespace wigeon

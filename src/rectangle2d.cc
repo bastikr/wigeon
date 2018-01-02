@@ -1,7 +1,7 @@
-#include "geomalia/rectangle2d.h"
+#include "wigeon/rectangle2d.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 Rectangle2D::Rectangle2D(double xmin, double ymin, double xmax, double ymax) {
   data[0] = xmin;
@@ -34,4 +34,4 @@ Rectangle2D operator-(const Vector2D& vector, const Rectangle2D& segment) {
 }
 
 
-} // namespace geomalia
+} // namespace wigeon

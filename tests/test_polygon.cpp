@@ -1,8 +1,8 @@
-#include "geomalia/geomalia.h"
+#include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 #include <cmath>
 
-using namespace geomalia;
+using namespace wigeon;
 
 TEST(POLYGON2D, operators) {
   Polygon2D polygon0;

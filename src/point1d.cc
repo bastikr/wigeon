@@ -1,8 +1,8 @@
-#include "geomalia/point1d.h"
-#include "geomalia/vector1d.h"
+#include "wigeon/point1d.h"
+#include "wigeon/vector1d.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 Point1D Point1D::operator+(const Vector1D& vector) const {
   return Point1D(vector.x() + x());
@@ -16,4 +16,4 @@ Point1D Point1D::operator-(const Vector1D& vector) const {
   return Point1D(x()-vector.x());
 }
 
-} // namespace geomalia
+} // namespace wigeon

@@ -2,10 +2,10 @@
 
 #include <array>
 
-#include "geomalia/point1d.h"
+#include "wigeon/point1d.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 struct Vector1D {
   Vector1D(double x) : data({{x}}) {}
@@ -27,4 +27,4 @@ struct Vector1D {
   std::array<double, 1> data;
 };
 
-} // namespace geomalia
+} // namespace wigeon

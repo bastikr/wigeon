@@ -3,7 +3,7 @@
 #include <array>
 
 
-namespace geomalia {
+namespace wigeon {
 
 struct Vector2D {
   Vector2D(double x, double y) : data({{x, y}}) {}
@@ -32,4 +32,4 @@ struct UnitVector2D : public Vector2D {
 
 double cross(const Vector2D& vector0, const Vector2D& vector1);
 
-} // namespace geomalia
+} // namespace wigeon

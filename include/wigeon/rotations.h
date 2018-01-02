@@ -18,7 +18,7 @@
 
 #include <eigen3/Eigen/Dense>
 
-namespace geomalia {
+namespace wigeon {
 
 /*!
   \brief 3D rotations related functionality.
@@ -106,4 +106,4 @@ class Quaternion {
 
 } // namespace rotations
 
-} // namespace geomalia
+} // namespace wigeon

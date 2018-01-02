@@ -3,13 +3,13 @@
 #include <vector>
 #include <boost/optional.hpp>
 
-#include "geomalia/vector2d.h"
-#include "geomalia/point2d.h"
-#include "geomalia/linesegment2d.h"
-#include "geomalia/rectangle2d.h"
+#include "wigeon/vector2d.h"
+#include "wigeon/point2d.h"
+#include "wigeon/linesegment2d.h"
+#include "wigeon/rectangle2d.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 struct Polygon2D {
   void append(const Point2D& point);
@@ -30,4 +30,4 @@ struct Polygon2D {
 Polygon2D operator+(Polygon2D polygon, const Vector2D& v);
 Polygon2D operator-(Polygon2D polygon, const Vector2D& v);
 
-} // namespace geomalia
+} // namespace wigeon

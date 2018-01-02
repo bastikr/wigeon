@@ -1,9 +1,9 @@
-# include "geomalia/polygon2d.h"
+# include "wigeon/polygon2d.h"
 
 #include <algorithm>
 
 
-namespace geomalia {
+namespace wigeon {
 
 void Polygon2D::append(const Point2D& point) {
   data_x.push_back(point.x());
@@ -73,4 +73,4 @@ boost::optional<LineSegment2D> Polygon2D::edge(int i) const {
   return LineSegment2D(data_x[i], data_y[i], data_x[i+1], data_y[i+1]);
 }
 
-} // namespace geomalia
+} // namespace wigeon

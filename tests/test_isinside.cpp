@@ -1,10 +1,10 @@
-#include "geomalia/geomalia.h"
+#include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 #include <cmath>
 #include <vector>
 
 
-using namespace geomalia;
+using namespace wigeon;
 
 TEST(ISINSIDE, POINT_RECTANGLE) {
   Rectangle2D rectangle(0.5, 0.8, 3.1, 2.7);

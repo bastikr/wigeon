@@ -3,7 +3,7 @@
 #include <array>
 
 
-namespace geomalia {
+namespace wigeon {
 
 struct Vector1D;
 
@@ -19,4 +19,4 @@ struct Point1D {
   std::array<double, 1> data;
 };
 
-} // namespace geomalia
+} // namespace wigeon

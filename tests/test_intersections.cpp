@@ -1,8 +1,8 @@
-#include "geomalia/geomalia.h"
+#include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 #include <cmath>
 
-using namespace geomalia;
+using namespace wigeon;
 
 TEST(INTERSECTIONS, LINE_LINE) {
   Line2D line0(Point2D(1, 1), Vector2D(0, 0.7));

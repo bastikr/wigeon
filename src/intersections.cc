@@ -1,9 +1,9 @@
-#include "geomalia/intersections.h"
+#include "wigeon/intersections.h"
 
 #include <cmath>
 
 
-namespace geomalia {
+namespace wigeon {
 
 Points2D intersections(const Line2D& line0, const Line2D& line1) {
   const Point2D& p0 = line0.point();
@@ -19,4 +19,4 @@ Points2D intersections(const Line2D& line0, const Line2D& line1) {
   return points;
 }
 
-} // namespace geomalia
+} // namespace wigeon

@@ -1,8 +1,8 @@
-#include "geomalia/geomalia.h"
+#include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 #include <cmath>
 
-using namespace geomalia;
+using namespace wigeon;
 
 TEST(DISTANCES, POINT_POINT) {
   Point2D p0(1.3, 2.7);

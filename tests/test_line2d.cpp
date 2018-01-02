@@ -1,7 +1,7 @@
-#include "geomalia/geomalia.h"
+#include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 
-using namespace geomalia;
+using namespace wigeon;
 
 TEST(LINE2D, OPERATORS) {
   Line2D line(Point2D(1, -2), Vector2D(1, 0));

@@ -1,7 +1,7 @@
-#include "geomalia/geomalia.h"
+#include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 
-using namespace geomalia;
+using namespace wigeon;
 
 TEST(VECTOR2D, LENGTH) {
     Vector2D v0(3, 4);

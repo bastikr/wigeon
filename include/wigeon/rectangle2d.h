@@ -2,11 +2,11 @@
 
 #include <array>
 
-#include "geomalia/vector2d.h"
-#include "geomalia/point2d.h"
+#include "wigeon/vector2d.h"
+#include "wigeon/point2d.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 struct Rectangle2D {
   Rectangle2D(double xmin, double ymin, double xmax, double ymax);
@@ -34,4 +34,4 @@ Rectangle2D operator+(const Vector2D&, const Rectangle2D&);
 Rectangle2D operator-(const Rectangle2D&, const Vector2D&);
 Rectangle2D operator-(const Vector2D&, const Rectangle2D&);
 
-} // namespace geomalia
+} // namespace wigeon

@@ -1,8 +1,8 @@
-#include "geomalia/vector2d.h"
+#include "wigeon/vector2d.h"
 
 #include <cmath>
 
-namespace geomalia {
+namespace wigeon {
 
 double Vector2D::length2() const {
   return x()*x() + y()*y();
@@ -44,4 +44,4 @@ double cross(const Vector2D& vector0, const Vector2D& vector1) {
   return vector0.x()*vector1.y() - vector0.y()*vector1.x();
 }
 
-} // namepsace geomalia
+} // namepsace wigeon

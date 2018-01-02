@@ -2,10 +2,10 @@
 
 #include <array>
 
-#include "geomalia/point3d.h"
+#include "wigeon/point3d.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 struct Vector3D {
   Vector3D(double x, double y, double z) : data({{x, y, z}}) {}
@@ -31,4 +31,4 @@ struct Vector3D {
 
 // double cross(const Vector3D& vector0, const Vector3D& vector1);
 
-} // namespace geomalia
+} // namespace wigeon

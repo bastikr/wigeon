@@ -1,10 +1,10 @@
-#include "geomalia/isinside.h"
+#include "wigeon/isinside.h"
 
-#include "geomalia/distances.h"
-#include "geomalia/winding_number.h"
+#include "wigeon/distances.h"
+#include "wigeon/winding_number.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 bool isinside(const Point2D& point, const Rectangle2D& rectangle) {
   return rectangle.xmin() < point.x() && point.x() < rectangle.xmax()
@@ -19,4 +19,4 @@ bool isinside(const Point2D& point, const Polygon2D& polygon) {
   return winding_number(point, polygon) != 0;
 }
 
-} // namespace geomalia
+} // namespace wigeon

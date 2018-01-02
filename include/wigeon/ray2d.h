@@ -1,10 +1,10 @@
 #pragma once
 
-#include "geomalia/vector2d.h"
-#include "geomalia/point2d.h"
+#include "wigeon/vector2d.h"
+#include "wigeon/point2d.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 struct Ray2D {
   Ray2D(Point2D point, Vector2D direction): point_(point), direction_(direction) {}
@@ -23,4 +23,4 @@ Ray2D operator+(const Vector2D&, const Ray2D&);
 Ray2D operator-(const Ray2D&, const Vector2D&);
 Ray2D operator-(const Vector2D&, const Ray2D&);
 
-} // namespace geomalia
+} // namespace wigeon

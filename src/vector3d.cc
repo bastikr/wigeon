@@ -1,8 +1,8 @@
-#include "geomalia/vector3d.h"
+#include "wigeon/vector3d.h"
 
 #include <cmath>
 
-namespace geomalia {
+namespace wigeon {
 
 double Vector3D::length2() const {
   return x()*x() + y()*y() + z()*z();
@@ -53,4 +53,4 @@ Vector3D Vector3D::operator/(double a) const {
 //   return vector0.x()*vector1.y() - vector0.y()*vector1.x();
 // }
 
-} // namepsace geomalia
+} // namepsace wigeon

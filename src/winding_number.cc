@@ -1,7 +1,7 @@
-#include "geomalia/winding_number.h"
+#include "wigeon/winding_number.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 namespace {
 
@@ -27,4 +27,4 @@ int winding_number(const Point2D& point, const Polygon2D& polygon) {
   return n + delta_winding_number(point, *polygon.point(N-1), *polygon.point(0));
 }
 
-} // namespace geomalia
+} // namespace wigeon

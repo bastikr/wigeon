@@ -1,10 +1,10 @@
-#include "geomalia/distances.h"
+#include "wigeon/distances.h"
 
 #include <cmath>
 #include <algorithm>
 
 
-namespace geomalia {
+namespace wigeon {
 
 // point - ...
 
@@ -168,4 +168,4 @@ double distance2(const Ray2D& ray, const LineSegment2D& segment) {
   return distance2(segment, ray);
 }
 
-} // namespace geomalia
+} // namespace wigeon

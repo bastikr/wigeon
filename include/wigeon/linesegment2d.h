@@ -2,11 +2,11 @@
 
 #include <array>
 
-#include "geomalia/vector2d.h"
-#include "geomalia/point2d.h"
+#include "wigeon/vector2d.h"
+#include "wigeon/point2d.h"
 
 
-namespace geomalia {
+namespace wigeon {
 
 struct LineSegment2D {
   LineSegment2D(const LineSegment2D& segment)
@@ -35,4 +35,4 @@ LineSegment2D operator+(const Vector2D& vector, const LineSegment2D& segment);
 LineSegment2D operator-(const LineSegment2D& segment, const Vector2D& vector);
 LineSegment2D operator-(const Vector2D& vector, const LineSegment2D& segment);
 
-} // namespace geomalia
+} // namespace wigeon

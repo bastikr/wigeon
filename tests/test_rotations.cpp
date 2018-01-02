@@ -1,9 +1,9 @@
-#include "geomalia/rotations.h"
+#include "wigeon/rotations.h"
 #include "gtest/gtest.h"
 #include <iostream>
 
 
-using namespace geomalia::rotations;
+using namespace wigeon::rotations;
 
 bool approx_equal(const RotationMatrix&, const RotationMatrix&);
 bool approx_equal(const EulerAngles&, const EulerAngles&);

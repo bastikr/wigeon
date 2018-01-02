@@ -1,7 +1,7 @@
-#include "geomalia/geomalia.h"
+#include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 
-using namespace geomalia;
+using namespace wigeon;
 
 TEST(CIRCLE2D, OPERATORS) {
   Circle2D circle0(Point2D(2, 4), 0.5);
