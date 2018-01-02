@@ -7,6 +7,10 @@ TEST(VECTOR2D, LENGTH) {
     Vector2D v0(3, 4);
     ASSERT_DOUBLE_EQ(v0.length2(), 25);
     ASSERT_DOUBLE_EQ(v0.length(), 5);
+
+    UnitVector2D u0(v0);
+    ASSERT_DOUBLE_EQ(u0.length2(), 1);
+    ASSERT_DOUBLE_EQ(u0.length(), 1);
 };
 
 TEST(VECTOR2D, OPERATORS) {

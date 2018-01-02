@@ -25,6 +25,11 @@ struct Vector2D {
   std::array<double, 2> data;
 };
 
+struct UnitVector2D : public Vector2D {
+  UnitVector2D(double x, double y);
+  UnitVector2D(const Vector2D& v) : Vector2D(v/v.length()) {}
+};
+
 double cross(const Vector2D& vector0, const Vector2D& vector1);
 
 } // namespace geomalia
