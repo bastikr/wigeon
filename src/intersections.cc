@@ -51,4 +51,17 @@ Points2D intersections(const Polygon2D& polygon, const LineSegment2D& segment) {
   return intersections(segment, polygon);
 }
 
+
+Points2D intersections(const Polygon2D& polygon0, const Polygon2D& polygon1) {
+  Points2D points;
+  Points2D points_part;
+  for (int i=0; i<polygon0.size(); ++i) {
+    points_part = intersections(*polygon0.edge(i), polygon1);
+    if (points_part.size() > 0) {
+      points.insert(points.end(), points_part.begin(), points_part.end());
+    }
+  }
+  return points;
+}
+
 } // namespace wigeon

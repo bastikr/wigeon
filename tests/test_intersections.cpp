@@ -44,6 +44,18 @@ TEST(INTERSECTIONS, SEGMENT_SEGMENT) {
   ASSERT_EQ(points.size(), 1);
   ASSERT_DOUBLE_EQ(points[0].x(), 1.5);
   ASSERT_DOUBLE_EQ(points[0].y(), 2.5);
+
+  points = intersections(s0a, s0a);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(s0b, s0b);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(s1a, s1a);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(s2a, s2a);
+  ASSERT_EQ(points.size(), 0);
 };
 
 TEST(INTERSECTIONS, SEGMENT_POLYGON) {
@@ -80,3 +92,18 @@ TEST(INTERSECTIONS, SEGMENT_POLYGON) {
   ASSERT_DOUBLE_EQ(points[0].x(), 1.5);
   ASSERT_DOUBLE_EQ(points[0].y(), 2.5);
 };
+
+TEST(INTERSECTIONS, POLYGON_POLYGON) {
+  Polygon2D polygon0;
+  polygon0.append(2, 0);
+  polygon0.append(4, 2);
+  polygon0.append(0, 2);
+
+  Polygon2D polygon1;
+  polygon1.append(2, 3);
+  polygon1.append(4, 1);
+  polygon1.append(0, 1);
+
+  Points2D points = intersections(polygon0, polygon1);
+  ASSERT_EQ(points.size(), 6);
+}
