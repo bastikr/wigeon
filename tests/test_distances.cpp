@@ -122,8 +122,8 @@ TEST(DISTANCES, SEGMENT_SEGMENT) {
 TEST(DISTANCES, POINT_LINE) {
   Point2D p0(1, 3);
   Point2D p1(1, -3);
-  Line2D line0(Point2D(-10, 1), Vector2D(1, 0));
-  Line2D line1(Point2D(1, 1), Vector2D(0, 1));
+  Line2D line0(Point2D(-10, 1), Vector2D(3, 0));
+  Line2D line1(Point2D(1, 1), Vector2D(0, 5));
 
   double d0 = distance2(line0, p0);
   double d1 = distance2(p0, line0);

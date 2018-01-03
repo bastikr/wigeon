@@ -14,7 +14,7 @@ struct Ray2D {
   Vector2D direction() const {return direction_;}
 
   Point2D point_;
-  Vector2D direction_;
+  UnitVector2D direction_;
 };
 
 Ray2D operator+(const Ray2D&, const Vector2D&);

@@ -31,10 +31,9 @@ double distance2(const LineSegment2D& segment0, const Point2D& point0) {
 }
 
 double distance2(const Point2D& point, const Line2D& line) {
-  const Vector2D& v = line.direction();
+  const UnitVector2D& v = line.direction();
   Vector2D w = point - line.point();
-  double alpha = v*v;
-  return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
+  return pow(v.y()*w.x() - v.x()*w.y(), 2);
 }
 
 double distance2(const Line2D& line, const Point2D& point) {
@@ -42,12 +41,11 @@ double distance2(const Line2D& line, const Point2D& point) {
 }
 
 double distance2(const Point2D& point, const Ray2D& ray) {
-  const Vector2D& v = ray.direction();
+  const UnitVector2D& v = ray.direction();
   Vector2D w = point - ray.point();
   if (w*ray.direction()<=0)
     return w.length2();
-  double alpha = v*v;
-  return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
+  return pow(v.y()*w.x() - v.x()*w.y(), 2);
 }
 
 double distance2(const Ray2D& ray, const Point2D& point) {
@@ -137,18 +135,17 @@ double distance2(const Line2D& line, const LineSegment2D& segment) {
 
 namespace {
 bool isintersecting(const LineSegment2D& segment, const Ray2D& ray) {
-  const Vector2D& v = ray.direction();
+  const UnitVector2D& v = ray.direction();
   Vector2D w1 = segment.point0() - ray.point();
   Vector2D w2 = segment.point1() - ray.point();
-  double alpha = v*v;
 
   double c1 = cross(v, w1);
   double c2 = cross(v, w2);
 
   if ((c1>=0 && c2>=0) || (c1<=0 && c2<=0))
     return false;
-  double r1 = (v*w1)/alpha;
-  double r2 = (v*w2)/alpha;
+  double r1 = (v*w1);
+  double r2 = (v*w2);
   if (r1 + r2 > 0)
     return true;
   return false;

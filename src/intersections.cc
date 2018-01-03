@@ -8,8 +8,8 @@ namespace wigeon {
 Points2D intersections(const Line2D& line0, const Line2D& line1) {
   const Point2D& p0 = line0.point();
   const Point2D& p1 = line1.point();
-  const Vector2D& w0 = line0.direction()/line0.direction().length();
-  const Vector2D& w1 = line1.direction()/line1.direction().length();
+  const Vector2D& w0 = line0.direction();
+  const Vector2D& w1 = line1.direction();
   double a = w0*w1;
   Points2D points;
   if (1-a*a < 1e-15)

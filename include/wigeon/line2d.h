@@ -16,7 +16,7 @@ struct Line2D {
   Vector2D direction() const {return direction_;}
 
   Point2D point_;
-  Vector2D direction_;
+  UnitVector2D direction_;
 };
 
 Line2D operator+(const Line2D&, const Vector2D&);
