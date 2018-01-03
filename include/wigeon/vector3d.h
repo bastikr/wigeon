@@ -38,6 +38,5 @@ struct UnitVector3D : public Vector3D {
 
 
 Vector3D cross(const Vector3D& vector0, const Vector3D& vector1);
-UnitVector3D cross(const UnitVector3D& vector0, const UnitVector3D& vector1);
 
 } // namespace wigeon

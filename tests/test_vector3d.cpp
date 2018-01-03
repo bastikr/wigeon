@@ -73,3 +73,35 @@ TEST(VECTOR3D, UNITVECTOR) {
   ASSERT_DOUBLE_EQ(u3.y(), 0);
   ASSERT_DOUBLE_EQ(u3.z(), 0);
 }
+
+TEST(VECTOR3D, CROSS) {
+  Vector3D v = cross(Vector3D(3, 0, 0),  Vector3D(0, 5, 0));
+  ASSERT_DOUBLE_EQ(v.x(), 0);
+  ASSERT_DOUBLE_EQ(v.y(), 0);
+  ASSERT_DOUBLE_EQ(v.z(), 15);
+
+  v = cross(Vector3D(0, 5, 0),  Vector3D(3, 0, 0));
+  ASSERT_DOUBLE_EQ(v.x(), 0);
+  ASSERT_DOUBLE_EQ(v.y(), 0);
+  ASSERT_DOUBLE_EQ(v.z(), -15);
+
+  v = cross(Vector3D(0, 0, 5),  Vector3D(3, 0, 0));
+  ASSERT_DOUBLE_EQ(v.x(), 0);
+  ASSERT_DOUBLE_EQ(v.y(), 15);
+  ASSERT_DOUBLE_EQ(v.z(), 0);
+
+  v = cross(Vector3D(3, 0, 0),  Vector3D(0, 0, 5));
+  ASSERT_DOUBLE_EQ(v.x(), 0);
+  ASSERT_DOUBLE_EQ(v.y(), -15);
+  ASSERT_DOUBLE_EQ(v.z(), 0);
+
+  v = cross(Vector3D(0, 5, 0),  Vector3D(0, 0, 3));
+  ASSERT_DOUBLE_EQ(v.x(), 15);
+  ASSERT_DOUBLE_EQ(v.y(), 0);
+  ASSERT_DOUBLE_EQ(v.z(), 0);
+
+  v = cross(Vector3D(0, 0, 3),  Vector3D(0, 5, 0));
+  ASSERT_DOUBLE_EQ(v.x(), -15);
+  ASSERT_DOUBLE_EQ(v.y(), 0);
+  ASSERT_DOUBLE_EQ(v.z(), 0);
+}
