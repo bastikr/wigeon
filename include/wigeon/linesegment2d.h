@@ -26,6 +26,8 @@ struct LineSegment2D {
   Point2D point0() const;
   Point2D point1() const;
 
+  UnitVector2D direction() const;
+
   std::array<double, 4> data;
 };
 

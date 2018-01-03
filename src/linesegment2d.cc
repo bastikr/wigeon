@@ -10,6 +10,10 @@ Point2D LineSegment2D::point1() const {
   return Point2D(data[1], data[3]);
 }
 
+UnitVector2D LineSegment2D::direction() const {
+  return UnitVector2D(point1() - point0());
+}
+
 LineSegment2D operator+(const LineSegment2D& segment, const Vector2D& vector) {
   return LineSegment2D(segment.point0() + vector, segment.point1() + vector);
 }

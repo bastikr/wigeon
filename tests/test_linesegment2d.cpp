@@ -25,3 +25,15 @@ TEST(SEGMENT2D, OPERATORS) {
   ASSERT_DOUBLE_EQ((vector-segment).point1().x(), 7);
   ASSERT_DOUBLE_EQ((vector-segment).point1().y(), -4);
 }
+
+TEST(SEGMENT2D, DIRECTION) {
+  LineSegment2D segment0(1, 3, 1, 9);
+  UnitVector2D u0 = segment0.direction();
+  ASSERT_DOUBLE_EQ(u0.x(), 0);
+  ASSERT_DOUBLE_EQ(u0.y(), 1);
+
+  LineSegment2D segment1(1, 3, -2, -1);
+  UnitVector2D u1 = segment1.direction();
+  ASSERT_DOUBLE_EQ(u1.x(), -3/5.);
+  ASSERT_DOUBLE_EQ(u1.y(), -4/5.);
+}
