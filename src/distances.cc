@@ -113,8 +113,8 @@ double distance2(const LineSegment2D& segment, const Line2D& line) {
   Vector2D w0 = segment.point0() - line.point();
   Vector2D w1 = segment.point1() - line.point();
 
-  double c0 = cross(line.direction_, w0);
-  double c1 = cross(line.direction_, w1);
+  double c0 = cross(line.direction(), w0);
+  double c1 = cross(line.direction(), w1);
 
   double d0 = distance2(line, segment.point0());
   double d1 = distance2(line, segment.point1());
