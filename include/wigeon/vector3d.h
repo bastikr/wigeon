@@ -32,8 +32,8 @@ Vector3D operator/(const Vector3D& vector, double a);
 
 
 struct UnitVector3D : public Vector3D {
-  UnitVector3D(double x, double y, double z);
   UnitVector3D(const Vector3D& v) : Vector3D(v/v.length()) {}
+  UnitVector3D(double x, double y, double z) : UnitVector3D(Vector3D(x, y, z)) {}
 };
 
 
