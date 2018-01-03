@@ -23,4 +23,6 @@ Ray2D operator+(const Vector2D&, const Ray2D&);
 Ray2D operator-(const Ray2D&, const Vector2D&);
 Ray2D operator-(const Vector2D&, const Ray2D&);
 
+UnitVector2D normalvector(const Ray2D&);
+
 } // namespace wigeon

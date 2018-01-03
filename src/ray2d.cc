@@ -18,4 +18,8 @@ Ray2D operator-(const Vector2D& vector, const Ray2D& ray) {
   return Ray2D(vector - ray.point(), ray.direction());
 }
 
+UnitVector2D normalvector(const Ray2D& ray) {
+  return normalvector(ray.direction());
+}
+
 } // namespace wigeon
