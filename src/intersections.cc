@@ -35,4 +35,20 @@ Points2D intersections(const LineSegment2D& segment0, const LineSegment2D& segme
   return points;
 }
 
+Points2D intersections(const LineSegment2D& segment, const Polygon2D& polygon) {
+  Points2D points;
+  Points2D points_part;
+  for (int i=0; i<polygon.size(); ++i) {
+    points_part = intersections(segment, *polygon.edge(i));
+    if (points_part.size()==1) {
+      points.push_back(points_part[0]);
+    }
+  }
+  return points;
+}
+
+Points2D intersections(const Polygon2D& polygon, const LineSegment2D& segment) {
+  return intersections(segment, polygon);
+}
+
 } // namespace wigeon
