@@ -18,3 +18,4 @@
 #include "wigeon/intersections.h"
 #include "wigeon/winding_number.h"
 #include "wigeon/isinside.h"
+#include "wigeon/offset.h"

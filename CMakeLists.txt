@@ -24,7 +24,8 @@ add_library(wigeon SHARED
     src/distances.cc
     src/intersections.cc
     src/winding_number.cc
-    src/isinside.cc)
+    src/isinside.cc
+    src/offset.cc)
 
 
 enable_testing()
