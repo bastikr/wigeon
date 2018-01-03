@@ -18,4 +18,8 @@ Line2D operator-(const Vector2D& vector, const Line2D& line) {
   return Line2D(vector - line.point(), line.direction());
 }
 
+UnitVector2D normalvector(const Line2D& line) {
+  return normalvector(line.direction());
+}
+
 } // namespace wigeon
