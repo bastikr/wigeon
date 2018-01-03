@@ -3,6 +3,16 @@
 
 using namespace wigeon;
 
+TEST(LINE2D, CONSTRUCTION) {
+  LineSegment2D segment(-1, -2, 3, 1);
+  Line2D line(segment);
+
+  ASSERT_DOUBLE_EQ(line.point().x(), -1);
+  ASSERT_DOUBLE_EQ(line.point().y(), -2);
+  ASSERT_DOUBLE_EQ(line.direction().x(), 4/5.);
+  ASSERT_DOUBLE_EQ(line.direction().y(), 3/5.);
+}
+
 TEST(LINE2D, OPERATORS) {
   Line2D line(Point2D(1, -2), Vector2D(1, 0));
   Vector2D vector = Vector2D(3, 5);
