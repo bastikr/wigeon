@@ -63,6 +63,12 @@ TEST(SEGMENT2D, DIRECTION) {
   ASSERT_DOUBLE_EQ(u1.y(), -4/5.);
 }
 
+TEST(SEGMENT2D, LENGTH) {
+  LineSegment2D segment(-2, 5, 2, 8);
+  ASSERT_DOUBLE_EQ(segment.length2(), 25);
+  ASSERT_DOUBLE_EQ(segment.length(), 5);
+}
+
 TEST(SEGMENT2D, NORMALVECTOR) {
   LineSegment2D segment0(1, 3, 1, 9);
   UnitVector2D n0 = normalvector(segment0);

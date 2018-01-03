@@ -1,5 +1,8 @@
 #include "wigeon/linesegment2d.h"
 
+#include <cmath>
+
+
 namespace wigeon {
 
 Point2D LineSegment2D::point0() const {
@@ -12,6 +15,16 @@ Point2D LineSegment2D::point1() const {
 
 UnitVector2D LineSegment2D::direction() const {
   return UnitVector2D(point1() - point0());
+}
+
+double LineSegment2D::length2() const {
+  double dx = x1() - x0();
+  double dy = y1() - y0();
+  return dx*dx + dy*dy;
+}
+
+double LineSegment2D::length() const {
+  return sqrt(length2());
 }
 
 LineSegment2D operator+(const LineSegment2D& segment, const Vector2D& vector) {
