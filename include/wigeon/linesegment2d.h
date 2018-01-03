@@ -19,8 +19,8 @@ struct LineSegment2D {
       : data({{x0, x1, y0, y1}}) {}
 
   double x0() const {return data[0];}
-  double y0() const {return data[1];}
-  double x1() const {return data[2];}
+  double y0() const {return data[2];}
+  double x1() const {return data[1];}
   double y1() const {return data[3];}
 
   Point2D point0() const;
