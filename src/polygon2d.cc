@@ -1,4 +1,4 @@
-# include "wigeon/polygon2d.h"
+#include "wigeon/polygon2d.h"
 
 #include <algorithm>
 
@@ -68,7 +68,7 @@ boost::optional<Point2D> Polygon2D::point(int i) const {
 boost::optional<LineSegment2D> Polygon2D::edge(int i) const {
   if (i<0 || i>size()-1)
     return boost::optional<LineSegment2D>();
-  if (i==size())
+  if (i==size()-1)
     return LineSegment2D(data_x[i], data_y[i], data_x[0], data_y[0]);
   return LineSegment2D(data_x[i], data_y[i], data_x[i+1], data_y[i+1]);
 }

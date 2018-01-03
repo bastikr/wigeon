@@ -4,7 +4,7 @@
 
 using namespace wigeon;
 
-TEST(POLYGON2D, operators) {
+TEST(POLYGON2D, OPERATORS) {
   Polygon2D polygon0;
   polygon0.append(0, 0);
   polygon0.append(1, 0);
@@ -33,4 +33,32 @@ TEST(POLYGON2D, operators) {
   ASSERT_DOUBLE_EQ(p1.y(), 0);
   ASSERT_DOUBLE_EQ(p2.x(), 1);
   ASSERT_DOUBLE_EQ(p2.y(), 1);
+}
+
+TEST(POLYGON2D, EDGES) {
+  Polygon2D polygon0;
+  polygon0.append(0, 0);
+  polygon0.append(1, 0);
+  polygon0.append(0, 1);
+
+  LineSegment2D s0 = *polygon0.edge(0);
+  ASSERT_DOUBLE_EQ(s0.x0(), 0);
+  ASSERT_DOUBLE_EQ(s0.y0(), 0);
+  ASSERT_DOUBLE_EQ(s0.x1(), 1);
+  ASSERT_DOUBLE_EQ(s0.y1(), 0);
+
+  LineSegment2D s1 = *polygon0.edge(1);
+  ASSERT_DOUBLE_EQ(s1.x0(), 1);
+  ASSERT_DOUBLE_EQ(s1.y0(), 0);
+  ASSERT_DOUBLE_EQ(s1.x1(), 0);
+  ASSERT_DOUBLE_EQ(s1.y1(), 1);
+
+  LineSegment2D s2 = *polygon0.edge(2);
+  ASSERT_DOUBLE_EQ(s2.x0(), 0);
+  ASSERT_DOUBLE_EQ(s2.y0(), 1);
+  ASSERT_DOUBLE_EQ(s2.x1(), 0);
+  ASSERT_DOUBLE_EQ(s2.y1(), 0);
+
+  ASSERT_FALSE(polygon0.edge(-1));
+  ASSERT_FALSE(polygon0.edge(3));
 }
