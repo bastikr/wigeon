@@ -2,6 +2,7 @@
 #include "gtest/gtest.h"
 #include <cmath>
 
+
 using namespace wigeon;
 
 TEST(INTERSECTIONS, LINE_LINE) {
@@ -89,6 +90,27 @@ TEST(INTERSECTIONS, RAY_POLYGON) {
 
   points = intersections(ray2, polygon);
   ASSERT_EQ(points.size(), 0);
+}
+
+TEST(INTERSECTIONS, RAY_POLYGON2) {
+  Ray2D ray0(Point2D(0, 0), Vector2D(1, 1));
+  Ray2D ray1(Point2D(0, 0), Vector2D(-1, -1));
+
+  Polygon2D polygon;
+  polygon.append(-0.3, -0.3);
+  polygon.append(-0.3, 0.3);
+  polygon.append(0.3, 0.3);
+  polygon.append(0.3, -0.3);
+
+  Points2D points = intersections(ray0, polygon);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 0.3);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0.3);
+
+  points = intersections(ray1, polygon);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), -0.3);
+  ASSERT_DOUBLE_EQ(points[0].y(), -0.3);
 }
 
 TEST(INTERSECTIONS, SEGMENT_SEGMENT) {
