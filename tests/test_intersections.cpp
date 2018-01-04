@@ -65,6 +65,32 @@ TEST(INTERSECTIONS, RAY_SEGMENT) {
   ASSERT_EQ(points.size(), 0);
 }
 
+TEST(INTERSECTIONS, RAY_POLYGON) {
+  Ray2D ray0(Point2D(10, 0), Vector2D(1, 0));
+  Ray2D ray1(Point2D(14, 0), Vector2D(1, 0));
+  Ray2D ray2(Point2D(10, -2), Vector2D(1, 0));
+
+  Polygon2D polygon;
+  polygon.append(11, -1);
+  polygon.append(16, -1);
+  polygon.append(16, 4);
+
+  Points2D points = intersections(ray0, polygon);
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), 16);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+  ASSERT_DOUBLE_EQ(points[1].x(), 12);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0);
+
+  points = intersections(ray1, polygon);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 16);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+
+  points = intersections(ray2, polygon);
+  ASSERT_EQ(points.size(), 0);
+}
+
 TEST(INTERSECTIONS, SEGMENT_SEGMENT) {
   LineSegment2D s0a(1, 2, 3, 4);
   LineSegment2D s0b(1, 4, 3, 2);

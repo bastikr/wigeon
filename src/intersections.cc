@@ -54,6 +54,22 @@ Points2D intersections(const LineSegment2D& segment, const Ray2D& ray) {
   return intersections(ray, segment);
 }
 
+Points2D intersections(const Ray2D& ray, const Polygon2D& polygon) {
+  Points2D points;
+  Points2D points_part;
+  for (int i=0; i<polygon.size(); ++i) {
+    points_part = intersections(ray, *polygon.edge(i));
+    if (points_part.size()==1) {
+      points.push_back(points_part[0]);
+    }
+  }
+  return points;
+}
+
+Points2D intersections(const Polygon2D& polygon, const Ray2D& ray) {
+  return intersections(ray, polygon);
+}
+
 Points2D intersections(const LineSegment2D& segment0, const LineSegment2D& segment1) {
   Points2D points = intersections(Line2D(segment0), Line2D(segment1));
   if (points.size()==0)

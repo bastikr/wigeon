@@ -30,6 +30,8 @@ Points2D intersections(const Line2D&, const Ray2D&);
 Points2D intersections(const Ray2D&, const Line2D&);
 Points2D intersections(const Ray2D&, const LineSegment2D&);
 Points2D intersections(const LineSegment2D&, const Ray2D&);
+Points2D intersections(const Ray2D&, const Polygon2D&);
+Points2D intersections(const Polygon2D&, const Ray2D&);
 Points2D intersections(const LineSegment2D&, const LineSegment2D&);
 Points2D intersections(const LineSegment2D&, const Polygon2D&);
 Points2D intersections(const Polygon2D&, const LineSegment2D&);
