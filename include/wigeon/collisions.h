@@ -30,4 +30,7 @@ struct Collision {
 boost::optional<Collision<PointCollision, SegmentCollision>>
 collision(const UnitVector2D& u, const Point2D&, const LineSegment2D&);
 
+boost::optional<Collision<SegmentCollision, SegmentCollision>>
+collision(const UnitVector2D& u, const LineSegment2D& s0, const LineSegment2D& s1);
+
 } // namespace wigeon

@@ -21,4 +21,24 @@ collision(const UnitVector2D& u, const Point2D& point, const LineSegment2D& segm
                    SegmentCollision(r));
 }
 
+boost::optional<Collision<SegmentCollision, SegmentCollision>>
+collision(const UnitVector2D& u, const LineSegment2D& s0, const LineSegment2D& s1) {
+  using T = Collision<SegmentCollision, SegmentCollision>;
+  boost::optional<Collision<PointCollision, SegmentCollision>> c_sub;
+  boost::optional<T> c;
+  c_sub = collision(u, s0.point0(), s1);
+  if (c_sub)
+    c = T(c_sub->distance, c_sub->point, SegmentCollision(0), c_sub->object1);
+  c_sub = collision(u, s0.point1(), s1);
+  if (c_sub && (!c || c->distance > c_sub->distance))
+      c = T(c_sub->distance, c_sub->point, SegmentCollision(1), c_sub->object1);
+  c_sub = collision(u, s1.point0(), s0);
+  if (c_sub && (!c || c->distance > c_sub->distance))
+      c = T(c_sub->distance, c_sub->point, c_sub->object1, SegmentCollision(0));
+  c_sub = collision(u, s1.point1(), s0);
+  if (c_sub && (!c || c->distance > c_sub->distance))
+      c = T(c_sub->distance, c_sub->point, c_sub->object1, SegmentCollision(1));
+  return c;
+}
+
 } // namespace wigeon
