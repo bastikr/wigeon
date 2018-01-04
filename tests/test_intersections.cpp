@@ -25,6 +25,28 @@ TEST(INTERSECTIONS, LINE_LINE) {
   ASSERT_DOUBLE_EQ(points[0].y(), -1);
 };
 
+TEST(INTERSECTIONS, LINE_RAY) {
+  Ray2D ray(Point2D(1, 2), Vector2D(1, 0));
+  Line2D line0(Point2D(4, -2), Vector2D(0, 1));
+  Line2D line1(Point2D(-4, -2), Vector2D(0, 1));
+
+  Points2D points = intersections(ray, line0);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 4);
+  ASSERT_DOUBLE_EQ(points[0].y(), 2);
+
+  points = intersections(line0, ray);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 4);
+  ASSERT_DOUBLE_EQ(points[0].y(), 2);
+
+  points = intersections(ray, line1);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(line1, ray);
+  ASSERT_EQ(points.size(), 0);
+}
+
 TEST(INTERSECTIONS, SEGMENT_SEGMENT) {
   LineSegment2D s0a(1, 2, 3, 4);
   LineSegment2D s0b(1, 4, 3, 2);

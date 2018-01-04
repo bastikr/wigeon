@@ -17,6 +17,27 @@ Points2D intersections(const Line2D& line0, const Line2D& line1) {
   return points;
 }
 
+Points2D intersections(const Line2D& line, const Ray2D& ray) {
+  const Point2D& p0 = ray.point();
+  const Point2D& p1 = line.point();
+  const Vector2D& w0 = ray.direction();
+  const Vector2D& w1 = line.direction();
+  double a = w0*w1;
+  Points2D points;
+  if (1-a*a < 1e-15)
+    return Points2D();
+  double c0 = (p1-p0) * (w0 - w1*(w0*w1)) / (1-a*a);
+  if (c0 <= 0)
+    return Points2D();
+  points.push_back(p0 + w0*c0);
+  return points;
+}
+
+Points2D intersections(const Ray2D& ray, const Line2D& line) {
+  return intersections(line, ray);
+}
+
+
 Points2D intersections(const LineSegment2D& segment0, const LineSegment2D& segment1) {
   Points2D points = intersections(Line2D(segment0), Line2D(segment1));
   if (points.size()==0)
