@@ -47,6 +47,24 @@ TEST(INTERSECTIONS, LINE_RAY) {
   ASSERT_EQ(points.size(), 0);
 }
 
+TEST(INTERSECTIONS, RAY_SEGMENT) {
+  Ray2D ray(Point2D(1, 2), Vector2D(1, 0));
+  LineSegment2D segment0(3, -1, 3, 4);
+  LineSegment2D segment1(0, -1, 1, 4);
+  LineSegment2D segment2(2, 3, 1, 4);
+
+  Points2D points = intersections(ray, segment0);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 3);
+  ASSERT_DOUBLE_EQ(points[0].y(), 2);
+
+  points = intersections(ray, segment1);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(ray, segment2);
+  ASSERT_EQ(points.size(), 0);
+}
+
 TEST(INTERSECTIONS, SEGMENT_SEGMENT) {
   LineSegment2D s0a(1, 2, 3, 4);
   LineSegment2D s0b(1, 4, 3, 2);

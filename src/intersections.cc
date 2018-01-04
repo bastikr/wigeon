@@ -37,6 +37,22 @@ Points2D intersections(const Ray2D& ray, const Line2D& line) {
   return intersections(line, ray);
 }
 
+Points2D intersections(const Ray2D& ray, const LineSegment2D& segment) {
+  Points2D points = intersections(ray, Line2D(segment));
+  if (points.size()==0)
+    return points;
+
+  Vector2D w = points[0] - segment.point0();
+  double c0 = w*segment.direction();
+  if (c0<=0 || c0>=segment.length())
+    return Points2D();
+
+  return points;
+}
+
+Points2D intersections(const LineSegment2D& segment, const Ray2D& ray) {
+  return intersections(ray, segment);
+}
 
 Points2D intersections(const LineSegment2D& segment0, const LineSegment2D& segment1) {
   Points2D points = intersections(Line2D(segment0), Line2D(segment1));
