@@ -25,7 +25,8 @@ add_library(wigeon SHARED
     src/intersections.cc
     src/winding_number.cc
     src/isinside.cc
-    src/offset.cc)
+    src/offset.cc
+    src/collisions.cc)
 
 
 enable_testing()
