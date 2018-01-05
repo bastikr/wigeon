@@ -26,7 +26,8 @@ add_library(wigeon SHARED
     src/winding_number.cc
     src/isinside.cc
     src/offset.cc
-    src/collisions.cc)
+    src/collisions.cc
+    src/svg.cc)
 
 
 enable_testing()

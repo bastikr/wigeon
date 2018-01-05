@@ -21,3 +21,4 @@
 #include "wigeon/offset.h"
 
 #include "wigeon/collisions.h"
+#include "wigeon/svg.h"
