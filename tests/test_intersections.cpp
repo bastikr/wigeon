@@ -1,7 +1,10 @@
 #include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 #include <cmath>
+#include <limits>
 
+#include <iostream>
+using namespace std;
 
 using namespace wigeon;
 
@@ -24,12 +27,16 @@ TEST(INTERSECTIONS, LINE_LINE) {
   ASSERT_EQ(points.size(), 1);
   ASSERT_DOUBLE_EQ(points[0].x(), 3);
   ASSERT_DOUBLE_EQ(points[0].y(), -1);
+
+  points = intersections(line1, line1);
+  ASSERT_EQ(points.size(), 0);
 };
 
 TEST(INTERSECTIONS, LINE_RAY) {
   Ray2D ray(Point2D(1, 2), Vector2D(1, 0));
   Line2D line0(Point2D(4, -2), Vector2D(0, 1));
   Line2D line1(Point2D(-4, -2), Vector2D(0, 1));
+  Line2D line2(Point2D(1, 2), Vector2D(1, 0));
 
   Points2D points = intersections(ray, line0);
   ASSERT_EQ(points.size(), 1);
@@ -46,6 +53,9 @@ TEST(INTERSECTIONS, LINE_RAY) {
 
   points = intersections(line1, ray);
   ASSERT_EQ(points.size(), 0);
+
+  points = intersections(line2, ray);
+  ASSERT_EQ(points.size(), 0);
 }
 
 TEST(INTERSECTIONS, RAY_SEGMENT) {
@@ -53,6 +63,7 @@ TEST(INTERSECTIONS, RAY_SEGMENT) {
   LineSegment2D segment0(3, -1, 3, 4);
   LineSegment2D segment1(0, -1, 1, 4);
   LineSegment2D segment2(2, 3, 1, 4);
+  LineSegment2D segment3(2, 2, 4, 2);
 
   Points2D points = intersections(ray, segment0);
   ASSERT_EQ(points.size(), 1);
@@ -64,31 +75,69 @@ TEST(INTERSECTIONS, RAY_SEGMENT) {
 
   points = intersections(ray, segment2);
   ASSERT_EQ(points.size(), 0);
+
+  points = intersections(ray, segment2);
+  ASSERT_EQ(points.size(), 0);
+}
+
+TEST(INTERSECTIONS, RAY_SEGMENT2) {
+  Ray2D ray(Point2D(-1, 1), Vector2D(1, 0));
+  LineSegment2D segment0(0, 0, 1, 1);
+  LineSegment2D segment1(0, -1, 1, 4);
+  LineSegment2D segment2(2, 3, 1, 4);
+  LineSegment2D segment3(2, 2, 4, 2);
+
+  Points2D points;
+
+  // points =intersections(ray, segment0);
+  // ASSERT_EQ(points.size(), 1);
+  // ASSERT_DOUBLE_EQ(points[0].x(), 3);
+  // ASSERT_DOUBLE_EQ(points[0].y(), 2);
+
+  points = intersections(ray, segment0);
+  ASSERT_EQ(points.size(), 0);
+
+  // points = intersections(ray, segment2);
+  // ASSERT_EQ(points.size(), 0);
+
+  // points = intersections(ray, segment2);
+  // ASSERT_EQ(points.size(), 0);
 }
 
 TEST(INTERSECTIONS, RAY_POLYGON) {
-  Ray2D ray0(Point2D(10, 0), Vector2D(1, 0));
-  Ray2D ray1(Point2D(14, 0), Vector2D(1, 0));
-  Ray2D ray2(Point2D(10, -2), Vector2D(1, 0));
+  Ray2D ray0(Point2D(-1, 0.5), Vector2D(1, 0));
+  Ray2D ray1(Point2D(1, 2), Vector2D(0, -1));
+  Ray2D ray2(Point2D(-1, 0), Vector2D(1, 0));
+  Ray2D ray3(Point2D(-1, 1), Vector2D(1, 0));
 
   Polygon2D polygon;
-  polygon.append(11, -1);
-  polygon.append(16, -1);
-  polygon.append(16, 4);
+  polygon.append(0, 0);
+  polygon.append(1, 1);
+  polygon.append(2, 0);
 
   Points2D points = intersections(ray0, polygon);
   ASSERT_EQ(points.size(), 2);
-  ASSERT_DOUBLE_EQ(points[0].x(), 16);
-  ASSERT_DOUBLE_EQ(points[0].y(), 0);
-  ASSERT_DOUBLE_EQ(points[1].x(), 12);
-  ASSERT_DOUBLE_EQ(points[1].y(), 0);
+  ASSERT_DOUBLE_EQ(points[0].x(), 0.5);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0.5);
+  ASSERT_DOUBLE_EQ(points[1].x(), 1.5);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0.5);
 
   points = intersections(ray1, polygon);
-  ASSERT_EQ(points.size(), 1);
-  ASSERT_DOUBLE_EQ(points[0].x(), 16);
-  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1);
+  ASSERT_DOUBLE_EQ(points[0].y(), 1);
+  ASSERT_DOUBLE_EQ(points[1].x(), 1);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0);
 
   points = intersections(ray2, polygon);
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), 0);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+  ASSERT_DOUBLE_EQ(points[1].x(), 2);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0);
+
+  points = intersections(ray3, polygon);
   ASSERT_EQ(points.size(), 0);
 }
 
@@ -160,7 +209,9 @@ TEST(INTERSECTIONS, SEGMENT_POLYGON) {
   polygon1.append(1.5, 3);
   polygon1.append(3.5, 3);
 
-  Points2D points = intersections(segment0, polygon0);
+  Points2D points;
+
+  points = intersections(segment0, polygon0);
   ASSERT_EQ(points.size(), 1);
   ASSERT_DOUBLE_EQ(points[0].x(), 2);
   ASSERT_DOUBLE_EQ(points[0].y(), 3);
@@ -176,9 +227,7 @@ TEST(INTERSECTIONS, SEGMENT_POLYGON) {
   ASSERT_DOUBLE_EQ(points[1].y(), 3);
 
   points = intersections(segment1, polygon1);
-  ASSERT_EQ(points.size(), 1);
-  ASSERT_DOUBLE_EQ(points[0].x(), 1.5);
-  ASSERT_DOUBLE_EQ(points[0].y(), 2.5);
+  ASSERT_EQ(points.size(), 0);
 };
 
 TEST(INTERSECTIONS, POLYGON_POLYGON) {
