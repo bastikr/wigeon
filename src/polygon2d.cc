@@ -73,4 +73,33 @@ boost::optional<LineSegment2D> Polygon2D::edge(int i) const {
   return LineSegment2D(data_x[i], data_y[i], data_x[i+1], data_y[i+1]);
 }
 
+namespace {
+
+int positive_modulo(int a, int b) {
+  if (a >= 0) {
+    return a % b;
+  } else {
+    return (a % b + b) % b;
+  }
+}
+
+} // anonymous namespace
+
+boost::optional<Point2D> Polygon2D::point_looped(int i) const {
+  if (size()==0)
+    return boost::optional<Point2D>();
+  int i_ = positive_modulo(i, size());
+  return Point2D(data_x[i_], data_y[i_]);
+}
+
+boost::optional<LineSegment2D> Polygon2D::edge_looped(int i) const {
+  if (size()==0)
+    return boost::optional<LineSegment2D>();
+  int i0 = positive_modulo(i, size());
+  int i1 = positive_modulo(i0 + 1, size());
+  if (i==size()-1)
+    return LineSegment2D(data_x[i0], data_y[i0], data_x[0], data_y[0]);
+  return LineSegment2D(data_x[i0], data_y[i0], data_x[i1], data_y[i1]);
+}
+
 } // namespace wigeon
