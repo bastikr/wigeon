@@ -27,6 +27,7 @@ add_library(wigeon SHARED
     src/isinside.cc
     src/offset.cc
     src/collisions.cc
+    src/printer.cc
     src/svg.cc)
 
 
