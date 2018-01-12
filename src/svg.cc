@@ -66,6 +66,21 @@ void print(std::ostream& f, const Polygon2D& polygon) {
   f << "\"/>";
 }
 
+void print(std::ostream& f, const Area2D& obj) {
+  print_visitor printer(f);
+  obj.apply_visitor(printer);
+}
+
+void print(std::ostream& f, const Areas2D& obj) {
+  f << "<g>"  << std::endl;
+  for (auto it=obj.begin(); it!=obj.end(); ++it) {
+    f << "  ";
+    print(f, *it);
+    f << std::endl;
+  }
+  f << "</g>";
+}
+
 } // namespace svg
 
 } // namespace wigeon

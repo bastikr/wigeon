@@ -3,11 +3,13 @@
 #include <string>
 #include <sstream>
 
+#include <boost/variant.hpp>
+
 #include "wigeon/circle2d.h"
 #include "wigeon/rectangle2d.h"
 #include "wigeon/linesegment2d.h"
 #include "wigeon/polygon2d.h"
-
+#include "wigeon/collections.h"
 
 namespace wigeon {
 
@@ -19,6 +21,29 @@ void print(std::ostream&, const Circle2D&);
 void print(std::ostream&, const Rectangle2D&);
 void print(std::ostream&, const LineSegment2D&);
 void print(std::ostream&, const Polygon2D&);
+
+
+class print_visitor : public boost::static_visitor<> {
+  public:
+    print_visitor(std::ostream& os) : os(os) {}
+
+    void operator()(const Circle2D& circle) {
+      print(os, circle);
+    }
+
+    void operator()(const Rectangle2D& rectangle) {
+      print(os, rectangle);
+    }
+
+    void operator()(const Polygon2D& polygon) {
+      print(os, polygon);
+    }
+
+    std::ostream& os;
+};
+
+void print(std::ostream&, const Area2D&);
+void print(std::ostream&, const Areas2D&);
 
 template<typename T>
 std::string print(const T object) {
