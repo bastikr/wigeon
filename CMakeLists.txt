@@ -13,6 +13,7 @@ add_library(wigeon SHARED
     src/vector1d.cc
     src/point2d.cc
     src/vector2d.cc
+    src/rotations2d.cc
     src/linesegment2d.cc
     src/rectangle2d.cc
     src/circle2d.cc

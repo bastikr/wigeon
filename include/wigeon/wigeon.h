@@ -5,6 +5,7 @@
 
 #include "wigeon/point2d.h"
 #include "wigeon/vector2d.h"
+#include "wigeon/rotations2d.h"
 #include "wigeon/line2d.h"
 #include "wigeon/ray2d.h"
 #include "wigeon/linesegment2d.h"
