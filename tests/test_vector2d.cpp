@@ -86,6 +86,24 @@ TEST(VECTOR2D, NORMALVECTOR) {
   ASSERT_DOUBLE_EQ(n3.y(), 3/5.);
 }
 
+TEST(VECTOR2D, ROTATE) {
+  Vector2D v0(0, 3);
+  UnitVector2D u0(0, 3);
+  Rotation2D R(M_PI/2);
+
+  ASSERT_DOUBLE_EQ(rotate(R, v0).x(), -3.);
+  ASSERT_LE(abs(rotate(R, v0).y()), 5e-16);
+
+  ASSERT_DOUBLE_EQ(rotate(R, u0).x(), -1.);
+  ASSERT_LE(abs(rotate(R, u0).y()), 5e-16);
+
+  ASSERT_LE(abs(rotate(R*R, v0).x()), 5e-16);
+  ASSERT_DOUBLE_EQ(rotate(R*R, v0).y(), -3.);
+
+  ASSERT_LE(abs(rotate(R*R, u0).x()), 5e-16);
+  ASSERT_DOUBLE_EQ(rotate(R*R, u0).y(), -1.);
+}
+
 TEST(VECTOR2D, CROSS) {
   UnitVector2D u0(1, 1);
   UnitVector2D u1(-1, 1);

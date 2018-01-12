@@ -1,4 +1,3 @@
-#include "wigeon/vector2d.h"
 #include "wigeon/point2d.h"
 
 
@@ -22,6 +21,11 @@ Point2D operator-(const Vector2D& vector, const Point2D& point) {
 
 Vector2D operator-(const Point2D& point0, const Point2D& point1) {
   return Vector2D(point0.x() - point1.x(), point0.y()-point1.y());
+}
+
+
+Point2D rotate(const Rotation2D& R, const Point2D& p) {
+  return Point2D(R.x()*p.x() - R.y()*p.y(), R.y()*p.x() + R.x()*p.y());
 }
 
 } // namespace wigeon

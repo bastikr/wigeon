@@ -51,6 +51,16 @@ UnitVector2D normalvector(const Vector2D& vector) {
   return normalvector(UnitVector2D(vector));
 }
 
+
+Vector2D rotate(const Rotation2D& R, const Vector2D& v) {
+  return Vector2D(R.x()*v.x() - R.y()*v.y(), R.y()*v.x() + R.x()*v.y());
+}
+
+UnitVector2D rotate(const Rotation2D& R, const UnitVector2D& v) {
+  return UnitVector2D(R.x()*v.x() - R.y()*v.y(), R.y()*v.x() + R.x()*v.y());
+}
+
+
 double cross(const Vector2D& vector0, const Vector2D& vector1) {
   return vector0.x()*vector1.y() - vector0.y()*vector1.x();
 }

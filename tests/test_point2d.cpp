@@ -1,6 +1,9 @@
 #include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 
+#include <cmath>
+
+
 using namespace wigeon;
 
 TEST(POINT2D, OPERATORS) {
@@ -27,4 +30,15 @@ TEST(POINT2D, OPERATORS) {
   v = p0 - p1;
   ASSERT_DOUBLE_EQ(v.x(), 3);
   ASSERT_DOUBLE_EQ(v.y(), -1);
+}
+
+TEST(POINT2D, ROTATE) {
+  Point2D p0(0, 3);
+  Rotation2D R(M_PI/2);
+
+  ASSERT_DOUBLE_EQ(rotate(R, p0).x(), -3.);
+  ASSERT_LE(abs(rotate(R, p0).y()), 5e-16);
+
+  ASSERT_LE(abs(rotate(R*R, p0).x()), 5e-16);
+  ASSERT_DOUBLE_EQ(rotate(R*R, p0).y(), -3.);
 }

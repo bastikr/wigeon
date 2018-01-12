@@ -2,6 +2,8 @@
 
 #include <array>
 
+#include "wigeon/rotations2d.h"
+
 
 namespace wigeon {
 
@@ -37,6 +39,9 @@ struct UnitVector2D : public Vector2D {
 
 UnitVector2D normalvector(const Vector2D&);
 UnitVector2D normalvector(const UnitVector2D&);
+
+Vector2D rotate(const Rotation2D&, const Vector2D&);
+UnitVector2D rotate(const Rotation2D&, const UnitVector2D&);
 
 double cross(const Vector2D& vector0, const Vector2D& vector1);
 
