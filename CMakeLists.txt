@@ -9,27 +9,27 @@ include_directories(include)
 
 add_subdirectory(src/rotations)
 add_library(wigeon SHARED
-    src/point1d.cc
-    src/vector1d.cc
-    src/point2d.cc
-    src/vector2d.cc
-    src/rotations2d.cc
-    src/linesegment2d.cc
-    src/rectangle2d.cc
-    src/circle2d.cc
-    src/polygon2d.cc
-    src/line2d.cc
-    src/ray2d.cc
-    src/point3d.cc
-    src/vector3d.cc
-    src/distances.cc
-    src/intersections.cc
-    src/winding_number.cc
-    src/isinside.cc
-    src/offset.cc
-    src/collisions.cc
-    src/printer.cc
-    src/svg.cc)
+    src/point1d.cpp
+    src/vector1d.cpp
+    src/point2d.cpp
+    src/vector2d.cpp
+    src/rotations2d.cpp
+    src/linesegment2d.cpp
+    src/rectangle2d.cpp
+    src/circle2d.cpp
+    src/polygon2d.cpp
+    src/line2d.cpp
+    src/ray2d.cpp
+    src/point3d.cpp
+    src/vector3d.cpp
+    src/distances.cpp
+    src/intersections.cpp
+    src/winding_number.cpp
+    src/isinside.cpp
+    src/offset.cpp
+    src/collisions.cpp
+    src/printer.cpp
+    src/svg.cpp)
 
 
 enable_testing()

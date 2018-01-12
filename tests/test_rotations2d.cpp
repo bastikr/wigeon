@@ -5,9 +5,9 @@
 using namespace wigeon;
 
 TEST(ROTATIONS2D, QUATERNION) {
-  Quaternion2D q0(0.5);
-  Quaternion2D q1(0.3);
-  Quaternion2D q2(0.8);
+  Rotation2D q0(0.5);
+  Rotation2D q1(0.3);
+  Rotation2D q2(0.8);
 
   ASSERT_DOUBLE_EQ((q0*q1).x(), (q1*q0).x());
   ASSERT_DOUBLE_EQ((q0*q1).y(), (q1*q0).y());
