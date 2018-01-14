@@ -80,8 +80,7 @@ TEST(POLYGON2D, EDGES) {
 
   LineSegment2D s0 = *polygon0.edge(0);
   ASSERT_DOUBLE_EQ(s0.x0(), 0);
-  ASSERT_DOUBLE_EQ(s0.y0(), 0)ASSERT_DOUBLE_EQ(p.point(0)->x(), 0);
-  ASSERT_DOUBLE_EQ(p.point(0)->y(), 0);;
+  ASSERT_DOUBLE_EQ(s0.y0(), 0);
   ASSERT_DOUBLE_EQ(s0.x1(), 1);
   ASSERT_DOUBLE_EQ(s0.y1(), 0);
 
