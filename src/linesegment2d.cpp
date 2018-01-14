@@ -47,4 +47,8 @@ UnitVector2D normalvector(const LineSegment2D& segment) {
   return normalvector(segment.direction());
 }
 
+LineSegment2D rotate(const Rotation2D& R, const LineSegment2D& segment) {
+  return LineSegment2D(rotate(R, segment.point0()), rotate(R, segment.point1()));
+}
+
 } // namespace wigeon

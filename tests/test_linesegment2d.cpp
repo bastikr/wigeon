@@ -1,6 +1,9 @@
 #include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 
+#include <cmath>
+
+
 using namespace wigeon;
 
 TEST(SEGMENT2D, CONSTRUCTION) {
@@ -79,4 +82,14 @@ TEST(SEGMENT2D, NORMALVECTOR) {
   UnitVector2D n1 = normalvector(segment1);
   ASSERT_DOUBLE_EQ(n1.x(), 4/5.);
   ASSERT_DOUBLE_EQ(n1.y(), -3/5.);
+}
+
+TEST(SEGMENT2D, ROTATE) {
+  LineSegment2D segment0(0, 1, 2, 1);
+
+  LineSegment2D s = rotate(M_PI/2, segment0);
+  ASSERT_DOUBLE_EQ(s.x0(), -1);
+  ASSERT_LE(abs(s.y0()), 5e-16);
+  ASSERT_DOUBLE_EQ(s.x1(), -1);
+  ASSERT_DOUBLE_EQ(s.y1(), 2);
 }

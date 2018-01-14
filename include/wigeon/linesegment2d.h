@@ -2,6 +2,7 @@
 
 #include <array>
 
+#include "wigeon/rotations2d.h"
 #include "wigeon/vector2d.h"
 #include "wigeon/point2d.h"
 
@@ -41,5 +42,7 @@ LineSegment2D operator-(const LineSegment2D& segment, const Vector2D& vector);
 LineSegment2D operator-(const Vector2D& vector, const LineSegment2D& segment);
 
 UnitVector2D normalvector(const LineSegment2D&);
+
+LineSegment2D rotate(const Rotation2D&, const LineSegment2D&);
 
 } // namespace wigeon
