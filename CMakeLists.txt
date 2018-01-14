@@ -7,7 +7,6 @@ set (CMAKE_CXX_FLAGS "-Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wlogic
 
 include_directories(include)
 
-add_subdirectory(src/rotations)
 add_library(wigeon SHARED
     src/point1d.cpp
     src/vector1d.cpp
@@ -30,7 +29,6 @@ add_library(wigeon SHARED
     src/collisions.cpp
     src/printer.cpp
     src/svg.cpp)
-
 
 enable_testing()
 add_subdirectory(tests)
