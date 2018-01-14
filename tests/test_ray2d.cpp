@@ -1,6 +1,9 @@
 #include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
 
+#include <cmath>
+
+
 using namespace wigeon;
 
 TEST(RAY2D, OPERATORS) {
@@ -28,4 +31,14 @@ TEST(RAY2D, NORMALVECTOR) {
   UnitVector2D n2 = normalvector(ray2);
   ASSERT_DOUBLE_EQ(n2.x(), -1);
   ASSERT_DOUBLE_EQ(n2.y(), 0);
+}
+
+TEST(RAY2D, ROTATION) {
+  Ray2D ray0(Point2D(4, 9), Vector2D(3, 4));
+  Ray2D r0 = rotate(M_PI/2, ray0);
+
+  ASSERT_DOUBLE_EQ(r0.point().x(), -9);
+  ASSERT_DOUBLE_EQ(r0.point().y(), 4);
+  ASSERT_DOUBLE_EQ(r0.direction().x(), -4./5);
+  ASSERT_DOUBLE_EQ(r0.direction().y(), 3./5);
 }

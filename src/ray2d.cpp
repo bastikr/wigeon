@@ -22,4 +22,8 @@ UnitVector2D normalvector(const Ray2D& ray) {
   return normalvector(ray.direction());
 }
 
+Ray2D rotate(const Rotation2D& R, const Ray2D& ray) {
+  return Ray2D(rotate(R, ray.point()), rotate(R, ray.direction()));
+}
+
 } // namespace wigeon
