@@ -22,4 +22,8 @@ UnitVector2D normalvector(const Line2D& line) {
   return normalvector(line.direction());
 }
 
+Line2D rotate(const Rotation2D& R, const Line2D& line) {
+  return Line2D(rotate(R, line.point()), rotate(R, line.direction()));
+}
+
 } // namespace wigeon
