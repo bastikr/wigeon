@@ -1,29 +1,32 @@
-# Geometry 3D
+# Wigeon
 
-A library for manipulating 3 dimensional vectors.
+A simple 2D/3D geometry package.
 
-This library is mostly written to learn about a few C++ related things:
+Geometric objects:
 
-  * C++ project directory structures
-  * cmake
-  * unittests with googletest
-  * automatic integration with travis-ci
-  * doxygen
+  * Vector
+  * Point
+  * Circle
+  * Rectangle
+  * LineSegment
+  * Line
+  * Ray
+  * Polygon
 
-  
+Operations:
+
+  * Rotation
+  * Translation
+  * Distances
+  * Intersections
+  * Inclusion
+  * Winding number
+  * Polygon offsetting
+
+
 ## Development status
 
   * Linux build: [![Travis build status][travis-img]][travis-url]
-
-
-## Documentation
-
-At the moment it provides only functionality regarding rotations:
-
-  * Rotation matrices: `geometry::rotations::RotationMatrix`
-  * ZYX euler angles: `geometry::rotations::EulerAngles`
-  * Axis-angle approach: `geometry::rotations::AxisAngle`
-  * Quaternions: `geometry::rotations::Quaternion`
 
 
 [travis-url]: https://travis-ci.org/bastikr/geometry
