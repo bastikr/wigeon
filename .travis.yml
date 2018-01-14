@@ -12,7 +12,6 @@ addons:
       # - g++-6
       # - googletest
       - libgtest-dev
-      - libeigen3-dev
 
 before_install:
   # - eval "CC=gcc-6 && CXX=g++-6"
