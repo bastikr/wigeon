@@ -21,6 +21,11 @@ class Rotation2D {
 
 Rotation2D operator*(const Rotation2D&, const Rotation2D&);
 
+template<typename T>
+T rotate(double angle, const T& object) {
+  return rotate(Rotation2D(angle), object);
+}
+
 
 class TransformationMatrix2D {
   public:
