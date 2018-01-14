@@ -3,6 +3,7 @@
 #include <vector>
 #include <boost/optional.hpp>
 
+#include "wigeon/rotations2d.h"
 #include "wigeon/vector2d.h"
 #include "wigeon/point2d.h"
 #include "wigeon/linesegment2d.h"
@@ -32,5 +33,7 @@ struct Polygon2D {
 
 Polygon2D operator+(Polygon2D polygon, const Vector2D& v);
 Polygon2D operator-(Polygon2D polygon, const Vector2D& v);
+
+Polygon2D rotate(const Rotation2D&, const Polygon2D&);
 
 } // namespace wigeon

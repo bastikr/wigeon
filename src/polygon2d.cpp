@@ -102,4 +102,12 @@ boost::optional<LineSegment2D> Polygon2D::edge_looped(int i) const {
   return LineSegment2D(data_x[i0], data_y[i0], data_x[i1], data_y[i1]);
 }
 
+Polygon2D rotate(const Rotation2D& R, const Polygon2D& polygon) {
+  Polygon2D polygon_rotated;
+  for (int i=0; i<polygon.size(); ++i) {
+    polygon_rotated.append(rotate(R, *polygon.point(i)));
+  }
+  return polygon_rotated;
+}
+
 } // namespace wigeon

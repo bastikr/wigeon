@@ -1,6 +1,8 @@
 #include "wigeon/wigeon.h"
 #include "gtest/gtest.h"
+
 #include <cmath>
+
 
 using namespace wigeon;
 
@@ -78,7 +80,8 @@ TEST(POLYGON2D, EDGES) {
 
   LineSegment2D s0 = *polygon0.edge(0);
   ASSERT_DOUBLE_EQ(s0.x0(), 0);
-  ASSERT_DOUBLE_EQ(s0.y0(), 0);
+  ASSERT_DOUBLE_EQ(s0.y0(), 0)ASSERT_DOUBLE_EQ(p.point(0)->x(), 0);
+  ASSERT_DOUBLE_EQ(p.point(0)->y(), 0);;
   ASSERT_DOUBLE_EQ(s0.x1(), 1);
   ASSERT_DOUBLE_EQ(s0.y1(), 0);
 
@@ -127,4 +130,19 @@ TEST(POLYGON2D, EDGES) {
   ASSERT_DOUBLE_EQ(s3_.y0(), 0);
   ASSERT_DOUBLE_EQ(s3_.x1(), 1);
   ASSERT_DOUBLE_EQ(s3_.y1(), 0);
+}
+
+TEST(POLYGON2D, ROTATE) {
+  Polygon2D polygon0;
+  polygon0.append(0, 0);
+  polygon0.append(2, 1);
+  polygon0.append(5, 3);
+
+  Polygon2D p = rotate(M_PI/2, polygon0);
+  ASSERT_DOUBLE_EQ(p.point(0)->x(), 0);
+  ASSERT_DOUBLE_EQ(p.point(0)->y(), 0);
+  ASSERT_DOUBLE_EQ(p.point(1)->x(), -1);
+  ASSERT_DOUBLE_EQ(p.point(1)->y(), 2);
+  ASSERT_DOUBLE_EQ(p.point(2)->x(), -3);
+  ASSERT_DOUBLE_EQ(p.point(2)->y(), 5);
 }
