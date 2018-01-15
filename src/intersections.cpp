@@ -101,13 +101,6 @@ Points2D intersections(const Ray2D& ray, const Polygon2D& polygon) {
     case 0: return Points2D();
     case 1: return Points2D();
   }
-  if (size==2) {
-    Points2D points = intersections(ray, *polygon.edge(0));
-    if (points.size()==0) {
-      points.push_back(points[0]);
-    }
-    return points;
-  }
 
   Points2D points;
   Points2D subpoints;
@@ -121,7 +114,7 @@ Points2D intersections(const Ray2D& ray, const Polygon2D& polygon) {
 
     // Case 2: Neither the current segment nor the current point are intersected
     Vector2D w = *polygon.point(i)-ray.point();
-    if (cross(ray.direction(), w) != 0 || ray.direction()*w<0)
+    if (cross(ray.direction(), w) != 0 || ray.direction()*w<=0)
       continue;
 
     // Case 3: Point is intersected
@@ -142,8 +135,10 @@ Points2D intersections(const Ray2D& ray, const Polygon2D& polygon) {
     if (n0==0 && n1==0)
       continue;
 
-    // Case 3d: One of the adjacent points is not on the line
-    points.push_back(*polygon.point(i));
+    // Case 3d: One of the adjacent points is not on the line and turns in
+    // positive direction.
+    if (n0>0 || n1>0)
+      points.push_back(*polygon.point(i));
   }
   return points;
 }
@@ -202,8 +197,10 @@ Points2D intersections(const LineSegment2D& segment, const Polygon2D& polygon) {
     if (n0==0 && n1==0)
       continue;
 
-    // Case 3d: One of the adjacent points is not on the segment
-    points.push_back(*polygon.point(i));
+    // Case 3d: One of the adjacent points is not on the line and turns in
+    // positive direction.
+    if (n0>0 || n1>0)
+      points.push_back(*polygon.point(i));
   }
   return points;
 }
