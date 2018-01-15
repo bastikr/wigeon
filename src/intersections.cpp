@@ -73,18 +73,16 @@ Points2D intersections(const LineSegment2D& segment, const Ray2D& ray) {
 }
 
 Points2D intersections(const LineSegment2D& segment0, const LineSegment2D& segment1) {
-  Vector2D v0 = segment0.point1() - segment0.point0();
-  Vector2D v1 = segment1.point1() - segment1.point0();
-  Vector2D w = segment1.point0() - segment0.point1();
-
   // Check if segment1 points are on different sides of segment0
+  Vector2D v0 = segment0.point1() - segment0.point0();
   double n0 = cross(v0, segment1.point0()-segment0.point0());
   double n1 = cross(v0, segment1.point1()-segment0.point0());
   if (n0*n1>=0)
     return Points2D();
 
   // Check if segment0 points are on different sides of segment1
-  n0 = cross(v1, segment0.point0()-segment1.point1());
+  Vector2D v1 = segment1.point1() - segment1.point0();
+  n0 = cross(v1, segment0.point0()-segment1.point0());
   n1 = cross(v1, segment0.point1()-segment1.point0());
   if (n0*n1>=0)
     return Points2D();
