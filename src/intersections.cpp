@@ -26,27 +26,27 @@ Points2D intersections(const Line2D& line0, const Line2D& line1) {
 }
 
 Points2D intersections(const Line2D& line, const Ray2D& ray) {
-  const Point2D& p0 = line.point();
   const Vector2D& u0 = line.direction();
-
-  const Point2D& p1 = ray.point();
   const Vector2D& u1 = ray.direction();
-  
-  Vector2D w = p1 - p0;
+
+  // Return no intersection points if u0 and u1 are exactly parallel
+  double a = u0*u1;
+  if (a*a==1)
+    return Points2D();
 
   // Check if line and ray are intersecting
-  Points2D points;
-  if (u1*w >= 0)
-    return points;
+  const Point2D& p0 = line.point();
+  const Point2D& p1 = ray.point();
 
-  // Calculate intersection point
-  double a = u1*u0;
+  Vector2D w = p0 - p1;
+  Vector2D n = normalvector(u0);
+
+  if ((n*w)*(n*u1) <= 0)
+    return Points2D();
+
   double c1 = (p0-p1) * (u1 - u0*(u1*u0)) / (1-a*a);
 
-  // Return no intersection points If u0 and u1 are exactly parallel
-  if (std::isnan(c1) || std::isinf(c1) || c1 <= 0)
-    return points;
-  
+  Points2D points;
   points.push_back(p1 + u1*c1);
   return points;
 }

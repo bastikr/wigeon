@@ -58,6 +58,20 @@ TEST(INTERSECTIONS, LINE_RAY) {
   ASSERT_EQ(points.size(), 0);
 }
 
+TEST(INTERSECTIONS, LINE_RAY2) {
+  Ray2D ray0(Point2D(0, 0), Vector2D(1, 0));
+  Ray2D ray1(Point2D(0, 0), Vector2D(-1, 0));
+  Line2D line(Point2D(-1, 0.1), Vector2D(10, -0.1));
+
+  Points2D points = intersections(ray0, line);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_FLOAT_EQ(points[0].x(), 9);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+
+  points = intersections(line, ray1);
+}
+
+
 TEST(INTERSECTIONS, RAY_SEGMENT) {
   Ray2D ray(Point2D(1, 2), Vector2D(1, 0));
   LineSegment2D segment0(3, -1, 3, 4);
