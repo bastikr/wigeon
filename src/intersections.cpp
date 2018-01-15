@@ -7,19 +7,21 @@
 namespace wigeon {
 
 Points2D intersections(const Line2D& line0, const Line2D& line1) {
+  const Vector2D& u0 = line0.direction();
+  const Vector2D& u1 = line1.direction();
+
+  // Return no intersection points if u0 and u1 are exactly parallel
+  double a = u0*u1;
+  if (a*a == 1)
+    return Points2D();
+
   const Point2D& p0 = line0.point();
   const Point2D& p1 = line1.point();
-  const Vector2D& w0 = line0.direction();
-  const Vector2D& w1 = line1.direction();
 
-  double a = w0*w1;
-  double c0 = (p1-p0) * (w0 - w1*(w0*w1)) / (1-a*a);
+  double c0 = (p1-p0) * (u0 - u1*(u0*u1)) / (1-a*a);
 
   Points2D points;
-  if (std::isnan(c0) || std::isinf(c0))
-    return points;
-
-  points.push_back(p0 + w0*c0);
+  points.push_back(p0 + u0*c0);
   return points;
 }
 
