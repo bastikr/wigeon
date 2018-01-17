@@ -44,7 +44,7 @@ Vector2D operator/(const Vector2D& vector, double a) {
 }
 
 UnitVector2D normalvector(const UnitVector2D& v) {
-  return UnitVector2D(-v.y(), v.x());
+  return UnitVector2D(v.y(), -v.x());
 }
 
 UnitVector2D normalvector(const Vector2D& vector) {

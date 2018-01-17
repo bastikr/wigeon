@@ -53,17 +53,17 @@ TEST(OFFSETS, RECTANGLE2D) {
 TEST(OFFSETS, POLYGON2D) {
   Polygon2D polygon;
   polygon.append(0, 0);
-  polygon.append(0, 1);
-  polygon.append(1, 1);
   polygon.append(1, 0);
+  polygon.append(1, 1);
+  polygon.append(0, 1);
 
   Polygon2D p1 = offset(polygon, 2);
   ASSERT_DOUBLE_EQ((*p1.point(0)).x(), -2);
   ASSERT_DOUBLE_EQ((*p1.point(0)).y(), -2);
-  ASSERT_DOUBLE_EQ((*p1.point(1)).x(), -2);
-  ASSERT_DOUBLE_EQ((*p1.point(1)).y(), 3);
+  ASSERT_DOUBLE_EQ((*p1.point(1)).x(), 3);
+  ASSERT_DOUBLE_EQ((*p1.point(1)).y(), -2);
   ASSERT_DOUBLE_EQ((*p1.point(2)).x(), 3);
   ASSERT_DOUBLE_EQ((*p1.point(2)).y(), 3);
-  ASSERT_DOUBLE_EQ((*p1.point(3)).x(), 3);
-  ASSERT_DOUBLE_EQ((*p1.point(3)).y(), -2);
+  ASSERT_DOUBLE_EQ((*p1.point(3)).x(), -2);
+  ASSERT_DOUBLE_EQ((*p1.point(3)).y(), 3);
 }

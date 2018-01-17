@@ -75,13 +75,13 @@ TEST(SEGMENT2D, LENGTH) {
 TEST(SEGMENT2D, NORMALVECTOR) {
   LineSegment2D segment0(1, 3, 1, 9);
   UnitVector2D n0 = normalvector(segment0);
-  ASSERT_DOUBLE_EQ(n0.x(), -1);
+  ASSERT_DOUBLE_EQ(n0.x(), 1);
   ASSERT_DOUBLE_EQ(n0.y(), 0);
 
   LineSegment2D segment1(1, 3, -2, -1);
   UnitVector2D n1 = normalvector(segment1);
-  ASSERT_DOUBLE_EQ(n1.x(), 4/5.);
-  ASSERT_DOUBLE_EQ(n1.y(), -3/5.);
+  ASSERT_DOUBLE_EQ(n1.x(), -4/5.);
+  ASSERT_DOUBLE_EQ(n1.y(), 3/5.);
 }
 
 TEST(SEGMENT2D, ROTATE) {

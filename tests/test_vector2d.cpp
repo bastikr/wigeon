@@ -67,23 +67,23 @@ TEST(VECTOR2D, UNITVECTOR) {
 TEST(VECTOR2D, NORMALVECTOR) {
   Vector2D v0(3, 4);
   UnitVector2D n0 = normalvector(v0);
-  ASSERT_DOUBLE_EQ(n0.x(), -4/5.);
-  ASSERT_DOUBLE_EQ(n0.y(), 3/5.);
+  ASSERT_DOUBLE_EQ(n0.x(), 4/5.);
+  ASSERT_DOUBLE_EQ(n0.y(), -3/5.);
 
   Vector2D v1(-3, 4);
   UnitVector2D n1 = normalvector(v1);
-  ASSERT_DOUBLE_EQ(n1.x(), -4/5.);
-  ASSERT_DOUBLE_EQ(n1.y(), -3/5.);
+  ASSERT_DOUBLE_EQ(n1.x(), 4/5.);
+  ASSERT_DOUBLE_EQ(n1.y(), 3/5.);
 
   Vector2D v2(-3, -4);
   UnitVector2D n2 = normalvector(v2);
-  ASSERT_DOUBLE_EQ(n2.x(), 4/5.);
-  ASSERT_DOUBLE_EQ(n2.y(), -3/5.);
+  ASSERT_DOUBLE_EQ(n2.x(), -4/5.);
+  ASSERT_DOUBLE_EQ(n2.y(), 3/5.);
 
   Vector2D v3(3, -4);
   UnitVector2D n3 = normalvector(v3);
-  ASSERT_DOUBLE_EQ(n3.x(), 4/5.);
-  ASSERT_DOUBLE_EQ(n3.y(), 3/5.);
+  ASSERT_DOUBLE_EQ(n3.x(), -4/5.);
+  ASSERT_DOUBLE_EQ(n3.y(), -3/5.);
 }
 
 TEST(VECTOR2D, ROTATE) {
