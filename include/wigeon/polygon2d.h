@@ -27,12 +27,11 @@ struct Polygon2D {
   boost::optional<Point2D> point_looped(int i) const;
   boost::optional<LineSegment2D> edge_looped(int i) const;
 
-  std::vector<double> data_x;
-  std::vector<double> data_y;
+  std::vector<Point2D> data;
 };
 
-Polygon2D operator+(Polygon2D polygon, const Vector2D& v);
-Polygon2D operator-(Polygon2D polygon, const Vector2D& v);
+Polygon2D operator+(const Polygon2D& polygon, const Vector2D& v);
+Polygon2D operator-(const Polygon2D& polygon, const Vector2D& v);
 
 Polygon2D rotate(const Rotation2D&, const Polygon2D&);
 

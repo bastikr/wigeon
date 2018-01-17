@@ -58,9 +58,9 @@ void print(std::ostream& f, const LineSegment2D& segment) {
 
 void print(std::ostream& f, const Polygon2D& polygon) {
   f << "<polygon points=\"";
-  for (int i=0; i<polygon.size(); ++i) {
-    f << polygon.data_x[i] << "," << polygon.data_y[i];
-    if (i != polygon.size()-1)
+  for (auto it=polygon.data.begin(); it!=polygon.data.end(); ++it) {
+    f << it->x() << "," << it->y();
+    if (it != --polygon.data.end())
       f << " ";
   }
   f << "\"/>";
