@@ -3,6 +3,9 @@
 #include <cmath>
 #include <limits>
 
+#include "wigeon/printer.h"
+#include <iostream>
+using namespace std;
 
 namespace wigeon {
 
@@ -106,6 +109,60 @@ Points2D intersections(const LineSegment2D& segment0, const LineSegment2D& segme
   
   // Segments are intersecting
   return intersections(Line2D(segment0), Line2D(segment1));
+}
+
+// DoubleLineSegment2D
+Points2D intersections(const DoubleLineSegment2D& dsegment, const Line2D& line) {
+  Points2D points;
+
+  // Case 1: corner point is intersected
+  Vector2D w1 = dsegment.point1() - line.point();
+  if (cross(w1, line.direction()) == 0) {
+    Vector2D w0 = dsegment.point0() - line.point();
+    Vector2D w2 = dsegment.point2() - line.point();
+    double n0 = cross(w0, line.direction());
+    double n2 = cross(w2, line.direction());
+
+    // Case 1a: clean intersection through corner
+    if (n0*n2 < 0) {
+      points.push_back(dsegment.point1());
+      return points;
+    }
+
+    // Case 1b: Both segments are on the same side of the Line
+    if (n0*n2 > 0) {
+      return points;
+    }
+
+    // Case 1c: Both segments are on the line
+    if (n0==0 && n2==0) {
+      return points;
+    }
+
+    // Case 1d: Anti-Clockwise touching intersection
+    if (n0>0 || n2>0) {
+      points.push_back(dsegment.point1());
+      return points;
+    }
+
+    // Case 1d: Clockwise touching intersection
+    return points;
+  }
+
+  // Case 2: corner point is not intersected
+  Points2D subpoints0 = intersections(dsegment.segment0(), line);
+  if (subpoints0.size()==1) {
+    points.push_back(subpoints0.front());
+  }
+  Points2D subpoints1 = intersections(dsegment.segment1(), line);
+  if (subpoints1.size()==1) {
+    points.push_back(subpoints1.front());
+  }
+  return points;
+}
+
+Points2D intersections(const Line2D& line, const DoubleLineSegment2D& dsegment) {
+  return intersections(dsegment, line);
 }
 
 
