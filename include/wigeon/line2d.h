@@ -13,7 +13,7 @@ namespace wigeon {
 struct Line2D {
   Line2D(Point2D point, Vector2D direction) : point_(point), direction_(direction) {}
   Line2D(Point2D point0, Point2D point1) : point_(point0), direction_(point1-point0) {}
-  Line2D(LineSegment2D segment) : point_(segment.point0()), direction_(segment.direction()) {}
+  explicit Line2D(LineSegment2D segment) : point_(segment.point0()), direction_(segment.direction()) {}
 
   Point2D point() const {return point_;}
   Vector2D direction() const {return direction_;}
