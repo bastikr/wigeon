@@ -496,6 +496,69 @@ TEST(INTERSECTIONS, DOUBLESEGMENT_RAY2) {
   ASSERT_EQ(points.size(), 0);
 }
 
+
+TEST(INTERSECTIONS, POLYGON_LINE) {
+  Line2D line0(Point2D(-1, 0.5), Vector2D(1, 0));
+  Line2D line1(Point2D(1, 2), Vector2D(0, -1));
+  Line2D line2(Point2D(4, 0), Vector2D(-1, 0));
+  Line2D line3(Point2D(-1, 1), Vector2D(1, 0));
+
+  Polygon2D polygon;
+  polygon.append(0, 0);
+  polygon.append(1, 1);
+  polygon.append(2, 0);
+
+  Points2D points = intersections(line0, polygon);
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), 0.5);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0.5);
+  ASSERT_DOUBLE_EQ(points[1].x(), 1.5);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0.5);
+
+  points = intersections(line1, polygon);
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1);
+  ASSERT_DOUBLE_EQ(points[0].y(), 1);
+  ASSERT_DOUBLE_EQ(points[1].x(), 1);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0);
+
+  points = intersections(line2, polygon);
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), 0);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+  ASSERT_DOUBLE_EQ(points[1].x(), 2);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0);
+
+  points = intersections(line3, polygon);
+  ASSERT_EQ(points.size(), 0);
+}
+
+TEST(INTERSECTIONS, POLYGON_LINE2) {
+  Line2D line0(Point2D(0, 0), Vector2D(1, 1));
+  Line2D line1(Point2D(0, 0), Vector2D(-1, -1));
+
+  Polygon2D polygon;
+  polygon.append(-0.3, -0.3);
+  polygon.append(-0.3, 0.3);
+  polygon.append(0.3, 0.3);
+  polygon.append(0.3, -0.3);
+
+  Points2D points = intersections(line0, polygon);
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), -0.3);
+  ASSERT_DOUBLE_EQ(points[0].y(), -0.3);
+  ASSERT_DOUBLE_EQ(points[1].x(), 0.3);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0.3);
+
+  points = intersections(line1, polygon);
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), -0.3);
+  ASSERT_DOUBLE_EQ(points[0].y(), -0.3);
+  ASSERT_DOUBLE_EQ(points[1].x(), 0.3);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0.3);
+}
+
+
 TEST(INTERSECTIONS, RAY_POLYGON) {
   Ray2D ray0(Point2D(-1, 0.5), Vector2D(1, 0));
   Ray2D ray1(Point2D(1, 2), Vector2D(0, -1));

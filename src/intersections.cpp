@@ -208,6 +208,44 @@ Points2D intersections(const Ray2D& ray, const DoubleLineSegment2D& dsegment) {
 }
 
 
+Points2D intersections(const Polygon2D& polygon, const Line2D& line) {
+  // Handle special cases
+  int size = polygon.size();
+  switch (size) {
+    case 0: return Points2D();
+    case 1: return Points2D();
+  }
+
+  Points2D points;
+  Points2D subpoints;
+  for (int i=0; i<polygon.size(); ++i) {
+    // Case 1: Segment is intersected cleanly
+    subpoints = intersections(line, *polygon.edge(i));
+    if (subpoints.size()==1) {
+      points.push_back(subpoints[0]);
+      continue;
+    }
+
+    // Case 2: Neither the current segment nor the current point are intersected
+    Vector2D w1 = *polygon.point(i) - line.point();
+    if (cross(line.direction(), w1) != 0)
+      continue;
+
+    // Case 3: Point is intersected
+    Vector2D w0 = *polygon.point_looped(i-1) - line.point();
+    Vector2D w2 = *polygon.point_looped(i+1) - line.point();
+    if (curves_intersect(line.direction(), w0, w2)) {
+      points.push_back(*polygon.point(i));
+    }
+  }
+  return points;
+}
+
+Points2D intersections(const Line2D& line, const Polygon2D& polygon) {
+  return intersections(polygon, line);
+}
+
+
 Points2D intersections(const Ray2D& ray, const Polygon2D& polygon) {
   // Handle special cases
   int size = polygon.size();
