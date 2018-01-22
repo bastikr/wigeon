@@ -26,6 +26,8 @@ namespace wigeon {
 
 using Points2D = std::vector<Point2D>;
 
+bool curves_intersect(const Vector2D& v, const Vector2D& w0, const Vector2D& w1);
+
 // Line2D
 Points2D intersections(const Line2D& line0, const Line2D& line1);
 

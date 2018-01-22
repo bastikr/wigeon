@@ -9,6 +9,37 @@ using namespace std;
 
 namespace wigeon {
 
+bool curves_intersect(const Vector2D& v, const Vector2D& w0, const Vector2D& w1) {
+  double n0 = cross(w0, v);
+  double n1 = cross(w1, v);
+
+  // Case 1a: clean intersection through corner
+  if (n0*n1 < 0) {
+    return true;
+  }
+
+  // Case 1b: Both segments are on the same side of the Line
+  if (n0*n1 > 0) {
+    return false;
+  }
+
+  // Case 1c: Both segments are on the line
+  if (n0==0 && n1==0) {
+    return false;
+  }
+
+  // Case 1d: Anti-Clockwise touching intersection
+  if (n0>0 || n1>0) {
+    return true;
+  }
+
+  // Case 1d: Clockwise touching intersection
+  return false;
+}
+
+// bool curves_intersect(const Vector2D& v0, const Vector2D& v1, const Vector2D& w0, const Vector2D& w1) {
+// }
+
 Points2D intersections(const Line2D& line0, const Line2D& line1) {
   const Vector2D& u0 = line0.direction();
   const Vector2D& u1 = line1.direction();
@@ -120,32 +151,9 @@ Points2D intersections(const DoubleLineSegment2D& dsegment, const Line2D& line) 
   if (cross(w1, line.direction()) == 0) {
     Vector2D w0 = dsegment.point0() - line.point();
     Vector2D w2 = dsegment.point2() - line.point();
-    double n0 = cross(w0, line.direction());
-    double n2 = cross(w2, line.direction());
-
-    // Case 1a: clean intersection through corner
-    if (n0*n2 < 0) {
+    if (curves_intersect(line.direction(), w0, w2)) {
       points.push_back(dsegment.point1());
-      return points;
     }
-
-    // Case 1b: Both segments are on the same side of the Line
-    if (n0*n2 > 0) {
-      return points;
-    }
-
-    // Case 1c: Both segments are on the line
-    if (n0==0 && n2==0) {
-      return points;
-    }
-
-    // Case 1d: Anti-Clockwise touching intersection
-    if (n0>0 || n2>0) {
-      points.push_back(dsegment.point1());
-      return points;
-    }
-
-    // Case 1d: Clockwise touching intersection
     return points;
   }
 
@@ -177,32 +185,9 @@ Points2D intersections(const DoubleLineSegment2D& dsegment, const Ray2D& ray) {
     }
     Vector2D w0 = dsegment.point0() - ray.point();
     Vector2D w2 = dsegment.point2() - ray.point();
-    double n0 = cross(w0, ray.direction());
-    double n2 = cross(w2, ray.direction());
-
-    // Case 1a: clean intersection through corner
-    if (n0*n2 < 0) {
+    if (curves_intersect(ray.direction(), w0, w2)) {
       points.push_back(dsegment.point1());
-      return points;
     }
-
-    // Case 1b: Both segments are on the same side of the ray
-    if (n0*n2 > 0) {
-      return points;
-    }
-
-    // Case 1c: Both segments are on the ray
-    if (n0==0 && n2==0) {
-      return points;
-    }
-
-    // Case 1d: Anti-Clockwise touching intersection
-    if (n0>0 || n2>0) {
-      points.push_back(dsegment.point1());
-      return points;
-    }
-
-    // Case 1d: Clockwise touching intersection
     return points;
   }
 
