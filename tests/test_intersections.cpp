@@ -499,7 +499,7 @@ TEST(INTERSECTIONS, DOUBLESEGMENT_RAY2) {
 TEST(INTERSECTIONS, RAY_POLYGON) {
   Ray2D ray0(Point2D(-1, 0.5), Vector2D(1, 0));
   Ray2D ray1(Point2D(1, 2), Vector2D(0, -1));
-  Ray2D ray2(Point2D(-1, 0), Vector2D(1, 0));
+  Ray2D ray2(Point2D(4, 0), Vector2D(-1, 0));
   Ray2D ray3(Point2D(-1, 1), Vector2D(1, 0));
 
   Polygon2D polygon;

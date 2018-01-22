@@ -219,40 +219,24 @@ Points2D intersections(const Ray2D& ray, const Polygon2D& polygon) {
   Points2D points;
   Points2D subpoints;
   for (int i=0; i<polygon.size(); ++i) {
-    subpoints = intersections(ray, *polygon.edge(i));
     // Case 1: Segment is intersected cleanly
+    subpoints = intersections(ray, *polygon.edge(i));
     if (subpoints.size()==1) {
       points.push_back(subpoints[0]);
       continue;
     }
 
     // Case 2: Neither the current segment nor the current point are intersected
-    Vector2D w = *polygon.point(i)-ray.point();
-    if (cross(ray.direction(), w) != 0 || ray.direction()*w<=0)
+    Vector2D w1 = *polygon.point(i) - ray.point();
+    if (cross(ray.direction(), w1) != 0 || ray.direction()*w1<=0)
       continue;
 
     // Case 3: Point is intersected
-    double n0 = cross(ray.direction(), *polygon.point_looped(i-1) - ray.point());
-    double n1 = cross(ray.direction(), *polygon.point_looped(i+1) - ray.point());
-
-    // Case 3a: The adjacent points are on different sides of the ray
-    if (n0*n1 < 0) {
+    Vector2D w0 = *polygon.point_looped(i-1) - ray.point();
+    Vector2D w2 = *polygon.point_looped(i+1) - ray.point();
+    if (curves_intersect(ray.direction(), w0, w2)) {
       points.push_back(*polygon.point(i));
-      continue;
     }
-    
-    // Case 3b: The adjacent points are on the same side of the ray
-    if (n0*n1 > 0)
-      continue;
-    
-    // Case 3c: The adjacent segments are both on the ray
-    if (n0==0 && n1==0)
-      continue;
-
-    // Case 3d: One of the adjacent points is not on the line and turns in
-    // positive direction.
-    if (n0>0 || n1>0)
-      points.push_back(*polygon.point(i));
   }
   return points;
 }
