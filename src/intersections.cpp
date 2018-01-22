@@ -165,6 +165,63 @@ Points2D intersections(const Line2D& line, const DoubleLineSegment2D& dsegment) 
   return intersections(dsegment, line);
 }
 
+Points2D intersections(const DoubleLineSegment2D& dsegment, const Ray2D& ray) {
+  Points2D points;
+
+  // Case 1: corner point is intersected
+  Vector2D w1 = dsegment.point1() - ray.point();
+  if (cross(w1, ray.direction()) == 0) {
+    // Direction of the ray is away from point
+    if (w1*ray.direction()<=0) {
+      return points;
+    }
+    Vector2D w0 = dsegment.point0() - ray.point();
+    Vector2D w2 = dsegment.point2() - ray.point();
+    double n0 = cross(w0, ray.direction());
+    double n2 = cross(w2, ray.direction());
+
+    // Case 1a: clean intersection through corner
+    if (n0*n2 < 0) {
+      points.push_back(dsegment.point1());
+      return points;
+    }
+
+    // Case 1b: Both segments are on the same side of the ray
+    if (n0*n2 > 0) {
+      return points;
+    }
+
+    // Case 1c: Both segments are on the ray
+    if (n0==0 && n2==0) {
+      return points;
+    }
+
+    // Case 1d: Anti-Clockwise touching intersection
+    if (n0>0 || n2>0) {
+      points.push_back(dsegment.point1());
+      return points;
+    }
+
+    // Case 1d: Clockwise touching intersection
+    return points;
+  }
+
+  // Case 2: corner point is not intersected
+  Points2D subpoints0 = intersections(dsegment.segment0(), ray);
+  if (subpoints0.size()==1) {
+    points.push_back(subpoints0.front());
+  }
+  Points2D subpoints1 = intersections(dsegment.segment1(), ray);
+  if (subpoints1.size()==1) {
+    points.push_back(subpoints1.front());
+  }
+  return points;
+}
+
+Points2D intersections(const Ray2D& ray, const DoubleLineSegment2D& dsegment) {
+  return intersections(dsegment, ray);
+}
+
 
 Points2D intersections(const Ray2D& ray, const Polygon2D& polygon) {
   // Handle special cases

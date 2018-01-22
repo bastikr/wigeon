@@ -281,6 +281,221 @@ TEST(INTERSECTIONS, DOUBLESEGMENT_LINE2) {
   ASSERT_DOUBLE_EQ(points[0].y(), 0);
 }
 
+TEST(INTERSECTIONS, DOUBLESEGMENT_RAY) {
+  DoubleLineSegment2D dsegment(1, 2, 1, 0, 2, -1);
+
+  Ray2D ray0a(Point2D(0, 2), Vector2D(1, 0));
+  Ray2D ray0b(Point2D(0, 1), Vector2D(1, 0));
+  Ray2D ray0c(Point2D(0, 0), Vector2D(1, 0));
+  Ray2D ray0d(Point2D(0, -0.5), Vector2D(1, 0));
+  Ray2D ray0e(Point2D(0, -1), Vector2D(1, 0));
+
+  Points2D points;
+  points = intersections(dsegment, ray0a);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0b);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1);
+  ASSERT_DOUBLE_EQ(points[0].y(), 1);
+
+  points = intersections(dsegment, ray0c);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+
+  points = intersections(dsegment, ray0d);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1.5);
+  ASSERT_DOUBLE_EQ(points[0].y(), -0.5);
+
+  points = intersections(dsegment, ray0e);
+  ASSERT_EQ(points.size(), 0);
+
+
+  Ray2D ray0a_(Point2D(0, 2), Vector2D(-1, 0));
+  Ray2D ray0b_(Point2D(0, 1), Vector2D(-1, 0));
+  Ray2D ray0c_(Point2D(0, 0), Vector2D(-1, 0));
+  Ray2D ray0d_(Point2D(0, -0.5), Vector2D(-1, 0));
+  Ray2D ray0e_(Point2D(0, -1), Vector2D(-1, 0));
+
+  points = intersections(dsegment, ray0a_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0b_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0c_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0d_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0e_);
+  ASSERT_EQ(points.size(), 0);
+
+
+  Ray2D ray1a(Point2D(-2, 2), Vector2D(1, -1));
+  Ray2D ray1b(Point2D(-1, 2), Vector2D(1, -1));
+  Ray2D ray1c(Point2D(0, 2), Vector2D(1, -1));
+  Ray2D ray1d(Point2D(1, 2), Vector2D(1, -1));
+
+  points = intersections(dsegment, ray1a);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray1b);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray1c);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1);
+  ASSERT_DOUBLE_EQ(points[0].y(), 1);
+
+  points = intersections(dsegment, ray1d);
+  ASSERT_EQ(points.size(), 0);
+
+
+  Ray2D ray1a_(Point2D(-2, 2), Vector2D(-1, 1));
+  Ray2D ray1b_(Point2D(-1, 2), Vector2D(-1, 1));
+  Ray2D ray1c_(Point2D(0, 2), Vector2D(-1, 1));
+  Ray2D ray1d_(Point2D(1, 2), Vector2D(-1, 1));
+
+  points = intersections(dsegment, ray1a_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray1b_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray1c_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray1d_);
+  ASSERT_EQ(points.size(), 0);
+
+
+  Ray2D ray2a(Point2D(0, -3), Vector2D(0, 1));
+  Ray2D ray2b(Point2D(1, -3), Vector2D(0, 1));
+  Ray2D ray2c(Point2D(1.5, -3), Vector2D(0, 1));
+  Ray2D ray2d(Point2D(2, -3), Vector2D(0, 1));
+
+  points = intersections(dsegment, ray2a);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray2b);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+
+  points = intersections(dsegment, ray2c);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1.5);
+  ASSERT_FLOAT_EQ(points[0].y(), -0.5);
+
+  points = intersections(dsegment, ray2d);
+  ASSERT_EQ(points.size(), 0);
+
+
+  Ray2D ray2a_(Point2D(0, 3), Vector2D(0, 1));
+  Ray2D ray2b_(Point2D(1, 3), Vector2D(0, 1));
+  Ray2D ray2c_(Point2D(1.5, 3), Vector2D(0, 1));
+  Ray2D ray2d_(Point2D(2, 3), Vector2D(0, 1));
+
+  points = intersections(dsegment, ray2a_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray2b_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray2c_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray2d_);
+  ASSERT_EQ(points.size(), 0);
+}
+
+
+TEST(INTERSECTIONS, DOUBLESEGMENT_RAY2) {
+  DoubleLineSegment2D dsegment(0, 0, 1, 0, 2, 0);
+
+  Ray2D ray0a(Point2D(-1, 0), Vector2D(1, 0));
+  Ray2D ray0b(Point2D(0.5, 0), Vector2D(1, 0));
+  Ray2D ray0c(Point2D(1, 0), Vector2D(1, 0));
+  Ray2D ray0d(Point2D(1.5, 0), Vector2D(1, 0));
+
+  Points2D points;
+  points = intersections(dsegment, ray0a);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0b);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0c);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0d);
+  ASSERT_EQ(points.size(), 0);
+
+
+  Ray2D ray0a_(Point2D(-1, 0), Vector2D(-1, 0));
+  Ray2D ray0b_(Point2D(0.5, 0), Vector2D(-1, 0));
+  Ray2D ray0c_(Point2D(1, 0), Vector2D(-1, 0));
+  Ray2D ray0d_(Point2D(1.5, 0), Vector2D(-1, 0));
+
+  points = intersections(dsegment, ray0a_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0b_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0c_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray0d_);
+  ASSERT_EQ(points.size(), 0);
+
+
+  Ray2D ray1a(Point2D(-1, 1), Vector2D(0, -1));
+  Ray2D ray1b(Point2D(0.5, 1), Vector2D(0, -1));
+  Ray2D ray1c(Point2D(1, 1), Vector2D(0, -1));
+  Ray2D ray1d(Point2D(1.5, 1), Vector2D(0, -1));
+
+  points = intersections(dsegment, ray1a);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray1b);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 0.5);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+
+  points = intersections(dsegment, ray1c);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+
+  points = intersections(dsegment, ray1d);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_DOUBLE_EQ(points[0].x(), 1.5);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+
+
+  Ray2D ray1a_(Point2D(-1, 1), Vector2D(0, 1));
+  Ray2D ray1b_(Point2D(0.5, 1), Vector2D(0, 1));
+  Ray2D ray1c_(Point2D(1, 1), Vector2D(0, 1));
+  Ray2D ray1d_(Point2D(1.5, 1), Vector2D(0, 1));
+
+  points = intersections(dsegment, ray1a_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray1b_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray1c_);
+  ASSERT_EQ(points.size(), 0);
+
+  points = intersections(dsegment, ray1d_);
+  ASSERT_EQ(points.size(), 0);
+}
+
 TEST(INTERSECTIONS, RAY_POLYGON) {
   Ray2D ray0(Point2D(-1, 0.5), Vector2D(1, 0));
   Ray2D ray1(Point2D(1, 2), Vector2D(0, -1));
