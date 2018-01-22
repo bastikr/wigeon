@@ -12,10 +12,10 @@
 #include "wigeon/polygon2d.h"
 
 /*
-Point
-LineSegment
 Line
 Ray
+LineSegment
+DoubleLineSegment
 Rectangle
 Circle
 Polygon
@@ -26,20 +26,29 @@ namespace wigeon {
 
 using Points2D = std::vector<Point2D>;
 
+// Line2D
 Points2D intersections(const Line2D& line0, const Line2D& line1);
-Points2D intersections(const Line2D&, const Ray2D&);
+
+// Ray2D
 Points2D intersections(const Ray2D&, const Line2D&);
-Points2D intersections(const Ray2D&, const LineSegment2D&);
+Points2D intersections(const Line2D&, const Ray2D&);
+
+// LineSegment2D
 Points2D intersections(const LineSegment2D&, const Ray2D&);
-Points2D intersections(const Line2D&, const LineSegment2D&);
+Points2D intersections(const Ray2D&, const LineSegment2D&);
 Points2D intersections(const LineSegment2D&, const Line2D&);
-Points2D intersections(const Ray2D&, const Polygon2D&);
+Points2D intersections(const Line2D&, const LineSegment2D&);
+Points2D intersections(const LineSegment2D&, const LineSegment2D&);
+
+// DoubleLineSegment2D
 Points2D intersections(const DoubleLineSegment2D&, const Line2D&);
 Points2D intersections(const Line2D&, const DoubleLineSegment2D&);
+
+// Polygon2D
 Points2D intersections(const Polygon2D&, const Ray2D&);
-Points2D intersections(const LineSegment2D&, const LineSegment2D&);
-Points2D intersections(const LineSegment2D&, const Polygon2D&);
+Points2D intersections(const Ray2D&, const Polygon2D&);
 Points2D intersections(const Polygon2D&, const LineSegment2D&);
+Points2D intersections(const LineSegment2D&, const Polygon2D&);
 Points2D intersections(const Polygon2D&, const Polygon2D&);
 
 } // namespace wigeon
