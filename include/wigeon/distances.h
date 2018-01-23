@@ -21,42 +21,50 @@ Polygon
 
 namespace wigeon {
 
-// Point - ...
-double distance2(const Point2D& point0, const Point2D& point1);
-
-double distance2(const Point2D& point0, const LineSegment2D& segment0);
-double distance2(const LineSegment2D& segment0, const Point2D& point0);
-
-double distance2(const Point2D& point, const Line2D& line);
-double distance2(const Line2D& line, const Point2D& point);
-
-double distance2(const Point2D& point, const Ray2D& ray);
-double distance2(const Ray2D& ray, const Point2D& point);
-
-double distance2(const Point2D& point, const Rectangle2D& circle);
-double distance2(const Rectangle2D& circle, const Point2D& point);
-
-double distance2(const Point2D& point, const Circle2D& circle);
-double distance2(const Circle2D& circle, const Point2D& point);
-
-double distance2(const Point2D& point0, const Polygon2D& polygon0);
-double distance2(const Polygon2D& polygon0, const Point2D& point0);
+// Point
+double distance2(const Point2D&, const Point2D&);
 
 
-// LineSegment - ...
-double distance2(const LineSegment2D& segment0, const LineSegment2D& segment1);
+// LineSegment
+double distance2(const LineSegment2D&, const Point2D&);
+double distance2(const Point2D&, const LineSegment2D&);
 
-double distance2(const LineSegment2D& segment, const Line2D& line);
-double distance2(const Line2D& line, const LineSegment2D& segment);
-
-double distance2(const LineSegment2D& segment, const Ray2D& ray);
-double distance2(const Ray2D& ray, const LineSegment2D& segment);
-
-double distance2(const LineSegment2D& segment, const Polygon2D& polygon);
-double distance2(const Polygon2D& polygon, const LineSegment2D& segment);
+double distance2(const LineSegment2D&, const LineSegment2D&);
 
 
-// Polygon - ...
-double distance2(const Polygon2D& polygon0, const Polygon2D& polygon1);
+// Line
+double distance2(const Line2D&, const Point2D&);
+double distance2(const Point2D&, const Line2D&);
+
+double distance2(const LineSegment2D&, const Line2D&);
+double distance2(const Line2D&, const LineSegment2D&);
+
+
+// Ray
+double distance2(const Ray2D&, const Point2D&);
+double distance2(const Point2D&, const Ray2D&);
+
+double distance2(const Ray2D&, const LineSegment2D&);
+double distance2(const LineSegment2D&, const Ray2D&);
+
+
+// Circle
+double distance2(const Circle2D&, const Point2D&);
+double distance2(const Point2D&, const Circle2D&);
+
+
+// Rectangle
+double distance2(const Rectangle2D&, const Point2D&);
+double distance2(const Point2D&, const Rectangle2D&);
+
+
+// Polygon
+double distance2(const Polygon2D&, const Point2D&);
+double distance2(const Point2D&, const Polygon2D&);
+
+double distance2(const Polygon2D&, const LineSegment2D&);
+double distance2(const LineSegment2D&, const Polygon2D&);
+
+double distance2(const Polygon2D&, const Polygon2D&);
 
 } // namespace wigeon
