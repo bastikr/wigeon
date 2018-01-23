@@ -226,3 +226,22 @@ TEST(DISTANCES, SEGMENT_RAY) {
   // ASSERT_DOUBLE_EQ(d0, -0.5);
   // ASSERT_DOUBLE_EQ(d1, -0.5);
 };
+
+TEST(DISTANCES, POLYGON_POINT) {
+  Polygon2D polygon;
+  polygon.append(Point2D(0, 0));
+  polygon.append(Point2D(1, 0));
+  polygon.append(Point2D(0, 1));
+
+  ASSERT_DOUBLE_EQ(distance2(polygon, Point2D(0,0)), 0);
+  ASSERT_DOUBLE_EQ(distance2(polygon, Point2D(-2,0)), 4);
+  ASSERT_DOUBLE_EQ(distance2(polygon, Point2D(0,-2)), 4);
+  ASSERT_DOUBLE_EQ(distance2(polygon, Point2D(-2,-2)), 8);
+  ASSERT_DOUBLE_EQ(distance2(polygon, Point2D(0.5,0.1)), 0.1*0.1);
+
+  ASSERT_DOUBLE_EQ(distance2(Point2D(0,0), polygon), 0);
+  ASSERT_DOUBLE_EQ(distance2(Point2D(-2,0), polygon), 4);
+  ASSERT_DOUBLE_EQ(distance2(Point2D(0,-2), polygon), 4);
+  ASSERT_DOUBLE_EQ(distance2(Point2D(-2,-2), polygon), 8);
+  ASSERT_DOUBLE_EQ(distance2(Point2D(0.5,0.1), polygon), 0.1*0.1);
+}
