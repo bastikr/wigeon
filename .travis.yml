@@ -11,6 +11,7 @@ addons:
     packages:
       # - g++-6
       # - googletest
+      - cmake
       - libgtest-dev
 
 before_install:
