@@ -20,14 +20,19 @@ double distance2(const Point2D& point0, const Point2D& point1) {
 double distance2(const LineSegment2D& segment, const Point2D& point) {
   Vector2D v = segment.point1() - segment.point0();
   Vector2D w = point - segment.point0();
-  double alpha = v*v;
-  double r = (v*w)/alpha;
-  if (r <= 0)
+
+  // First point of segment is closest to point
+  if (v*w <= 0)
     return distance2(point, segment.point0());
-  if (r >= 1)
+
+  // Second point of segment is closest to point
+  double d2 = v*v;
+  if (v*w >= d2)
     return distance2(point, segment.point1());
-  return pow(v.y()*w.x() - v.x()*w.y(), 2)/alpha;
+
+  return pow(v.y()*w.x() - v.x()*w.y(), 2)/d2;
 }
+
 
 double distance2(const Point2D& point, const LineSegment2D& segment) {
   return distance2(segment, point);
