@@ -29,5 +29,5 @@ Operations:
   * Linux build: [![Travis build status][travis-img]][travis-url]
 
 
-[travis-url]: https://travis-ci.org/bastikr/geometry
-[travis-img]: https://travis-ci.org/bastikr/geometry.svg?branch=master
+[travis-url]: https://travis-ci.org/bastikr/wigeon
+[travis-img]: https://travis-ci.org/bastikr/wigeon.svg?branch=master
