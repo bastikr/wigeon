@@ -23,6 +23,7 @@
 #include "wigeon/winding_number.h"
 #include "wigeon/isinside.h"
 #include "wigeon/offset.h"
+#include "wigeon/polygon2d_simplification.h"
 
 #include "wigeon/collisions.h"
 #include "wigeon/printer.h"

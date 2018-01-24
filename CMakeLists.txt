@@ -26,6 +26,7 @@ add_library(wigeon SHARED
     src/winding_number.cpp
     src/isinside.cpp
     src/offset.cpp
+    src/polygon2d_simplification.cpp
     src/collisions.cpp
     src/printer.cpp
     src/svg.cpp)
