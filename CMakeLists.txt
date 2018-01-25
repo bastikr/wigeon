@@ -14,6 +14,7 @@ add_library(wigeon SHARED
     src/vector2d.cpp
     src/rotations2d.cpp
     src/linesegment2d.cpp
+    src/triangle2d.cpp
     src/rectangle2d.cpp
     src/circle2d.cpp
     src/polygon2d.cpp

@@ -10,6 +10,7 @@
 #include "wigeon/ray2d.h"
 #include "wigeon/linesegment2d.h"
 #include "wigeon/doublelinesegment2d.h"
+#include "wigeon/triangle2d.h"
 #include "wigeon/rectangle2d.h"
 #include "wigeon/circle2d.h"
 
