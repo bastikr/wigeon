@@ -4,11 +4,11 @@
 using namespace wigeon;
 
 TEST(POINT1D, OPERATORS) {
-  Point2D p0(2, 3);
-  Point2D p1(-1, 4);
-  Vector2D v(5, 7);
+  Point1D p0(2);
+  Point1D p1(-1);
+  Vector1D v(5);
 
-  Point2D p = p0 + v;
+  Point1D p = p0 + v;
   ASSERT_DOUBLE_EQ(p.x(), 7);
 
   p = v + p0;
