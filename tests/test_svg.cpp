@@ -1,4 +1,4 @@
-#include "wigeon/wigeon.h"
+#include "wigeon/svg.h"
 #include "gtest/gtest.h"
 
 

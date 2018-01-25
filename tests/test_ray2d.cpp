@@ -1,4 +1,4 @@
-#include "wigeon/wigeon.h"
+#include "wigeon/ray2d.h"
 #include "gtest/gtest.h"
 
 #include <cmath>

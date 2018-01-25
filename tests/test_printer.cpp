@@ -1,4 +1,4 @@
-#include "wigeon/wigeon.h"
+#include "wigeon/printer.h"
 #include "gtest/gtest.h"
 
 #include <string>

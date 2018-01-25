@@ -1,4 +1,4 @@
-#include "wigeon/wigeon.h"
+#include "wigeon/rotations2d.h"
 #include "gtest/gtest.h"
 
 

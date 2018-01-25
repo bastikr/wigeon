@@ -1,4 +1,4 @@
-#include "wigeon/wigeon.h"
+#include "wigeon/intersections.h"
 #include "gtest/gtest.h"
 #include <cmath>
 #include <limits>
