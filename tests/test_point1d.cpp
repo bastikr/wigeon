@@ -1,4 +1,4 @@
-#include "wigeon/wigeon.h"
+#include "wigeon/point1d.h"
 #include "gtest/gtest.h"
 
 using namespace wigeon;
