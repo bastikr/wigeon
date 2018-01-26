@@ -22,7 +22,7 @@
 #include "wigeon/distances.h"
 #include "wigeon/intersections.h"
 #include "wigeon/winding_number.h"
-#include "wigeon/isinside.h"
+#include "wigeon/within.h"
 #include "wigeon/offset.h"
 #include "wigeon/polygon2d_simplification.h"
 
