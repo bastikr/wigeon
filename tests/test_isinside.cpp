@@ -6,6 +6,43 @@
 
 using namespace wigeon;
 
+
+TEST(ISINSIDE, POINT_TRIANGLE) {
+  Triangle2D triangle0(Point2D(0, 0), Point2D(2, 0), Point2D(1, 1));
+  Triangle2D triangle1(Point2D(0, 0), Point2D(1, 1), Point2D(2, 0));
+
+  ASSERT_TRUE(isinside(Point2D(1, 0.5), triangle0));
+  ASSERT_TRUE(isinside(Point2D(1, 0.5), triangle1));
+
+  ASSERT_TRUE(isinside(Point2D(0.02, 0.01), triangle0));
+  ASSERT_TRUE(isinside(Point2D(0.02, 0.01), triangle1));
+
+  ASSERT_TRUE(isinside(Point2D(1.98, 0.01), triangle0));
+  ASSERT_TRUE(isinside(Point2D(1.98, 0.01), triangle1));
+
+  ASSERT_TRUE(isinside(Point2D(1, 0.99), triangle0));
+  ASSERT_TRUE(isinside(Point2D(1, 0.99), triangle1));
+
+
+  ASSERT_FALSE(isinside(Point2D(0, 0), triangle0));
+  ASSERT_FALSE(isinside(Point2D(0, 0), triangle1));
+
+  ASSERT_FALSE(isinside(Point2D(2, 0), triangle0));
+  ASSERT_FALSE(isinside(Point2D(2, 0), triangle1));
+
+  ASSERT_FALSE(isinside(Point2D(1, 1), triangle0));
+  ASSERT_FALSE(isinside(Point2D(1, 1), triangle1));
+
+  ASSERT_FALSE(isinside(Point2D(-1, 0), triangle0));
+  ASSERT_FALSE(isinside(Point2D(-1, 0), triangle1));
+
+  ASSERT_FALSE(isinside(Point2D(1, 2), triangle0));
+  ASSERT_FALSE(isinside(Point2D(1, 2), triangle1));
+
+  ASSERT_FALSE(isinside(Point2D(1, -0.5), triangle0));
+  ASSERT_FALSE(isinside(Point2D(1, -0.5), triangle1));
+}
+
 TEST(ISINSIDE, POINT_RECTANGLE) {
   Rectangle2D rectangle(0.5, 0.8, 3.1, 2.7);
 
