@@ -7,12 +7,18 @@
 #include "wigeon/vector2d.h"
 #include "wigeon/point2d.h"
 #include "wigeon/linesegment2d.h"
+#include "wigeon/triangle2d.h"
 #include "wigeon/rectangle2d.h"
 
 
 namespace wigeon {
 
 struct Polygon2D {
+  Polygon2D() : data() {}
+  explicit Polygon2D(const LineSegment2D&);
+  explicit Polygon2D(const Triangle2D&);
+  explicit Polygon2D(const Rectangle2D&);
+
   void append(const Point2D& point);
   void append(double x, double y);
   void append(const LineSegment2D& segment);

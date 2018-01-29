@@ -5,6 +5,16 @@
 
 namespace wigeon {
 
+Polygon2D::Polygon2D(const LineSegment2D& segment)
+    : data({{segment.point0(), segment.point1()}}) {}
+
+Polygon2D::Polygon2D(const Triangle2D& triangle)
+    : data({{triangle.point0(), triangle.point1(), triangle.point2()}}) {}
+
+Polygon2D::Polygon2D(const Rectangle2D& rectangle)
+    : data({{rectangle.point00(), rectangle.point10(),
+             rectangle.point11(), rectangle.point01()}}) {}
+
 void Polygon2D::append(const Point2D& point) {
   data.push_back(point);
 }

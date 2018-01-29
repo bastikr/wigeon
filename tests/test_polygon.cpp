@@ -6,6 +6,38 @@
 
 using namespace wigeon;
 
+TEST(POLYGON2D, CREATION) {
+  LineSegment2D segment(1, -2, -3, 4);
+  Polygon2D polygon0(segment);
+  ASSERT_EQ(polygon0.size(), 2);
+  ASSERT_DOUBLE_EQ(polygon0.point(0)->x(), 1);
+  ASSERT_DOUBLE_EQ(polygon0.point(0)->y(), -2);
+  ASSERT_DOUBLE_EQ(polygon0.point(1)->x(), -3);
+  ASSERT_DOUBLE_EQ(polygon0.point(1)->y(), 4);
+
+  Triangle2D triangle(Point2D(1, -2), Point2D(-3, 4), Point2D(0, 7));
+  Polygon2D polygon1(triangle);
+  ASSERT_EQ(polygon1.size(), 3);
+  ASSERT_DOUBLE_EQ(polygon1.point(0)->x(), 1);
+  ASSERT_DOUBLE_EQ(polygon1.point(0)->y(), -2);
+  ASSERT_DOUBLE_EQ(polygon1.point(1)->x(), -3);
+  ASSERT_DOUBLE_EQ(polygon1.point(1)->y(), 4);
+  ASSERT_DOUBLE_EQ(polygon1.point(2)->x(), 0);
+  ASSERT_DOUBLE_EQ(polygon1.point(2)->y(), 7);
+
+  Rectangle2D rectangle(1, -2, 3, 4);
+  Polygon2D polygon2(rectangle);
+  ASSERT_EQ(polygon2.size(), 4);
+  ASSERT_DOUBLE_EQ(polygon2.point(0)->x(), 1);
+  ASSERT_DOUBLE_EQ(polygon2.point(0)->y(), -2);
+  ASSERT_DOUBLE_EQ(polygon2.point(1)->x(), 3);
+  ASSERT_DOUBLE_EQ(polygon2.point(1)->y(), -2);
+  ASSERT_DOUBLE_EQ(polygon2.point(2)->x(), 3);
+  ASSERT_DOUBLE_EQ(polygon2.point(2)->y(), 4);
+  ASSERT_DOUBLE_EQ(polygon2.point(3)->x(), 1);
+  ASSERT_DOUBLE_EQ(polygon2.point(3)->y(), 4);
+}
+
 TEST(POLYGON2D, OPERATORS) {
   Polygon2D polygon0;
   polygon0.append(0, 0);
