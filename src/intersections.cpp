@@ -354,4 +354,41 @@ Points2D intersections(const Polygon2D& polygon0, const Polygon2D& polygon1) {
   return points;
 }
 
+Points2D intersections(const Curve2D& curve0, const Curve2D& curve1) {
+  intersections_visitor visitor;
+  return boost::apply_visitor(visitor, curve0, curve1);
+}
+
+Points2D intersections(const Curves2D& curves, const Curve2D& curve) {
+  Points2D points;
+  Points2D subpoints;
+  for (auto it=curves.begin(); it!=curves.end(); ++it) {
+    subpoints = intersections(*it, curve);
+    points.insert(points.end(), subpoints.begin(), subpoints.end());
+  }
+  return points;
+}
+
+Points2D intersections(const Curve2D& curve, const Curves2D& curves) {
+  Points2D points;
+  Points2D subpoints;
+  for (auto it=curves.begin(); it!=curves.end(); ++it) {
+    subpoints = intersections(curve, *it);
+    points.insert(points.end(), subpoints.begin(), subpoints.end());
+  }
+  return points;
+}
+
+Points2D intersections(const Curves2D& curves0, const Curves2D& curves1) {
+  Points2D points;
+  Points2D subpoints;
+  for (auto it0=curves0.begin(); it0!=curves0.end(); ++it0) {
+    for (auto it1=curves1.begin(); it1!=curves1.end(); ++it1) {
+      subpoints = intersections(*it0, *it1);
+      points.insert(points.end(), subpoints.begin(), subpoints.end());
+    }
+  }
+  return points;
+}
+
 } // namespace wigeon

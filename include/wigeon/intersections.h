@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "wigeon/collections.h"
 
 #include "wigeon/point2d.h"
 #include "wigeon/line2d.h"
@@ -56,5 +57,20 @@ Points2D intersections(const Ray2D&, const Polygon2D&);
 Points2D intersections(const Polygon2D&, const LineSegment2D&);
 Points2D intersections(const LineSegment2D&, const Polygon2D&);
 Points2D intersections(const Polygon2D&, const Polygon2D&);
+
+// Curves2D
+class intersections_visitor : public boost::static_visitor<Points2D> {
+  public:
+    template <typename CurveType0, typename CurveType1>
+    Points2D operator()(const CurveType0& curve0, const CurveType1& curve1) const {
+      return intersections(curve0, curve1);
+    }
+};
+
+Points2D intersections(const Curve2D&, const Curve2D&);
+
+Points2D intersections(const Curves2D&, const Curve2D&);
+Points2D intersections(const Curve2D&, const Curves2D&);
+Points2D intersections(const Curves2D&, const Curves2D&);
 
 } // namespace wigeon

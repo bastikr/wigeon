@@ -699,3 +699,43 @@ TEST(INTERSECTIONS, POLYGON_POLYGON) {
   Points2D points = intersections(polygon0, polygon1);
   ASSERT_EQ(points.size(), 6);
 }
+
+
+TEST(INTERSECTIONS, CURVES) {
+  Line2D line(Point2D(0, 0), Vector2D(1, 0));
+  Ray2D ray(Point2D(0, 0), Vector2D(1, 0));
+  LineSegment2D segment0(0, -1, 0, 1);
+  LineSegment2D segment1(1, -1, 1, 1);
+
+  Curves2D curves0;
+  curves0.push_back(line);
+  curves0.push_back(ray);
+
+  Curves2D curves1;
+  curves1.push_back(segment0);
+  curves1.push_back(segment1);
+
+  Points2D points;
+  points = intersections(line, curves1);
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), 0);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+  ASSERT_DOUBLE_EQ(points[1].x(), 1);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0);
+
+  points = intersections(curves1, line);
+  ASSERT_EQ(points.size(), 2);
+  ASSERT_DOUBLE_EQ(points[0].x(), 0);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+  ASSERT_DOUBLE_EQ(points[1].x(), 1);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0);
+
+  points = intersections(curves0, curves1);
+  ASSERT_EQ(points.size(), 3);
+  ASSERT_DOUBLE_EQ(points[0].x(), 0);
+  ASSERT_DOUBLE_EQ(points[0].y(), 0);
+  ASSERT_DOUBLE_EQ(points[1].x(), 1);
+  ASSERT_DOUBLE_EQ(points[1].y(), 0);
+  ASSERT_DOUBLE_EQ(points[2].x(), 1);
+  ASSERT_DOUBLE_EQ(points[2].y(), 0);
+}
