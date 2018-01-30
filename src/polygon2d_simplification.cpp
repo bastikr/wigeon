@@ -1,6 +1,7 @@
 #include "wigeon/polygon2d_simplification.h"
 
 #include <list>
+#include <vector>
 
 #include "wigeon/point2d.h"
 #include "wigeon/distances.h"
@@ -9,9 +10,11 @@
 namespace wigeon {
 
 using PointList = std::list<Point2D>;
-using PointIter = PointList::const_iterator;
 
 
+namespace {
+
+template <typename PointIter>
 PointList douglas_peucker(const PointIter& it_first, const PointIter& it_last, double eps) {
   PointList points;
   if (it_first==it_last)
@@ -40,6 +43,21 @@ PointList douglas_peucker(const PointIter& it_first, const PointIter& it_last, d
   return points;
 }
 
+} // anonymous namespace
+
+
+PolyLine2D douglas_peucker(const PolyLine2D& polyline, double eps) {
+  size_t size = polyline.size();
+  if (size<=2)
+    return polyline;
+  PointList points = douglas_peucker(polyline.data.begin(), --polyline.data.end(), eps);
+  PolyLine2D result;
+  result.push_back(polyline.data.front());
+  for (auto& p: points)
+    result.push_back(p);
+  result.push_back(polyline.data.back());
+  return result;
+}
 
 Polygon2D douglas_peucker(const Polygon2D& polygon, double eps) {
   // Handle special cases
