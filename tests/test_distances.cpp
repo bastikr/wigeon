@@ -95,6 +95,24 @@ TEST(DISTANCES, POINT_CIRCLE) {
   ASSERT_DOUBLE_EQ(d1, pow(sqrt(2)*5-0.5, 2));
 }
 
+
+TEST(DISTANCES, TRIANGLE_POINT) {
+  Triangle2D triangle(Point2D(0, 0), Point2D(2, 0), Point2D(1, 2));
+
+  Point2D p(-1, 0);
+  double d0 = distance2(triangle, p);
+  double d1 = distance2(p, triangle);
+  ASSERT_DOUBLE_EQ(d0, 1);
+  ASSERT_DOUBLE_EQ(d1, 1);
+
+  p = Point2D(1, 0.2);
+  d0 = distance2(triangle, p);
+  d1 = distance2(p, triangle);
+  ASSERT_DOUBLE_EQ(d0, 0.04);
+  ASSERT_DOUBLE_EQ(d1, 0.04);
+}
+
+
 TEST(DISTANCES, SEGMENT_SEGMENT) {
   LineSegment2D segment0(Point2D(0, 0), Point2D(3, 0));
   LineSegment2D segment1(Point2D(0, 1), Point2D(0, 3));

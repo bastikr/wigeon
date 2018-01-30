@@ -53,6 +53,11 @@ double distance2(const Circle2D&, const Point2D&);
 double distance2(const Point2D&, const Circle2D&);
 
 
+// Triangle
+double distance2(const Triangle2D&, const Point2D&);
+double distance2(const Point2D&, const Triangle2D&);
+
+
 // Rectangle
 double distance2(const Rectangle2D&, const Point2D&);
 double distance2(const Point2D&, const Rectangle2D&);

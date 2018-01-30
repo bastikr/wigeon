@@ -167,6 +167,20 @@ double distance2(const Point2D& point, const Circle2D& circle) {
 }
 
 
+// Triangle
+
+double distance2(const Triangle2D& triangle, const Point2D& point) {
+  double d = distance2(point, LineSegment2D(triangle.point0(), triangle.point1()));
+  d = std::min(d, distance2(point, LineSegment2D(triangle.point1(), triangle.point2())));
+  d = std::min(d, distance2(point, LineSegment2D(triangle.point2(), triangle.point0())));
+  return d;
+}
+
+double distance2(const Point2D& point, const Triangle2D& triangle) {
+  return distance2(triangle, point);
+}
+
+
 // Rectangle
 
 double distance2(const Rectangle2D& rectangle, const Point2D& point) {
