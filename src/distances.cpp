@@ -203,11 +203,11 @@ double distance2(const Polygon2D& polygon, const Point2D& point) {
   if (size==0)
     return std::numeric_limits<double>::quiet_NaN();
   if (size==1)
-    return distance2(*polygon.point(0), point);
+    return distance2(polygon.point(0), point);
 
   double d2 = std::numeric_limits<double>::infinity();
   for (int i=0; i<size; ++i) {
-    d2 = std::min(d2, distance2(*polygon.edge(i), point));
+    d2 = std::min(d2, distance2(polygon.edge(i), point));
   }
   return d2;
 }

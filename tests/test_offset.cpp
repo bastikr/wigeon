@@ -57,13 +57,13 @@ TEST(OFFSETS, POLYGON2D) {
   polygon.push_back(1, 1);
   polygon.push_back(0, 1);
 
-  Polygon2D p1 = offset(polygon, 2);
-  ASSERT_DOUBLE_EQ((*p1.point(0)).x(), -2);
-  ASSERT_DOUBLE_EQ((*p1.point(0)).y(), -2);
-  ASSERT_DOUBLE_EQ((*p1.point(1)).x(), 3);
-  ASSERT_DOUBLE_EQ((*p1.point(1)).y(), -2);
-  ASSERT_DOUBLE_EQ((*p1.point(2)).x(), 3);
-  ASSERT_DOUBLE_EQ((*p1.point(2)).y(), 3);
-  ASSERT_DOUBLE_EQ((*p1.point(3)).x(), -2);
-  ASSERT_DOUBLE_EQ((*p1.point(3)).y(), 3);
+  Polygon2D polygon_offset = offset(polygon, 2);
+  ASSERT_DOUBLE_EQ((polygon_offset.point(0)).x(), -2);
+  ASSERT_DOUBLE_EQ((polygon_offset.point(0)).y(), -2);
+  ASSERT_DOUBLE_EQ((polygon_offset.point(1)).x(), 3);
+  ASSERT_DOUBLE_EQ((polygon_offset.point(1)).y(), -2);
+  ASSERT_DOUBLE_EQ((polygon_offset.point(2)).x(), 3);
+  ASSERT_DOUBLE_EQ((polygon_offset.point(2)).y(), 3);
+  ASSERT_DOUBLE_EQ((polygon_offset.point(3)).x(), -2);
+  ASSERT_DOUBLE_EQ((polygon_offset.point(3)).y(), 3);
 }

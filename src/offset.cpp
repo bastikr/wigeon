@@ -38,12 +38,12 @@ Rectangle2D offset(const Rectangle2D& r, double d) {
 
 Polygon2D offset(const Polygon2D& polygon, double d) {
   Polygon2D p_new;
-  Line2D line0 = offset(Line2D(*polygon.edge(polygon.size()-1)), d);
+  Line2D line0 = offset(Line2D(polygon.edge(polygon.size()-1)), d);
   Line2D line1 = line0;
   Points2D points;
   for (int i=0; i<polygon.size(); ++i) {
     line0 = line1;
-    line1 = offset(Line2D(*polygon.edge(i)), d);
+    line1 = offset(Line2D(polygon.edge(i)), d);
     points = intersections(line0, line1);
     p_new.push_back(points[0]);
   }

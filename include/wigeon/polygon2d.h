@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <boost/optional.hpp>
 
 #include "wigeon/rotations2d.h"
 #include "wigeon/vector2d.h"
@@ -21,17 +20,16 @@ struct Polygon2D {
 
   void push_back(const Point2D& point);
   void push_back(double x, double y);
-  void push_back(const LineSegment2D& segment);
 
   int size() const;
 
-  boost::optional<Rectangle2D> bounding_box() const;
+  Rectangle2D bounding_box() const;
 
-  boost::optional<Point2D> point(int i) const;
-  boost::optional<LineSegment2D> edge(int i) const;
+  Point2D point(int i) const;
+  LineSegment2D edge(int i) const;
 
-  boost::optional<Point2D> point_looped(int i) const;
-  boost::optional<LineSegment2D> edge_looped(int i) const;
+  Point2D point_looped(int i) const;
+  LineSegment2D edge_looped(int i) const;
 
   std::vector<Point2D> data;
 };

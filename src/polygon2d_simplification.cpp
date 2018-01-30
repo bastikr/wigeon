@@ -50,13 +50,13 @@ Polygon2D douglas_peucker(const Polygon2D& polygon, double eps) {
   // Copy points into list
   PointList points;
   for (size_t i=0; i<size; ++i) {
-    points.push_back(*polygon.point(i));
+    points.push_back(polygon.point(i));
   }
-  points.push_back(*polygon.point(0));
+  points.push_back(polygon.point(0));
 
   PointList points_included = douglas_peucker(points.begin(), --points.end(), eps);
   Polygon2D result;
-  result.push_back(*polygon.point(0));
+  result.push_back(polygon.point(0));
   for (auto it=points_included.begin(); it!=points_included.end(); ++it) {
     result.push_back(*it);
   }

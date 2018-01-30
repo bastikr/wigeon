@@ -23,11 +23,6 @@ void Polygon2D::push_back(double x, double y) {
   data.emplace_back(x, y);
 }
 
-void Polygon2D::push_back(const LineSegment2D& segment) {
-  data.push_back(segment.point0());
-  data.push_back(segment.point1());
-}
-
 int Polygon2D::size() const {
   return data.size();
 }
@@ -48,9 +43,9 @@ Polygon2D operator-(const Polygon2D& polygon, const Vector2D& v) {
   return polygon_new;
 }
 
-boost::optional<Rectangle2D> Polygon2D::bounding_box() const {
+Rectangle2D Polygon2D::bounding_box() const {
   if (size()==0)
-    return boost::optional<Rectangle2D>();
+    throw "0-size polygon has no bounding box.";
   double xmin = data[0].x();
   double xmax = data[0].x();
   double ymin = data[0].y();
@@ -66,16 +61,16 @@ boost::optional<Rectangle2D> Polygon2D::bounding_box() const {
   return Rectangle2D(xmin, ymin, xmax, ymax);
 }
 
-boost::optional<Point2D> Polygon2D::point(int i) const {
+Point2D Polygon2D::point(int i) const {
   if (i<0 || i>=size())
-    return boost::optional<Point2D>();
+    throw "Access out of bounds element.";
   else
     return data[i];
 }
 
-boost::optional<LineSegment2D> Polygon2D::edge(int i) const {
+LineSegment2D Polygon2D::edge(int i) const {
   if (i<0 || i>size()-1)
-    return boost::optional<LineSegment2D>();
+    throw "Access out of bounds element.";
   if (i==size()-1)
     return LineSegment2D(data[i], data[0]);
   return LineSegment2D(data[i], data[i+1]);
@@ -93,16 +88,16 @@ int positive_modulo(int a, int b) {
 
 } // anonymous namespace
 
-boost::optional<Point2D> Polygon2D::point_looped(int i) const {
+Point2D Polygon2D::point_looped(int i) const {
   if (size()==0)
-    return boost::optional<Point2D>();
+    throw "Can't access element of 0-size polygon.";
   int i_ = positive_modulo(i, size());
   return data[i_];
 }
 
-boost::optional<LineSegment2D> Polygon2D::edge_looped(int i) const {
+LineSegment2D Polygon2D::edge_looped(int i) const {
   if (size()==0)
-    return boost::optional<LineSegment2D>();
+    throw "Can't access element of 0-size polygon.";
   int i0 = positive_modulo(i, size());
   int i1 = positive_modulo(i0 + 1, size());
   return LineSegment2D(data[i0], data[i1]);
