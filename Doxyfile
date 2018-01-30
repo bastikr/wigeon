@@ -9,7 +9,7 @@
 # All text after a single hash (#) is considered a comment and will be ignored.
 # The format is:
 # TAG = value [value, ...]
-# For lists, items can also be appended using:
+# For lists, items can also be push_backed using:
 # TAG += value [value, ...]
 # Values that contain spaces should be placed between quotes (\" \").
 
@@ -505,7 +505,7 @@ HIDE_FRIEND_COMPOUNDS  = NO
 
 # If the HIDE_IN_BODY_DOCS tag is set to YES, doxygen will hide any
 # documentation blocks found inside the body of a function. If set to NO, these
-# blocks will be appended to the function's detailed documentation block.
+# blocks will be push_backed to the function's detailed documentation block.
 # The default value is: NO.
 
 HIDE_IN_BODY_DOCS      = NO
@@ -534,7 +534,7 @@ CASE_SENSE_NAMES       = YES
 HIDE_SCOPE_NAMES       = NO
 
 # If the HIDE_COMPOUND_REFERENCE tag is set to NO (default) then doxygen will
-# append additional text to a page's title, such as Class Reference. If set to
+# push_back additional text to a page's title, such as Class Reference. If set to
 # YES the compound reference will be hidden.
 # The default value is: NO.
 
@@ -707,7 +707,7 @@ LAYOUT_FILE            =
 
 # The CITE_BIB_FILES tag can be used to specify one or more bib files containing
 # the reference definitions. This must be a list of .bib files. The .bib
-# extension is automatically appended if omitted. This requires the bibtex tool
+# extension is automatically push_backed if omitted. This requires the bibtex tool
 # to be installed. See also http://en.wikipedia.org/wiki/BibTeX for more info.
 # For LaTeX the style of the bibliography can be controlled using
 # LATEX_BIB_STYLE. To use this feature you need bibtex and perl available in the
@@ -1269,7 +1269,7 @@ DOCSET_FEEDNAME        = "Doxygen generated docs"
 
 # This tag specifies a string that should uniquely identify the documentation
 # set bundle. This should be a reverse domain-name style string, e.g.
-# com.mycompany.MyDocSet. Doxygen will append .docset to the name.
+# com.mycompany.MyDocSet. Doxygen will push_back .docset to the name.
 # The default value is: org.doxygen.Project.
 # This tag requires that the tag GENERATE_DOCSET is set to YES.
 

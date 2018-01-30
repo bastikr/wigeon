@@ -40,9 +40,9 @@ TEST(POLYGON2D, CREATION) {
 
 TEST(POLYGON2D, OPERATORS) {
   Polygon2D polygon0;
-  polygon0.append(0, 0);
-  polygon0.append(1, 0);
-  polygon0.append(1, 1);
+  polygon0.push_back(0, 0);
+  polygon0.push_back(1, 0);
+  polygon0.push_back(1, 1);
 
   Vector2D vector(1, 1);
 
@@ -71,9 +71,9 @@ TEST(POLYGON2D, OPERATORS) {
 
 TEST(POLYGON2D, POINT) {
   Polygon2D polygon0;
-  polygon0.append(0, 0);
-  polygon0.append(1, 0);
-  polygon0.append(0, 1);
+  polygon0.push_back(0, 0);
+  polygon0.push_back(1, 0);
+  polygon0.push_back(0, 1);
 
   auto point = polygon0.point(0);
   ASSERT_TRUE(bool(point));
@@ -106,9 +106,9 @@ TEST(POLYGON2D, POINT) {
 
 TEST(POLYGON2D, EDGES) {
   Polygon2D polygon0;
-  polygon0.append(0, 0);
-  polygon0.append(1, 0);
-  polygon0.append(0, 1);
+  polygon0.push_back(0, 0);
+  polygon0.push_back(1, 0);
+  polygon0.push_back(0, 1);
 
   LineSegment2D s0 = *polygon0.edge(0);
   ASSERT_DOUBLE_EQ(s0.x0(), 0);
@@ -165,9 +165,9 @@ TEST(POLYGON2D, EDGES) {
 
 TEST(POLYGON2D, ROTATE) {
   Polygon2D polygon0;
-  polygon0.append(0, 0);
-  polygon0.append(2, 1);
-  polygon0.append(5, 3);
+  polygon0.push_back(0, 0);
+  polygon0.push_back(2, 1);
+  polygon0.push_back(5, 3);
 
   Polygon2D p = rotate(M_PI/2, polygon0);
   ASSERT_DOUBLE_EQ(p.point(0)->x(), 0);

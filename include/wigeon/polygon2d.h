@@ -19,9 +19,9 @@ struct Polygon2D {
   explicit Polygon2D(const Triangle2D&);
   explicit Polygon2D(const Rectangle2D&);
 
-  void append(const Point2D& point);
-  void append(double x, double y);
-  void append(const LineSegment2D& segment);
+  void push_back(const Point2D& point);
+  void push_back(double x, double y);
+  void push_back(const LineSegment2D& segment);
 
   int size() const;
 

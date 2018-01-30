@@ -93,16 +93,16 @@ TEST(WITHIN, POINT_POLYGON) {
   Point2D p2(0.1, 0.4);
 
   Polygon2D polygon0;
-  polygon0.append(Point2D(0, 0));
-  polygon0.append(Point2D(1, 0));
-  polygon0.append(Point2D(1, 1));
-  polygon0.append(Point2D(0, 1));
+  polygon0.push_back(Point2D(0, 0));
+  polygon0.push_back(Point2D(1, 0));
+  polygon0.push_back(Point2D(1, 1));
+  polygon0.push_back(Point2D(0, 1));
 
   Polygon2D polygon1;
-  polygon1.append(Point2D(0, 0));
-  polygon1.append(Point2D(1, 1));
-  polygon1.append(Point2D(1, 0));
-  polygon1.append(Point2D(0, 1));
+  polygon1.push_back(Point2D(0, 0));
+  polygon1.push_back(Point2D(1, 1));
+  polygon1.push_back(Point2D(1, 0));
+  polygon1.push_back(Point2D(0, 1));
 
   ASSERT_FALSE(within(p0, polygon0));
   ASSERT_TRUE(within(p1, polygon0));

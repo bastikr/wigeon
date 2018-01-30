@@ -30,9 +30,9 @@ TEST(SVG, RECTANGLE) {
 
 TEST(SVG, POLYGON) {
   Polygon2D polygon;
-  polygon.append(0, 1);
-  polygon.append(3, 1);
-  polygon.append(3, 2);
+  polygon.push_back(0, 1);
+  polygon.push_back(3, 1);
+  polygon.push_back(3, 2);
   std::string str = "<polygon points=\"0,1 3,1 3,2\"/>";
   EXPECT_EQ(str, svg::print(polygon));
 }

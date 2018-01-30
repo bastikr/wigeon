@@ -56,9 +56,9 @@ Polygon2D douglas_peucker(const Polygon2D& polygon, double eps) {
 
   PointList points_included = douglas_peucker(points.begin(), --points.end(), eps);
   Polygon2D result;
-  result.append(*polygon.point(0));
+  result.push_back(*polygon.point(0));
   for (auto it=points_included.begin(); it!=points_included.end(); ++it) {
-    result.append(*it);
+    result.push_back(*it);
   }
   return result;
 }

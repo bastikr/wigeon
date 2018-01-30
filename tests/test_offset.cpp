@@ -52,10 +52,10 @@ TEST(OFFSETS, RECTANGLE2D) {
 
 TEST(OFFSETS, POLYGON2D) {
   Polygon2D polygon;
-  polygon.append(0, 0);
-  polygon.append(1, 0);
-  polygon.append(1, 1);
-  polygon.append(0, 1);
+  polygon.push_back(0, 0);
+  polygon.push_back(1, 0);
+  polygon.push_back(1, 1);
+  polygon.push_back(0, 1);
 
   Polygon2D p1 = offset(polygon, 2);
   ASSERT_DOUBLE_EQ((*p1.point(0)).x(), -2);

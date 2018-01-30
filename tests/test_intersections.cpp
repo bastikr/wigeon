@@ -504,9 +504,9 @@ TEST(INTERSECTIONS, POLYGON_LINE) {
   Line2D line3(Point2D(-1, 1), Vector2D(1, 0));
 
   Polygon2D polygon;
-  polygon.append(0, 0);
-  polygon.append(1, 1);
-  polygon.append(2, 0);
+  polygon.push_back(0, 0);
+  polygon.push_back(1, 1);
+  polygon.push_back(2, 0);
 
   Points2D points = intersections(line0, polygon);
   ASSERT_EQ(points.size(), 2);
@@ -538,10 +538,10 @@ TEST(INTERSECTIONS, POLYGON_LINE2) {
   Line2D line1(Point2D(0, 0), Vector2D(-1, -1));
 
   Polygon2D polygon;
-  polygon.append(-0.3, -0.3);
-  polygon.append(-0.3, 0.3);
-  polygon.append(0.3, 0.3);
-  polygon.append(0.3, -0.3);
+  polygon.push_back(-0.3, -0.3);
+  polygon.push_back(-0.3, 0.3);
+  polygon.push_back(0.3, 0.3);
+  polygon.push_back(0.3, -0.3);
 
   Points2D points = intersections(line0, polygon);
   ASSERT_EQ(points.size(), 2);
@@ -566,9 +566,9 @@ TEST(INTERSECTIONS, RAY_POLYGON) {
   Ray2D ray3(Point2D(-1, 1), Vector2D(1, 0));
 
   Polygon2D polygon;
-  polygon.append(0, 0);
-  polygon.append(1, 1);
-  polygon.append(2, 0);
+  polygon.push_back(0, 0);
+  polygon.push_back(1, 1);
+  polygon.push_back(2, 0);
 
   Points2D points = intersections(ray0, polygon);
   ASSERT_EQ(points.size(), 2);
@@ -601,10 +601,10 @@ TEST(INTERSECTIONS, RAY_POLYGON2) {
   Ray2D ray1(Point2D(0, 0), Vector2D(-1, -1));
 
   Polygon2D polygon;
-  polygon.append(-0.3, -0.3);
-  polygon.append(-0.3, 0.3);
-  polygon.append(0.3, 0.3);
-  polygon.append(0.3, -0.3);
+  polygon.push_back(-0.3, -0.3);
+  polygon.push_back(-0.3, 0.3);
+  polygon.push_back(0.3, 0.3);
+  polygon.push_back(0.3, -0.3);
 
   Points2D points = intersections(ray0, polygon);
   ASSERT_EQ(points.size(), 1);
@@ -655,14 +655,14 @@ TEST(INTERSECTIONS, SEGMENT_POLYGON) {
   LineSegment2D segment1(1, 2, 1.5, 2.5);
 
   Polygon2D polygon0;
-  polygon0.append(0, 0);
-  polygon0.append(1, 4);
-  polygon0.append(3, 2);
+  polygon0.push_back(0, 0);
+  polygon0.push_back(1, 4);
+  polygon0.push_back(3, 2);
 
   Polygon2D polygon1;
-  polygon1.append(1.5, 0);
-  polygon1.append(1.5, 3);
-  polygon1.append(3.5, 3);
+  polygon1.push_back(1.5, 0);
+  polygon1.push_back(1.5, 3);
+  polygon1.push_back(3.5, 3);
 
   Points2D points;
 
@@ -687,14 +687,14 @@ TEST(INTERSECTIONS, SEGMENT_POLYGON) {
 
 TEST(INTERSECTIONS, POLYGON_POLYGON) {
   Polygon2D polygon0;
-  polygon0.append(2, 0);
-  polygon0.append(4, 2);
-  polygon0.append(0, 2);
+  polygon0.push_back(2, 0);
+  polygon0.push_back(4, 2);
+  polygon0.push_back(0, 2);
 
   Polygon2D polygon1;
-  polygon1.append(2, 3);
-  polygon1.append(4, 1);
-  polygon1.append(0, 1);
+  polygon1.push_back(2, 3);
+  polygon1.push_back(4, 1);
+  polygon1.push_back(0, 1);
 
   Points2D points = intersections(polygon0, polygon1);
   ASSERT_EQ(points.size(), 6);

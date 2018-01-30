@@ -247,9 +247,9 @@ TEST(DISTANCES, SEGMENT_RAY) {
 
 TEST(DISTANCES, POLYGON_POINT) {
   Polygon2D polygon;
-  polygon.append(Point2D(0, 0));
-  polygon.append(Point2D(1, 0));
-  polygon.append(Point2D(0, 1));
+  polygon.push_back(Point2D(0, 0));
+  polygon.push_back(Point2D(1, 0));
+  polygon.push_back(Point2D(0, 1));
 
   ASSERT_DOUBLE_EQ(distance2(polygon, Point2D(0,0)), 0);
   ASSERT_DOUBLE_EQ(distance2(polygon, Point2D(-2,0)), 4);

@@ -15,15 +15,15 @@ Polygon2D::Polygon2D(const Rectangle2D& rectangle)
     : data({{rectangle.point00(), rectangle.point10(),
              rectangle.point11(), rectangle.point01()}}) {}
 
-void Polygon2D::append(const Point2D& point) {
+void Polygon2D::push_back(const Point2D& point) {
   data.push_back(point);
 }
 
-void Polygon2D::append(double x, double y) {
+void Polygon2D::push_back(double x, double y) {
   data.emplace_back(x, y);
 }
 
-void Polygon2D::append(const LineSegment2D& segment) {
+void Polygon2D::push_back(const LineSegment2D& segment) {
   data.push_back(segment.point0());
   data.push_back(segment.point1());
 }
@@ -35,7 +35,7 @@ int Polygon2D::size() const {
 Polygon2D operator+(const Polygon2D& polygon, const Vector2D& v) {
   Polygon2D polygon_new;
   for (auto it=polygon.data.begin(); it!=polygon.data.end(); ++it) {
-    polygon_new.append(*it + v);
+    polygon_new.push_back(*it + v);
   }
   return polygon_new;
 }
@@ -43,7 +43,7 @@ Polygon2D operator+(const Polygon2D& polygon, const Vector2D& v) {
 Polygon2D operator-(const Polygon2D& polygon, const Vector2D& v) {
   Polygon2D polygon_new;
   for (auto it=polygon.data.begin(); it!=polygon.data.end(); ++it) {
-    polygon_new.append(*it - v);
+    polygon_new.push_back(*it - v);
   }
   return polygon_new;
 }
@@ -111,7 +111,7 @@ boost::optional<LineSegment2D> Polygon2D::edge_looped(int i) const {
 Polygon2D rotate(const Rotation2D& R, const Polygon2D& polygon) {
   Polygon2D polygon_rotated;
   for (auto it=polygon.data.begin(); it!=polygon.data.end(); ++it) {
-    polygon_rotated.append(rotate(R, *it));
+    polygon_rotated.push_back(rotate(R, *it));
   }
   return polygon_rotated;
 }
