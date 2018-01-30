@@ -37,6 +37,15 @@ TEST(SVG, POLYGON) {
   EXPECT_EQ(str, svg::print(polygon));
 }
 
+TEST(SVG, POLYLINE) {
+  PolyLine2D polyline;
+  polyline.push_back(0, 1);
+  polyline.push_back(3, 1);
+  polyline.push_back(3, 2);
+  std::string str = "<polyline points=\"0,1 3,1 3,2\"/>";
+  EXPECT_EQ(str, svg::print(polyline));
+}
+
 TEST(SVG, COLLECTION) {
   Circle2D circle(Point2D(3, 5), 2);
   Rectangle2D rectangle(3, 5, 8, 7);

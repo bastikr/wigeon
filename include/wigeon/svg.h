@@ -24,6 +24,7 @@ void print(std::ostream&, const Circle2D&);
 void print(std::ostream&, const Triangle2D&);
 void print(std::ostream&, const Rectangle2D&);
 void print(std::ostream&, const Polygon2D&);
+void print(std::ostream&, const PolyLine2D&);
 
 
 class print_visitor : public boost::static_visitor<> {

@@ -70,6 +70,16 @@ void print(std::ostream& f, const Polygon2D& polygon) {
   f << "\"/>";
 }
 
+void print(std::ostream& f, const PolyLine2D& polyline) {
+  f << "<polyline points=\"";
+  for (auto it=polyline.data.begin(); it!=polyline.data.end(); ++it) {
+    f << it->x() << "," << it->y();
+    if (it != --polyline.data.end())
+      f << " ";
+  }
+  f << "\"/>";
+}
+
 void print(std::ostream& f, const Area2D& obj) {
   print_visitor printer(f);
   obj.apply_visitor(printer);
