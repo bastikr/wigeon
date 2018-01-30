@@ -8,11 +8,14 @@ set (CMAKE_CXX_FLAGS "-Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wlogic
 include_directories(include)
 
 add_library(wigeon SHARED
+    # 1D objects
     src/point1d.cpp
     src/vector1d.cpp
     src/point2d.cpp
-    src/vector2d.cpp
+
+    # 2D objects
     src/rotations2d.cpp
+    src/vector2d.cpp
     src/linesegment2d.cpp
     src/triangle2d.cpp
     src/rectangle2d.cpp
@@ -21,8 +24,12 @@ add_library(wigeon SHARED
     src/polyline2d.cpp
     src/line2d.cpp
     src/ray2d.cpp
+
+    #3D objects
     src/point3d.cpp
     src/vector3d.cpp
+
+    #2D algorithms
     src/distances.cpp
     src/intersections.cpp
     src/winding_number.cpp
