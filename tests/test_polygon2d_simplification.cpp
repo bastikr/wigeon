@@ -28,6 +28,20 @@ TEST(POLYGONSIMPLIFICATION, DOUGLAS_PEUCKER1) {
   ASSERT_EQ(douglas_peucker(polygon, 100).size(), 1);
 }
 
+TEST(POLYLINESIMPLIFICATION, DOUGLAS_PEUCKER0) {
+  PolyLine2D polyline;
+  ASSERT_EQ(douglas_peucker(polyline, 100).size(), 0);
+
+  polyline.push_back(0, 0);
+  ASSERT_EQ(douglas_peucker(polyline, 100).size(), 1);
+
+  polyline.push_back(1, 0);
+  ASSERT_EQ(douglas_peucker(polyline, 100).size(), 2);
+
+  polyline.push_back(2, 0);
+  ASSERT_EQ(douglas_peucker(polyline, 100).size(), 2);
+}
+
 TEST(POLYLINESIMPLIFICATION, DOUGLAS_PEUCKER1) {
   PolyLine2D polyline;
   polyline.push_back(0, 0);
