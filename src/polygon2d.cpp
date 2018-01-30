@@ -63,14 +63,14 @@ Rectangle2D Polygon2D::bounding_box() const {
 
 Point2D Polygon2D::point(int i) const {
   if (i<0 || i>=size())
-    throw "Access out of bounds element.";
+    throw "Access of out-of-bounds element.";
   else
     return data[i];
 }
 
 LineSegment2D Polygon2D::edge(int i) const {
   if (i<0 || i>size()-1)
-    throw "Access out of bounds element.";
+    throw "Access of out-of-bounds element.";
   if (i==size()-1)
     return LineSegment2D(data[i], data[0]);
   return LineSegment2D(data[i], data[i+1]);
