@@ -48,6 +48,27 @@ std::ostream& operator<<(std::ostream& os, const Circle2D& circle) {
   return os;
 }
 
+std::ostream& operator<<(std::ostream& os, const Polygon2D& polygon) {
+  os << "Polygon2D(";
+  for (int i=0; i<polygon.size(); ++i) {
+    os << polygon.point(i).x() << "," << polygon.point(i).y();
+    if (i!=polygon.size()-1)
+      os << "; ";
+  }
+  os << ")";
+  return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const PolyLine2D& polyline) {
+  os << "PolyLine2D(";
+  for (int i=0; i<polyline.size(); ++i) {
+    os << polyline.point(i).x() << "," << polyline.point(i).y();
+    if (i!=polyline.size()-1)
+      os << "; ";
+  }
+  os << ")";
+  return os;
+}
 
 std::ostream& operator<<(std::ostream& os, const Point3D& point) {
   os << "Point3D(" << point.x() << ", " << point.y() << ", " << point.z() << ")";
