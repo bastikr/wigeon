@@ -18,6 +18,7 @@ add_library(wigeon SHARED
     src/rectangle2d.cpp
     src/circle2d.cpp
     src/polygon2d.cpp
+    src/polyline2d.cpp
     src/line2d.cpp
     src/ray2d.cpp
     src/point3d.cpp
