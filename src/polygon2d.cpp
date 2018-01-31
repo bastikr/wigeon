@@ -27,6 +27,18 @@ int Polygon2D::size() const {
   return data.size();
 }
 
+double Polygon2D::area() const { 
+  double x = point(0).x();
+  double y = point(0).y();
+  double A = data.back().x()*y - data.back().y()*x;
+  for (auto it=data.begin(); it!=data.end(); ++it) {
+    A += x*it->y() - y*it->x();
+    x = it->x();
+    y = it->y();
+  }
+  return A/2;
+}
+
 Polygon2D operator+(const Polygon2D& polygon, const Vector2D& v) {
   Polygon2D polygon_new;
   for (auto it=polygon.data.begin(); it!=polygon.data.end(); ++it) {

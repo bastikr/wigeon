@@ -151,6 +151,21 @@ TEST(POLYGON2D, EDGES) {
   ASSERT_DOUBLE_EQ(s3_.y1(), 0);
 }
 
+TEST(POLYGON2D, AREA) {
+  Polygon2D polygon0(Triangle2D(Point2D(0, 0), Point2D(1, 0), Point2D(0, 1)));
+  Polygon2D polygon0_(Triangle2D(Point2D(0, 0), Point2D(0, 1), Point2D(1, 0)));
+  ASSERT_DOUBLE_EQ(polygon0.area(), 0.5);
+  ASSERT_DOUBLE_EQ(polygon0_.area(), -0.5);
+
+  Polygon2D polygon1;
+  polygon1.push_back(0, 0);
+  polygon1.push_back(1, 1);
+  polygon1.push_back(2, 0);
+  polygon1.push_back(2, 2);
+  polygon1.push_back(0, 2);
+  ASSERT_DOUBLE_EQ(polygon1.area(), 3);
+}
+
 TEST(POLYGON2D, ROTATE) {
   Polygon2D polygon0;
   polygon0.push_back(0, 0);

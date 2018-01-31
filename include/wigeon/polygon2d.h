@@ -22,6 +22,7 @@ struct Polygon2D {
   void push_back(double x, double y);
 
   int size() const;
+  double area() const;
 
   Rectangle2D bounding_box() const;
 
