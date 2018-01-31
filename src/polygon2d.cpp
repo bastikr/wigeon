@@ -23,7 +23,7 @@ void Polygon2D::push_back(double x, double y) {
   points.emplace_back(x, y);
 }
 
-int Polygon2D::size() const {
+size_t Polygon2D::size() const {
   return points.size();
 }
 
@@ -73,15 +73,15 @@ Rectangle2D Polygon2D::bounding_box() const {
   return Rectangle2D(xmin, ymin, xmax, ymax);
 }
 
-Point2D Polygon2D::point(int i) const {
-  if (i<0 || i>=size())
+Point2D Polygon2D::point(size_t i) const {
+  if (i>=size())
     throw "Access of out-of-bounds element.";
   else
     return points[i];
 }
 
-LineSegment2D Polygon2D::edge(int i) const {
-  if (i<0 || i>size()-1)
+LineSegment2D Polygon2D::edge(size_t i) const {
+  if (i>size()-1)
     throw "Access of out-of-bounds element.";
   if (i==size()-1)
     return LineSegment2D(points[i], points[0]);
@@ -90,7 +90,7 @@ LineSegment2D Polygon2D::edge(int i) const {
 
 namespace {
 
-int positive_modulo(int a, int b) {
+size_t positive_modulo(int a, int b) {
   if (a >= 0) {
     return a % b;
   } else {

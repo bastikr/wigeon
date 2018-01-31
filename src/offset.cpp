@@ -41,7 +41,7 @@ Polygon2D offset(const Polygon2D& polygon, double d) {
   Line2D line0 = offset(Line2D(polygon.edge(polygon.size()-1)), d);
   Line2D line1 = line0;
   Points2D points;
-  for (int i=0; i<polygon.size(); ++i) {
+  for (size_t i=0; i<polygon.size(); ++i) {
     line0 = line1;
     line1 = offset(Line2D(polygon.edge(i)), d);
     points = intersections(line0, line1);

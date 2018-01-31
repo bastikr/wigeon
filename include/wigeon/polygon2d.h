@@ -21,13 +21,13 @@ struct Polygon2D {
   void push_back(const Point2D& point);
   void push_back(double x, double y);
 
-  int size() const;
+  size_t size() const;
   double area() const;
 
   Rectangle2D bounding_box() const;
 
-  Point2D point(int i) const;
-  LineSegment2D edge(int i) const;
+  Point2D point(size_t i) const;
+  LineSegment2D edge(size_t i) const;
 
   Point2D point_looped(int i) const;
   LineSegment2D edge_looped(int i) const;

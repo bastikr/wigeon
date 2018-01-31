@@ -210,7 +210,7 @@ Points2D intersections(const Ray2D& ray, const DoubleLineSegment2D& dsegment) {
 
 Points2D intersections(const Polygon2D& polygon, const Line2D& line) {
   // Handle special cases
-  int size = polygon.size();
+  size_t size = polygon.size();
   switch (size) {
     case 0: return Points2D();
     case 1: return Points2D();
@@ -218,7 +218,7 @@ Points2D intersections(const Polygon2D& polygon, const Line2D& line) {
 
   Points2D points;
   Points2D subpoints;
-  for (int i=0; i<polygon.size(); ++i) {
+  for (size_t i=0; i<size; ++i) {
     // Case 1: Segment is intersected cleanly
     subpoints = intersections(line, polygon.edge(i));
     if (subpoints.size()==1) {
@@ -248,7 +248,7 @@ Points2D intersections(const Line2D& line, const Polygon2D& polygon) {
 
 Points2D intersections(const Ray2D& ray, const Polygon2D& polygon) {
   // Handle special cases
-  int size = polygon.size();
+  size_t size = polygon.size();
   switch (size) {
     case 0: return Points2D();
     case 1: return Points2D();
@@ -256,7 +256,7 @@ Points2D intersections(const Ray2D& ray, const Polygon2D& polygon) {
 
   Points2D points;
   Points2D subpoints;
-  for (int i=0; i<polygon.size(); ++i) {
+  for (size_t i=0; i<size; ++i) {
     // Case 1: Segment is intersected cleanly
     subpoints = intersections(ray, polygon.edge(i));
     if (subpoints.size()==1) {
@@ -286,7 +286,7 @@ Points2D intersections(const Polygon2D& polygon, const Ray2D& ray) {
 
 Points2D intersections(const LineSegment2D& segment, const Polygon2D& polygon) {
   // Handle special cases
-  int size = polygon.size();
+  size_t size = polygon.size();
   switch (size) {
     case 0: return Points2D();
     case 1: return Points2D();
@@ -301,7 +301,7 @@ Points2D intersections(const LineSegment2D& segment, const Polygon2D& polygon) {
 
   Points2D points;
   Points2D subpoints;
-  for (int i=0; i<polygon.size(); ++i) {
+  for (size_t i=0; i<size; ++i) {
     subpoints = intersections(segment, polygon.edge(i));
     // Case 1: Segment is intersected cleanly
     if (subpoints.size()==1) {
@@ -345,7 +345,7 @@ Points2D intersections(const LineSegment2D& segment, const Polygon2D& polygon) {
 Points2D intersections(const Polygon2D& polygon0, const Polygon2D& polygon1) {
   Points2D points;
   Points2D points_part;
-  for (int i=0; i<polygon0.size(); ++i) {
+  for (size_t i=0; i<polygon0.size(); ++i) {
     points_part = intersections(polygon0.edge(i), polygon1);
     if (points_part.size() > 0) {
       points.insert(points.end(), points_part.begin(), points_part.end());
