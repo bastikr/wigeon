@@ -13,7 +13,7 @@
 namespace wigeon {
 
 struct Polygon2D {
-  Polygon2D() : data() {}
+  Polygon2D() : points() {}
   explicit Polygon2D(const LineSegment2D&);
   explicit Polygon2D(const Triangle2D&);
   explicit Polygon2D(const Rectangle2D&);
@@ -32,7 +32,7 @@ struct Polygon2D {
   Point2D point_looped(int i) const;
   LineSegment2D edge_looped(int i) const;
 
-  std::vector<Point2D> data;
+  std::vector<Point2D> points;
 };
 
 Polygon2D operator+(const Polygon2D& polygon, const Vector2D& v);

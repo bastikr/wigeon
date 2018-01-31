@@ -6,32 +6,32 @@
 namespace wigeon {
 
 Polygon2D::Polygon2D(const LineSegment2D& segment)
-    : data({{segment.point0(), segment.point1()}}) {}
+    : points({{segment.point0(), segment.point1()}}) {}
 
 Polygon2D::Polygon2D(const Triangle2D& triangle)
-    : data({{triangle.point0(), triangle.point1(), triangle.point2()}}) {}
+    : points({{triangle.point0(), triangle.point1(), triangle.point2()}}) {}
 
 Polygon2D::Polygon2D(const Rectangle2D& rectangle)
-    : data({{rectangle.point00(), rectangle.point10(),
+    : points({{rectangle.point00(), rectangle.point10(),
              rectangle.point11(), rectangle.point01()}}) {}
 
 void Polygon2D::push_back(const Point2D& point) {
-  data.push_back(point);
+  points.push_back(point);
 }
 
 void Polygon2D::push_back(double x, double y) {
-  data.emplace_back(x, y);
+  points.emplace_back(x, y);
 }
 
 int Polygon2D::size() const {
-  return data.size();
+  return points.size();
 }
 
 double Polygon2D::area() const { 
   double x = point(0).x();
   double y = point(0).y();
-  double A = data.back().x()*y - data.back().y()*x;
-  for (auto it=data.begin(); it!=data.end(); ++it) {
+  double A = points.back().x()*y - points.back().y()*x;
+  for (auto it=points.begin(); it!=points.end(); ++it) {
     A += x*it->y() - y*it->x();
     x = it->x();
     y = it->y();
@@ -41,7 +41,7 @@ double Polygon2D::area() const {
 
 Polygon2D operator+(const Polygon2D& polygon, const Vector2D& v) {
   Polygon2D polygon_new;
-  for (auto it=polygon.data.begin(); it!=polygon.data.end(); ++it) {
+  for (auto it=polygon.points.begin(); it!=polygon.points.end(); ++it) {
     polygon_new.push_back(*it + v);
   }
   return polygon_new;
@@ -49,7 +49,7 @@ Polygon2D operator+(const Polygon2D& polygon, const Vector2D& v) {
 
 Polygon2D operator-(const Polygon2D& polygon, const Vector2D& v) {
   Polygon2D polygon_new;
-  for (auto it=polygon.data.begin(); it!=polygon.data.end(); ++it) {
+  for (auto it=polygon.points.begin(); it!=polygon.points.end(); ++it) {
     polygon_new.push_back(*it - v);
   }
   return polygon_new;
@@ -58,12 +58,12 @@ Polygon2D operator-(const Polygon2D& polygon, const Vector2D& v) {
 Rectangle2D Polygon2D::bounding_box() const {
   if (size()==0)
     throw "0-size polygon has no bounding box.";
-  double xmin = data[0].x();
-  double xmax = data[0].x();
-  double ymin = data[0].y();
-  double ymax = data[0].y();
+  double xmin = points[0].x();
+  double xmax = points[0].x();
+  double ymin = points[0].y();
+  double ymax = points[0].y();
   Point2D p(0,0);
-  for (auto it=++data.begin(); it!=data.end(); ++it) {
+  for (auto it=++points.begin(); it!=points.end(); ++it) {
     p = *it;
     xmin = std::min(xmin, p.x());
     xmax = std::max(xmax, p.x());
@@ -77,15 +77,15 @@ Point2D Polygon2D::point(int i) const {
   if (i<0 || i>=size())
     throw "Access of out-of-bounds element.";
   else
-    return data[i];
+    return points[i];
 }
 
 LineSegment2D Polygon2D::edge(int i) const {
   if (i<0 || i>size()-1)
     throw "Access of out-of-bounds element.";
   if (i==size()-1)
-    return LineSegment2D(data[i], data[0]);
-  return LineSegment2D(data[i], data[i+1]);
+    return LineSegment2D(points[i], points[0]);
+  return LineSegment2D(points[i], points[i+1]);
 }
 
 namespace {
@@ -104,7 +104,7 @@ Point2D Polygon2D::point_looped(int i) const {
   if (size()==0)
     throw "Can't access element of 0-size polygon.";
   int i_ = positive_modulo(i, size());
-  return data[i_];
+  return points[i_];
 }
 
 LineSegment2D Polygon2D::edge_looped(int i) const {
@@ -112,12 +112,12 @@ LineSegment2D Polygon2D::edge_looped(int i) const {
     throw "Can't access element of 0-size polygon.";
   int i0 = positive_modulo(i, size());
   int i1 = positive_modulo(i0 + 1, size());
-  return LineSegment2D(data[i0], data[i1]);
+  return LineSegment2D(points[i0], points[i1]);
 }
 
 Polygon2D rotate(const Rotation2D& R, const Polygon2D& polygon) {
   Polygon2D polygon_rotated;
-  for (auto it=polygon.data.begin(); it!=polygon.data.end(); ++it) {
+  for (auto it=polygon.points.begin(); it!=polygon.points.end(); ++it) {
     polygon_rotated.push_back(rotate(R, *it));
   }
   return polygon_rotated;

@@ -12,7 +12,7 @@
 namespace wigeon {
 
 struct PolyLine2D {
-  PolyLine2D() : data() {}
+  PolyLine2D() : points() {}
   explicit PolyLine2D(const LineSegment2D&);
 
   void push_back(const Point2D& point);
@@ -25,7 +25,7 @@ struct PolyLine2D {
   Point2D point(int i) const;
   LineSegment2D edge(int i) const;
 
-  std::vector<Point2D> data;
+  std::vector<Point2D> points;
 };
 
 PolyLine2D operator+(const PolyLine2D& polygon, const Vector2D& v);

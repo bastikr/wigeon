@@ -50,12 +50,12 @@ PolyLine2D douglas_peucker(const PolyLine2D& polyline, double eps) {
   size_t size = polyline.size();
   if (size<=2)
     return polyline;
-  PointList points = douglas_peucker(polyline.data.begin(), --polyline.data.end(), eps);
+  PointList points = douglas_peucker(polyline.points.begin(), --polyline.points.end(), eps);
   PolyLine2D result;
-  result.push_back(polyline.data.front());
+  result.push_back(polyline.points.front());
   for (auto& p: points)
     result.push_back(p);
-  result.push_back(polyline.data.back());
+  result.push_back(polyline.points.back());
   return result;
 }
 
