@@ -8,6 +8,11 @@ namespace wigeon {
 
 namespace svg {
 
+Properties& Properties::add(std::string name, std::string value) {
+  properties.insert(Item(name, value));
+  return *this;
+}
+
 namespace {
 
 template<typename T>
@@ -17,12 +22,13 @@ void print_argument(std::ostream& f, const std::string& name, const T& value) {
 
 } // anonymous namespace
 
-void print_header(std::ostream& f, double width, double height) {
+void print_header(std::ostream& f, const Properties& properties) {
   f << "<svg";
-  print_argument(f, "width", width);
-  print_argument(f, "height", height);
   print_argument(f, "version", "1.1");
   print_argument(f, "xmlns", "http://www.w3.org/2000/svg");
+  for (auto property: properties.properties) {
+    print_argument(f, property.first, property.second);
+  }
   f << ">";
 }
 
@@ -30,8 +36,11 @@ void print_footer(std::ostream& f) {
   f << "</svg>\n";
 }
 
-void print(std::ostream& f, const LineSegment2D& segment) {
+void print(std::ostream& f, const LineSegment2D& segment, const Properties& properties) {
   f << "<line";
+  for (auto property: properties.properties) {
+    print_argument(f, property.first, property.second);
+  }
   print_argument(f, "x1", segment.x0());
   print_argument(f, "y1", segment.y0());
   print_argument(f, "x2", segment.x1());
@@ -39,20 +48,26 @@ void print(std::ostream& f, const LineSegment2D& segment) {
   f << "/>";
 }
 
-void print(std::ostream& f, const Circle2D& circle) {
+void print(std::ostream& f, const Circle2D& circle, const Properties& properties) {
   f << "<circle";
+  for (auto property: properties.properties) {
+    print_argument(f, property.first, property.second);
+  }
   print_argument(f, "cx", circle.center().x());
   print_argument(f, "cy", circle.center().y());
   print_argument(f, "r", circle.radius());
   f << "/>";
 }
 
-void print(std::ostream& f, const Triangle2D& triangle) {
-  print(f, Polygon2D(triangle));
+void print(std::ostream& f, const Triangle2D& triangle, const Properties& properties) {
+  print(f, Polygon2D(triangle), properties);
 }
 
-void print(std::ostream& f, const Rectangle2D& rectangle) {
+void print(std::ostream& f, const Rectangle2D& rectangle, const Properties& properties) {
   f << "<rect";
+  for (auto property: properties.properties) {
+    print_argument(f, property.first, property.second);
+  }
   print_argument(f, "x", rectangle.point01().x());
   print_argument(f, "y", rectangle.point01().y());
   print_argument(f, "width", rectangle.width());
@@ -60,8 +75,12 @@ void print(std::ostream& f, const Rectangle2D& rectangle) {
   f << "/>";
 }
 
-void print(std::ostream& f, const Polygon2D& polygon) {
-  f << "<polygon points=\"";
+void print(std::ostream& f, const Polygon2D& polygon, const Properties& properties) {
+  f << "<polygon";
+  for (auto property: properties.properties) {
+    print_argument(f, property.first, property.second);
+  }
+  f << " points=\"";
   for (auto it=polygon.points.begin(); it!=polygon.points.end(); ++it) {
     f << it->x() << "," << it->y();
     if (it != --polygon.points.end())
@@ -70,8 +89,12 @@ void print(std::ostream& f, const Polygon2D& polygon) {
   f << "\"/>";
 }
 
-void print(std::ostream& f, const PolyLine2D& polyline) {
-  f << "<polyline points=\"";
+void print(std::ostream& f, const PolyLine2D& polyline, const Properties& properties) {
+  f << "<polyline";
+  for (auto property: properties.properties) {
+    print_argument(f, property.first, property.second);
+  }
+  f << " points=\"";
   for (auto it=polyline.points.begin(); it!=polyline.points.end(); ++it) {
     f << it->x() << "," << it->y();
     if (it != --polyline.points.end())
@@ -80,16 +103,16 @@ void print(std::ostream& f, const PolyLine2D& polyline) {
   f << "\"/>";
 }
 
-void print(std::ostream& f, const PlotObject2D& obj) {
-  print_visitor printer(f);
+void print(std::ostream& f, const PlotObject2D& obj, const Properties& properties) {
+  print_visitor printer(f, properties);
   obj.apply_visitor(printer);
 }
 
-void print(std::ostream& f, const PlotObjects2D& obj) {
+void print(std::ostream& f, const PlotObjects2D& obj, const Properties& properties) {
   f << "<g>"  << std::endl;
   for (auto it=obj.begin(); it!=obj.end(); ++it) {
     f << "  ";
-    print(f, *it);
+    print(f, *it, properties);
     f << std::endl;
   }
   f << "</g>";
