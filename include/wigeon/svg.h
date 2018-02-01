@@ -4,8 +4,6 @@
 #include <string>
 #include <sstream>
 
-#include <boost/variant.hpp>
-
 #include "wigeon/linesegment2d.h"
 #include "wigeon/circle2d.h"
 #include "wigeon/triangle2d.h"
@@ -34,22 +32,6 @@ void print(std::ostream&, const Triangle2D&, const Properties& = Properties());
 void print(std::ostream&, const Rectangle2D&, const Properties& = Properties());
 void print(std::ostream&, const Polygon2D&, const Properties& = Properties());
 void print(std::ostream&, const PolyLine2D&, const Properties& = Properties());
-
-
-class print_visitor : public boost::static_visitor<> {
-  public:
-    print_visitor(std::ostream& os, const Properties& properties)
-        : os(os), properties(properties) {}
-
-    template <typename T>
-    void operator()(const T& object) {
-      print(os, object, properties);
-    }
-
-    std::ostream& os;
-    const Properties& properties;
-};
-
 void print(std::ostream&, const PlotObject2D&, const Properties& = Properties());
 void print(std::ostream&, const PlotObjects2D&, const Properties& = Properties());
 

@@ -1,5 +1,7 @@
 #include "wigeon/svg.h"
 
+#include <boost/variant.hpp>
+
 #include <string>
 #include <sstream>
 
@@ -103,9 +105,28 @@ void print(std::ostream& f, const PolyLine2D& polyline, const Properties& proper
   f << "\"/>";
 }
 
+
+namespace {
+
+class print_visitor : public boost::static_visitor<> {
+  public:
+    print_visitor(std::ostream& os, const Properties& properties)
+        : os(os), properties(properties) {}
+
+    template <typename T>
+    void operator()(const T& object) {
+      print(os, object, properties);
+    }
+
+    std::ostream& os;
+    const Properties& properties;
+};
+
+} // anonymous namespace
+
 void print(std::ostream& f, const PlotObject2D& obj, const Properties& properties) {
-  print_visitor printer(f, properties);
-  obj.apply_visitor(printer);
+  print_visitor visitor(f, properties);
+  obj.apply_visitor(visitor);
 }
 
 void print(std::ostream& f, const PlotObjects2D& obj, const Properties& properties) {
