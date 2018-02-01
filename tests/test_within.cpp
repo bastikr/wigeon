@@ -120,3 +120,19 @@ TEST(WITHIN, POINT_POLYGON) {
     }
   }
 };
+
+TEST(WITHIN, POINT_CLOSEDCURVE) {
+  Circle2D circle(Point2D(0, 0), 1.2);
+  Rectangle2D rectangle(0, 0, 1, 1);
+  ClosedCurves2D curves;
+  curves.push_back(circle);
+  curves.push_back(rectangle);
+
+  Point2D p0(0.5, 0.5);
+  Point2D p1(-0.5, -0.5);
+  Point2D p2(0.9, 0.9);
+
+  ASSERT_TRUE(within(p0, curves));
+  ASSERT_FALSE(within(p1, curves));
+  ASSERT_FALSE(within(p2, curves));
+}

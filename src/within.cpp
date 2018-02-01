@@ -1,9 +1,9 @@
 #include "wigeon/within.h"
 
+#include <boost/variant.hpp>
+
 #include "wigeon/distances.h"
 #include "wigeon/winding_number.h"
-
-#include "wigeon/printer.h"
 
 
 namespace wigeon {
@@ -34,6 +34,37 @@ bool within(const Point2D& point, const Circle2D& circle) {
 
 bool within(const Point2D& point, const Polygon2D& polygon) {
   return winding_number(point, polygon) != 0;
+}
+
+
+namespace {
+
+class within_visitor : public boost::static_visitor<bool> {
+  public:
+    within_visitor(const Point2D& point) : point(point) {}
+
+    template <typename T>
+    bool operator()(const T& object) {
+      return within(point, object);
+    }
+
+    const Point2D& point;
+};
+
+} // anonymous namespace
+
+
+bool within(const Point2D& point, const ClosedCurve2D& curve) {
+  within_visitor visitor(point);
+  return curve.apply_visitor(visitor);
+}
+
+bool within(const Point2D& point, const ClosedCurves2D& curves) {
+  for (auto& curve: curves) {
+    if (!within(point, curve))
+      return false;
+  }
+  return true;
 }
 
 } // namespace wigeon
