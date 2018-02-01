@@ -18,7 +18,7 @@ TEST(SVG, TRIANGLE) {
 
 TEST(SVG, CIRCLE) {
   Circle2D circle(Point2D(3, 5), 2);
-  std::string str = "<circle cx=\"3\" cy=\"5\" cx=\"2\"/>";
+  std::string str = "<circle cx=\"3\" cy=\"5\" r=\"2\"/>";
   EXPECT_EQ(str, svg::print(circle));
 }
 
@@ -53,6 +53,6 @@ TEST(SVG, COLLECTION) {
   PlotObjects2D objects;
   objects.push_back(circle);
   objects.push_back(rectangle);
-  std::string str = "<g>\n  <circle cx=\"3\" cy=\"5\" cx=\"2\"/>\n  <rect x=\"3\" y=\"7\" width=\"5\" height=\"2\"/>\n</g>";
+  std::string str = "<g>\n  <circle cx=\"3\" cy=\"5\" r=\"2\"/>\n  <rect x=\"3\" y=\"7\" width=\"5\" height=\"2\"/>\n</g>";
   EXPECT_EQ(str, svg::print(objects));
 }

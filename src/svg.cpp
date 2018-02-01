@@ -43,7 +43,7 @@ void print(std::ostream& f, const Circle2D& circle) {
   f << "<circle";
   print_argument(f, "cx", circle.center().x());
   print_argument(f, "cy", circle.center().y());
-  print_argument(f, "cx", circle.radius());
+  print_argument(f, "r", circle.radius());
   f << "/>";
 }
 
