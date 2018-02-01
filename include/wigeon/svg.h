@@ -39,8 +39,8 @@ class print_visitor : public boost::static_visitor<> {
     std::ostream& os;
 };
 
-void print(std::ostream&, const Area2D&);
-void print(std::ostream&, const Areas2D&);
+void print(std::ostream&, const PlotObject2D&);
+void print(std::ostream&, const PlotObjects2D&);
 
 template<typename T>
 std::string print(const T object) {

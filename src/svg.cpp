@@ -80,12 +80,12 @@ void print(std::ostream& f, const PolyLine2D& polyline) {
   f << "\"/>";
 }
 
-void print(std::ostream& f, const Area2D& obj) {
+void print(std::ostream& f, const PlotObject2D& obj) {
   print_visitor printer(f);
   obj.apply_visitor(printer);
 }
 
-void print(std::ostream& f, const Areas2D& obj) {
+void print(std::ostream& f, const PlotObjects2D& obj) {
   f << "<g>"  << std::endl;
   for (auto it=obj.begin(); it!=obj.end(); ++it) {
     f << "  ";

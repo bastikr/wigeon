@@ -23,10 +23,12 @@
 
 namespace wigeon {
 
-using Curve2D = boost::variant<Line2D, Ray2D, LineSegment2D, Triangle2D, Rectangle2D, Circle2D>;
-using Area2D = boost::variant<Triangle2D, Rectangle2D, Circle2D, Polygon2D, PolyLine2D>;
+using Curve2D = boost::variant<Line2D, Ray2D, LineSegment2D, PolyLine2D>;
+using ClosedCurve2D = boost::variant<Triangle2D, Rectangle2D, Circle2D, Polygon2D>;
+using PlotObject2D = boost::variant<LineSegment2D, Triangle2D, Rectangle2D, Circle2D, Polygon2D, PolyLine2D>;
 
 using Curves2D = std::list<Curve2D>;
-using Areas2D = std::list<Area2D>;
+using ClosedCurves2D = std::list<ClosedCurve2D>;
+using PlotObjects2D = std::list<PlotObject2D>;
 
 } // namespace wigeon
