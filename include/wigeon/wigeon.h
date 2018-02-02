@@ -17,6 +17,7 @@
 #include "wigeon/point3d.h"
 #include "wigeon/vector3d.h"
 
+#include "wigeon/concepts.h"
 #include "wigeon/collections.h"
 
 #include "wigeon/distances.h"

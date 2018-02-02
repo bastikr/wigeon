@@ -30,6 +30,7 @@ add_library(wigeon SHARED
     src/vector3d.cpp
 
     #2D algorithms
+    src/concepts.cpp
     src/distances.cpp
     src/intersections.cpp
     src/winding_number.cpp
