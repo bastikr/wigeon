@@ -67,4 +67,14 @@ bool within(const Point2D& point, const ClosedCurves2D& curves) {
   return true;
 }
 
+bool within(const Point2D& point, const Area2D& area) {
+  if (!within(point, area.exterior_curves))
+    return false;
+  for (auto& curve: area.interior_curves) {
+    if (within(point, curve))
+      return false;
+  }
+  return true;
+}
+
 } // namespace wigeon
