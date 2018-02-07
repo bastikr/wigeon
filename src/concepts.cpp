@@ -84,10 +84,10 @@ ClosedCurve2D rotate(const Rotation2D& rotation, const ClosedCurve2D& curve) {
   return curve.apply_visitor(visitor);
 }
 
-// PlotObject2D rotate(const Rotation2D& rotation, const PlotObject2D& obj) {
-//   rotate_visitor<PlotObject2D> visitor(rotation);
-//   return obj.apply_visitor(visitor);
-// }
+PlotObject2D rotate(const Rotation2D& rotation, const PlotObject2D& obj) {
+  rotate_visitor<PlotObject2D> visitor(rotation);
+  return obj.apply_visitor(visitor);
+}
 
 
 

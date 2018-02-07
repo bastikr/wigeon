@@ -29,7 +29,7 @@ using PlotObject2D = boost::variant<LineSegment2D, Triangle2D, Rectangle2D, Circ
 
 Curve2D rotate(const Rotation2D&, const Curve2D&);
 ClosedCurve2D rotate(const Rotation2D&, const ClosedCurve2D&);
-// PlotObject2D rotate(const Rotation2D&, const PlotObject2D&);
+PlotObject2D rotate(const Rotation2D&, const PlotObject2D&);
 
 
 Curve2D operator+(const Curve2D&, const Vector2D&);
