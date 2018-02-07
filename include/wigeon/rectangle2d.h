@@ -2,6 +2,7 @@
 
 #include <array>
 
+#include "wigeon/rotations2d.h" 
 #include "wigeon/vector2d.h"
 #include "wigeon/point2d.h"
 
@@ -9,23 +10,24 @@
 namespace wigeon {
 
 struct Rectangle2D {
-  Rectangle2D(double xmin, double ymin, double xmax, double ymax);
-  Rectangle2D(Point2D pmin, Point2D pmax);
+  Rectangle2D(const Point2D& origin, double width, double height, const Rotation2D& rotation=0);
+  Rectangle2D(const Point2D& point00, Point2D& point11, const Rotation2D& rotation=0);
+  Rectangle2D(double x0, double y0, double x1, double y1, const Rotation2D& rotation=0);
 
-  double width() const {return data[2] - data[0];}
-  double height() const {return data[3] - data[1];}
+  Point2D origin() const {return origin_;}
+  double width() const {return width_;}
+  double height() const {return height_;}
+  Rotation2D rotation() const {return rotation_;}
 
-  double xmin() const {return data[0];}
-  double xmax() const {return data[2];}
-  double ymin() const {return data[1];}
-  double ymax() const {return data[3];}
+  Point2D point00() const {return origin_ + rotate(rotation_, Vector2D(-0.5*width_, -0.5*height_));}
+  Point2D point01() const {return origin_ + rotate(rotation_, Vector2D(-0.5*width_, 0.5*height_));}
+  Point2D point10() const {return origin_ + rotate(rotation_, Vector2D(0.5*width_, -0.5*height_));}
+  Point2D point11() const {return origin_ + rotate(rotation_, Vector2D(0.5*width_, 0.5*height_));}
 
-  Point2D point00() const {return Point2D(xmin(), ymin());}
-  Point2D point01() const {return Point2D(xmin(), ymax());}
-  Point2D point10() const {return Point2D(xmax(), ymin());}
-  Point2D point11() const {return Point2D(xmax(), ymax());}
-
-  std::array<double, 4> data;
+  Point2D origin_;
+  double width_;
+  double height_;
+  Rotation2D rotation_;
 };
 
 Rectangle2D operator+(const Rectangle2D&, const Vector2D&);
@@ -33,5 +35,7 @@ Rectangle2D operator+(const Vector2D&, const Rectangle2D&);
 
 Rectangle2D operator-(const Rectangle2D&, const Vector2D&);
 Rectangle2D operator-(const Vector2D&, const Rectangle2D&);
+
+Rectangle2D rotate(const Rotation2D&, const Rectangle2D&);
 
 } // namespace wigeon

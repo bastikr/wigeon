@@ -26,28 +26,28 @@ TEST(OFFSETS, RECTANGLE2D) {
   Rectangle2D rectangle(-3, -1, 7, 4);
 
   Rectangle2D rectangle0 = offset(rectangle, 2);
-  ASSERT_DOUBLE_EQ(rectangle0.xmin(), -5);
-  ASSERT_DOUBLE_EQ(rectangle0.ymin(), -3);
-  ASSERT_DOUBLE_EQ(rectangle0.xmax(), 9);
-  ASSERT_DOUBLE_EQ(rectangle0.ymax(), 6);
+  ASSERT_DOUBLE_EQ(rectangle0.point00().x(), -5);
+  ASSERT_DOUBLE_EQ(rectangle0.point00().y(), -3);
+  ASSERT_DOUBLE_EQ(rectangle0.point11().x(), 9);
+  ASSERT_DOUBLE_EQ(rectangle0.point11().y(), 6);
 
   Rectangle2D rectangle1 = offset(rectangle, -2);
-  ASSERT_DOUBLE_EQ(rectangle1.xmin(), -1);
-  ASSERT_DOUBLE_EQ(rectangle1.ymin(), 1);
-  ASSERT_DOUBLE_EQ(rectangle1.xmax(), 5);
-  ASSERT_DOUBLE_EQ(rectangle1.ymax(), 2);
+  ASSERT_DOUBLE_EQ(rectangle1.point00().x(), -1);
+  ASSERT_DOUBLE_EQ(rectangle1.point00().y(), 1);
+  ASSERT_DOUBLE_EQ(rectangle1.point11().x(), 5);
+  ASSERT_DOUBLE_EQ(rectangle1.point11().y(), 2);
 
   Rectangle2D rectangle2 = offset(rectangle, -3);
-  ASSERT_DOUBLE_EQ(rectangle2.xmin(), 0);
-  ASSERT_DOUBLE_EQ(rectangle2.ymin(), 1.5);
-  ASSERT_DOUBLE_EQ(rectangle2.xmax(), 4);
-  ASSERT_DOUBLE_EQ(rectangle2.ymax(), 1.5);
+  ASSERT_DOUBLE_EQ(rectangle2.point00().x(), 0);
+  ASSERT_DOUBLE_EQ(rectangle2.point00().y(), 1.5);
+  ASSERT_DOUBLE_EQ(rectangle2.point11().x(), 4);
+  ASSERT_DOUBLE_EQ(rectangle2.point11().y(), 1.5);
 
   Rectangle2D rectangle3 = offset(rectangle, -9);
-  ASSERT_DOUBLE_EQ(rectangle3.xmin(), 2);
-  ASSERT_DOUBLE_EQ(rectangle3.ymin(), 1.5);
-  ASSERT_DOUBLE_EQ(rectangle3.xmax(), 2);
-  ASSERT_DOUBLE_EQ(rectangle3.ymax(), 1.5);
+  ASSERT_DOUBLE_EQ(rectangle3.point00().x(), 2);
+  ASSERT_DOUBLE_EQ(rectangle3.point00().y(), 1.5);
+  ASSERT_DOUBLE_EQ(rectangle3.point11().x(), 2);
+  ASSERT_DOUBLE_EQ(rectangle3.point11().y(), 1.5);
 }
 
 TEST(OFFSETS, POLYGON2D) {

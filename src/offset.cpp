@@ -24,16 +24,14 @@ Circle2D offset(const Circle2D& circle, double d) {
   return Circle2D(circle.center(), 0);
 }
 
-Rectangle2D offset(const Rectangle2D& r, double d) {
-  double xmin = r.xmin() - d;
-  double xmax = r.xmax() + d;
-  double ymin = r.ymin() - d;
-  double ymax = r.ymax() + d;
-  if (xmin>xmax)
-    xmin = xmax = (xmin + xmax)/2;
-  if (ymin>ymax)
-    ymin = ymax = (ymin + ymax)/2;
-  return Rectangle2D(xmin, ymin, xmax, ymax);
+Rectangle2D offset(const Rectangle2D& rectangle, double d) {
+  double width = rectangle.width() + 2*d;
+  if (width < 0)
+    width = 0;
+  double height = rectangle.height() + 2*d;
+  if (height < 0)
+    height = 0;
+  return Rectangle2D(rectangle.origin(), width, height, rectangle.rotation());
 }
 
 Polygon2D offset(const Polygon2D& polygon, double d) {

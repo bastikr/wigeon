@@ -24,8 +24,11 @@ bool within(const Point2D& point, const Triangle2D& triangle) {
 }
 
 bool within(const Point2D& point, const Rectangle2D& rectangle) {
-  return rectangle.xmin() < point.x() && point.x() < rectangle.xmax()
-         && rectangle.ymin() < point.y() && point.y() < rectangle.ymax();
+  Vector2D point_transformed = 2 * (rotate(rectangle.rotation().inverse(), point) - rectangle.origin());
+  return -rectangle.width() < point_transformed.x()
+          && point_transformed.x() < rectangle.width()
+          && -rectangle.height() < point_transformed.y()
+          && point_transformed.y() < rectangle.height();
 }
 
 bool within(const Point2D& point, const Circle2D& circle) {
