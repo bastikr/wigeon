@@ -1,6 +1,7 @@
 #pragma once
 
 #include "wigeon/point2d.h"
+#include "wigeon/boundingbox2d.h"
 #include "wigeon/triangle2d.h"
 #include "wigeon/rectangle2d.h"
 #include "wigeon/circle2d.h"
@@ -18,5 +19,8 @@ bool within(const Point2D& point, const Polygon2D& polygon);
 bool within(const Point2D&, const ClosedCurve2D&);
 bool within(const Point2D&, const ClosedCurves2D&);
 bool within(const Point2D&, const Area2D&);
+
+bool within(const Point2D&, const BoundingBox2D&);
+bool within(const BoundingBox2D&, const BoundingBox2D&);
 
 } // namespace wigeon

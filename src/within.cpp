@@ -80,4 +80,15 @@ bool within(const Point2D& point, const Area2D& area) {
   return true;
 }
 
+
+bool within(const Point2D& point, const BoundingBox2D& box) {
+  return box.xmin() < point.x() && point.x() < box.xmax()
+         && box.ymin() < point.y() && point.y() < box.ymax();
+}
+
+bool within(const BoundingBox2D& box0, const BoundingBox2D& box1) {
+  return box1.xmin() < box0.xmin() && box0.xmax() < box1.xmax()
+         && box1.ymin() < box0.ymin() && box0.ymax() < box1.ymax();
+}
+
 } // namespace wigeon

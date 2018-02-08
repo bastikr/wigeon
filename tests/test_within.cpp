@@ -136,3 +136,28 @@ TEST(WITHIN, POINT_CLOSEDCURVE) {
   ASSERT_FALSE(within(p1, curves));
   ASSERT_FALSE(within(p2, curves));
 }
+
+TEST(WITHIN, POINT_BOUNDINGBOX) {
+  BoundingBox2D box(1, -2, 3, 7);
+
+  ASSERT_TRUE(within(Point2D(1.1, -1.9), box));
+  ASSERT_TRUE(within(Point2D(1.1, 6.9), box));
+  ASSERT_TRUE(within(Point2D(2.9, -1.9), box));
+  ASSERT_TRUE(within(Point2D(2.9, 6.9), box));
+
+  ASSERT_FALSE(within(Point2D(0.9, -1.9), box));
+  ASSERT_FALSE(within(Point2D(1.1, 7.1), box));
+  ASSERT_FALSE(within(Point2D(2.9, -2.1), box));
+  ASSERT_FALSE(within(Point2D(3.1, 6.9), box));
+}
+
+TEST(WITHIN, BOUNDINGBOX_BOUNDINGBOX) {
+  BoundingBox2D box(1, -2, 3, 7);
+
+  ASSERT_TRUE(within(BoundingBox2D(1.1, -1.9, 2.9, 6.9), box));
+
+  ASSERT_FALSE(within(BoundingBox2D(0.9, -1.9, 2.9, 6.9), box));
+  ASSERT_FALSE(within(BoundingBox2D(1.1, -2.1, 2.9, 6.9), box));
+  ASSERT_FALSE(within(BoundingBox2D(1.1, -1.9, 3.1, 6.9), box));
+  ASSERT_FALSE(within(BoundingBox2D(1.1, -1.9, 2.9, 7.1), box));
+}
