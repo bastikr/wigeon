@@ -12,10 +12,10 @@
 
 namespace wigeon {
 
-bool within(const Point2D& point, const Triangle2D& triangle);
-bool within(const Point2D& point, const Rectangle2D& rectangle);
-bool within(const Point2D& point, const Circle2D& circle);
-bool within(const Point2D& point, const Polygon2D& polygon);
+bool within(const Point2D&, const Triangle2D&);
+bool within(const Point2D&, const Rectangle2D&);
+bool within(const Point2D&, const Circle2D&);
+bool within(const Point2D&, const Polygon2D&);
 bool within(const Point2D&, const ClosedCurve2D&);
 bool within(const Point2D&, const ClosedCurves2D&);
 bool within(const Point2D&, const Area2D&);
