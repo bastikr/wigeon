@@ -9,7 +9,7 @@ double Vector1D::length2() const {
 }
 
 double Vector1D::length() const {
-  return abs(x());
+  return std::abs(x());
 }
 
 

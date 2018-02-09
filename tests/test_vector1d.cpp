@@ -4,9 +4,9 @@
 using namespace wigeon;
 
 TEST(VECTOR1D, LENGTH) {
-    Vector1D v0(-3);
-    ASSERT_DOUBLE_EQ(v0.length2(), 9);
-    ASSERT_DOUBLE_EQ(v0.length(), 3);
+    Vector1D v0(-1.5);
+    ASSERT_DOUBLE_EQ(v0.length2(), 1.5*1.5);
+    ASSERT_DOUBLE_EQ(v0.length(), 1.5);
 
     UnitVector1D u0(v0);
     ASSERT_DOUBLE_EQ(u0.length2(), 1);
