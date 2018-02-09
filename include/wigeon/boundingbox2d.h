@@ -9,24 +9,27 @@
 namespace wigeon {
 
 struct BoundingBox2D {
-  BoundingBox2D(double xmin, double ymin, double xmax, double ymax);
-  BoundingBox2D(Point2D pmin, Point2D pmax);
+  BoundingBox2D(const Point2D& origin, double width, double height);
+  BoundingBox2D(const Point2D& point00, const Point2D& point11);
+  BoundingBox2D(double x0, double y0, double x1, double y1);
 
-  Point2D origin() const {return Point2D((data[0]+data[2])/2, (data[1]+data[3])/2);}
-  double width() const {return data[2] - data[0];}
-  double height() const {return data[3] - data[1];}
+  Point2D origin() const {return origin_;}
+  double width() const {return width_;}
+  double height() const {return height_;}
 
-  double xmin() const {return data[0];}
-  double xmax() const {return data[2];}
-  double ymin() const {return data[1];}
-  double ymax() const {return data[3];}
+  double xmin() const {return origin_.x() - 0.5*width_;}
+  double xmax() const {return origin_.x() + 0.5*width_;}
+  double ymin() const {return origin_.y() - 0.5*height_;}
+  double ymax() const {return origin_.y() + 0.5*height_;}
 
   Point2D point00() const {return Point2D(xmin(), ymin());}
   Point2D point01() const {return Point2D(xmin(), ymax());}
   Point2D point10() const {return Point2D(xmax(), ymin());}
   Point2D point11() const {return Point2D(xmax(), ymax());}
 
-  std::array<double, 4> data;
+  Point2D origin_;
+  double width_;
+  double height_;
 };
 
 BoundingBox2D operator+(const BoundingBox2D&, const Vector2D&);

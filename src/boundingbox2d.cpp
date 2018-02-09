@@ -5,19 +5,17 @@
 
 namespace wigeon {
 
-BoundingBox2D::BoundingBox2D(double xmin, double ymin, double xmax, double ymax) {
-  data[0] = xmin;
-  data[1] = ymin;
-  data[2] = xmax;
-  data[3] = ymax;
-}
+BoundingBox2D::BoundingBox2D(const Point2D& origin, double width, double height)
+    : origin_(origin), width_(width), height_(height) {}
 
-BoundingBox2D::BoundingBox2D(Point2D pmin, Point2D pmax) {
-  data[0] = pmin.x();
-  data[1] = pmin.y();
-  data[2] = pmax.x();
-  data[3] = pmax.y();
-}
+BoundingBox2D::BoundingBox2D(const Point2D& p00, const Point2D& p11)
+    : origin_((p00.x() + p11.x())/2, (p00.y() + p11.y())/2),
+      width_(p11.x() - p00.x()), height_(p11.y() - p00.y()) {}
+
+BoundingBox2D::BoundingBox2D(double x0, double y0, double x1, double y1)
+    : origin_((x0 + x1)/2, (y0 + y1)/2),
+      width_(x1 - x0), height_(y1 - y0) {}
+
 
 BoundingBox2D operator+(const BoundingBox2D& segment, const Vector2D& vector) {
   return BoundingBox2D(segment.point00() + vector, segment.point11() + vector);
