@@ -1,5 +1,7 @@
 #include "wigeon/boundingbox2d.h"
 
+#include <cmath>
+
 
 namespace wigeon {
 
@@ -33,5 +35,9 @@ BoundingBox2D operator-(const Vector2D& vector, const BoundingBox2D& segment) {
   return BoundingBox2D(vector - segment.point00(), vector - segment.point11());
 }
 
+bool overlap(const BoundingBox2D& box0, const BoundingBox2D& box1) {
+  return std::abs(box0.origin().x() - box1.origin().x()) < (box0.width() + box1.width())/2
+      && std::abs(box0.origin().y() - box1.origin().y()) < (box0.height() + box1.height())/2;
+}
 
 } // namespace wigeon

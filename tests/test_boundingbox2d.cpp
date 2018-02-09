@@ -33,3 +33,15 @@ TEST(BOUNDINGBOX2D, OPERATORS) {
   ASSERT_DOUBLE_EQ(r3.xmax(), -1);
   ASSERT_DOUBLE_EQ(r3.ymax(), -4);
 }
+
+TEST(BOUNDINGBOX2D, OVERLAP) {
+  BoundingBox2D box0(1, -2, 3, 7);
+
+  ASSERT_TRUE(overlap(box0, BoundingBox2D(0.5, -3, 1.5, 1)));
+  ASSERT_TRUE(overlap(box0, BoundingBox2D(1.5, 6, 1.6, 8)));
+  ASSERT_TRUE(overlap(box0, BoundingBox2D(1, 3, 2, 4)));
+  ASSERT_TRUE(overlap(box0, BoundingBox2D(2.9, 6.9, 3.1, 7.1)));
+
+  ASSERT_FALSE(overlap(box0, BoundingBox2D(-1, -3, 0.9, -2.9)));
+  ASSERT_FALSE(overlap(box0, BoundingBox2D(3.1, 7.1, 3.2, 7.2)));
+}

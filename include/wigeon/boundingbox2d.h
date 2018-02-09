@@ -12,6 +12,7 @@ struct BoundingBox2D {
   BoundingBox2D(double xmin, double ymin, double xmax, double ymax);
   BoundingBox2D(Point2D pmin, Point2D pmax);
 
+  Point2D origin() const {return Point2D((data[0]+data[2])/2, (data[1]+data[3])/2);}
   double width() const {return data[2] - data[0];}
   double height() const {return data[3] - data[1];}
 
@@ -33,5 +34,7 @@ BoundingBox2D operator+(const Vector2D&, const BoundingBox2D&);
 
 BoundingBox2D operator-(const BoundingBox2D&, const Vector2D&);
 BoundingBox2D operator-(const Vector2D&, const BoundingBox2D&);
+
+bool overlap(const BoundingBox2D&, const BoundingBox2D&);
 
 } // namespace wigeon
