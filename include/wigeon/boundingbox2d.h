@@ -39,5 +39,6 @@ BoundingBox2D operator-(const BoundingBox2D&, const Vector2D&);
 BoundingBox2D operator-(const Vector2D&, const BoundingBox2D&);
 
 bool overlap(const BoundingBox2D&, const BoundingBox2D&);
+BoundingBox2D combine(const BoundingBox2D&, const BoundingBox2D&);
 
 } // namespace wigeon

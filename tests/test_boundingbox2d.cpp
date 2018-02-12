@@ -45,3 +45,14 @@ TEST(BOUNDINGBOX2D, OVERLAP) {
   ASSERT_FALSE(overlap(box0, BoundingBox2D(-1, -3, 0.9, -2.9)));
   ASSERT_FALSE(overlap(box0, BoundingBox2D(3.1, 7.1, 3.2, 7.2)));
 }
+
+TEST(BOUNDINGBOX2D, COMBINE) {
+  BoundingBox2D box0(1, -2, 3, 7);
+  BoundingBox2D box1(-3, 1, 2, 8);
+
+  BoundingBox2D result = combine(box0, box1);
+  ASSERT_DOUBLE_EQ(result.xmin(), -3);
+  ASSERT_DOUBLE_EQ(result.ymin(), -2);
+  ASSERT_DOUBLE_EQ(result.xmax(), 3);
+  ASSERT_DOUBLE_EQ(result.ymax(), 8);
+}

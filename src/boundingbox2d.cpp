@@ -38,4 +38,12 @@ bool overlap(const BoundingBox2D& box0, const BoundingBox2D& box1) {
       && std::abs(box0.origin().y() - box1.origin().y()) < (box0.height() + box1.height())/2;
 }
 
+BoundingBox2D combine(const BoundingBox2D& bbox0, const BoundingBox2D& bbox1) {
+  double xmin = std::min(bbox0.xmin(), bbox1.xmin());
+  double ymin = std::min(bbox0.ymin(), bbox1.ymin());
+  double xmax = std::max(bbox0.xmax(), bbox1.xmax());
+  double ymax = std::max(bbox0.ymax(), bbox1.ymax());
+  return BoundingBox2D(xmin, ymin, xmax, ymax);
+}
+
 } // namespace wigeon
