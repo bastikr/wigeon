@@ -11,20 +11,20 @@ add_library(wigeon SHARED
     # 1D objects
     src/point1d.cpp
     src/vector1d.cpp
-    src/point2d.cpp
 
     # 2D objects
     src/rotations2d.cpp
     src/vector2d.cpp
+    src/point2d.cpp
     src/boundingbox2d.cpp
+    src/line2d.cpp
+    src/ray2d.cpp
     src/linesegment2d.cpp
     src/triangle2d.cpp
     src/rectangle2d.cpp
     src/circle2d.cpp
     src/polygon2d.cpp
     src/polyline2d.cpp
-    src/line2d.cpp
-    src/ray2d.cpp
 
     #3D objects
     src/point3d.cpp
