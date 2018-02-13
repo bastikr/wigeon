@@ -33,6 +33,7 @@ add_library(wigeon SHARED
     #2D algorithms
     src/concepts.cpp
     src/area2d.cpp
+    src/binarytree2d.cpp
     src/distances.cpp
     src/intersections.cpp
     src/winding_number.cpp

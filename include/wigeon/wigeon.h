@@ -28,6 +28,7 @@
 #include "wigeon/offset.h"
 #include "wigeon/polygon2d_simplification.h"
 
+#include "wigeon/binarytree2d.h"
 #include "wigeon/collisions.h"
 #include "wigeon/printer.h"
 #include "wigeon/svg.h"
