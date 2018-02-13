@@ -6,6 +6,15 @@
 
 using namespace wigeon;
 
+TEST(CIRCLE2D, BOUNDINGBOX) {
+  Circle2D circle(Point2D(2.5, 4), 0.5);
+  BoundingBox2D box = circle.boundingbox();
+  ASSERT_DOUBLE_EQ(box.xmin(), 2);
+  ASSERT_DOUBLE_EQ(box.ymin(), 3.5);
+  ASSERT_DOUBLE_EQ(box.xmax(), 3);
+  ASSERT_DOUBLE_EQ(box.ymax(), 4.5);
+}
+
 TEST(CIRCLE2D, OPERATORS) {
   Circle2D circle0(Point2D(2, 4), 0.5);
   Circle2D circle0_p = circle0 + Vector2D(1, 2);

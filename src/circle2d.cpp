@@ -2,6 +2,10 @@
 
 namespace wigeon {
 
+BoundingBox2D Circle2D::boundingbox() const {
+  return BoundingBox2D(center_, 2*radius(), 2*radius());
+}
+
 Circle2D operator+(const Circle2D& circle, const Vector2D& vector) {
   return Circle2D(circle.center() + vector, circle.radius());
 }

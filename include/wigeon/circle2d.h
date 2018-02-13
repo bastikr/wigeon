@@ -3,6 +3,7 @@
 #include "wigeon/rotations2d.h"
 #include "wigeon/vector2d.h"
 #include "wigeon/point2d.h"
+#include "wigeon/boundingbox2d.h"
 
 
 namespace wigeon {
@@ -12,6 +13,8 @@ struct Circle2D {
 
   Point2D center() const {return center_;}
   double radius() const {return radius_;}
+
+  BoundingBox2D boundingbox() const;
 
   Point2D center_;
   double radius_;
