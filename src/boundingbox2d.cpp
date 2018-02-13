@@ -1,6 +1,7 @@
 #include "wigeon/boundingbox2d.h"
 
 #include <cmath>
+#include <limits>
 
 
 namespace wigeon {
@@ -106,5 +107,22 @@ BoundingBox2D boundingbox(const Rectangle2D& reactangle) {
 BoundingBox2D boundingbox(const Circle2D& circle) {
   return BoundingBox2D(circle.center(), 2*circle.radius(), 2*circle.radius());
 }
+
+BoundingBox2D boundingbox(const Polygon2D& polygon) {
+  double xmin = std::numeric_limits<double>::infinity();
+  double xmax = -std::numeric_limits<double>::infinity();
+  double ymin = std::numeric_limits<double>::infinity();
+  double ymax = -std::numeric_limits<double>::infinity();
+
+  for (auto& point: polygon.points) {
+    xmin = std::min(xmin, point.x());
+    ymin = std::min(ymin, point.y());
+    xmax = std::max(xmax, point.x());
+    ymax = std::max(ymax, point.y());
+  }
+
+  return BoundingBox2D(xmin, ymin, xmax, ymax);
+}
+
 
 } // namespace wigeon

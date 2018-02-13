@@ -96,3 +96,16 @@ TEST(BOUNDINGBOX2D, CIRCLE2D) {
   ASSERT_DOUBLE_EQ(box.xmax(), 3);
   ASSERT_DOUBLE_EQ(box.ymax(), 4.5);
 }
+
+TEST(BOUNDINGBOX2D, POLYGON2D) {
+  Polygon2D polygon;
+  polygon.push_back(Point2D(2.5, -4.2));
+  polygon.push_back(Point2D(-0.3, 0.7));
+  polygon.push_back(Point2D(0, 5.2));
+
+  BoundingBox2D box = boundingbox(polygon);
+  ASSERT_DOUBLE_EQ(box.xmin(), -0.3);
+  ASSERT_DOUBLE_EQ(box.ymin(), -4.2);
+  ASSERT_DOUBLE_EQ(box.xmax(), 2.5);
+  ASSERT_DOUBLE_EQ(box.ymax(), 5.2);
+}
