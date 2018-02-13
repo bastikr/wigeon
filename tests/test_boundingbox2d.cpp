@@ -56,6 +56,15 @@ TEST(BOUNDINGBOX2D, COMBINE) {
   ASSERT_DOUBLE_EQ(result.ymax(), 8);
 }
 
+TEST(BOUNDINGBOX2D, LINESEGMENT2D) {
+  LineSegment2D segment(-0.5, 0.2, 0.4, -1.3);
+  BoundingBox2D box = boundingbox(segment);
+  ASSERT_DOUBLE_EQ(box.xmin(), -0.5);
+  ASSERT_DOUBLE_EQ(box.ymin(), -1.3);
+  ASSERT_DOUBLE_EQ(box.xmax(), 0.4);
+  ASSERT_DOUBLE_EQ(box.ymax(), 0.2);
+}
+
 TEST(BOUNDINGBOX2D, TRIANGLE2D) {
   Triangle2D triangle(Point2D(2.5, -4.2), Point2D(-0.3, 0.7), Point2D(0, 5.2));
   BoundingBox2D box = boundingbox(triangle);
@@ -65,6 +74,20 @@ TEST(BOUNDINGBOX2D, TRIANGLE2D) {
   ASSERT_DOUBLE_EQ(box.ymax(), 5.2);
 }
 
+TEST(BOUNDINGBOX2D, RECTANGLE2D) {
+  Point2D origin(2.5, -3.4);
+  double alpha = 0.1;
+  double width = 3.1;
+  double height = 1.7;
+  Rectangle2D rectangle(origin, width, height, alpha);
+
+  BoundingBox2D box = boundingbox(rectangle);
+  ASSERT_DOUBLE_EQ(box.xmin(), rectangle.point01().x());
+  ASSERT_DOUBLE_EQ(box.ymin(), rectangle.point00().y());
+  ASSERT_DOUBLE_EQ(box.xmax(), rectangle.point10().x());
+  ASSERT_DOUBLE_EQ(box.ymax(), rectangle.point11().y());
+}
+
 TEST(BOUNDINGBOX2D, CIRCLE2D) {
   Circle2D circle(Point2D(2.5, 4), 0.5);
   BoundingBox2D box = boundingbox(circle);
@@ -72,13 +95,4 @@ TEST(BOUNDINGBOX2D, CIRCLE2D) {
   ASSERT_DOUBLE_EQ(box.ymin(), 3.5);
   ASSERT_DOUBLE_EQ(box.xmax(), 3);
   ASSERT_DOUBLE_EQ(box.ymax(), 4.5);
-}
-
-TEST(BOUNDINGBOX2D, LINESEGMENT2D) {
-  LineSegment2D segment(-0.5, 0.2, 0.4, -1.3);
-  BoundingBox2D box = boundingbox(segment);
-  ASSERT_DOUBLE_EQ(box.xmin(), -0.5);
-  ASSERT_DOUBLE_EQ(box.ymin(), -1.3);
-  ASSERT_DOUBLE_EQ(box.xmax(), 0.4);
-  ASSERT_DOUBLE_EQ(box.ymax(), 0.2);
 }

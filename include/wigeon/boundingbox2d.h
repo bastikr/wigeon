@@ -44,6 +44,7 @@ BoundingBox2D combine(const BoundingBox2D&, const BoundingBox2D&);
 
 BoundingBox2D boundingbox(const LineSegment2D&);
 BoundingBox2D boundingbox(const Triangle2D&);
+BoundingBox2D boundingbox(const Rectangle2D&);
 BoundingBox2D boundingbox(const Circle2D&);
 
 } // namespace wigeon

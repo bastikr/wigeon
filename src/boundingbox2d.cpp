@@ -74,6 +74,35 @@ BoundingBox2D boundingbox(const Triangle2D& triangle) {
   return BoundingBox2D(xmin, ymin, xmax, ymax);
 }
 
+BoundingBox2D boundingbox(const Rectangle2D& reactangle) {
+  Point2D p0 = reactangle.point00();
+  Point2D p1 = reactangle.point01();
+  Point2D p2 = reactangle.point10();
+  Point2D p3 = reactangle.point11();
+
+  double xmin = p0.x();
+  double xmax = p0.x();
+  double ymin = p0.y();
+  double ymax = p0.y();
+
+  xmin = std::min(xmin, p1.x());
+  ymin = std::min(ymin, p1.y());
+  xmax = std::max(xmax, p1.x());
+  ymax = std::max(ymax, p1.y());
+
+  xmin = std::min(xmin, p2.x());
+  ymin = std::min(ymin, p2.y());
+  xmax = std::max(xmax, p2.x());
+  ymax = std::max(ymax, p2.y());
+
+  xmin = std::min(xmin, p3.x());
+  ymin = std::min(ymin, p3.y());
+  xmax = std::max(xmax, p3.x());
+  ymax = std::max(ymax, p3.y());
+
+  return BoundingBox2D(xmin, ymin, xmax, ymax);
+}
+
 BoundingBox2D boundingbox(const Circle2D& circle) {
   return BoundingBox2D(circle.center(), 2*circle.radius(), 2*circle.radius());
 }
