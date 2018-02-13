@@ -16,6 +16,7 @@ struct BoundingBox2D {
   Point2D origin() const {return origin_;}
   double width() const {return width_;}
   double height() const {return height_;}
+  double area() const {return width_*height_;}
 
   double xmin() const {return origin_.x() - 0.5*width_;}
   double xmax() const {return origin_.x() + 0.5*width_;}

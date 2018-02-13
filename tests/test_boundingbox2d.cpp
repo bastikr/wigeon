@@ -34,6 +34,11 @@ TEST(BOUNDINGBOX2D, OPERATORS) {
   ASSERT_DOUBLE_EQ(r3.ymax(), -4);
 }
 
+TEST(BOUNDINGBOX2D, AREA) {
+  BoundingBox2D boundingbox(1, -2, 3, 7);
+  ASSERT_DOUBLE_EQ(boundingbox.area(), 18);
+}
+
 TEST(BOUNDINGBOX2D, OVERLAP) {
   BoundingBox2D box0(1, -2, 3, 7);
 
