@@ -16,7 +16,6 @@ add_library(wigeon SHARED
     src/rotations2d.cpp
     src/vector2d.cpp
     src/point2d.cpp
-    src/boundingbox2d.cpp
     src/line2d.cpp
     src/ray2d.cpp
     src/linesegment2d.cpp
@@ -25,6 +24,7 @@ add_library(wigeon SHARED
     src/circle2d.cpp
     src/polygon2d.cpp
     src/polyline2d.cpp
+    src/boundingbox2d.cpp
 
     #3D objects
     src/point3d.cpp

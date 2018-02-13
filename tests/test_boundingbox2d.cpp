@@ -55,3 +55,12 @@ TEST(BOUNDINGBOX2D, COMBINE) {
   ASSERT_DOUBLE_EQ(result.xmax(), 3);
   ASSERT_DOUBLE_EQ(result.ymax(), 8);
 }
+
+TEST(BOUNDINGBOX2D, CIRCLE2D) {
+  Circle2D circle(Point2D(2.5, 4), 0.5);
+  BoundingBox2D box = boundingbox(circle);
+  ASSERT_DOUBLE_EQ(box.xmin(), 2);
+  ASSERT_DOUBLE_EQ(box.ymin(), 3.5);
+  ASSERT_DOUBLE_EQ(box.xmax(), 3);
+  ASSERT_DOUBLE_EQ(box.ymax(), 4.5);
+}

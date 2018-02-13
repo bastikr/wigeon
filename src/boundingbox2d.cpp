@@ -42,4 +42,8 @@ BoundingBox2D combine(const BoundingBox2D& bbox0, const BoundingBox2D& bbox1) {
   return BoundingBox2D(xmin, ymin, xmax, ymax);
 }
 
+BoundingBox2D boundingbox(const Circle2D& circle) {
+  return BoundingBox2D(circle.center(), 2*circle.radius(), 2*circle.radius());
+}
+
 } // namespace wigeon
