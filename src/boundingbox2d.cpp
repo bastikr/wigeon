@@ -42,9 +42,6 @@ BoundingBox2D combine(const BoundingBox2D& bbox0, const BoundingBox2D& bbox1) {
   return BoundingBox2D(xmin, ymin, xmax, ymax);
 }
 
-BoundingBox2D boundingbox(const Circle2D& circle) {
-  return BoundingBox2D(circle.center(), 2*circle.radius(), 2*circle.radius());
-}
 
 BoundingBox2D boundingbox(const LineSegment2D& segment) {
   double x = 0.5*(segment.x0() + segment.x1());
@@ -52,6 +49,33 @@ BoundingBox2D boundingbox(const LineSegment2D& segment) {
   double width = std::abs(segment.x0() - segment.x1());
   double height = std::abs(segment.y0() - segment.y1());
   return BoundingBox2D(Point2D(x, y), width, height);
+}
+
+BoundingBox2D boundingbox(const Triangle2D& triangle) {
+  Point2D p0 = triangle.point0();
+  Point2D p1 = triangle.point1();
+  Point2D p2 = triangle.point2();
+
+  double xmin = p0.x();
+  double xmax = p0.x();
+  double ymin = p0.y();
+  double ymax = p0.y();
+
+  xmin = std::min(xmin, p1.x());
+  ymin = std::min(ymin, p1.y());
+  xmax = std::max(xmax, p1.x());
+  ymax = std::max(ymax, p1.y());
+
+  xmin = std::min(xmin, p2.x());
+  ymin = std::min(ymin, p2.y());
+  xmax = std::max(xmax, p2.x());
+  ymax = std::max(ymax, p2.y());
+
+  return BoundingBox2D(xmin, ymin, xmax, ymax);
+}
+
+BoundingBox2D boundingbox(const Circle2D& circle) {
+  return BoundingBox2D(circle.center(), 2*circle.radius(), 2*circle.radius());
 }
 
 } // namespace wigeon

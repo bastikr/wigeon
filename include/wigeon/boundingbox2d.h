@@ -4,8 +4,10 @@
 
 #include "wigeon/vector2d.h"
 #include "wigeon/point2d.h"
-#include "wigeon/circle2d.h"
 #include "wigeon/linesegment2d.h"
+#include "wigeon/triangle2d.h"
+#include "wigeon/rectangle2d.h"
+#include "wigeon/circle2d.h"
 
 
 namespace wigeon {
@@ -35,10 +37,13 @@ BoundingBox2D operator+(const Vector2D&, const BoundingBox2D&);
 
 BoundingBox2D operator-(const BoundingBox2D&, const Vector2D&);
 
+
 bool overlap(const BoundingBox2D&, const BoundingBox2D&);
 BoundingBox2D combine(const BoundingBox2D&, const BoundingBox2D&);
 
-BoundingBox2D boundingbox(const Circle2D&);
+
 BoundingBox2D boundingbox(const LineSegment2D&);
+BoundingBox2D boundingbox(const Triangle2D&);
+BoundingBox2D boundingbox(const Circle2D&);
 
 } // namespace wigeon

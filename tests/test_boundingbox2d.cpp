@@ -56,6 +56,15 @@ TEST(BOUNDINGBOX2D, COMBINE) {
   ASSERT_DOUBLE_EQ(result.ymax(), 8);
 }
 
+TEST(BOUNDINGBOX2D, TRIANGLE2D) {
+  Triangle2D triangle(Point2D(2.5, -4.2), Point2D(-0.3, 0.7), Point2D(0, 5.2));
+  BoundingBox2D box = boundingbox(triangle);
+  ASSERT_DOUBLE_EQ(box.xmin(), -0.3);
+  ASSERT_DOUBLE_EQ(box.ymin(), -4.2);
+  ASSERT_DOUBLE_EQ(box.xmax(), 2.5);
+  ASSERT_DOUBLE_EQ(box.ymax(), 5.2);
+}
+
 TEST(BOUNDINGBOX2D, CIRCLE2D) {
   Circle2D circle(Point2D(2.5, 4), 0.5);
   BoundingBox2D box = boundingbox(circle);
