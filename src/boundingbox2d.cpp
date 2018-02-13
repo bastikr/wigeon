@@ -17,20 +17,16 @@ BoundingBox2D::BoundingBox2D(double x0, double y0, double x1, double y1)
       width_(x1 - x0), height_(y1 - y0) {}
 
 
-BoundingBox2D operator+(const BoundingBox2D& segment, const Vector2D& vector) {
-  return BoundingBox2D(segment.point00() + vector, segment.point11() + vector);
+BoundingBox2D operator+(const BoundingBox2D& box, const Vector2D& vector) {
+  return BoundingBox2D(box.origin() + vector, box.width(), box.height());
 }
 
-BoundingBox2D operator+(const Vector2D& vector, const BoundingBox2D& segment)  {
-  return BoundingBox2D(vector + segment.point00(), vector + segment.point11());
+BoundingBox2D operator+(const Vector2D& vector, const BoundingBox2D& box)  {
+  return BoundingBox2D(vector + box.origin(), box.width(), box.height());
 }
 
-BoundingBox2D operator-(const BoundingBox2D& segment, const Vector2D& vector) {
-  return BoundingBox2D(segment.point00() - vector, segment.point11() - vector);
-}
-
-BoundingBox2D operator-(const Vector2D& vector, const BoundingBox2D& segment) {
-  return BoundingBox2D(vector - segment.point00(), vector - segment.point11());
+BoundingBox2D operator-(const BoundingBox2D& box, const Vector2D& vector) {
+  return BoundingBox2D(box.origin() - vector, box.width(), box.height());
 }
 
 bool overlap(const BoundingBox2D& box0, const BoundingBox2D& box1) {

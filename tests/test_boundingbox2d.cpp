@@ -11,7 +11,6 @@ TEST(BOUNDINGBOX2D, OPERATORS) {
   BoundingBox2D r0 = boundingbox + vector;
   BoundingBox2D r1 = vector + boundingbox;
   BoundingBox2D r2 = boundingbox - vector;
-  BoundingBox2D r3 = vector - boundingbox;
 
   ASSERT_DOUBLE_EQ(r0.xmin(), 3);
   ASSERT_DOUBLE_EQ(r0.ymin(), 1);
@@ -27,11 +26,6 @@ TEST(BOUNDINGBOX2D, OPERATORS) {
   ASSERT_DOUBLE_EQ(r2.ymin(), -5);
   ASSERT_DOUBLE_EQ(r2.xmax(), 1);
   ASSERT_DOUBLE_EQ(r2.ymax(), 4);
-
-  ASSERT_DOUBLE_EQ(r3.xmin(), 1);
-  ASSERT_DOUBLE_EQ(r3.ymin(), 5);
-  ASSERT_DOUBLE_EQ(r3.xmax(), -1);
-  ASSERT_DOUBLE_EQ(r3.ymax(), -4);
 }
 
 TEST(BOUNDINGBOX2D, AREA) {

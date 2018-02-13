@@ -23,11 +23,6 @@ struct BoundingBox2D {
   double ymin() const {return origin_.y() - 0.5*height_;}
   double ymax() const {return origin_.y() + 0.5*height_;}
 
-  Point2D point00() const {return Point2D(xmin(), ymin());}
-  Point2D point01() const {return Point2D(xmin(), ymax());}
-  Point2D point10() const {return Point2D(xmax(), ymin());}
-  Point2D point11() const {return Point2D(xmax(), ymax());}
-
   Point2D origin_;
   double width_;
   double height_;
@@ -37,7 +32,6 @@ BoundingBox2D operator+(const BoundingBox2D&, const Vector2D&);
 BoundingBox2D operator+(const Vector2D&, const BoundingBox2D&);
 
 BoundingBox2D operator-(const BoundingBox2D&, const Vector2D&);
-BoundingBox2D operator-(const Vector2D&, const BoundingBox2D&);
 
 bool overlap(const BoundingBox2D&, const BoundingBox2D&);
 BoundingBox2D combine(const BoundingBox2D&, const BoundingBox2D&);
