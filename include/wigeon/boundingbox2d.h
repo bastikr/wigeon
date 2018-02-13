@@ -5,6 +5,7 @@
 #include "wigeon/vector2d.h"
 #include "wigeon/point2d.h"
 #include "wigeon/circle2d.h"
+#include "wigeon/linesegment2d.h"
 
 
 namespace wigeon {
@@ -38,5 +39,6 @@ bool overlap(const BoundingBox2D&, const BoundingBox2D&);
 BoundingBox2D combine(const BoundingBox2D&, const BoundingBox2D&);
 
 BoundingBox2D boundingbox(const Circle2D&);
+BoundingBox2D boundingbox(const LineSegment2D&);
 
 } // namespace wigeon

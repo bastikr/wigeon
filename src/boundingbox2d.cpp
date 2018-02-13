@@ -46,4 +46,12 @@ BoundingBox2D boundingbox(const Circle2D& circle) {
   return BoundingBox2D(circle.center(), 2*circle.radius(), 2*circle.radius());
 }
 
+BoundingBox2D boundingbox(const LineSegment2D& segment) {
+  double x = 0.5*(segment.x0() + segment.x1());
+  double y = 0.5*(segment.y0() + segment.y1());
+  double width = std::abs(segment.x0() - segment.x1());
+  double height = std::abs(segment.y0() - segment.y1());
+  return BoundingBox2D(Point2D(x, y), width, height);
+}
+
 } // namespace wigeon

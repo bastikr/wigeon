@@ -64,3 +64,12 @@ TEST(BOUNDINGBOX2D, CIRCLE2D) {
   ASSERT_DOUBLE_EQ(box.xmax(), 3);
   ASSERT_DOUBLE_EQ(box.ymax(), 4.5);
 }
+
+TEST(BOUNDINGBOX2D, LINESEGMENT2D) {
+  LineSegment2D segment(-0.5, 0.2, 0.4, -1.3);
+  BoundingBox2D box = boundingbox(segment);
+  ASSERT_DOUBLE_EQ(box.xmin(), -0.5);
+  ASSERT_DOUBLE_EQ(box.ymin(), -1.3);
+  ASSERT_DOUBLE_EQ(box.xmax(), 0.4);
+  ASSERT_DOUBLE_EQ(box.ymax(), 0.2);
+}
