@@ -9,6 +9,7 @@
 #include "wigeon/rectangle2d.h"
 #include "wigeon/circle2d.h"
 #include "wigeon/polygon2d.h"
+#include "wigeon/polyline2d.h"
 
 
 namespace wigeon {
@@ -48,5 +49,6 @@ BoundingBox2D boundingbox(const Triangle2D&);
 BoundingBox2D boundingbox(const Rectangle2D&);
 BoundingBox2D boundingbox(const Circle2D&);
 BoundingBox2D boundingbox(const Polygon2D&);
+BoundingBox2D boundingbox(const PolyLine2D&);
 
 } // namespace wigeon

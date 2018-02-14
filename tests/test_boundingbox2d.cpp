@@ -109,3 +109,16 @@ TEST(BOUNDINGBOX2D, POLYGON2D) {
   ASSERT_DOUBLE_EQ(box.xmax(), 2.5);
   ASSERT_DOUBLE_EQ(box.ymax(), 5.2);
 }
+
+TEST(BOUNDINGBOX2D, POLYLINE2D) {
+  PolyLine2D polyline;
+  polyline.push_back(Point2D(2.5, -4.2));
+  polyline.push_back(Point2D(-0.3, 0.7));
+  polyline.push_back(Point2D(0, 5.2));
+
+  BoundingBox2D box = boundingbox(polyline);
+  ASSERT_DOUBLE_EQ(box.xmin(), -0.3);
+  ASSERT_DOUBLE_EQ(box.ymin(), -4.2);
+  ASSERT_DOUBLE_EQ(box.xmax(), 2.5);
+  ASSERT_DOUBLE_EQ(box.ymax(), 5.2);
+}

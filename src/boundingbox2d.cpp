@@ -124,5 +124,20 @@ BoundingBox2D boundingbox(const Polygon2D& polygon) {
   return BoundingBox2D(xmin, ymin, xmax, ymax);
 }
 
+BoundingBox2D boundingbox(const PolyLine2D& polyline) {
+  double xmin = std::numeric_limits<double>::infinity();
+  double xmax = -std::numeric_limits<double>::infinity();
+  double ymin = std::numeric_limits<double>::infinity();
+  double ymax = -std::numeric_limits<double>::infinity();
+
+  for (auto& point: polyline.points) {
+    xmin = std::min(xmin, point.x());
+    ymin = std::min(ymin, point.y());
+    xmax = std::max(xmax, point.x());
+    ymax = std::max(ymax, point.y());
+  }
+
+  return BoundingBox2D(xmin, ymin, xmax, ymax);
+}
 
 } // namespace wigeon
