@@ -493,7 +493,7 @@ namespace {
 template <typename T0>
 class polygonintersection_visitor : public boost::static_visitor<IntersectionTypes<T0, Polygon2D>> {
   public:
-    polygonintersection_visitor(size_t index) : index(index) {}
+    explicit polygonintersection_visitor(size_t index) : index(index) {}
 
     template <typename T>
     IntersectionTypes<T0, Polygon2D> operator()(const T& object) {

@@ -44,7 +44,7 @@ namespace {
 
 class within_visitor : public boost::static_visitor<bool> {
   public:
-    within_visitor(const Point2D& point) : point(point) {}
+    explicit within_visitor(const Point2D& point) : point(point) {}
 
     template <typename T>
     bool operator()(const T& object) {

@@ -223,7 +223,7 @@ namespace {
 
 class distance2_visitor : public boost::static_visitor<double> {
   public:
-    distance2_visitor(const Point2D& point) : point(point) {}
+    explicit distance2_visitor(const Point2D& point) : point(point) {}
 
     template <typename T>
     double operator()(const T& object) {

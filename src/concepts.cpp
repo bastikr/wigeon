@@ -9,7 +9,7 @@ namespace {
 template <typename T1>
 class rotate_visitor : public boost::static_visitor<T1> {
   public:
-    rotate_visitor(const Rotation2D& rotation) : rotation(rotation) {}
+    explicit rotate_visitor(const Rotation2D& rotation) : rotation(rotation) {}
 
     template <typename T>
     T1 operator()(const T& object) {
@@ -22,7 +22,7 @@ class rotate_visitor : public boost::static_visitor<T1> {
 template <typename T1>
 class rightplus_visitor : public boost::static_visitor<T1> {
   public:
-    rightplus_visitor(const Vector2D& vector) : vector(vector) {}
+    explicit rightplus_visitor(const Vector2D& vector) : vector(vector) {}
 
     template <typename T>
     T1 operator()(const T& object) {
@@ -35,7 +35,7 @@ class rightplus_visitor : public boost::static_visitor<T1> {
 template <typename T1>
 class leftplus_visitor : public boost::static_visitor<T1> {
   public:
-    leftplus_visitor(const Vector2D& vector) : vector(vector) {}
+    explicit leftplus_visitor(const Vector2D& vector) : vector(vector) {}
 
     template <typename T>
     T1 operator()(const T& object) {
@@ -48,7 +48,7 @@ class leftplus_visitor : public boost::static_visitor<T1> {
 template <typename T1>
 class rightminus_visitor : public boost::static_visitor<T1> {
   public:
-    rightminus_visitor(const Vector2D& vector) : vector(vector) {}
+    explicit rightminus_visitor(const Vector2D& vector) : vector(vector) {}
 
     template <typename T>
     T1 operator()(const T& object) {
@@ -61,7 +61,7 @@ class rightminus_visitor : public boost::static_visitor<T1> {
 template <typename T1>
 class leftminus_visitor : public boost::static_visitor<T1> {
   public:
-    leftminus_visitor(const Vector2D& vector) : vector(vector) {}
+    explicit leftminus_visitor(const Vector2D& vector) : vector(vector) {}
 
     template <typename T>
     T1 operator()(const T& object) {

@@ -71,7 +71,7 @@ namespace {
 template <typename T1>
 class offset_visitor : public boost::static_visitor<T1> {
   public:
-    offset_visitor(double d) : d(d) {}
+    explicit offset_visitor(double d) : d(d) {}
 
     template <typename T>
     T1 operator()(const T& object) {
