@@ -10,6 +10,7 @@
 #include "wigeon/rectangle2d.h"
 #include "wigeon/polygon2d.h"
 #include "wigeon/collections.h"
+#include "wigeon/area2d.h"
 
 
 namespace wigeon {
@@ -34,6 +35,8 @@ void print(std::ostream&, const Polygon2D&, const Properties& = Properties());
 void print(std::ostream&, const PolyLine2D&, const Properties& = Properties());
 void print(std::ostream&, const PlotObject2D&, const Properties& = Properties());
 void print(std::ostream&, const PlotObjects2D&, const Properties& = Properties());
+void print(std::ostream&, const Area2D&, const Properties& exterior_properties = Properties(),
+                                         const Properties& interior_properties = Properties());
 
 template<typename T>
 std::string print(const T object, const Properties& properties = Properties()) {

@@ -105,6 +105,33 @@ void print(std::ostream& f, const PolyLine2D& polyline, const Properties& proper
   f << "\"/>";
 }
 
+void print(std::ostream& f, const Area2D& area,
+           const Properties& exterior_properties,
+           const Properties& interior_properties) {
+  f << "<g";
+  print_argument(f, "id", "exterior");
+  for (auto property: exterior_properties.properties) {
+    print_argument(f, property.first, property.second);
+  }
+  f << ">"  << std::endl;
+  for (auto it=area.exterior_curves.begin(); it!=area.exterior_curves.end(); ++it) {
+    print(f, *it);
+    f << std::endl;
+  }
+  f << "</g>" << std::endl;
+
+  f << "<g";
+  print_argument(f, "id", "interior");
+  for (auto property: interior_properties.properties) {
+    print_argument(f, property.first, property.second);
+  }
+  f << ">"  << std::endl;
+  for (auto it=area.interior_curves.begin(); it!=area.interior_curves.end(); ++it) {
+    print(f, *it);
+    f << std::endl;
+  }
+  f << "</g>";
+}
 
 namespace {
 

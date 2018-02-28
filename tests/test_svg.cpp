@@ -46,6 +46,28 @@ TEST(SVG, POLYLINE) {
   EXPECT_EQ(str, svg::print(polyline));
 }
 
+TEST(SVG, AREA) {
+  Area2D area;
+  Circle2D circle(Point2D(3, 5), 2);
+  Triangle2D triangle(Point2D(0, 1), Point2D(3, 1), Point2D(3, 2));
+  Rectangle2D rectangle(3, 5, 8, 7);
+  area.exterior_curves.push_back(circle);
+  area.exterior_curves.push_back(triangle);
+  area.interior_curves.push_back(rectangle);
+  area.interior_curves.push_back(circle);
+  std::string str_triangle = "<polygon points=\"0,1 3,1 3,2\"/>";
+  std::string str_circle = "<circle cx=\"3\" cy=\"5\" r=\"2\"/>";
+  std::string str_rectangle = "<rect x=\"3\" y=\"7\" width=\"5\" height=\"2\"/>";
+  std::string str = "<g id=\"exterior\">\n"
+                    + str_circle + "\n"
+                    + str_triangle + "\n"
+                    + "</g>\n"
+                    + "<g id=\"interior\">\n"
+                    + str_rectangle + "\n"
+                    + str_circle + "\n"
+                    + "</g>";
+}
+
 TEST(SVG, COLLECTION) {
   Circle2D circle(Point2D(3, 5), 2);
   Rectangle2D rectangle(3, 5, 8, 7);
