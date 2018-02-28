@@ -1,76 +1,232 @@
 #pragma once
 
+#include <boost/variant.hpp>
 #include <vector>
-#include "wigeon/collections.h"
 
 #include "wigeon/point2d.h"
 #include "wigeon/line2d.h"
 #include "wigeon/ray2d.h"
 #include "wigeon/linesegment2d.h"
-#include "wigeon/doublelinesegment2d.h"
-#include "wigeon/rectangle2d.h"
-#include "wigeon/circle2d.h"
 #include "wigeon/polygon2d.h"
-
-/*
-Line
-Ray
-LineSegment
-DoubleLineSegment
-Rectangle
-Circle
-Polygon
-*/
 
 
 namespace wigeon {
 
-using Points2D = std::vector<Point2D>;
+template <typename Geometry, typename ResultGeometry>
+struct IntersectionDescription;
 
-bool curves_intersect(const Vector2D& v, const Vector2D& w0, const Vector2D& w1);
 
 // Line2D
-Points2D intersections(const Line2D& line0, const Line2D& line1);
+template<>
+struct IntersectionDescription<Line2D, Point2D> {
+  IntersectionDescription(double r) : r(r) {}
+  double r;
+};
+
+template<>
+struct IntersectionDescription<Line2D, LineSegment2D> {
+  IntersectionDescription(double r0, double r1) : r0(r0), r1(r1) {}
+  double r0;
+  double r1;
+};
+
+template<>
+struct IntersectionDescription<Line2D, Ray2D> {
+  IntersectionDescription(double r, bool direction) : r(r), direction(direction) {}
+  double r;
+  bool direction;
+};
+
+template<>
+struct IntersectionDescription<Line2D, Line2D> {};
+
 
 // Ray2D
-Points2D intersections(const Ray2D&, const Line2D&);
-Points2D intersections(const Line2D&, const Ray2D&);
+template<>
+struct IntersectionDescription<Ray2D, Point2D> {
+  IntersectionDescription(double r) : r(r) {}
+  double r;
+};
+
+template<>
+struct IntersectionDescription<Ray2D, LineSegment2D> {
+  IntersectionDescription(double r0, double r1) : r0(r0), r1(r1) {}
+  double r0;
+  double r1;
+};
+
+template<>
+struct IntersectionDescription<Ray2D, Ray2D> {
+  IntersectionDescription(double r) : r(r) {}
+  double r;
+};
+
 
 // LineSegment2D
-Points2D intersections(const LineSegment2D&, const Ray2D&);
-Points2D intersections(const Ray2D&, const LineSegment2D&);
-Points2D intersections(const LineSegment2D&, const Line2D&);
-Points2D intersections(const Line2D&, const LineSegment2D&);
-Points2D intersections(const LineSegment2D&, const LineSegment2D&);
+template<>
+struct IntersectionDescription<LineSegment2D, Point2D> {
+  using ResultType = Point2D;
 
-// DoubleLineSegment2D
-Points2D intersections(const DoubleLineSegment2D&, const Line2D&);
-Points2D intersections(const Line2D&, const DoubleLineSegment2D&);
-Points2D intersections(const DoubleLineSegment2D&, const Ray2D&);
-Points2D intersections(const Ray2D&, const DoubleLineSegment2D&);
+  IntersectionDescription(double r) : r(r) {}
+  double r;
+};
+
+template<>
+struct IntersectionDescription<LineSegment2D, LineSegment2D> {
+  using ResultType = LineSegment2D;
+
+  IntersectionDescription(double r0, double r1) : r0(r0), r1(r1) {}
+  double r0;
+  double r1;
+};
+
 
 // Polygon2D
-Points2D intersections(const Polygon2D&, const Line2D&);
-Points2D intersections(const Line2D&, const Polygon2D&);
-Points2D intersections(const Polygon2D&, const Ray2D&);
-Points2D intersections(const Ray2D&, const Polygon2D&);
-Points2D intersections(const Polygon2D&, const LineSegment2D&);
-Points2D intersections(const LineSegment2D&, const Polygon2D&);
-Points2D intersections(const Polygon2D&, const Polygon2D&);
+template<>
+struct IntersectionDescription<Polygon2D, Point2D> {
+  IntersectionDescription(size_t index, const IntersectionDescription<LineSegment2D, Point2D>& d)
+      : index(index), segment(d) {}
+  size_t index;
+  IntersectionDescription<LineSegment2D, Point2D> segment;
+};
 
-// Curves2D
-class intersections_visitor : public boost::static_visitor<Points2D> {
+template<>
+struct IntersectionDescription<Polygon2D, LineSegment2D> {
+  IntersectionDescription(size_t index, const IntersectionDescription<LineSegment2D, LineSegment2D>& d)
+      : index(index), segment(d) {}
+  size_t index;
+  IntersectionDescription<LineSegment2D, LineSegment2D> segment;
+};
+
+
+template <typename Geometry0, typename Geometry1, typename ResultGeometry>
+struct Intersection {
+  using Description0 = IntersectionDescription<Geometry0, ResultGeometry>;
+  using Description1 = IntersectionDescription<Geometry1, ResultGeometry>;
+  using ResultType = ResultGeometry;
+
+  Intersection(const ResultGeometry& result, const Description0& description0, const Description1& description1)
+      : result(result), description0(description0), description1(description1) {}
+
+  ResultGeometry result;
+  Description0 description0;
+  Description1 description1;
+
+  Intersection<Geometry1, Geometry0, ResultGeometry> flip() const {
+    return Intersection<Geometry1, Geometry0, ResultGeometry>(result, description1, description0);
+  }
+};
+
+
+template <typename Geometry0, typename Geometry1>
+struct IntersectionResultTypes {
+  using types = typename IntersectionResultTypes<Geometry1, Geometry0>::types;
+};
+
+template<class Geometry0, class Geometry1, class L> struct IntersectionTypes_impl;
+
+template<class Geometry0, class Geometry1, template<class...> class L, class... T>
+    struct IntersectionTypes_impl<Geometry0, Geometry1, L<T...>>
+{
+    using type = L<Intersection<Geometry0, Geometry1, T>...>;
+};
+
+template <class Geometry0, class Geometry1>
+  using IntersectionTypes = typename IntersectionTypes_impl<
+                                Geometry0, Geometry1,
+                                typename IntersectionResultTypes<Geometry0, Geometry1>::types>::type;
+
+
+
+
+template <typename Geometry0, typename Geometry1>
+class flip_visitor : public boost::static_visitor<IntersectionTypes<Geometry1, Geometry0>> {
   public:
-    template <typename CurveType0, typename CurveType1>
-    Points2D operator()(const CurveType0& curve0, const CurveType1& curve1) const {
-      return intersections(curve0, curve1);
+
+    template <typename ResultGeometry>
+    Intersection<Geometry1, Geometry0, ResultGeometry>
+    operator()(const Intersection<Geometry0, Geometry1, ResultGeometry>& intersection) {
+      return intersection.flip();
     }
 };
 
-Points2D intersections(const Curve2D&, const Curve2D&);
 
-Points2D intersections(const Curves2D&, const Curve2D&);
-Points2D intersections(const Curve2D&, const Curves2D&);
-Points2D intersections(const Curves2D&, const Curves2D&);
+// Line2D
+template<>
+struct IntersectionResultTypes<Line2D, Line2D> {
+  using types = boost::variant<Point2D, Line2D>;
+};
+
+std::vector<IntersectionTypes<Line2D, Line2D>> intersections(const Line2D&, const Line2D&);
+
+
+// Ray2D
+template<>
+struct IntersectionResultTypes<Ray2D, Line2D> {
+  using types = boost::variant<Point2D, Ray2D>;
+};
+
+template<>
+struct IntersectionResultTypes<Ray2D, Ray2D> {
+  using types = boost::variant<Point2D, LineSegment2D, Ray2D>;
+};
+
+std::vector<IntersectionTypes<Ray2D, Ray2D>> intersections(const Ray2D&, const Ray2D&);
+std::vector<IntersectionTypes<Ray2D, Line2D>> intersections(const Ray2D&, const Line2D&);
+std::vector<IntersectionTypes<Line2D, Ray2D>> intersections(const Line2D&, const Ray2D&);
+
+
+// LineSegment2D
+template<>
+struct IntersectionResultTypes<LineSegment2D, Line2D> {
+  using types = boost::variant<Point2D, LineSegment2D>;
+};
+
+template<>
+struct IntersectionResultTypes<LineSegment2D, Ray2D> {
+  using types = boost::variant<Point2D, LineSegment2D>;
+};
+
+template<>
+struct IntersectionResultTypes<LineSegment2D, LineSegment2D> {
+  using types = boost::variant<Point2D, LineSegment2D>;
+};
+
+std::vector<IntersectionTypes<LineSegment2D, LineSegment2D>> intersections(const LineSegment2D&, const LineSegment2D&);
+std::vector<IntersectionTypes<LineSegment2D, Line2D>> intersections(const LineSegment2D&, const Line2D&);
+std::vector<IntersectionTypes<Line2D, LineSegment2D>> intersections(const Line2D&, const LineSegment2D&);
+std::vector<IntersectionTypes<LineSegment2D, Ray2D>> intersections(const LineSegment2D&, const Ray2D&);
+std::vector<IntersectionTypes<Ray2D, LineSegment2D>> intersections(const Ray2D&, const LineSegment2D&);
+
+
+// Polygon2D
+template<>
+struct IntersectionResultTypes<Polygon2D, Line2D> {
+  using types = boost::variant<Point2D, LineSegment2D>;
+};
+
+template<>
+struct IntersectionResultTypes<Polygon2D, Ray2D> {
+  using types = boost::variant<Point2D, LineSegment2D>;
+};
+
+template<>
+struct IntersectionResultTypes<Polygon2D, LineSegment2D> {
+  using types = boost::variant<Point2D, LineSegment2D>;
+};
+
+template<>
+struct IntersectionResultTypes<Polygon2D, Polygon2D> {
+  using types = boost::variant<Point2D, LineSegment2D>;
+};
+
+std::vector<IntersectionTypes<Polygon2D, Polygon2D>> intersections(const Polygon2D&, const Polygon2D&);
+std::vector<IntersectionTypes<Polygon2D, Line2D>> intersections(const Polygon2D&, const Line2D&);
+std::vector<IntersectionTypes<Line2D, Polygon2D>> intersections(const Line2D&, const Polygon2D&);
+std::vector<IntersectionTypes<Polygon2D, Ray2D>> intersections(const Polygon2D&, const Ray2D&);
+std::vector<IntersectionTypes<Ray2D, Polygon2D>> intersections(const Ray2D&, const Polygon2D&);
+std::vector<IntersectionTypes<Polygon2D, LineSegment2D>> intersections(const Polygon2D&, const LineSegment2D&);
+std::vector<IntersectionTypes<LineSegment2D, Polygon2D>> intersections(const LineSegment2D&, const Polygon2D&);
+
 
 } // namespace wigeon

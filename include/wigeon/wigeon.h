@@ -25,12 +25,10 @@
 
 #include "wigeon/distances.h"
 #include "wigeon/intersections.h"
-#include "wigeon/intersections2.h"
 #include "wigeon/winding_number.h"
 #include "wigeon/within.h"
 #include "wigeon/offset.h"
 #include "wigeon/polygon2d_simplification.h"
 
-#include "wigeon/collisions.h"
 #include "wigeon/printer.h"
 #include "wigeon/svg.h"

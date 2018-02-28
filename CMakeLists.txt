@@ -35,12 +35,10 @@ add_library(wigeon SHARED
     src/area2d.cpp
     src/distances.cpp
     src/intersections.cpp
-    src/intersections2.cpp
     src/winding_number.cpp
     src/within.cpp
     src/offset.cpp
     src/polygon2d_simplification.cpp
-    src/collisions.cpp
     src/printer.cpp
     src/svg.cpp)
 

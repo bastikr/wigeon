@@ -34,18 +34,35 @@ Rectangle2D offset(const Rectangle2D& rectangle, double d) {
   return Rectangle2D(rectangle.origin(), width, height, rectangle.rotation());
 }
 
+namespace {
+
+class intersection_visitor : public boost::static_visitor<void> {
+  public:
+
+    void operator()(const Intersection<Line2D, Line2D, Point2D>& object) {
+      polygon.push_back(object.result);
+    }
+
+    void operator()(const Intersection<Line2D, Line2D, Line2D>&) {}
+
+    Polygon2D polygon;
+};
+
+} // anonymous namespace
+
 Polygon2D offset(const Polygon2D& polygon, double d) {
   Polygon2D p_new;
   Line2D line0 = offset(Line2D(polygon.edge(polygon.size()-1)), d);
   Line2D line1 = line0;
-  Points2D points;
+  intersection_visitor visitor;
   for (size_t i=0; i<polygon.size(); ++i) {
     line0 = line1;
     line1 = offset(Line2D(polygon.edge(i)), d);
-    points = intersections(line0, line1);
-    p_new.push_back(points[0]);
+    for (const auto& intersection: intersections(line0, line1)) {
+      intersection.apply_visitor(visitor);
+    }
   }
-  return p_new;
+  return visitor.polygon;
 }
 
 
