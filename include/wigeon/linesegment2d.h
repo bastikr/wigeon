@@ -10,9 +10,6 @@
 namespace wigeon {
 
 struct LineSegment2D {
-  LineSegment2D(const LineSegment2D& segment)
-      : data(segment.data) {}
-
   LineSegment2D(const Point2D& p0, const Point2D& p1)
       : data({{p0.x(), p1.x(), p0.y(), p1.y()}}) {}
 
