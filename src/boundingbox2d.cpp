@@ -140,4 +140,22 @@ BoundingBox2D boundingbox(const PolyLine2D& polyline) {
   return BoundingBox2D(xmin, ymin, xmax, ymax);
 }
 
+
+namespace {
+
+class boundingbox_visitor : public boost::static_visitor<BoundingBox2D> {
+  public:
+    template <typename T>
+    BoundingBox2D operator()(const T& object) {
+      return boundingbox(object);
+    }
+};
+
+} // anonymous namespace
+
+BoundingBox2D boundingbox(const ClosedCurve2D& curve) {
+  boundingbox_visitor visitor;
+  return curve.apply_visitor(visitor);
+}
+
 } // namespace wigeon

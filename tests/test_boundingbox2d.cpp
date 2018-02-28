@@ -122,3 +122,12 @@ TEST(BOUNDINGBOX2D, POLYLINE2D) {
   ASSERT_DOUBLE_EQ(box.xmax(), 2.5);
   ASSERT_DOUBLE_EQ(box.ymax(), 5.2);
 }
+
+TEST(BOUNDINGBOX2D, CLOSEDCURVE) {
+  ClosedCurve2D curve(Circle2D(Point2D(0, 0), 1.5));
+  BoundingBox2D box = boundingbox(curve);
+  ASSERT_DOUBLE_EQ(box.xmin(), -1.5);
+  ASSERT_DOUBLE_EQ(box.ymin(), -1.5);
+  ASSERT_DOUBLE_EQ(box.xmax(), 1.5);
+  ASSERT_DOUBLE_EQ(box.ymax(), 1.5);
+}
