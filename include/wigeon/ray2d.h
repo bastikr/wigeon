@@ -8,8 +8,8 @@
 namespace wigeon {
 
 struct Ray2D {
-  Ray2D(Point2D point, Vector2D direction): point_(point), direction_(direction) {}
-  Ray2D(Point2D point0, Point2D point1) : point_(point0), direction_(point1-point0) {}
+  Ray2D(const Point2D& point, const Vector2D& direction): point_(point), direction_(direction) {}
+  Ray2D(const Point2D& point0, const Point2D& point1) : point_(point0), direction_(point1-point0) {}
 
   Point2D point() const {return point_;}
   Vector2D direction() const {return direction_;}
