@@ -67,3 +67,42 @@ TEST(OFFSETS, POLYGON2D) {
   ASSERT_DOUBLE_EQ((polygon_offset.point(3)).x(), -2);
   ASSERT_DOUBLE_EQ((polygon_offset.point(3)).y(), 3);
 }
+
+
+TEST(OFFSETS, AREA2D) {
+  Area2D area;
+  Circle2D circle(Point2D(3, 5), 2);
+  Polygon2D triangle(Triangle2D(Point2D(0, 1), Point2D(3, 1), Point2D(3, 2)));
+  Rectangle2D rectangle(3, 5, 8, 7);
+  area.exterior_curves.push_back(circle);
+  area.exterior_curves.push_back(triangle);
+  area.interior_curves.push_back(rectangle);
+  area.interior_curves.push_back(circle);
+
+  double d = 0.3;
+  Area2D area_new = offset(area, d);
+
+  Circle2D circle_new_exterior = boost::get<Circle2D>(area_new.exterior_curves.front());
+  ASSERT_DOUBLE_EQ(circle_new_exterior.center().x(), circle.center().x());
+  ASSERT_DOUBLE_EQ(circle_new_exterior.center().y(), circle.center().y());
+  ASSERT_DOUBLE_EQ(circle_new_exterior.radius(), offset(circle, d).radius());
+
+  Polygon2D triangle_new_exterior = boost::get<Polygon2D>(area_new.exterior_curves.back());
+  ASSERT_DOUBLE_EQ(triangle_new_exterior.point(0).x(), offset(triangle, d).point(0).x());
+  ASSERT_DOUBLE_EQ(triangle_new_exterior.point(0).y(), offset(triangle, d).point(0).y());
+  ASSERT_DOUBLE_EQ(triangle_new_exterior.point(1).x(), offset(triangle, d).point(1).x());
+  ASSERT_DOUBLE_EQ(triangle_new_exterior.point(1).y(), offset(triangle, d).point(1).y());
+  ASSERT_DOUBLE_EQ(triangle_new_exterior.point(2).x(), offset(triangle, d).point(2).x());
+  ASSERT_DOUBLE_EQ(triangle_new_exterior.point(2).y(), offset(triangle, d).point(2).y());
+
+  Rectangle2D rectangle_new_interior = boost::get<Rectangle2D>(area_new.interior_curves.front());
+  ASSERT_DOUBLE_EQ(rectangle_new_interior.point00().x(), offset(rectangle, -d).point00().x());
+  ASSERT_DOUBLE_EQ(rectangle_new_interior.point00().y(), offset(rectangle, -d).point00().y());
+  ASSERT_DOUBLE_EQ(rectangle_new_interior.point11().x(), offset(rectangle, -d).point11().x());
+  ASSERT_DOUBLE_EQ(rectangle_new_interior.point11().y(), offset(rectangle, -d).point11().y());
+
+  Circle2D circle_new_interior = boost::get<Circle2D>(area_new.interior_curves.back());
+  ASSERT_DOUBLE_EQ(circle_new_interior.center().x(), circle.center().x());
+  ASSERT_DOUBLE_EQ(circle_new_interior.center().y(), circle.center().y());
+  ASSERT_DOUBLE_EQ(circle_new_interior.radius(), offset(circle, -d).radius());
+}

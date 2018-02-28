@@ -48,4 +48,39 @@ Polygon2D offset(const Polygon2D& polygon, double d) {
   return p_new;
 }
 
+
+namespace {
+
+template <typename T1>
+class offset_visitor : public boost::static_visitor<T1> {
+  public:
+    offset_visitor(double d) : d(d) {}
+
+    template <typename T>
+    T1 operator()(const T& object) {
+      return offset(object, d);
+    }
+
+    double d;
+};
+
+} // anonymous namespace
+
+
+ClosedCurve2D offset(const ClosedCurve2D& curve, double d) {
+  offset_visitor<ClosedCurve2D> visitor(d);
+  return curve.apply_visitor(visitor);
+}
+
+Area2D offset(const Area2D& area, double d) {
+  Area2D area_new;
+  for (const auto& curve: area.exterior_curves) {
+    area_new.exterior_curves.push_back(offset(curve, d));
+  }
+  for (const auto& curve: area.interior_curves) {
+    area_new.interior_curves.push_back(offset(curve, -d));
+  }
+  return area_new;
+}
+
 } // namespace wigeon
