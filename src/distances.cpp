@@ -216,4 +216,51 @@ double distance2(const Point2D& point, const Polygon2D& polygon) {
   return distance2(polygon, point);
 }
 
+
+// Curve
+
+namespace {
+
+class distance2_visitor : public boost::static_visitor<double> {
+  public:
+    distance2_visitor(const Point2D& point) : point(point) {}
+
+    template <typename T>
+    double operator()(const T& object) {
+      return distance2(point, object);
+    }
+
+    const Point2D& point;
+};
+
+} // anonymous namespace
+
+double distance2(const ClosedCurve2D& curve, const Point2D& point) {
+  distance2_visitor visitor(point);
+  return curve.apply_visitor(visitor);
+}
+
+double distance2(const Point2D& point, const ClosedCurve2D& curve) {
+  return distance2(curve, point);
+}
+
+
+// Area
+
+double distance2(const Area2D& area, const Point2D& point) {
+  double d2_min = std::numeric_limits<double>::infinity();
+  for (auto& curve: area.exterior_curves) {
+    d2_min = std::min(d2_min, distance2(curve, point));
+  }
+  for (auto& curve: area.interior_curves) {
+    d2_min = std::min(d2_min, distance2(curve, point));
+  }
+  return d2_min;
+}
+
+double distance2(const Point2D& point, const Area2D& area) {
+  return distance2(area, point);
+}
+
+
 } // namespace wigeon

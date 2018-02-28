@@ -263,3 +263,19 @@ TEST(DISTANCES, POLYGON_POINT) {
   ASSERT_DOUBLE_EQ(distance2(Point2D(-2,-2), polygon), 8);
   ASSERT_DOUBLE_EQ(distance2(Point2D(0.5,0.1), polygon), 0.1*0.1);
 }
+
+TEST(DISTANCES, CLOSEDCURVE_POINT) {
+  ClosedCurve2D curve(Circle2D(Point2D(0, 0), 0.5));
+  ASSERT_DOUBLE_EQ(distance2(curve, Point2D(0, 0)), 0.5*0.5);
+  ASSERT_DOUBLE_EQ(distance2(Point2D(0, 0), curve), 0.5*0.5);
+}
+
+TEST(DISTANCES, AREA2D) {
+  Area2D area;
+  area.exterior_curves.push_back(Rectangle2D(0, 0, 4, 4));
+  area.interior_curves.push_back(Rectangle2D(1, 1, 3, 3));
+  ASSERT_DOUBLE_EQ(distance2(area, Point2D(2, 2)), 1);
+  ASSERT_DOUBLE_EQ(distance2(area, Point2D(2, 0.5)), 0.5*0.5);
+  ASSERT_DOUBLE_EQ(distance2(area, Point2D(2, 0.1)), 0.1*0.1);
+  ASSERT_DOUBLE_EQ(distance2(area, Point2D(2, -0.5)), 0.5*0.5);
+}

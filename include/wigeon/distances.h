@@ -7,6 +7,8 @@
 #include "wigeon/rectangle2d.h"
 #include "wigeon/circle2d.h"
 #include "wigeon/polygon2d.h"
+#include "wigeon/concepts.h"
+#include "wigeon/area2d.h"
 
 /*
 Point
@@ -71,5 +73,16 @@ double distance2(const Polygon2D&, const LineSegment2D&);
 double distance2(const LineSegment2D&, const Polygon2D&);
 
 double distance2(const Polygon2D&, const Polygon2D&);
+
+
+// Curve
+double distance2(const ClosedCurve2D&, const Point2D&);
+double distance2(const Point2D&, const ClosedCurve2D&);
+
+
+// Area
+double distance2(const Area2D&, const Point2D&);
+double distance2(const Point2D&, const Area2D&);
+
 
 } // namespace wigeon
