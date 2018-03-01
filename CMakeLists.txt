@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.2)
 project(wigeon)
 
 set (CMAKE_CXX_STANDARD 11)
-set (CMAKE_CXX_FLAGS "-Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wlogical-op -Wmissing-declarations -Wredundant-decls -Woverloaded-virtual")
+set (CMAKE_CXX_FLAGS "-Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wmissing-declarations -Wredundant-decls -Woverloaded-virtual")
 
 include_directories(include)
 
