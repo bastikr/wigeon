@@ -175,4 +175,13 @@ BoundingBox2D boundingbox(const FiniteCurve2D& curve) {
   return curve.apply_visitor(visitor);
 }
 
+
+BoundingBox2D boundingbox(const Area2D& area) {
+  BoundingBox2D box;
+  for (auto& curve: area.exterior_curves) {
+    box = combine(box, boundingbox(curve));
+  }
+  return box;
+}
+
 } // namespace wigeon
