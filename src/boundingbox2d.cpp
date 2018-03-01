@@ -153,7 +153,7 @@ class boundingbox_visitor : public boost::static_visitor<BoundingBox2D> {
 
 } // anonymous namespace
 
-BoundingBox2D boundingbox(const ClosedCurve2D& curve) {
+BoundingBox2D boundingbox(const FiniteCurve2D& curve) {
   boundingbox_visitor visitor;
   return curve.apply_visitor(visitor);
 }

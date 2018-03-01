@@ -51,6 +51,6 @@ BoundingBox2D boundingbox(const Rectangle2D&);
 BoundingBox2D boundingbox(const Circle2D&);
 BoundingBox2D boundingbox(const Polygon2D&);
 BoundingBox2D boundingbox(const PolyLine2D&);
-BoundingBox2D boundingbox(const ClosedCurve2D&);
+BoundingBox2D boundingbox(const FiniteCurve2D&);
 
 } // namespace wigeon
