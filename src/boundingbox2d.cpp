@@ -6,6 +6,11 @@
 
 namespace wigeon {
 
+const double NaN = std::numeric_limits<double>::quiet_NaN();
+
+BoundingBox2D::BoundingBox2D()
+    : origin_(NaN, NaN), width_(NaN), height_(NaN) {}
+
 BoundingBox2D::BoundingBox2D(const Point2D& origin, double width, double height)
     : origin_(origin), width_(width), height_(height) {}
 
@@ -16,6 +21,11 @@ BoundingBox2D::BoundingBox2D(const Point2D& p00, const Point2D& p11)
 BoundingBox2D::BoundingBox2D(double x0, double y0, double x1, double y1)
     : origin_((x0 + x1)/2, (y0 + y1)/2),
       width_(x1 - x0), height_(y1 - y0) {}
+
+
+bool BoundingBox2D::isnan() const {
+  return std::isnan(width_) || std::isnan(height_);
+}
 
 
 BoundingBox2D operator+(const BoundingBox2D& box, const Vector2D& vector) {
@@ -31,15 +41,22 @@ BoundingBox2D operator-(const BoundingBox2D& box, const Vector2D& vector) {
 }
 
 bool overlap(const BoundingBox2D& box0, const BoundingBox2D& box1) {
+  if (box0.isnan() || box1.isnan()) {
+    return false;
+  }
   return std::abs(box0.origin().x() - box1.origin().x()) < (box0.width() + box1.width())/2
       && std::abs(box0.origin().y() - box1.origin().y()) < (box0.height() + box1.height())/2;
 }
 
-BoundingBox2D combine(const BoundingBox2D& bbox0, const BoundingBox2D& bbox1) {
-  double xmin = std::min(bbox0.xmin(), bbox1.xmin());
-  double ymin = std::min(bbox0.ymin(), bbox1.ymin());
-  double xmax = std::max(bbox0.xmax(), bbox1.xmax());
-  double ymax = std::max(bbox0.ymax(), bbox1.ymax());
+BoundingBox2D combine(const BoundingBox2D& box0, const BoundingBox2D& box1) {
+  if (box0.isnan())
+    return box1;
+  if (box1.isnan())
+    return box0;
+  double xmin = std::min(box0.xmin(), box1.xmin());
+  double ymin = std::min(box0.ymin(), box1.ymin());
+  double xmax = std::max(box0.xmax(), box1.xmax());
+  double ymax = std::max(box0.ymax(), box1.ymax());
   return BoundingBox2D(xmin, ymin, xmax, ymax);
 }
 

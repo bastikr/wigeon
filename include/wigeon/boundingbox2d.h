@@ -11,11 +11,13 @@
 #include "wigeon/polygon2d.h"
 #include "wigeon/polyline2d.h"
 #include "wigeon/concepts.h"
+#include "wigeon/area2d.h"
 
 
 namespace wigeon {
 
 struct BoundingBox2D {
+  BoundingBox2D();
   BoundingBox2D(const Point2D& origin, double width, double height);
   BoundingBox2D(const Point2D& point00, const Point2D& point11);
   BoundingBox2D(double x0, double y0, double x1, double y1);
@@ -24,6 +26,8 @@ struct BoundingBox2D {
   double width() const {return width_;}
   double height() const {return height_;}
   double area() const {return width_*height_;}
+
+  bool isnan() const;
 
   double xmin() const {return origin_.x() - 0.5*width_;}
   double xmax() const {return origin_.x() + 0.5*width_;}

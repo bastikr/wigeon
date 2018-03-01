@@ -1,6 +1,8 @@
 #include "wigeon/boundingbox2d.h"
 #include "gtest/gtest.h"
 
+#include <cmath>
+
 
 using namespace wigeon;
 
@@ -43,17 +45,45 @@ TEST(BOUNDINGBOX2D, OVERLAP) {
 
   ASSERT_FALSE(overlap(box0, BoundingBox2D(-1, -3, 0.9, -2.9)));
   ASSERT_FALSE(overlap(box0, BoundingBox2D(3.1, 7.1, 3.2, 7.2)));
+  ASSERT_FALSE(overlap(BoundingBox2D(), box0));
+  ASSERT_FALSE(overlap(box0, BoundingBox2D()));
 }
 
 TEST(BOUNDINGBOX2D, COMBINE) {
   BoundingBox2D box0(1, -2, 3, 7);
   BoundingBox2D box1(-3, 1, 2, 8);
 
+  {
   BoundingBox2D result = combine(box0, box1);
   ASSERT_DOUBLE_EQ(result.xmin(), -3);
   ASSERT_DOUBLE_EQ(result.ymin(), -2);
   ASSERT_DOUBLE_EQ(result.xmax(), 3);
   ASSERT_DOUBLE_EQ(result.ymax(), 8);
+  }
+
+  {
+  BoundingBox2D result = combine(BoundingBox2D(), box1);
+  ASSERT_DOUBLE_EQ(result.xmin(), box1.xmin());
+  ASSERT_DOUBLE_EQ(result.ymin(), box1.ymin());
+  ASSERT_DOUBLE_EQ(result.xmax(), box1.xmax());
+  ASSERT_DOUBLE_EQ(result.ymax(), box1.ymax());
+  }
+  
+  {
+  BoundingBox2D result = combine(box1, BoundingBox2D());
+  ASSERT_DOUBLE_EQ(result.xmin(), box1.xmin());
+  ASSERT_DOUBLE_EQ(result.ymin(), box1.ymin());
+  ASSERT_DOUBLE_EQ(result.xmax(), box1.xmax());
+  ASSERT_DOUBLE_EQ(result.ymax(), box1.ymax());
+  }
+
+  {
+  BoundingBox2D result = combine(BoundingBox2D(), BoundingBox2D());
+  ASSERT_TRUE(std::isnan(result.xmin()));
+  ASSERT_TRUE(std::isnan(result.ymin()));
+  ASSERT_TRUE(std::isnan(result.xmax()));
+  ASSERT_TRUE(std::isnan(result.ymax()));
+  }
 }
 
 TEST(BOUNDINGBOX2D, LINESEGMENT2D) {
