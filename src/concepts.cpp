@@ -79,6 +79,21 @@ Curve2D rotate(const Rotation2D& rotation, const Curve2D& curve) {
   return curve.apply_visitor(visitor);
 }
 
+FiniteCurve2D rotate(const Rotation2D& rotation, const FiniteCurve2D& curve) {
+  rotate_visitor<FiniteCurve2D> visitor(rotation);
+  return curve.apply_visitor(visitor);
+}
+
+InfiniteCurve2D rotate(const Rotation2D& rotation, const InfiniteCurve2D& curve) {
+  rotate_visitor<InfiniteCurve2D> visitor(rotation);
+  return curve.apply_visitor(visitor);
+}
+
+OpenCurve2D rotate(const Rotation2D& rotation, const OpenCurve2D& curve) {
+  rotate_visitor<OpenCurve2D> visitor(rotation);
+  return curve.apply_visitor(visitor);
+}
+
 ClosedCurve2D rotate(const Rotation2D& rotation, const ClosedCurve2D& curve) {
   rotate_visitor<ClosedCurve2D> visitor(rotation);
   return curve.apply_visitor(visitor);
@@ -98,6 +113,39 @@ Curve2D operator+(const Curve2D& curve, const Vector2D& vector) {
 
 Curve2D operator+(const Vector2D& vector, const Curve2D& curve) {
   leftplus_visitor<Curve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+
+FiniteCurve2D operator+(const FiniteCurve2D& curve, const Vector2D& vector) {
+  rightplus_visitor<FiniteCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+FiniteCurve2D operator+(const Vector2D& vector, const FiniteCurve2D& curve) {
+  leftplus_visitor<FiniteCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+
+InfiniteCurve2D operator+(const InfiniteCurve2D& curve, const Vector2D& vector) {
+  rightplus_visitor<InfiniteCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+InfiniteCurve2D operator+(const Vector2D& vector, const InfiniteCurve2D& curve) {
+  leftplus_visitor<InfiniteCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+
+OpenCurve2D operator+(const OpenCurve2D& curve, const Vector2D& vector) {
+  rightplus_visitor<OpenCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+OpenCurve2D operator+(const Vector2D& vector, const OpenCurve2D& curve) {
+  leftplus_visitor<OpenCurve2D> visitor(vector);
   return curve.apply_visitor(visitor);
 }
 
@@ -124,6 +172,7 @@ PlotObject2D operator+(const Vector2D& vector, const PlotObject2D& object) {
 }
 
 
+
 Curve2D operator-(const Curve2D& curve, const Vector2D& vector) {
   rightminus_visitor<Curve2D> visitor(vector);
   return curve.apply_visitor(visitor);
@@ -131,6 +180,39 @@ Curve2D operator-(const Curve2D& curve, const Vector2D& vector) {
 
 Curve2D operator-(const Vector2D& vector, const Curve2D& curve) {
   leftminus_visitor<Curve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+
+FiniteCurve2D operator-(const FiniteCurve2D& curve, const Vector2D& vector) {
+  rightminus_visitor<FiniteCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+FiniteCurve2D operator-(const Vector2D& vector, const FiniteCurve2D& curve) {
+  leftminus_visitor<FiniteCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+
+InfiniteCurve2D operator-(const InfiniteCurve2D& curve, const Vector2D& vector) {
+  rightminus_visitor<InfiniteCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+InfiniteCurve2D operator-(const Vector2D& vector, const InfiniteCurve2D& curve) {
+  leftminus_visitor<InfiniteCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+
+OpenCurve2D operator-(const OpenCurve2D& curve, const Vector2D& vector) {
+  rightminus_visitor<OpenCurve2D> visitor(vector);
+  return curve.apply_visitor(visitor);
+}
+
+OpenCurve2D operator-(const Vector2D& vector, const OpenCurve2D& curve) {
+  leftminus_visitor<OpenCurve2D> visitor(vector);
   return curve.apply_visitor(visitor);
 }
 
