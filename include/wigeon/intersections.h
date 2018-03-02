@@ -19,7 +19,7 @@ struct IntersectionDescription;
 // Line2D
 template<>
 struct IntersectionDescription<Line2D, Point2D> {
-  IntersectionDescription(double r) : r(r) {}
+  explicit IntersectionDescription(double r) : r(r) {}
   double r;
 };
 
@@ -44,7 +44,7 @@ struct IntersectionDescription<Line2D, Line2D> {};
 // Ray2D
 template<>
 struct IntersectionDescription<Ray2D, Point2D> {
-  IntersectionDescription(double r) : r(r) {}
+  explicit IntersectionDescription(double r) : r(r) {}
   double r;
 };
 
@@ -57,7 +57,7 @@ struct IntersectionDescription<Ray2D, LineSegment2D> {
 
 template<>
 struct IntersectionDescription<Ray2D, Ray2D> {
-  IntersectionDescription(double r) : r(r) {}
+  explicit IntersectionDescription(double r) : r(r) {}
   double r;
 };
 
@@ -67,7 +67,7 @@ template<>
 struct IntersectionDescription<LineSegment2D, Point2D> {
   using ResultType = Point2D;
 
-  IntersectionDescription(double r) : r(r) {}
+  explicit IntersectionDescription(double r) : r(r) {}
   double r;
 };
 
