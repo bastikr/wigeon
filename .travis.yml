@@ -9,14 +9,14 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      # - g++-6
+      - g++-6
       # - googletest
       - cmake
       - libboost-all-dev
       - libgtest-dev
 
 before_install:
-  # - eval "CC=gcc-6 && CXX=g++-6"
+  - eval "CC=gcc-6 && CXX=g++-6"
 
 install:
   - cd /usr/src/gtest
