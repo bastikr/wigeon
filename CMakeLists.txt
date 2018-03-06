@@ -36,6 +36,7 @@ add_library(wigeon SHARED
     src/binarytree2d.cpp
     src/distances.cpp
     src/intersections.cpp
+    src/crossingpoints.cpp
     src/winding_number.cpp
     src/within.cpp
     src/offset.cpp

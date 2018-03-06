@@ -24,6 +24,7 @@
 
 #include "wigeon/distances.h"
 #include "wigeon/intersections.h"
+#include "wigeon/crossingpoints.h"
 #include "wigeon/winding_number.h"
 #include "wigeon/within.h"
 #include "wigeon/offset.h"
