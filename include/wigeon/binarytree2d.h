@@ -12,34 +12,34 @@ namespace wigeon {
 using LeafObjects = std::map<int, std::unique_ptr<BoundingBox2D>>;
 
 
-struct BinaryTree {
-  std::unique_ptr<BoundingBox2D> boundingbox;
-  std::shared_ptr<BoundingBox2D> max_boundingbox;
-  double min_area;
+class BinaryTree {
+  public:
+    BinaryTree(std::shared_ptr<BoundingBox2D> max_boundingbox, double min_area)
+        : min_area(min_area), max_boundingbox(max_boundingbox) {set_subboundingboxes();}
 
-  std::unique_ptr<BinaryTree> node0;
-  std::unique_ptr<BinaryTree> node1;
-  std::shared_ptr<BoundingBox2D> max_boundingbox0;
-  std::shared_ptr<BoundingBox2D> max_boundingbox1;
+    BinaryTree(const BoundingBox2D& max_boundingbox, double min_area)
+        : min_area(min_area), max_boundingbox(new BoundingBox2D(max_boundingbox)) {set_subboundingboxes();}
 
-  BinaryTree(std::shared_ptr<BoundingBox2D> max_boundingbox, double min_area)
-      : max_boundingbox(max_boundingbox), min_area(min_area) {set_subboundingboxes();}
+    void expand_boundingbox(const BoundingBox2D&);
+    void set_subboundingboxes();
 
-  BinaryTree(const BoundingBox2D& max_boundingbox, double min_area)
-      : max_boundingbox(new BoundingBox2D(max_boundingbox)), min_area(min_area) {set_subboundingboxes();}
+    bool create_node0();
+    bool create_node1();
 
-  void expand_boundingbox(const BoundingBox2D&);
-  void set_subboundingboxes();
+    bool insert(size_t id, const BoundingBox2D& bbox);
 
-  bool create_node0();
-  bool create_node1();
+    void find(std::vector<int>& results, const BoundingBox2D& bbox) const;
+    std::vector<int> find(const BoundingBox2D& bbox) const;
 
-  bool insert(size_t id, const BoundingBox2D& bbox);
-  void find(std::vector<int>& results, const BoundingBox2D& bbox) const;
-  std::vector<int> find(const BoundingBox2D& bbox) const;
+    double min_area;
+    std::unique_ptr<BoundingBox2D> boundingbox;
+    std::shared_ptr<BoundingBox2D> max_boundingbox;
 
-
-  LeafObjects objects;
+    std::unique_ptr<BinaryTree> node0;
+    std::unique_ptr<BinaryTree> node1;
+    std::shared_ptr<BoundingBox2D> max_boundingbox0;
+    std::shared_ptr<BoundingBox2D> max_boundingbox1;
+    LeafObjects objects;
 };
 
 } // namespace wigeon
