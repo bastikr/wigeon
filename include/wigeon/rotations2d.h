@@ -13,6 +13,7 @@ class Rotation2D {
 
     double x() const {return data[0];};
     double y() const {return data[1];};
+    double angle() const;
 
     Rotation2D inverse() const;
 

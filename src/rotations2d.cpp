@@ -8,6 +8,8 @@ namespace wigeon {
 Rotation2D::Rotation2D(double angle)
   : data({{cos(angle), sin(angle)}}) {}
 
+double Rotation2D::angle() const {return atan2(y(), x());}
+
 Rotation2D operator*(const Rotation2D& q0, const Rotation2D& q1) {
   return Rotation2D(q0.x()*q1.x() - q0.y()*q1.y(), q0.x()*q1.y() + q0.y()*q1.x());
 }
