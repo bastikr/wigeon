@@ -1,5 +1,7 @@
 #include "wigeon/triangle2d.h"
 
+#include <cmath>
+
 
 namespace wigeon {
 
@@ -17,6 +19,17 @@ Point2D Triangle2D::point1() const {
 Point2D Triangle2D::point2() const {
   return Point2D(data[4], data[5]);
 }
+
+double Triangle2D::length() const {
+  return (point1() - point0()).length()
+       + (point2() - point1()).length()
+       + (point0() - point2()).length();
+}
+
+double Triangle2D::length2() const {
+  return pow(length(), 2);
+}
+
 
 Triangle2D operator+(const Triangle2D& triangle, const Vector2D& vector) {
   return Triangle2D(triangle.point0() + vector,

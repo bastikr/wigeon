@@ -17,6 +17,13 @@ TEST(TRIANGLE2D, CONSTRUCTION) {
   ASSERT_DOUBLE_EQ(triangle0.point2().y(), 6);
 }
 
+TEST(TRIANGLE2D, LENGTH) {
+  Triangle2D triangle(Point2D(-1, 0), Point2D(2, 0), Point2D(2, 4));
+
+  ASSERT_DOUBLE_EQ(triangle.length(), 12);
+  ASSERT_DOUBLE_EQ(triangle.length2(), 12*12);
+}
+
 TEST(TRIANGLE2D, OPERATORS) {
   Triangle2D triangle(Point2D(1, 2), Point2D(3, 4), Point2D(5, 6));
   Vector2D v(1, 3);
