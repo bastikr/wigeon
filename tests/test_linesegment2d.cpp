@@ -46,12 +46,8 @@ TEST(SEGMENT2D, OPERATORS) {
 
   ASSERT_DOUBLE_EQ((segment-vector).point0().x(), -1);
   ASSERT_DOUBLE_EQ((segment-vector).point0().y(), -5);
-  ASSERT_DOUBLE_EQ((vector-segment).point0().x(), 1);
-  ASSERT_DOUBLE_EQ((vector-segment).point0().y(), 5);
   ASSERT_DOUBLE_EQ((segment-vector).point1().x(), -7);
   ASSERT_DOUBLE_EQ((segment-vector).point1().y(), 4);
-  ASSERT_DOUBLE_EQ((vector-segment).point1().x(), 7);
-  ASSERT_DOUBLE_EQ((vector-segment).point1().y(), -4);
 }
 
 TEST(SEGMENT2D, DIRECTION) {

@@ -17,9 +17,6 @@ TEST(POINT1D, OPERATORS) {
   p = p0 - v;
   ASSERT_DOUBLE_EQ(p.x(), -3);
 
-  p = v - p0;
-  ASSERT_DOUBLE_EQ(p.x(), 3);
-
   v = p0 - p1;
   ASSERT_DOUBLE_EQ(v.x(), 3);
 }

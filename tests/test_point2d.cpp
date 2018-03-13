@@ -23,10 +23,6 @@ TEST(POINT2D, OPERATORS) {
   ASSERT_DOUBLE_EQ(p.x(), -3);
   ASSERT_DOUBLE_EQ(p.y(), -4);
 
-  p = v - p0;
-  ASSERT_DOUBLE_EQ(p.x(), 3);
-  ASSERT_DOUBLE_EQ(p.y(), 4);
-
   v = p0 - p1;
   ASSERT_DOUBLE_EQ(v.x(), 3);
   ASSERT_DOUBLE_EQ(v.y(), -1);

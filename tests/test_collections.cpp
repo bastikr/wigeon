@@ -20,13 +20,9 @@ TEST(COLLECTIONS, OPERATORS) {
 
 
   curves_p = Vector2D(1, 2) + curves;
-  curves_m = Vector2D(1, 2) - curves;
 
   ASSERT_DOUBLE_EQ(boost::get<Circle2D>(curves_p.front()).center().x(), 3);
   ASSERT_DOUBLE_EQ(boost::get<Circle2D>(curves_p.front()).center().y(), 6);
-
-  ASSERT_DOUBLE_EQ(boost::get<Circle2D>(curves_m.front()).center().x(), -1);
-  ASSERT_DOUBLE_EQ(boost::get<Circle2D>(curves_m.front()).center().y(), -2);
 }
 
 TEST(COLLECTIONS, ROTATION) {

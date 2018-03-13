@@ -13,7 +13,6 @@ TEST(RECTANGLE2D, OPERATORS) {
   Rectangle2D r0 = rectangle + vector;
   Rectangle2D r1 = vector + rectangle;
   Rectangle2D r2 = rectangle - vector;
-  Rectangle2D r3 = vector - rectangle;
 
   ASSERT_DOUBLE_EQ(r0.point00().x(), 3);
   ASSERT_DOUBLE_EQ(r0.point00().y(), 1);
@@ -29,11 +28,6 @@ TEST(RECTANGLE2D, OPERATORS) {
   ASSERT_DOUBLE_EQ(r2.point00().y(), -5);
   ASSERT_DOUBLE_EQ(r2.point11().x(), 1);
   ASSERT_DOUBLE_EQ(r2.point11().y(), 4);
-
-  ASSERT_DOUBLE_EQ(r3.point00().x(), -1);
-  ASSERT_DOUBLE_EQ(r3.point00().y(), -4);
-  ASSERT_DOUBLE_EQ(r3.point11().x(), 1);
-  ASSERT_DOUBLE_EQ(r3.point11().y(), 5);
 }
 
 

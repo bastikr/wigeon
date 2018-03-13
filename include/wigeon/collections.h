@@ -20,9 +20,6 @@ template <typename T>
 std::list<T> operator+(const std::list<T>&, const Vector2D&);
 
 template <typename T>
-std::list<T> operator-(const Vector2D&, const std::list<T>&);
-
-template <typename T>
 std::list<T> operator-(const std::list<T>&, const Vector2D&);
 
 template <typename T>
@@ -44,15 +41,6 @@ std::list<T> operator+(const std::list<T>& objects, const Vector2D& vector) {
   std::list<T> result;
   for (auto& object: objects) {
     result.push_back(object + vector);
-  }
-  return result;
-}
-
-template <typename T>
-std::list<T> operator-(const Vector2D& vector, const std::list<T>& objects) {
-  std::list<T> result;
-  for (auto& object: objects) {
-    result.push_back(vector - object);
   }
   return result;
 }

@@ -16,7 +16,6 @@ Area2D operator+(const Area2D&, const Vector2D&);
 Area2D operator+(const Vector2D&, const Area2D&);
 
 Area2D operator-(const Area2D&, const Vector2D&);
-Area2D operator-(const Vector2D&, const Area2D&);
 
 Area2D rotate(const Rotation2D&, const Area2D&);
 

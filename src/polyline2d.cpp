@@ -45,14 +45,6 @@ PolyLine2D operator-(const PolyLine2D& polyline, const Vector2D& vector) {
   return polyline_new;
 }
 
-PolyLine2D operator-(const Vector2D& vector, const PolyLine2D& polyline) {
-  PolyLine2D polyline_new;
-  for (auto it=polyline.points.begin(); it!=polyline.points.end(); ++it) {
-    polyline_new.push_back(*it - vector);
-  }
-  return polyline_new;
-}
-
 
 Rectangle2D PolyLine2D::bounding_box() const {
   if (size()==0)

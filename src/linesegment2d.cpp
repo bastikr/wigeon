@@ -39,10 +39,6 @@ LineSegment2D operator-(const LineSegment2D& segment, const Vector2D& vector) {
   return LineSegment2D(segment.point0() - vector, segment.point1() - vector);
 }
 
-LineSegment2D operator-(const Vector2D& vector, const LineSegment2D& segment) {
-  return LineSegment2D(vector - segment.point0(), vector - segment.point1());
-}
-
 UnitVector2D normalvector(const LineSegment2D& segment) {
   return normalvector(segment.direction());
 }

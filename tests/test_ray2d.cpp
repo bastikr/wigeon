@@ -17,8 +17,6 @@ TEST(RAY2D, OPERATORS) {
 
   ASSERT_DOUBLE_EQ((ray-vector).point().x(), -2);
   ASSERT_DOUBLE_EQ((ray-vector).point().y(), -7);
-  ASSERT_DOUBLE_EQ((vector-ray).point().x(), 2);
-  ASSERT_DOUBLE_EQ((vector-ray).point().y(), 7);
 }
 
 TEST(RAY2D, NORMALVECTOR) {

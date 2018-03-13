@@ -32,7 +32,6 @@ PolyLine2D operator+(const PolyLine2D&, const Vector2D&);
 PolyLine2D operator+(const Vector2D&, const PolyLine2D&);
 
 PolyLine2D operator-(const PolyLine2D&, const Vector2D&);
-PolyLine2D operator-(const Vector2D&, const PolyLine2D&);
 
 PolyLine2D rotate(const Rotation2D&, const PolyLine2D&);
 

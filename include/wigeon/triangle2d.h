@@ -24,7 +24,6 @@ Triangle2D operator+(const Triangle2D&, const Vector2D&);
 Triangle2D operator+(const Vector2D&, const Triangle2D&);
 
 Triangle2D operator-(const Triangle2D&, const Vector2D&);
-Triangle2D operator-(const Vector2D&, const Triangle2D&);
 
 Triangle2D rotate(const Rotation2D&, const Triangle2D&);
 

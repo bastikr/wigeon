@@ -34,7 +34,6 @@ Rectangle2D operator+(const Rectangle2D&, const Vector2D&);
 Rectangle2D operator+(const Vector2D&, const Rectangle2D&);
 
 Rectangle2D operator-(const Rectangle2D&, const Vector2D&);
-Rectangle2D operator-(const Vector2D&, const Rectangle2D&);
 
 Rectangle2D rotate(const Rotation2D&, const Rectangle2D&);
 

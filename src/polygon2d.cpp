@@ -63,14 +63,6 @@ Polygon2D operator-(const Polygon2D& polygon, const Vector2D& vector) {
   return polygon_new;
 }
 
-Polygon2D operator-(const Vector2D& vector, const Polygon2D& polygon) {
-  Polygon2D polygon_new;
-  for (auto it=polygon.points.begin(); it!=polygon.points.end(); ++it) {
-    polygon_new.push_back(*it - vector);
-  }
-  return polygon_new;
-}
-
 Rectangle2D Polygon2D::bounding_box() const {
   if (size()==0)
     throw "0-size polygon has no bounding box.";

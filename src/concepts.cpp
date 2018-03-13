@@ -178,63 +178,29 @@ Curve2D operator-(const Curve2D& curve, const Vector2D& vector) {
   return curve.apply_visitor(visitor);
 }
 
-Curve2D operator-(const Vector2D& vector, const Curve2D& curve) {
-  leftminus_visitor<Curve2D> visitor(vector);
-  return curve.apply_visitor(visitor);
-}
-
-
 FiniteCurve2D operator-(const FiniteCurve2D& curve, const Vector2D& vector) {
   rightminus_visitor<FiniteCurve2D> visitor(vector);
   return curve.apply_visitor(visitor);
 }
-
-FiniteCurve2D operator-(const Vector2D& vector, const FiniteCurve2D& curve) {
-  leftminus_visitor<FiniteCurve2D> visitor(vector);
-  return curve.apply_visitor(visitor);
-}
-
 
 InfiniteCurve2D operator-(const InfiniteCurve2D& curve, const Vector2D& vector) {
   rightminus_visitor<InfiniteCurve2D> visitor(vector);
   return curve.apply_visitor(visitor);
 }
 
-InfiniteCurve2D operator-(const Vector2D& vector, const InfiniteCurve2D& curve) {
-  leftminus_visitor<InfiniteCurve2D> visitor(vector);
-  return curve.apply_visitor(visitor);
-}
-
-
 OpenCurve2D operator-(const OpenCurve2D& curve, const Vector2D& vector) {
   rightminus_visitor<OpenCurve2D> visitor(vector);
   return curve.apply_visitor(visitor);
 }
-
-OpenCurve2D operator-(const Vector2D& vector, const OpenCurve2D& curve) {
-  leftminus_visitor<OpenCurve2D> visitor(vector);
-  return curve.apply_visitor(visitor);
-}
-
 
 ClosedCurve2D operator-(const ClosedCurve2D& curve, const Vector2D& vector) {
   rightminus_visitor<ClosedCurve2D> visitor(vector);
   return curve.apply_visitor(visitor);
 }
 
-ClosedCurve2D operator-(const Vector2D& vector, const ClosedCurve2D& curve) {
-  leftminus_visitor<ClosedCurve2D> visitor(vector);
-  return curve.apply_visitor(visitor);
-}
-
-
 PlotObject2D operator-(const PlotObject2D& object, const Vector2D& vector) {
   rightminus_visitor<PlotObject2D> visitor(vector);
   return object.apply_visitor(visitor);
 }
 
-PlotObject2D operator-(const Vector2D& vector, const PlotObject2D& object) {
-  leftminus_visitor<PlotObject2D> visitor(vector);
-  return object.apply_visitor(visitor);
-}
 } // namespace wigeon

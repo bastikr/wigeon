@@ -19,13 +19,9 @@ TEST(CONCEPTS, OPERATORS) {
 
 
   circle0_p = Vector2D(1, 2) + circle0;
-  circle0_m = Vector2D(1, 2) - circle0;
 
   ASSERT_DOUBLE_EQ(boost::get<Circle2D>(circle0_p).center().x(), 3);
   ASSERT_DOUBLE_EQ(boost::get<Circle2D>(circle0_p).center().y(), 6);
-
-  ASSERT_DOUBLE_EQ(boost::get<Circle2D>(circle0_m).center().x(), -1);
-  ASSERT_DOUBLE_EQ(boost::get<Circle2D>(circle0_m).center().y(), -2);
 }
 
 TEST(CONCEPTS, ROTATE) {

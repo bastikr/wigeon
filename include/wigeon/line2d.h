@@ -26,7 +26,6 @@ Line2D operator+(const Line2D&, const Vector2D&);
 Line2D operator+(const Vector2D&, const Line2D&);
 
 Line2D operator-(const Line2D&, const Vector2D&);
-Line2D operator-(const Vector2D&, const Line2D&);
 
 UnitVector2D normalvector(const Line2D&);
 

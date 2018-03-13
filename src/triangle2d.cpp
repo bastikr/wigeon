@@ -36,12 +36,6 @@ Triangle2D operator-(const Triangle2D& triangle, const Vector2D& vector) {
                     triangle.point2() - vector);
 }
 
-Triangle2D operator-(const Vector2D& vector, const Triangle2D& triangle) {
-  return Triangle2D(vector - triangle.point0(),
-                    vector - triangle.point1(),
-                    vector - triangle.point2());
-}
-
 Triangle2D rotate(const Rotation2D& R, const Triangle2D& triangle) {
   return Triangle2D(rotate(R, triangle.point0()),
                     rotate(R, triangle.point1()),

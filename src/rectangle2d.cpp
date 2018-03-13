@@ -31,10 +31,6 @@ Rectangle2D operator-(const Rectangle2D& rectangle, const Vector2D& vector) {
   return Rectangle2D(rectangle.origin() - vector, rectangle.width(), rectangle.height(), rectangle.rotation());
 }
 
-Rectangle2D operator-(const Vector2D& vector, const Rectangle2D& rectangle) {
-  return Rectangle2D(vector - rectangle.origin(), rectangle.width(), rectangle.height(), rectangle.rotation());
-}
-
 
 Rectangle2D rotate(const Rotation2D& rotation, const Rectangle2D& rectangle) {
   return Rectangle2D(rotate(rotation, rectangle.origin()),

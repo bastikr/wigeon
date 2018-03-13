@@ -44,14 +44,6 @@ TEST(TRIANGLE2D, OPERATORS) {
   ASSERT_DOUBLE_EQ(result2.point1().y(), 1);
   ASSERT_DOUBLE_EQ(result2.point2().x(), 4);
   ASSERT_DOUBLE_EQ(result2.point2().y(), 3);
-
-  Triangle2D result3 = v - triangle;
-  ASSERT_DOUBLE_EQ(result3.point0().x(), 0);
-  ASSERT_DOUBLE_EQ(result3.point0().y(), 1);
-  ASSERT_DOUBLE_EQ(result3.point1().x(), -2);
-  ASSERT_DOUBLE_EQ(result3.point1().y(), -1);
-  ASSERT_DOUBLE_EQ(result3.point2().x(), -4);
-  ASSERT_DOUBLE_EQ(result3.point2().y(), -3);
 }
 
 TEST(TRIANGLE2D, ROTATE) {

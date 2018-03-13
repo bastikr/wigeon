@@ -39,7 +39,6 @@ Polygon2D operator+(const Polygon2D&, const Vector2D&);
 Polygon2D operator+(const Vector2D&, const Polygon2D&);
 
 Polygon2D operator-(const Polygon2D&, const Vector2D&);
-Polygon2D operator-(const Vector2D&, const Polygon2D&);
 
 Polygon2D rotate(const Rotation2D&, const Polygon2D&);
 

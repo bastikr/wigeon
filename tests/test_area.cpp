@@ -27,20 +27,14 @@ TEST(AREA2D, OPERATORS) {
 
 
   area_p = Vector2D(1, 2) + area;
-  area_m = Vector2D(1, 2) - area;
 
   ASSERT_DOUBLE_EQ(boost::get<Circle2D>(area_p.exterior_curves.front()).center().x(), 3);
   ASSERT_DOUBLE_EQ(boost::get<Circle2D>(area_p.exterior_curves.front()).center().y(), 6);
 
-  ASSERT_DOUBLE_EQ(boost::get<Circle2D>(area_m.exterior_curves.front()).center().x(), -1);
-  ASSERT_DOUBLE_EQ(boost::get<Circle2D>(area_m.exterior_curves.front()).center().y(), -2);
-
   ASSERT_DOUBLE_EQ(boost::get<Triangle2D>(area_p.interior_curves.front()).point0().x(), 1);
   ASSERT_DOUBLE_EQ(boost::get<Triangle2D>(area_p.interior_curves.front()).point0().y(), 2);
-
-  ASSERT_DOUBLE_EQ(boost::get<Triangle2D>(area_m.interior_curves.front()).point0().x(), 1);
-  ASSERT_DOUBLE_EQ(boost::get<Triangle2D>(area_m.interior_curves.front()).point0().y(), 2);
 }
+
 
 TEST(AREA2D, ROTATE) {
   Area2D area;

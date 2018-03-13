@@ -27,8 +27,6 @@ TEST(LINE2D, OPERATORS) {
 
   ASSERT_DOUBLE_EQ((line-vector).point().x(), -2);
   ASSERT_DOUBLE_EQ((line-vector).point().y(), -7);
-  ASSERT_DOUBLE_EQ((vector-line).point().x(), 2);
-  ASSERT_DOUBLE_EQ((vector-line).point().y(), 7);
 }
 
 TEST(LINE2D, NORMALVECTOR) {

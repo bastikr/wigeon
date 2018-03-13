@@ -18,7 +18,6 @@ struct Point1D {
 Point1D operator+(const Point1D& point, const Vector1D& vector);
 Point1D operator+(const Vector1D& vector, const Point1D& point);
 Point1D operator-(const Point1D& point, const Vector1D& vector);
-Point1D operator-(const Vector1D& vector, const Point1D& point);
 
 Vector1D operator-(const Point1D& point0, const Point1D& point1);
 
