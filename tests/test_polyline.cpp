@@ -16,6 +16,15 @@ TEST(POLYLINE2D, CREATION) {
   ASSERT_DOUBLE_EQ(polygon0.point(1).y(), 4);
 }
 
+TEST(POLYLINE2D, LENGTH) {
+  PolyLine2D polygon;
+  polygon.push_back(-1, 0);
+  polygon.push_back(2, 0);
+  polygon.push_back(2, 4);
+
+  ASSERT_DOUBLE_EQ(polygon.length(), 7);
+}
+
 TEST(POLYLINE2D, OPERATORS) {
   PolyLine2D polygon0;
   polygon0.push_back(0, 0);

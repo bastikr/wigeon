@@ -21,6 +21,14 @@ size_t PolyLine2D::size() const {
   return points.size();
 }
 
+double PolyLine2D::length() const {
+  double l;
+  for (size_t i=0; i<size()-1; ++i) {
+    l += edge(i).length();
+  }
+  return l;
+}
+
 PolyLine2D operator+(const PolyLine2D& polyline, const Vector2D& vector) {
   PolyLine2D polyline_new;
   for (auto it=polyline.points.begin(); it!=polyline.points.end(); ++it) {

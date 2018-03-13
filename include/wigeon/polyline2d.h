@@ -22,6 +22,8 @@ struct PolyLine2D {
 
   Rectangle2D bounding_box() const;
 
+  double length() const;
+
   Point2D point(size_t i) const;
   LineSegment2D edge(size_t i) const;
 
