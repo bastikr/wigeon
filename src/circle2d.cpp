@@ -9,6 +9,10 @@ double Circle2D::length() const {
   return 2*radius()*M_PI;
 }
 
+double Circle2D::area() const {
+  return pow(radius(), 2) * M_PI;
+}
+
 Circle2D operator+(const Circle2D& circle, const Vector2D& vector) {
   return Circle2D(circle.origin() + vector, circle.radius());
 }

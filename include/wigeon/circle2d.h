@@ -14,6 +14,7 @@ struct Circle2D {
   double radius() const {return radius_;}
 
   double length() const;
+  double area() const;
 
   Point2D origin_;
   double radius_;

@@ -11,6 +11,10 @@ TEST(CIRCLE2D, LENGTH) {
   ASSERT_DOUBLE_EQ(circle.length(), 2*1.5*M_PI);
 }
 
+TEST(CIRCLE2D, AREA) {
+  Circle2D circle(Point2D(2, 3), 1.9);
+  ASSERT_DOUBLE_EQ(circle.area(), 1.9*1.9*M_PI);
+}
 
 TEST(CIRCLE2D, OPERATORS) {
   Circle2D circle0(Point2D(2, 4), 0.5);
