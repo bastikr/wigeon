@@ -12,6 +12,11 @@ TEST(RECTANGLE2D, LENGTH) {
   ASSERT_DOUBLE_EQ(rectangle.length(), 15.6);
 }
 
+TEST(RECTANGLE2D, AREA) {
+  Rectangle2D rectangle(0, -1.5, 2.5, 4);
+
+  ASSERT_DOUBLE_EQ(rectangle.area(), 2.5*5.5);
+}
 
 TEST(RECTANGLE2D, OPERATORS) {
   Rectangle2D rectangle(1, -2, 3, 7);
