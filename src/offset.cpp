@@ -20,8 +20,8 @@ LineSegment2D offset(const LineSegment2D& segment, double d) {
 Circle2D offset(const Circle2D& circle, double d) {
   double radius = circle.radius() + d;
   if (radius>0)
-    return Circle2D(circle.center(), radius);
-  return Circle2D(circle.center(), 0);
+    return Circle2D(circle.origin(), radius);
+  return Circle2D(circle.origin(), 0);
 }
 
 Rectangle2D offset(const Rectangle2D& rectangle, double d) {

@@ -157,7 +157,7 @@ double distance2(const LineSegment2D& segment, const Ray2D& ray) {
 // Circle
 
 double distance2(const Circle2D& circle, const Point2D& point) {
-  double d2 = distance2(point, circle.center());
+  double d2 = distance2(point, circle.origin());
   double d = circle.radius() - sqrt(d2);
   return d*d;
 }

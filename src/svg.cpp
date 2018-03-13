@@ -55,8 +55,8 @@ void print(std::ostream& f, const Circle2D& circle, const Properties& properties
   for (auto property: properties.properties) {
     print_argument(f, property.first, property.second);
   }
-  print_argument(f, "cx", circle.center().x());
-  print_argument(f, "cy", circle.center().y());
+  print_argument(f, "cx", circle.origin().x());
+  print_argument(f, "cy", circle.origin().y());
   print_argument(f, "r", circle.radius());
   f << "/>";
 }

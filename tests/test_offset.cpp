@@ -7,18 +7,18 @@ TEST(OFFSETS, CIRCLE2D) {
   Circle2D circle(Point2D(1, 2), 3);
 
   Circle2D circle0 = offset(circle, 2);
-  ASSERT_DOUBLE_EQ(circle0.center().x(), 1);
-  ASSERT_DOUBLE_EQ(circle0.center().y(), 2);
+  ASSERT_DOUBLE_EQ(circle0.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(circle0.origin().y(), 2);
   ASSERT_DOUBLE_EQ(circle0.radius(), 5);
 
   Circle2D circle1 = offset(circle, -2);
-  ASSERT_DOUBLE_EQ(circle1.center().x(), 1);
-  ASSERT_DOUBLE_EQ(circle1.center().y(), 2);
+  ASSERT_DOUBLE_EQ(circle1.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(circle1.origin().y(), 2);
   ASSERT_DOUBLE_EQ(circle1.radius(), 1);
 
   Circle2D circle2 = offset(circle, -4);
-  ASSERT_DOUBLE_EQ(circle2.center().x(), 1);
-  ASSERT_DOUBLE_EQ(circle2.center().y(), 2);
+  ASSERT_DOUBLE_EQ(circle2.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(circle2.origin().y(), 2);
   ASSERT_DOUBLE_EQ(circle2.radius(), 0);
 }
 
@@ -83,8 +83,8 @@ TEST(OFFSETS, AREA2D) {
   Area2D area_new = offset(area, d);
 
   Circle2D circle_new_exterior = boost::get<Circle2D>(area_new.exterior_curves.front());
-  ASSERT_DOUBLE_EQ(circle_new_exterior.center().x(), circle.center().x());
-  ASSERT_DOUBLE_EQ(circle_new_exterior.center().y(), circle.center().y());
+  ASSERT_DOUBLE_EQ(circle_new_exterior.origin().x(), circle.origin().x());
+  ASSERT_DOUBLE_EQ(circle_new_exterior.origin().y(), circle.origin().y());
   ASSERT_DOUBLE_EQ(circle_new_exterior.radius(), offset(circle, d).radius());
 
   Polygon2D triangle_new_exterior = boost::get<Polygon2D>(area_new.exterior_curves.back());
@@ -102,7 +102,7 @@ TEST(OFFSETS, AREA2D) {
   ASSERT_DOUBLE_EQ(rectangle_new_interior.point11().y(), offset(rectangle, -d).point11().y());
 
   Circle2D circle_new_interior = boost::get<Circle2D>(area_new.interior_curves.back());
-  ASSERT_DOUBLE_EQ(circle_new_interior.center().x(), circle.center().x());
-  ASSERT_DOUBLE_EQ(circle_new_interior.center().y(), circle.center().y());
+  ASSERT_DOUBLE_EQ(circle_new_interior.origin().x(), circle.origin().x());
+  ASSERT_DOUBLE_EQ(circle_new_interior.origin().y(), circle.origin().y());
   ASSERT_DOUBLE_EQ(circle_new_interior.radius(), offset(circle, -d).radius());
 }

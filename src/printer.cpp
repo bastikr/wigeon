@@ -44,7 +44,7 @@ std::ostream& operator<<(std::ostream& os, const Rectangle2D& rectangle) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Circle2D& circle) {
-  os << "Circle2D(" << circle.center() << ", " << circle.radius() << ")";
+  os << "Circle2D(" << circle.origin() << ", " << circle.radius() << ")";
   return os;
 }
 

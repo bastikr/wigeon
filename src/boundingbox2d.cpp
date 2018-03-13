@@ -122,7 +122,7 @@ BoundingBox2D boundingbox(const Rectangle2D& reactangle) {
 }
 
 BoundingBox2D boundingbox(const Circle2D& circle) {
-  return BoundingBox2D(circle.center(), 2*circle.radius(), 2*circle.radius());
+  return BoundingBox2D(circle.origin(), 2*circle.radius(), 2*circle.radius());
 }
 
 BoundingBox2D boundingbox(const Polygon2D& polygon) {

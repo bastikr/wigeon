@@ -8,12 +8,12 @@
 namespace wigeon {
 
 struct Circle2D {
-  Circle2D(Point2D center, double radius) : center_(center), radius_(radius) {}
+  Circle2D(Point2D origin, double radius) : origin_(origin), radius_(radius) {}
 
-  Point2D center() const {return center_;}
+  Point2D origin() const {return origin_;}
   double radius() const {return radius_;}
 
-  Point2D center_;
+  Point2D origin_;
   double radius_;
 };
 

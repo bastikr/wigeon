@@ -32,7 +32,7 @@ bool within(const Point2D& point, const Rectangle2D& rectangle) {
 }
 
 bool within(const Point2D& point, const Circle2D& circle) {
-  return distance2(circle.center(), point) < circle.radius()*circle.radius();
+  return distance2(circle.origin(), point) < circle.radius()*circle.radius();
 }
 
 bool within(const Point2D& point, const Polygon2D& polygon) {
