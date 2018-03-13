@@ -13,6 +13,8 @@ struct Circle2D {
   Point2D origin() const {return origin_;}
   double radius() const {return radius_;}
 
+  double length() const;
+
   Point2D origin_;
   double radius_;
 };
