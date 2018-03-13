@@ -1,5 +1,7 @@
 #include "wigeon/rectangle2d.h"
 
+#include <cmath>
+
 
 namespace wigeon {
 
@@ -17,6 +19,18 @@ Rectangle2D::Rectangle2D(double x0, double y0, double x1, double y1, const Rotat
       width_(x1 - x0),
       height_(y1 - y0),
       rotation_(rotation) {}
+
+
+double Rectangle2D::length() const {
+  return (point10()-point00()).length()
+       + (point11()-point10()).length()
+       + (point01()-point11()).length()
+       + (point00()-point01()).length();
+}
+
+double Rectangle2D::length2() const {
+  return pow(length(), 2);
+}
 
 
 Rectangle2D operator+(const Rectangle2D& rectangle, const Vector2D& vector) {

@@ -6,6 +6,14 @@
 
 using namespace wigeon;
 
+TEST(RECTANGLE2D, LENGTH) {
+  Rectangle2D rectangle(0, -1.5, 2.5, 3.8);
+
+  ASSERT_DOUBLE_EQ(rectangle.length(), 15.6);
+  ASSERT_DOUBLE_EQ(rectangle.length2(), 15.6*15.6);
+}
+
+
 TEST(RECTANGLE2D, OPERATORS) {
   Rectangle2D rectangle(1, -2, 3, 7);
   Vector2D vector(2, 3);
