@@ -9,6 +9,7 @@ using namespace wigeon;
 TEST(CIRCLE2D, LENGTH) {
   Circle2D circle(Point2D(0, 0), 1.5);
   ASSERT_DOUBLE_EQ(circle.length(), 2*1.5*M_PI);
+  ASSERT_DOUBLE_EQ(circle.length2(), 2*2 * 1.5*1.5 * M_PI*M_PI);
 }
 
 
