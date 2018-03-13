@@ -20,7 +20,6 @@ struct Rectangle2D {
   Rotation2D rotation() const {return rotation_;}
 
   double length() const;
-  double length2() const;
 
   Point2D point00() const {return origin_ + rotate(rotation_, Vector2D(-0.5*width_, -0.5*height_));}
   Point2D point01() const {return origin_ + rotate(rotation_, Vector2D(-0.5*width_, 0.5*height_));}

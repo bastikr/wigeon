@@ -28,10 +28,6 @@ double Rectangle2D::length() const {
        + (point00()-point01()).length();
 }
 
-double Rectangle2D::length2() const {
-  return pow(length(), 2);
-}
-
 
 Rectangle2D operator+(const Rectangle2D& rectangle, const Vector2D& vector) {
   return Rectangle2D(rectangle.origin() + vector, rectangle.width(), rectangle.height(), rectangle.rotation());

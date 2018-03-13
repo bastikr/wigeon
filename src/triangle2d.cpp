@@ -26,10 +26,6 @@ double Triangle2D::length() const {
        + (point0() - point2()).length();
 }
 
-double Triangle2D::length2() const {
-  return pow(length(), 2);
-}
-
 
 Triangle2D operator+(const Triangle2D& triangle, const Vector2D& vector) {
   return Triangle2D(triangle.point0() + vector,

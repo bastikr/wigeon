@@ -64,7 +64,6 @@ TEST(SEGMENT2D, DIRECTION) {
 
 TEST(SEGMENT2D, LENGTH) {
   LineSegment2D segment(-2, 5, 2, 8);
-  ASSERT_DOUBLE_EQ(segment.length2(), 25);
   ASSERT_DOUBLE_EQ(segment.length(), 5);
 }
 

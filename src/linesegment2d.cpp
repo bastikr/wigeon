@@ -17,14 +17,8 @@ UnitVector2D LineSegment2D::direction() const {
   return UnitVector2D(point1() - point0());
 }
 
-double LineSegment2D::length2() const {
-  double dx = x1() - x0();
-  double dy = y1() - y0();
-  return dx*dx + dy*dy;
-}
-
 double LineSegment2D::length() const {
-  return sqrt(length2());
+  return (point1() - point0()).length();
 }
 
 LineSegment2D operator+(const LineSegment2D& segment, const Vector2D& vector) {
