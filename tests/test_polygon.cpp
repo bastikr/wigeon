@@ -38,6 +38,15 @@ TEST(POLYGON2D, CREATION) {
   ASSERT_DOUBLE_EQ(polygon2.point(3).y(), 4);
 }
 
+TEST(POLYGON2D, LENGTH) {
+  Polygon2D polygon;
+  polygon.push_back(-1, 0);
+  polygon.push_back(2, 0);
+  polygon.push_back(2, 4);
+
+  ASSERT_DOUBLE_EQ(polygon.length(), 12);
+}
+
 TEST(POLYGON2D, OPERATORS) {
   Polygon2D polygon0;
   polygon0.push_back(0, 0);

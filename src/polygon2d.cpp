@@ -39,6 +39,14 @@ double Polygon2D::area() const {
   return A/2;
 }
 
+double Polygon2D::length() const {
+  double l = 0;
+  for (size_t i=0; i<size(); ++i) {
+    l += edge(i).length();
+  }
+  return l;
+}
+
 Polygon2D operator+(const Polygon2D& polygon, const Vector2D& vector) {
   Polygon2D polygon_new;
   for (auto it=polygon.points.begin(); it!=polygon.points.end(); ++it) {

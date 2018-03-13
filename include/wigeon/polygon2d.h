@@ -24,6 +24,8 @@ struct Polygon2D {
   size_t size() const;
   double area() const;
 
+  double length() const;
+
   Rectangle2D bounding_box() const;
 
   Point2D point(size_t i) const;
