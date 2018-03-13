@@ -20,16 +20,16 @@ struct Vector2D {
 };
 
 
-Vector2D operator+(const Vector2D& vector0, const Vector2D& vector1);
+Vector2D operator+(const Vector2D&, const Vector2D&);
 
-Vector2D operator-(const Vector2D& vector);
-Vector2D operator-(const Vector2D& vector0, const Vector2D& vector1);
+Vector2D operator-(const Vector2D&);
+Vector2D operator-(const Vector2D&, const Vector2D&);
 
-Vector2D operator*(const Vector2D& vector, double a);
-Vector2D operator*(double a, const Vector2D& vector);
-double operator*(const Vector2D& vector0, const Vector2D& vector1);
+Vector2D operator*(const Vector2D&, double);
+Vector2D operator*(double, const Vector2D&);
+double operator*(const Vector2D&, const Vector2D&);
 
-Vector2D operator/(const Vector2D& vector, double a);
+Vector2D operator/(const Vector2D&, double);
 
 
 struct UnitVector2D : public Vector2D {

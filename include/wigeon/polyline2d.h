@@ -15,7 +15,7 @@ struct PolyLine2D {
   PolyLine2D() : points() {}
   explicit PolyLine2D(const LineSegment2D&);
 
-  void push_back(const Point2D& point);
+  void push_back(const Point2D&);
   void push_back(double x, double y);
 
   size_t size() const;

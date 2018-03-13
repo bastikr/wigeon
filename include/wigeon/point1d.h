@@ -15,10 +15,10 @@ struct Point1D {
   std::array<double, 1> data;
 };
 
-Point1D operator+(const Point1D& point, const Vector1D& vector);
-Point1D operator+(const Vector1D& vector, const Point1D& point);
-Point1D operator-(const Point1D& point, const Vector1D& vector);
+Point1D operator+(const Point1D&, const Vector1D&);
+Point1D operator+(const Vector1D&, const Point1D&);
+Point1D operator-(const Point1D&, const Vector1D&);
 
-Vector1D operator-(const Point1D& point0, const Point1D& point1);
+Vector1D operator-(const Point1D&, const Point1D&);
 
 } // namespace wigeon

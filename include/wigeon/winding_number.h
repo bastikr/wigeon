@@ -6,6 +6,6 @@
 
 namespace wigeon {
 
-int winding_number(const Point2D& point, const Polygon2D& polygon);
+int winding_number(const Point2D&, const Polygon2D&);
 
 } // namespace wigeon

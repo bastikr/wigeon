@@ -19,16 +19,16 @@ struct Vector3D {
 };
 
 
-Vector3D operator+(const Vector3D& vector0, const Vector3D& vector1);
+Vector3D operator+(const Vector3D&, const Vector3D&);
 
-Vector3D operator-(const Vector3D& vector);
-Vector3D operator-(const Vector3D& vector0, const Vector3D& vector1);
+Vector3D operator-(const Vector3D&);
+Vector3D operator-(const Vector3D&, const Vector3D&);
 
-Vector3D operator*(const Vector3D& vector, double a);
-Vector3D operator*(double a, const Vector3D& vector);
-double operator*(const Vector3D& vector0, const Vector3D& vector1);
+Vector3D operator*(const Vector3D&, double);
+Vector3D operator*(double, const Vector3D&);
+double operator*(const Vector3D&, const Vector3D&);
 
-Vector3D operator/(const Vector3D& vector, double a);
+Vector3D operator/(const Vector3D&, double);
 
 
 struct UnitVector3D : public Vector3D {
@@ -37,6 +37,6 @@ struct UnitVector3D : public Vector3D {
 };
 
 
-Vector3D cross(const Vector3D& vector0, const Vector3D& vector1);
+Vector3D cross(const Vector3D&, const Vector3D&);
 
 } // namespace wigeon

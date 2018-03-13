@@ -17,10 +17,10 @@ struct Point3D {
   std::array<double, 3> data;
 };
 
-Point3D operator+(const Point3D& point, const Vector3D& vector);
-Point3D operator+(const Vector3D& vector, const Point3D& point);
-Point3D operator-(const Point3D& point, const Vector3D& vector);
+Point3D operator+(const Point3D&, const Vector3D&);
+Point3D operator+(const Vector3D&, const Point3D&);
+Point3D operator-(const Point3D&, const Vector3D&);
 
-Vector3D operator-(const Point3D& point0, const Point3D& point1);
+Vector3D operator-(const Point3D&, const Point3D&);
 
 } // namespace wigeon

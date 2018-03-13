@@ -17,16 +17,16 @@ struct Vector1D {
 };
 
 
-Vector1D operator+(const Vector1D& vector0, const Vector1D& vector1);
+Vector1D operator+(const Vector1D&, const Vector1D&);
 
-Vector1D operator-(const Vector1D& vector);
-Vector1D operator-(const Vector1D& vector0, const Vector1D& vector1);
+Vector1D operator-(const Vector1D&);
+Vector1D operator-(const Vector1D&, const Vector1D&);
 
-Vector1D operator*(const Vector1D& vector, double a);
-Vector1D operator*(double a, const Vector1D& vector);
-double operator*(const Vector1D& vector0, const Vector1D& vector1);
+Vector1D operator*(const Vector1D&, double);
+Vector1D operator*(double, const Vector1D&);
+double operator*(const Vector1D&, const Vector1D&);
 
-Vector1D operator/(const Vector1D& vector, double a);
+Vector1D operator/(const Vector1D&, double);
 
 
 struct UnitVector1D : public Vector1D {

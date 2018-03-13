@@ -32,10 +32,10 @@ struct LineSegment2D {
   std::array<double, 4> data;
 };
 
-LineSegment2D operator+(const LineSegment2D& segment, const Vector2D& vector);
-LineSegment2D operator+(const Vector2D& vector, const LineSegment2D& segment);
+LineSegment2D operator+(const LineSegment2D&, const Vector2D&);
+LineSegment2D operator+(const Vector2D&, const LineSegment2D&);
 
-LineSegment2D operator-(const LineSegment2D& segment, const Vector2D& vector);
+LineSegment2D operator-(const LineSegment2D&, const Vector2D&);
 
 UnitVector2D normalvector(const LineSegment2D&);
 
