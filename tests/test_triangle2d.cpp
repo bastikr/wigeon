@@ -23,6 +23,12 @@ TEST(TRIANGLE2D, LENGTH) {
   ASSERT_DOUBLE_EQ(triangle.length(), 12);
 }
 
+TEST(TRIANGLE2D, AREA) {
+  Triangle2D triangle(Point2D(-1, 0), Point2D(2, 0), Point2D(2, 4));
+
+  ASSERT_DOUBLE_EQ(triangle.area(), 6);
+}
+
 TEST(TRIANGLE2D, OPERATORS) {
   Triangle2D triangle(Point2D(1, 2), Point2D(3, 4), Point2D(5, 6));
   Vector2D v(1, 3);

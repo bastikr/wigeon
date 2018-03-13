@@ -18,6 +18,7 @@ struct Triangle2D {
   Point2D point2() const;
 
   double length() const;
+  double area() const;
 
   std::array<double, 6> data;
 };
