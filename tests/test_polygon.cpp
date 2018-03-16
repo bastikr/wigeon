@@ -47,6 +47,21 @@ TEST(POLYGON2D, LENGTH) {
   ASSERT_DOUBLE_EQ(polygon.length(), 12);
 }
 
+TEST(POLYGON2D, REVERSE) {
+  Polygon2D polygon;
+  polygon.push_back(0, 2);
+  polygon.push_back(-1, 3);
+  polygon.push_back(7, -5);
+  Polygon2D rpolygon = polygon.reverse();
+  ASSERT_EQ(rpolygon.size(), 3);
+  ASSERT_DOUBLE_EQ(rpolygon.point(0).x(), 7);
+  ASSERT_DOUBLE_EQ(rpolygon.point(0).y(), -5);
+  ASSERT_DOUBLE_EQ(rpolygon.point(1).x(), -1);
+  ASSERT_DOUBLE_EQ(rpolygon.point(1).y(), 3);
+  ASSERT_DOUBLE_EQ(rpolygon.point(2).x(), 0);
+  ASSERT_DOUBLE_EQ(rpolygon.point(2).y(), 2);
+}
+
 TEST(POLYGON2D, OPERATORS) {
   Polygon2D polygon0;
   polygon0.push_back(0, 0);

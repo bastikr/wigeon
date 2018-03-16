@@ -34,6 +34,8 @@ struct Polygon2D {
   Point2D point_looped(int i) const;
   LineSegment2D edge_looped(int i) const;
 
+  Polygon2D reverse() const;
+
   std::vector<Point2D> points;
 };
 

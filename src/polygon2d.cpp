@@ -47,6 +47,13 @@ double Polygon2D::length() const {
   return l;
 }
 
+Polygon2D Polygon2D::reverse() const {
+  std::vector<Point2D> rpoints(points.rbegin(), points.rend());
+  Polygon2D rpolygon;
+  rpolygon.points = rpoints;
+  return rpolygon;
+}
+
 Polygon2D operator+(const Polygon2D& polygon, const Vector2D& vector) {
   Polygon2D polygon_new;
   for (auto it=polygon.points.begin(); it!=polygon.points.end(); ++it) {
