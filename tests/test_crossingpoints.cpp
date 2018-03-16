@@ -63,3 +63,26 @@ TEST(CROSSINGPOINTS, RAY_RAY) {
   ASSERT_DOUBLE_EQ(points[0].y(), 0);
   }
 }
+
+TEST(CROSSINGPOINTS, LINESEGMENT_LINESEGMENT) {
+  {
+  LineSegment2D segment0(0, 0, 1, 0);
+  LineSegment2D segment1(0.5, 0, 1, 1);
+  ASSERT_EQ(crossingpoints(segment0, segment1).size(), 0);
+  ASSERT_EQ(crossingpoints(segment1, segment0).size(), 0);
+  } {
+  LineSegment2D segment0(1, 0, 0, 0);
+  LineSegment2D segment1(0.5, 0, 1, 1);
+  ASSERT_EQ(crossingpoints(segment0, segment1).size(), 0);
+  ASSERT_EQ(crossingpoints(segment1, segment0).size(), 0);
+  }
+
+  {
+  LineSegment2D segment0(1, 0, 0, 0);
+  LineSegment2D segment1(0.5, -0.1, 0.5, 1.3);
+  std::vector<Point2D> points = crossingpoints(segment0, segment1);
+  ASSERT_EQ(points.size(), 1);
+  ASSERT_EQ(points[0].x(), 0.5);
+  ASSERT_EQ(points[0].y(), 0);
+  }
+}
