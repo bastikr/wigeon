@@ -16,6 +16,8 @@ struct Vector2D {
   double length2() const;
   double length() const;
 
+  Vector2D reverse() const;
+
   std::array<double, 2> data;
 };
 

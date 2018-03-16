@@ -12,6 +12,10 @@ double Vector2D::length() const {
   return sqrt(length2());
 }
 
+Vector2D Vector2D::reverse() const {
+  return -(*this);
+}
+
 Vector2D operator+(const Vector2D& vector0, const Vector2D& vector1) {
   return Vector2D(vector0.x() + vector1.x(), vector0.y() + vector1.y());
 }

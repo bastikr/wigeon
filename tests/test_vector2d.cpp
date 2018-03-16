@@ -15,6 +15,12 @@ TEST(VECTOR2D, LENGTH) {
     ASSERT_DOUBLE_EQ(u0.length(), 1);
 };
 
+TEST(VECTOR2D, REVERSE) {
+  Vector2D v(1, 3);
+  ASSERT_DOUBLE_EQ(v.reverse().x(), -1);
+  ASSERT_DOUBLE_EQ(v.reverse().y(), -3);
+};
+
 TEST(VECTOR2D, OPERATORS) {
   Vector2D v0(1, 2);
   Vector2D v1(3, -1);
