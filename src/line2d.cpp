@@ -2,6 +2,10 @@
 
 namespace wigeon {
 
+Line2D Line2D::reverse() const {
+  return Line2D(point(), -direction());
+}
+
 Line2D operator+(const Line2D& line, const Vector2D& vector) {
   return Line2D(line.point() + vector, line.direction());
 }

@@ -16,6 +16,17 @@ TEST(LINE2D, CONSTRUCTION) {
   ASSERT_DOUBLE_EQ(line.direction().y(), 3/5.);
 }
 
+TEST(LINE2D, REVERSE) {
+  UnitVector2D u(1, 3);
+  Line2D line(Point2D(-4, 2), u);
+  Line2D rline = line.reverse();
+
+  ASSERT_DOUBLE_EQ(rline.point().x(), -4);
+  ASSERT_DOUBLE_EQ(rline.point().y(), 2);
+  ASSERT_DOUBLE_EQ(rline.direction().x(), -u.x());
+  ASSERT_DOUBLE_EQ(rline.direction().y(), -u.y());
+}
+
 TEST(LINE2D, OPERATORS) {
   Line2D line(Point2D(1, -2), Vector2D(1, 0));
   Vector2D vector = Vector2D(3, 5);

@@ -18,6 +18,8 @@ struct Line2D {
   Point2D point() const {return point_;}
   Vector2D direction() const {return direction_;}
 
+  Line2D reverse() const;
+
   Point2D point_;
   UnitVector2D direction_;
 };
