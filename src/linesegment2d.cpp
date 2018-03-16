@@ -21,6 +21,10 @@ double LineSegment2D::length() const {
   return (point1() - point0()).length();
 }
 
+LineSegment2D LineSegment2D::reverse() const {
+  return LineSegment2D(point1(), point0());
+}
+
 LineSegment2D operator+(const LineSegment2D& segment, const Vector2D& vector) {
   return LineSegment2D(segment.point0() + vector, segment.point1() + vector);
 }

@@ -31,6 +31,15 @@ TEST(SEGMENT2D, CONSTRUCTION) {
   ASSERT_DOUBLE_EQ(s1.point1().y(), 9);
 }
 
+TEST(SEGMENT2D, REVERSE) {
+  LineSegment2D segment(1, 2, -4, 3);
+  LineSegment2D rsegment = segment.reverse();
+  ASSERT_DOUBLE_EQ(rsegment.x0(), -4);
+  ASSERT_DOUBLE_EQ(rsegment.y0(), 3);
+  ASSERT_DOUBLE_EQ(rsegment.x1(), 1);
+  ASSERT_DOUBLE_EQ(rsegment.y1(), 2);
+}
+
 TEST(SEGMENT2D, OPERATORS) {
   LineSegment2D segment(1, -2, -5, 7);
   Vector2D vector(2, 3);

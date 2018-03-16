@@ -28,6 +28,8 @@ struct LineSegment2D {
 
   double length() const;
 
+  LineSegment2D reverse() const;
+
   std::array<double, 4> data;
 };
 
