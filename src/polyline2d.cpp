@@ -22,7 +22,7 @@ size_t PolyLine2D::size() const {
 }
 
 double PolyLine2D::length() const {
-  double l;
+  double l = 0;
   for (size_t i=0; i<size()-1; ++i) {
     l += edge(i).length();
   }
