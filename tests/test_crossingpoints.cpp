@@ -27,6 +27,8 @@ TEST(CROSSINGPOINTS, LINE_RAY) {
   Ray2D ray(Point2D(1.5, 0), Vector2D(1, 0));
   ASSERT_EQ(crossingpoints(line, ray).size(), 0);
   ASSERT_EQ(crossingpoints(ray, line).size(), 0);
+  ASSERT_EQ(crossingpoints(line.reverse(), ray).size(), 0);
+  ASSERT_EQ(crossingpoints(ray, line.reverse()).size(), 0);
   } {
   Line2D line(Point2D(0, 0), Vector2D(1, 0));
   Ray2D ray(Point2D(1.5, 0), Vector2D(0, 1));
@@ -69,12 +71,14 @@ TEST(CROSSINGPOINTS, LINESEGMENT_LINESEGMENT) {
   LineSegment2D segment0(0, 0, 1, 0);
   LineSegment2D segment1(0.5, 0, 1, 1);
   ASSERT_EQ(crossingpoints(segment0, segment1).size(), 0);
+  ASSERT_EQ(crossingpoints(segment0.reverse(), segment1).size(), 0);
+  ASSERT_EQ(crossingpoints(segment0, segment1.reverse()).size(), 0);
+  ASSERT_EQ(crossingpoints(segment0.reverse(), segment1.reverse()).size(), 0);
+
   ASSERT_EQ(crossingpoints(segment1, segment0).size(), 0);
-  } {
-  LineSegment2D segment0(1, 0, 0, 0);
-  LineSegment2D segment1(0.5, 0, 1, 1);
-  ASSERT_EQ(crossingpoints(segment0, segment1).size(), 0);
-  ASSERT_EQ(crossingpoints(segment1, segment0).size(), 0);
+  ASSERT_EQ(crossingpoints(segment1.reverse(), segment0).size(), 0);
+  ASSERT_EQ(crossingpoints(segment1, segment0.reverse()).size(), 0);
+  ASSERT_EQ(crossingpoints(segment1.reverse(), segment0.reverse()).size(), 0);
   }
 
   {
