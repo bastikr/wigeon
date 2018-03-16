@@ -29,6 +29,18 @@ TEST(TRIANGLE2D, AREA) {
   ASSERT_DOUBLE_EQ(triangle.area(), 6);
 }
 
+TEST(TRIANGLE2D, REVERSE) {
+  Triangle2D triangle(Point2D(-1, 0), Point2D(2, 0), Point2D(2, 4));
+  Triangle2D rtriangle = triangle.reverse();
+
+  ASSERT_DOUBLE_EQ(rtriangle.point0().x(), 2);
+  ASSERT_DOUBLE_EQ(rtriangle.point0().y(), 4);
+  ASSERT_DOUBLE_EQ(rtriangle.point1().x(), 2);
+  ASSERT_DOUBLE_EQ(rtriangle.point1().y(), 0);
+  ASSERT_DOUBLE_EQ(rtriangle.point2().x(), -1);
+  ASSERT_DOUBLE_EQ(rtriangle.point2().y(), 0);
+}
+
 TEST(TRIANGLE2D, OPERATORS) {
   Triangle2D triangle(Point2D(1, 2), Point2D(3, 4), Point2D(5, 6));
   Vector2D v(1, 3);

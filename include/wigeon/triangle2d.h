@@ -20,6 +20,8 @@ struct Triangle2D {
   double length() const;
   double area() const;
 
+  Triangle2D reverse() const;
+
   std::array<double, 6> data;
 };
 

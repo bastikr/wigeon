@@ -30,6 +30,10 @@ double Triangle2D::area() const {
   return std::abs(cross(point1()-point0(), point2()-point0()))/2;
 }
 
+Triangle2D Triangle2D::reverse() const {
+  return Triangle2D(point2(), point1(), point0());
+}
+
 Triangle2D operator+(const Triangle2D& triangle, const Vector2D& vector) {
   return Triangle2D(triangle.point0() + vector,
                     triangle.point1() + vector,
