@@ -25,6 +25,21 @@ TEST(POLYLINE2D, LENGTH) {
   ASSERT_DOUBLE_EQ(polygon.length(), 7);
 }
 
+TEST(POLYLINE2D, REVERSE) {
+  PolyLine2D polyline;
+  polyline.push_back(0, 2);
+  polyline.push_back(-1, 3);
+  polyline.push_back(7, -5);
+  PolyLine2D rpolyline = polyline.reverse();
+  ASSERT_EQ(rpolyline.size(), 3);
+  ASSERT_DOUBLE_EQ(rpolyline.point(0).x(), 7);
+  ASSERT_DOUBLE_EQ(rpolyline.point(0).y(), -5);
+  ASSERT_DOUBLE_EQ(rpolyline.point(1).x(), -1);
+  ASSERT_DOUBLE_EQ(rpolyline.point(1).y(), 3);
+  ASSERT_DOUBLE_EQ(rpolyline.point(2).x(), 0);
+  ASSERT_DOUBLE_EQ(rpolyline.point(2).y(), 2);
+}
+
 TEST(POLYLINE2D, OPERATORS) {
   PolyLine2D polygon0;
   polygon0.push_back(0, 0);

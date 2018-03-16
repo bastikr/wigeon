@@ -29,6 +29,13 @@ double PolyLine2D::length() const {
   return l;
 }
 
+PolyLine2D PolyLine2D::reverse() const {
+  std::vector<Point2D> rpoints(points.rbegin(), points.rend());
+  PolyLine2D rpolygon;
+  rpolygon.points = rpoints;
+  return rpolygon;
+}
+
 PolyLine2D operator+(const PolyLine2D& polyline, const Vector2D& vector) {
   PolyLine2D polyline_new;
   for (auto it=polyline.points.begin(); it!=polyline.points.end(); ++it) {

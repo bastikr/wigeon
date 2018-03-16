@@ -27,6 +27,8 @@ struct PolyLine2D {
   Point2D point(size_t i) const;
   LineSegment2D edge(size_t i) const;
 
+  PolyLine2D reverse() const;
+
   std::vector<Point2D> points;
 };
 
