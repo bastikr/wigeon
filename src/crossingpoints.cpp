@@ -44,6 +44,13 @@ class intersection_visitor : public boost::static_visitor<std::vector<Point2D>> 
       return points;
     }
 
+    std::vector<Point2D> operator()(const Intersection<Ray2D, LineSegment2D, Point2D>& object) {
+      std::vector<Point2D> points;
+      if (object.description1.r!=0 && object.description1.r!=1)
+        points.push_back(object.result);
+      return points;
+    }
+
     template <class G0, class G1, class Result>
     std::vector<Point2D> operator()(const Intersection<G0, G1, Result>& /*object*/) {
       return std::vector<Point2D>();
@@ -104,6 +111,19 @@ std::vector<Point2D> crossingpoints(const Line2D& line, const LineSegment2D& seg
 
 std::vector<Point2D> crossingpoints(const LineSegment2D& segment, const Line2D& line) {
   return crossingpoints(line, segment);
+}
+
+std::vector<Point2D> crossingpoints(const Ray2D& ray, const LineSegment2D& segment) {
+  auto results = intersections(ray, segment);
+  if (results.size()==1) {
+    intersection_visitor visitor;
+    return results.front().apply_visitor(visitor);
+  }
+  return std::vector<Point2D>();
+}
+
+std::vector<Point2D> crossingpoints(const LineSegment2D& segment, const Ray2D& ray) {
+  return crossingpoints(ray, segment);
 }
 
 } // namespace wigeon
