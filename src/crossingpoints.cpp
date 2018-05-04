@@ -46,7 +46,21 @@ class intersection_visitor : public boost::static_visitor<std::vector<Point2D>> 
 
     std::vector<Point2D> operator()(const Intersection<Ray2D, LineSegment2D, Point2D>& object) {
       std::vector<Point2D> points;
-      if (object.description1.r!=0 && object.description1.r!=1)
+      if (object.description0.r!=0 && object.description1.r!=0 && object.description1.r!=1)
+        points.push_back(object.result);
+      return points;
+    }
+
+    std::vector<Point2D> operator()(const Intersection<Ray2D, Polygon2D, Point2D>& object) {
+      std::vector<Point2D> points;
+      if (object.description1.segment.r!=0 && object.description1.segment.r!=1)
+        points.push_back(object.result);
+      return points;
+    }
+
+    std::vector<Point2D> operator()(const Intersection<Line2D, Polygon2D, Point2D>& object) {
+      std::vector<Point2D> points;
+      if (object.description1.segment.r!=0 && object.description1.segment.r!=1)
         points.push_back(object.result);
       return points;
     }
@@ -124,6 +138,33 @@ std::vector<Point2D> crossingpoints(const Ray2D& ray, const LineSegment2D& segme
 
 std::vector<Point2D> crossingpoints(const LineSegment2D& segment, const Ray2D& ray) {
   return crossingpoints(ray, segment);
+}
+
+
+std::vector<Point2D> crossingpoints(const Line2D& line, const Polygon2D& polygon) {
+  auto results = intersections(line, polygon);
+  intersection_visitor visitor;
+  for (const auto& result: results) {
+    return result.apply_visitor(visitor);
+  }
+  return std::vector<Point2D>();
+}
+
+std::vector<Point2D> crossingpoints(const Polygon2D& polygon, const Line2D& line) {
+  return crossingpoints(line, polygon);
+}
+
+std::vector<Point2D> crossingpoints(const Ray2D& ray, const Polygon2D& polygon) {
+  auto results = intersections(ray, polygon);
+  intersection_visitor visitor;
+  for (const auto& result: results) {
+    return result.apply_visitor(visitor);
+  }
+  return std::vector<Point2D>();
+}
+
+std::vector<Point2D> crossingpoints(const Polygon2D& polygon, const Ray2D& ray) {
+  return crossingpoints(ray, polygon);
 }
 
 } // namespace wigeon

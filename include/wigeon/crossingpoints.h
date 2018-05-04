@@ -25,4 +25,12 @@ std::vector<Point2D> crossingpoints(const Line2D&, const LineSegment2D&);
 std::vector<Point2D> crossingpoints(const LineSegment2D&, const Ray2D&);
 std::vector<Point2D> crossingpoints(const Ray2D&, const LineSegment2D&);
 
+std::vector<Point2D> crossingpoints(const Polygon2D&, const Polygon2D&);
+std::vector<Point2D> crossingpoints(const Polygon2D&, const Line2D&);
+std::vector<Point2D> crossingpoints(const Line2D&, const Polygon2D&);
+std::vector<Point2D> crossingpoints(const Polygon2D&, const Ray2D&);
+std::vector<Point2D> crossingpoints(const Ray2D&, const Polygon2D&);
+std::vector<Point2D> crossingpoints(const Polygon2D&, const LineSegment2D&);
+std::vector<Point2D> crossingpoints(const LineSegment2D&, const Polygon2D&);
+
 } // namespace wigeon
