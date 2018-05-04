@@ -43,7 +43,7 @@ add_library(wigeon SHARED
     src/printer.cpp
     src/svg.cpp)
 
-install(TARGETS wigeon DESTINATION bin)
+install(TARGETS wigeon DESTINATION lib)
 install(DIRECTORY include/wigeon DESTINATION include)
 
 enable_testing()
