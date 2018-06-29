@@ -46,5 +46,9 @@ add_library(wigeon SHARED
 install(TARGETS wigeon DESTINATION lib)
 install(DIRECTORY include/wigeon DESTINATION include)
 
-enable_testing()
-add_subdirectory(tests)
+# Testing
+option(ENABLE_TESTS "Enable tests" OFF)
+if (${ENABLE_TESTS})
+    enable_testing()
+    add_subdirectory(tests)
+endif()

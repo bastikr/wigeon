@@ -28,7 +28,7 @@ install:
 
 script:
   - cd build
-  - cmake ..
+  - cmake -DENABLE_TESTS=On ..
   - make
   - ./tests/unittests
 
