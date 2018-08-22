@@ -3,6 +3,12 @@
 
 using namespace wigeon;
 
+TEST(POINT1D, ACCESSORS) {
+  Point1D p(0);
+  p.x() = 2;
+  ASSERT_EQ(p.x(), 2);
+}
+
 TEST(POINT1D, OPERATORS) {
   Point1D p0(2);
   Point1D p1(-1);
