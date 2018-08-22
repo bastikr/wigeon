@@ -11,7 +11,6 @@ struct Point1D {
   Point1D(double x) : data({{x}}) {}
 
   double& x() {return data[0];}
-
   double x() const {return data[0];}
 
   std::array<double, 1> data;
