@@ -8,6 +8,7 @@ namespace wigeon {
 struct Vector1D {
   Vector1D(double x) : data({{x}}) {}
 
+  double& x() {return data[0];}
   double x() const {return data[0];}
 
   double length2() const;

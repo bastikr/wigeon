@@ -3,6 +3,12 @@
 
 using namespace wigeon;
 
+TEST(VECTOR1D, ACCESSORS) {
+  Vector1D v(0);
+  v.x() = 2;
+  ASSERT_EQ(v.x(), 2);
+}
+
 TEST(VECTOR1D, LENGTH) {
     Vector1D v0(-1.5);
     ASSERT_DOUBLE_EQ(v0.length2(), 1.5*1.5);

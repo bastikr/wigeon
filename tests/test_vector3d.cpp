@@ -5,6 +5,16 @@
 
 using namespace wigeon;
 
+TEST(VECTOR3D, ACCESSORS) {
+  Vector3D v(0, 0, 0);
+  v.x() = 2;
+  v.y() = 3;
+  v.z() = 4;
+  ASSERT_EQ(v.x(), 2);
+  ASSERT_EQ(v.y(), 3);
+  ASSERT_EQ(v.z(), 4);
+}
+
 TEST(VECTOR3D, LENGTH) {
     Vector3D v0(3, 4, 2);
     ASSERT_DOUBLE_EQ(v0.length2(), 29);

@@ -5,6 +5,14 @@
 
 using namespace wigeon;
 
+TEST(VECTOR2D, ACCESSORS) {
+  Vector2D v(0, 1);
+  v.x() = 2;
+  v.y() = 3;
+  ASSERT_EQ(v.x(), 2);
+  ASSERT_EQ(v.y(), 3);
+}
+
 TEST(VECTOR2D, LENGTH) {
     Vector2D v0(3, 4);
     ASSERT_DOUBLE_EQ(v0.length2(), 25);

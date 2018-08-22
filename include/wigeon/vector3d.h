@@ -8,8 +8,13 @@ namespace wigeon {
 struct Vector3D {
   Vector3D(double x, double y, double z) : data({{x, y, z}}) {}
 
+  double& x() {return data[0];}
   double x() const {return data[0];}
+
+  double& y() {return data[1];}
   double y() const {return data[1];}
+
+  double& z() {return data[2];}
   double z() const {return data[2];}
 
   double length2() const;

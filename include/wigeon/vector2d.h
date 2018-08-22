@@ -10,7 +10,10 @@ namespace wigeon {
 struct Vector2D {
   Vector2D(double x, double y) : data({{x, y}}) {}
 
+  double& x() {return data[0];}
   double x() const {return data[0];}
+
+  double& y() {return data[1];}
   double y() const {return data[1];}
 
   double length2() const;
