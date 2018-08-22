@@ -6,6 +6,14 @@
 
 using namespace wigeon;
 
+TEST(POINT2D, ACCESSORS) {
+  Point2D p0(0, 1);
+  p0.x() = 2;
+  p0.y() = 3;
+  ASSERT_EQ(p0.x(), 2);
+  ASSERT_EQ(p0.y(), 3);
+}
+
 TEST(POINT2D, OPERATORS) {
   Point2D p0(2, 3);
   Point2D p1(-1, 4);
