@@ -10,8 +10,8 @@ TEST(RAY2D, ACCESSORS) {
   Ray2D r;
   r.origin().set_x(2.1);
   r.origin().set_y(-3.2);
-  r.direction().x() = -1.1;
-  r.direction().y() = -4.7;
+  r.direction().set_x(-1.1);
+  r.direction().set_y(-4.7);
 
   ASSERT_DOUBLE_EQ(r.origin().x(), 2.1);
   ASSERT_DOUBLE_EQ(r.origin().y(), -3.2);

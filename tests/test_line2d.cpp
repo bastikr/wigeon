@@ -10,8 +10,8 @@ TEST(LINE2D, ACCESSORS) {
   Line2D l;
   l.origin().set_x(2.1);
   l.origin().set_y(-3.2);
-  l.direction().x() = -1.1;
-  l.direction().y() = -4.7;
+  l.direction().set_x(-1.1);
+  l.direction().set_y(-4.7);
 
   ASSERT_DOUBLE_EQ(l.origin().x(), 2.1);
   ASSERT_DOUBLE_EQ(l.origin().y(), -3.2);

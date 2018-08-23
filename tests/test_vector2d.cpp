@@ -7,8 +7,8 @@ using namespace wigeon;
 
 TEST(VECTOR2D, ACCESSORS) {
   Vector2D v;
-  v.x() = 2;
-  v.y() = 3;
+  v.set_x(2);
+  v.set_y(3);
   ASSERT_EQ(v.x(), 2);
   ASSERT_EQ(v.y(), 3);
 }

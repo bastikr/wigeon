@@ -7,9 +7,9 @@ using namespace wigeon;
 
 TEST(VECTOR3D, ACCESSORS) {
   Vector3D v;
-  v.x() = 2;
-  v.y() = 3;
-  v.z() = 4;
+  v.set_x(2);
+  v.set_y(3);
+  v.set_z(4);
   ASSERT_EQ(v.x(), 2);
   ASSERT_EQ(v.y(), 3);
   ASSERT_EQ(v.z(), 4);
