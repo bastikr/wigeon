@@ -6,6 +6,19 @@
 
 using namespace wigeon;
 
+TEST(RAY2D, ACCESSORS) {
+  Ray2D r;
+  r.origin().x() = 2.1;
+  r.origin().y() = -3.2;
+  r.direction().x() = -1.1;
+  r.direction().y() = -4.7;
+
+  ASSERT_DOUBLE_EQ(r.origin().x(), 2.1);
+  ASSERT_DOUBLE_EQ(r.origin().y(), -3.2);
+  ASSERT_DOUBLE_EQ(r.direction().x(), -1.1);
+  ASSERT_DOUBLE_EQ(r.direction().y(), -4.7);
+}
+
 TEST(RAY2D, OPERATORS) {
   Ray2D ray(Point2D(1, -2), Vector2D(1, 0));
   Vector2D vector = Vector2D(3, 5);
