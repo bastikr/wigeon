@@ -6,17 +6,23 @@
 
 using namespace wigeon;
 
-TEST(LINE2D, ACCESSORS) {
+TEST(LINE2D, MODIFIERS) {
   Line2D l;
-  l.origin().set_x(2.1);
-  l.origin().set_y(-3.2);
-  l.direction().set_x(-1.1);
-  l.direction().set_y(-4.7);
-
+  l.set_origin(2.1, -3.2);
   ASSERT_DOUBLE_EQ(l.origin().x(), 2.1);
   ASSERT_DOUBLE_EQ(l.origin().y(), -3.2);
+
+  l.set_origin(Point2D(-3.4, 1.7));
+  ASSERT_DOUBLE_EQ(l.origin().x(), -3.4);
+  ASSERT_DOUBLE_EQ(l.origin().y(), 1.7);
+
+  l.set_direction(-1.1, -4.7);
   ASSERT_DOUBLE_EQ(l.direction().x(), -1.1);
   ASSERT_DOUBLE_EQ(l.direction().y(), -4.7);
+
+  l.set_direction(UnitVector2D(0, 1));
+  ASSERT_DOUBLE_EQ(l.direction().x(), 0);
+  ASSERT_DOUBLE_EQ(l.direction().y(), 1);
 }
 
 TEST(LINE2D, CONSTRUCTION) {
