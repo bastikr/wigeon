@@ -6,6 +6,16 @@
 
 using namespace wigeon;
 
+TEST(CIRCLE2D, ACCESSORS) {
+  Circle2D circle;
+  circle.origin() = Point2D(4, -3);
+  circle.radius() = 2;
+
+  ASSERT_DOUBLE_EQ(circle.origin().x(), 4);
+  ASSERT_DOUBLE_EQ(circle.origin().y(), -3);
+  ASSERT_DOUBLE_EQ(circle.radius(), 2);
+}
+
 TEST(CIRCLE2D, LENGTH) {
   Circle2D circle(Point2D(0, 0), 1.5);
   ASSERT_DOUBLE_EQ(circle.length(), 2*1.5*M_PI);
