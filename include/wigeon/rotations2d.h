@@ -7,6 +7,7 @@ namespace wigeon {
 
 class Rotation2D {
   public:
+    Rotation2D() {}
     Rotation2D(double angle);
     Rotation2D(double x, double y)
         : data({{x, y}}) {}
