@@ -27,6 +27,22 @@ bool BoundingBox2D::isnan() const {
   return std::isnan(width_) || std::isnan(height_);
 }
 
+void BoundingBox2D::set_origin(const Point2D& p) {
+  origin_ = p;
+}
+
+void BoundingBox2D::set_origin(double x, double y) {
+  origin_.set_x(x);
+  origin_.set_y(y);
+}
+
+void BoundingBox2D::set_width(double width) {
+  width_ = width;
+}
+
+void BoundingBox2D::set_height(double height) {
+  height_ = height;
+}
 
 BoundingBox2D operator+(const BoundingBox2D& box, const Vector2D& vector) {
   return BoundingBox2D(box.origin() + vector, box.width(), box.height());

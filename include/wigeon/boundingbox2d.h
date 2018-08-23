@@ -23,8 +23,15 @@ struct BoundingBox2D {
   BoundingBox2D(double x0, double y0, double x1, double y1);
 
   Point2D origin() const {return origin_;}
+  void set_origin(const Point2D&);
+  void set_origin(double x, double y);
+
   double width() const {return width_;}
+  void set_width(double);
+
   double height() const {return height_;}
+  void set_height(double);
+
   double area() const {return width_*height_;}
 
   bool isnan() const;

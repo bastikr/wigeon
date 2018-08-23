@@ -6,6 +6,22 @@
 
 using namespace wigeon;
 
+TEST(BOUNDINGBOX2D, MODIFIERS) {
+  BoundingBox2D boundingbox;
+  boundingbox.set_origin(1, -2);
+  boundingbox.set_width(3);
+  boundingbox.set_height(7);
+
+  ASSERT_DOUBLE_EQ(boundingbox.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(boundingbox.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(boundingbox.width(), 3);
+  ASSERT_DOUBLE_EQ(boundingbox.height(), 7);
+
+  boundingbox.set_origin(-2, 3);
+  ASSERT_DOUBLE_EQ(boundingbox.origin().x(), -2);
+  ASSERT_DOUBLE_EQ(boundingbox.origin().y(), 3);
+}
+
 TEST(BOUNDINGBOX2D, OPERATORS) {
   BoundingBox2D boundingbox(1, -2, 3, 7);
   Vector2D vector(2, 3);
