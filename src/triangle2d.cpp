@@ -12,12 +12,27 @@ Point2D Triangle2D::point0() const {
   return Point2D(data[0], data[1]);
 }
 
+void Triangle2D::set_point0(const Point2D& p) {
+  data[0] = p.x();
+  data[1] = p.y();
+}
+
 Point2D Triangle2D::point1() const {
   return Point2D(data[2], data[3]);
 }
 
+void Triangle2D::set_point1(const Point2D& p) {
+  data[2] = p.x();
+  data[3] = p.y();
+}
+
 Point2D Triangle2D::point2() const {
   return Point2D(data[4], data[5]);
+}
+
+void Triangle2D::set_point2(const Point2D& p) {
+  data[4] = p.x();
+  data[5] = p.y();
 }
 
 double Triangle2D::length() const {

@@ -17,6 +17,20 @@ TEST(TRIANGLE2D, CONSTRUCTION) {
   ASSERT_DOUBLE_EQ(triangle0.point2().y(), 6);
 }
 
+TEST(TRIANGLE2D, SETTERS) {
+  Triangle2D triangle;
+  triangle.set_point0(Point2D(1, 2));
+  triangle.set_point1(Point2D(3, 4));
+  triangle.set_point2(Point2D(5, 6));
+
+  ASSERT_DOUBLE_EQ(triangle.point0().x(), 1);
+  ASSERT_DOUBLE_EQ(triangle.point0().y(), 2);
+  ASSERT_DOUBLE_EQ(triangle.point1().x(), 3);
+  ASSERT_DOUBLE_EQ(triangle.point1().y(), 4);
+  ASSERT_DOUBLE_EQ(triangle.point2().x(), 5);
+  ASSERT_DOUBLE_EQ(triangle.point2().y(), 6);
+}
+
 TEST(TRIANGLE2D, LENGTH) {
   Triangle2D triangle(Point2D(-1, 0), Point2D(2, 0), Point2D(2, 4));
 

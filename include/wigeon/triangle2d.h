@@ -11,11 +11,17 @@
 namespace wigeon {
 
 struct Triangle2D {
+  Triangle2D() {}
   Triangle2D(const Point2D&, const Point2D&, const Point2D&);
 
   Point2D point0() const;
+  void set_point0(const Point2D&);
+
   Point2D point1() const;
+  void set_point1(const Point2D&);
+
   Point2D point2() const;
+  void set_point2(const Point2D&);
 
   double length() const;
   double area() const;
