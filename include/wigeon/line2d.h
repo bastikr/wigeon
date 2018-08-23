@@ -16,7 +16,7 @@ struct Line2D {
   explicit Line2D(const LineSegment2D& segment) : point_(segment.point0()), direction_(segment.direction()) {}
 
   Point2D point() const {return point_;}
-  Vector2D direction() const {return direction_;}
+  UnitVector2D direction() const {return direction_;}
 
   Line2D reverse() const;
 
