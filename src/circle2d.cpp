@@ -5,6 +5,15 @@
 
 namespace wigeon {
 
+void Circle2D::set_origin(const Point2D& p) {
+  origin_ = p;
+}
+
+void Circle2D::set_origin(double x, double y) {
+  origin_.set_x(x);
+  origin_.set_y(y);
+}
+
 double Circle2D::length() const {
   return 2*radius()*M_PI;
 }

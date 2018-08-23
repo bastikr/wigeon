@@ -11,8 +11,9 @@ struct Circle2D {
   Circle2D() {}
   Circle2D(Point2D origin, double radius) : origin_(origin), radius_(radius) {}
 
-  Point2D& origin() {return origin_;}
   Point2D origin() const {return origin_;}
+  void set_origin(const Point2D&);
+  void set_origin(double x, double y);
 
   double& radius() {return radius_;}
   double radius() const {return radius_;}
