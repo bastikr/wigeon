@@ -12,11 +12,11 @@ struct Point2D {
   Point2D() {}
   Point2D(double x, double y) : data({{x, y}}) {}
 
-  double& x() {return data[0];}
   double x() const {return data[0];}
+  void set_x(double x) {data[0] = x;}
 
-  double& y() {return data[1];}
   double y() const {return data[1];}
+  void set_y(double y) {data[1] = y;}
 
   std::array<double, 2> data;
 };

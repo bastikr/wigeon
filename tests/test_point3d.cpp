@@ -5,9 +5,9 @@ using namespace wigeon;
 
 TEST(POINT3D, ACCESSORS) {
   Point3D p;
-  p.x() = 2;
-  p.y() = 3;
-  p.z() = 4;
+  p.set_x(2);
+  p.set_y(3);
+  p.set_z(4);
   ASSERT_EQ(p.x(), 2);
   ASSERT_EQ(p.y(), 3);
   ASSERT_EQ(p.z(), 4);

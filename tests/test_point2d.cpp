@@ -7,11 +7,11 @@
 using namespace wigeon;
 
 TEST(POINT2D, ACCESSORS) {
-  Point2D p0;
-  p0.x() = 2;
-  p0.y() = 3;
-  ASSERT_EQ(p0.x(), 2);
-  ASSERT_EQ(p0.y(), 3);
+  Point2D p;
+  p.set_x(2);
+  p.set_y(3);
+  ASSERT_EQ(p.x(), 2);
+  ASSERT_EQ(p.y(), 3);
 }
 
 TEST(POINT2D, OPERATORS) {

@@ -8,8 +8,8 @@ using namespace wigeon;
 
 TEST(RAY2D, ACCESSORS) {
   Ray2D r;
-  r.origin().x() = 2.1;
-  r.origin().y() = -3.2;
+  r.origin().set_x(2.1);
+  r.origin().set_y(-3.2);
   r.direction().x() = -1.1;
   r.direction().y() = -4.7;
 
