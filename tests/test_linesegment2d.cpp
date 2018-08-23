@@ -6,6 +6,19 @@
 
 using namespace wigeon;
 
+TEST(SEGMENT2D, ACCESSORS) {
+  LineSegment2D s;
+  s.x0() = 0.5;
+  s.y0() = 0.2;
+  s.x1() = -3.2;
+  s.y1() = -2.7;
+
+  ASSERT_DOUBLE_EQ(s.x0(), 0.5);
+  ASSERT_DOUBLE_EQ(s.y0(), 0.2);
+  ASSERT_DOUBLE_EQ(s.x1(), -3.2);
+  ASSERT_DOUBLE_EQ(s.y1(), -2.7);
+}
+
 TEST(SEGMENT2D, CONSTRUCTION) {
   LineSegment2D s0(Point2D(3, 5), Point2D(7, 9));
   LineSegment2D s1(3, 5, 7, 9);
