@@ -4,7 +4,7 @@
 using namespace wigeon;
 
 TEST(VECTOR1D, ACCESSORS) {
-  Vector1D v(0);
+  Vector1D v;
   v.x() = 2;
   ASSERT_EQ(v.x(), 2);
 }

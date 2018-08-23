@@ -8,6 +8,7 @@
 namespace wigeon {
 
 struct Vector2D {
+  Vector2D() {}
   Vector2D(double x, double y) : data({{x, y}}) {}
 
   double& x() {return data[0];}
@@ -38,6 +39,7 @@ Vector2D operator/(const Vector2D&, double);
 
 
 struct UnitVector2D : public Vector2D {
+  UnitVector2D() {}
   UnitVector2D(const Vector2D& v) : Vector2D(v/v.length()) {}
   UnitVector2D(double x, double y) : UnitVector2D(Vector2D(x, y)) {};
 };

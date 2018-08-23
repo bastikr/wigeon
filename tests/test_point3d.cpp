@@ -4,7 +4,7 @@
 using namespace wigeon;
 
 TEST(POINT3D, ACCESSORS) {
-  Point3D p(0, 0, 0);
+  Point3D p;
   p.x() = 2;
   p.y() = 3;
   p.z() = 4;

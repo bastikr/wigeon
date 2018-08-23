@@ -6,7 +6,7 @@
 using namespace wigeon;
 
 TEST(VECTOR2D, ACCESSORS) {
-  Vector2D v(0, 1);
+  Vector2D v;
   v.x() = 2;
   v.y() = 3;
   ASSERT_EQ(v.x(), 2);

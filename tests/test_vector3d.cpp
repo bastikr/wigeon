@@ -6,7 +6,7 @@
 using namespace wigeon;
 
 TEST(VECTOR3D, ACCESSORS) {
-  Vector3D v(0, 0, 0);
+  Vector3D v;
   v.x() = 2;
   v.y() = 3;
   v.z() = 4;

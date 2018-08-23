@@ -8,6 +8,7 @@
 namespace wigeon {
 
 struct Point1D {
+  Point1D() {}
   Point1D(double x) : data({{x}}) {}
 
   double& x() {return data[0];}

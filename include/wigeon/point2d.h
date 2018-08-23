@@ -9,6 +9,7 @@
 namespace wigeon {
 
 struct Point2D {
+  Point2D() {}
   Point2D(double x, double y) : data({{x, y}}) {}
 
   double& x() {return data[0];}

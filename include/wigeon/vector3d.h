@@ -6,6 +6,7 @@
 namespace wigeon {
 
 struct Vector3D {
+  Vector3D() {}
   Vector3D(double x, double y, double z) : data({{x, y, z}}) {}
 
   double& x() {return data[0];}
@@ -37,6 +38,7 @@ Vector3D operator/(const Vector3D&, double);
 
 
 struct UnitVector3D : public Vector3D {
+  UnitVector3D() {}
   UnitVector3D(const Vector3D& v) : Vector3D(v/v.length()) {}
   UnitVector3D(double x, double y, double z) : UnitVector3D(Vector3D(x, y, z)) {}
 };
