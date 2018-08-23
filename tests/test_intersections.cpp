@@ -33,7 +33,7 @@ TEST(INTERSECTIONS, LINE_LINE) {
   auto points = intersections(line0, line0);
   ASSERT_EQ(points.size(), 1);
   auto intersection = boost::get<Intersection<Line2D, Line2D, Line2D>>(points[0]);
-  ASSERT_DOUBLE_EQ(intersection.result.point().x(), 1.3);
+  ASSERT_DOUBLE_EQ(intersection.result.origin().x(), 1.3);
   }
 
   { // intersecting rotated
@@ -55,25 +55,25 @@ TEST(INTERSECTIONS, RAY_LINE) {
   Line2D line(Point2D(-1.5, -1.7), Vector2D(-1.6, 0));
 
   { // parallel, non-intersecting
-  auto points = intersections(ray, Line2D(ray.point() + Vector2D(0.1, 0.2), ray.direction()));
+  auto points = intersections(ray, Line2D(ray.origin() + Vector2D(0.1, 0.2), ray.direction()));
   ASSERT_EQ(points.size(), 0);
   } {
-  auto points = intersections(ray, Line2D(ray.point() - Vector2D(0.1, 0.2), ray.direction()));
+  auto points = intersections(ray, Line2D(ray.origin() - Vector2D(0.1, 0.2), ray.direction()));
   ASSERT_EQ(points.size(), 0);
   } {
-  auto points = intersections(Line2D(ray.point() + Vector2D(0.1, 0.2), ray.direction()), ray);
+  auto points = intersections(Line2D(ray.origin() + Vector2D(0.1, 0.2), ray.direction()), ray);
   ASSERT_EQ(points.size(), 0);
   } {
-  auto points = intersections(Line2D(ray.point() - Vector2D(0.1, 0.2), ray.direction()), ray);
+  auto points = intersections(Line2D(ray.origin() - Vector2D(0.1, 0.2), ray.direction()), ray);
   ASSERT_EQ(points.size(), 0);
   }
 
   { // parallel, intersecting
-  auto points = intersections(ray, Line2D(ray.point(), ray.direction()));
+  auto points = intersections(ray, Line2D(ray.origin(), ray.direction()));
   ASSERT_EQ(points.size(), 1);
   auto intersection = boost::get<Intersection<Ray2D, Line2D, Ray2D>>(points[0]);
-  ASSERT_DOUBLE_EQ(intersection.result.point().x(), 1.3);
-  ASSERT_DOUBLE_EQ(intersection.result.point().y(), 1.4);
+  ASSERT_DOUBLE_EQ(intersection.result.origin().x(), 1.3);
+  ASSERT_DOUBLE_EQ(intersection.result.origin().y(), 1.4);
   ASSERT_DOUBLE_EQ(intersection.result.direction().x(), 0);
   ASSERT_DOUBLE_EQ(intersection.result.direction().y(), 1);
   ASSERT_DOUBLE_EQ(intersection.description0.r, 0);
@@ -86,7 +86,7 @@ TEST(INTERSECTIONS, RAY_LINE) {
   }
 
   { // non-parallel, intersecting
-  auto points = intersections(Ray2D(ray.point(), -ray.direction()), line);
+  auto points = intersections(Ray2D(ray.origin(), -ray.direction()), line);
   auto intersection = boost::get<Intersection<Ray2D, Line2D, Point2D>>(points[0]);
   ASSERT_DOUBLE_EQ(intersection.result.x(), 1.3);
   ASSERT_DOUBLE_EQ(intersection.result.y(), -1.7);
@@ -96,7 +96,7 @@ TEST(INTERSECTIONS, RAY_LINE) {
 
   { // intersecting rotated
   double angle = 0.31;
-  auto points = intersections(rotate(angle, Ray2D(ray.point(), -ray.direction())), rotate(angle, line));
+  auto points = intersections(rotate(angle, Ray2D(ray.origin(), -ray.direction())), rotate(angle, line));
   ASSERT_EQ(points.size(), 1);
   auto intersection = boost::get<Intersection<Ray2D, Line2D, Point2D>>(points[0]);
   Point2D result = rotate(-angle, intersection.result);
@@ -127,8 +127,8 @@ TEST(INTERSECTIONS, RAY_RAY) {
   auto points = intersections(Ray2D(Point2D(0, 0), Vector2D(1, 1)), Ray2D(Point2D(1, 1), Vector2D(1, 1)));
   ASSERT_EQ(points.size(), 1);
   auto intersection = boost::get<Intersection<Ray2D, Ray2D, Ray2D>>(points[0]);
-  ASSERT_DOUBLE_EQ(intersection.result.point().x(), 1);
-  ASSERT_DOUBLE_EQ(intersection.result.point().y(), 1);
+  ASSERT_DOUBLE_EQ(intersection.result.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(intersection.result.origin().y(), 1);
   ASSERT_DOUBLE_EQ(intersection.result.direction().x(), 1/sqrt(2));
   ASSERT_DOUBLE_EQ(intersection.result.direction().y(), 1/sqrt(2));
   ASSERT_DOUBLE_EQ(intersection.description0.r, sqrt(2));
@@ -137,8 +137,8 @@ TEST(INTERSECTIONS, RAY_RAY) {
   auto points = intersections(Ray2D(Point2D(0, 0), -Vector2D(1, 1)), Ray2D(Point2D(1, 1), -Vector2D(1, 1)));
   ASSERT_EQ(points.size(), 1);
   auto intersection = boost::get<Intersection<Ray2D, Ray2D, Ray2D>>(points[0]);
-  ASSERT_DOUBLE_EQ(intersection.result.point().x(), 0);
-  ASSERT_DOUBLE_EQ(intersection.result.point().y(), 0);
+  ASSERT_DOUBLE_EQ(intersection.result.origin().x(), 0);
+  ASSERT_DOUBLE_EQ(intersection.result.origin().y(), 0);
   ASSERT_DOUBLE_EQ(intersection.result.direction().x(), -1/sqrt(2));
   ASSERT_DOUBLE_EQ(intersection.result.direction().y(), -1/sqrt(2));
   ASSERT_DOUBLE_EQ(intersection.description0.r, 0);

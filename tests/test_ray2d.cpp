@@ -10,13 +10,13 @@ TEST(RAY2D, OPERATORS) {
   Ray2D ray(Point2D(1, -2), Vector2D(1, 0));
   Vector2D vector = Vector2D(3, 5);
 
-  ASSERT_DOUBLE_EQ((ray+vector).point().x(), 4);
-  ASSERT_DOUBLE_EQ((ray+vector).point().y(), 3);
-  ASSERT_DOUBLE_EQ((vector+ray).point().x(), 4);
-  ASSERT_DOUBLE_EQ((vector+ray).point().y(), 3);
+  ASSERT_DOUBLE_EQ((ray+vector).origin().x(), 4);
+  ASSERT_DOUBLE_EQ((ray+vector).origin().y(), 3);
+  ASSERT_DOUBLE_EQ((vector+ray).origin().x(), 4);
+  ASSERT_DOUBLE_EQ((vector+ray).origin().y(), 3);
 
-  ASSERT_DOUBLE_EQ((ray-vector).point().x(), -2);
-  ASSERT_DOUBLE_EQ((ray-vector).point().y(), -7);
+  ASSERT_DOUBLE_EQ((ray-vector).origin().x(), -2);
+  ASSERT_DOUBLE_EQ((ray-vector).origin().y(), -7);
 }
 
 TEST(RAY2D, NORMALVECTOR) {
@@ -35,8 +35,8 @@ TEST(RAY2D, ROTATION) {
   Ray2D ray0(Point2D(4, 9), Vector2D(3, 4));
   Ray2D r0 = rotate(M_PI/2, ray0);
 
-  ASSERT_DOUBLE_EQ(r0.point().x(), -9);
-  ASSERT_DOUBLE_EQ(r0.point().y(), 4);
+  ASSERT_DOUBLE_EQ(r0.origin().x(), -9);
+  ASSERT_DOUBLE_EQ(r0.origin().y(), 4);
   ASSERT_DOUBLE_EQ(r0.direction().x(), -4./5);
   ASSERT_DOUBLE_EQ(r0.direction().y(), 3./5);
 }

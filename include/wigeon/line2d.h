@@ -11,16 +11,16 @@
 namespace wigeon {
 
 struct Line2D {
-  Line2D(const Point2D& point, const Vector2D& direction) : point_(point), direction_(direction) {}
-  Line2D(const Point2D& point0, const Point2D& point1) : point_(point0), direction_(point1-point0) {}
-  explicit Line2D(const LineSegment2D& segment) : point_(segment.point0()), direction_(segment.direction()) {}
+  Line2D(const Point2D& point, const Vector2D& direction) : origin_(point), direction_(direction) {}
+  Line2D(const Point2D& point0, const Point2D& point1) : origin_(point0), direction_(point1-point0) {}
+  explicit Line2D(const LineSegment2D& segment) : origin_(segment.point0()), direction_(segment.direction()) {}
 
-  Point2D point() const {return point_;}
+  Point2D origin() const {return origin_;}
   UnitVector2D direction() const {return direction_;}
 
   Line2D reverse() const;
 
-  Point2D point_;
+  Point2D origin_;
   UnitVector2D direction_;
 };
 

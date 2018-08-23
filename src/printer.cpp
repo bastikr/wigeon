@@ -24,12 +24,12 @@ std::ostream& operator<<(std::ostream& os, const Vector2D& vector) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Line2D& line) {
-  os << "Line2D(" << line.point() << ", " << line.direction() << ")";
+  os << "Line2D(" << line.origin() << ", " << line.direction() << ")";
   return os;
 }
 
 std::ostream& operator<<(std::ostream& os, const Ray2D& ray) {
-  os << "Ray2D(" << ray.point() << ", " << ray.direction() << ")";
+  os << "Ray2D(" << ray.origin() << ", " << ray.direction() << ")";
   return os;
 }
 

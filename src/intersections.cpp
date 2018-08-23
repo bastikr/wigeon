@@ -10,7 +10,7 @@ std::vector<IntersectionTypes<Line2D, Line2D>> intersections(const Line2D& line0
   double a = cross(line0.direction(), line1.direction());
   // Lines parallel
   if (a==0) {
-    if (cross(line0.direction(), line1.point() - line0.point())==0) {
+    if (cross(line0.direction(), line1.origin() - line0.origin())==0) {
       IntersectionDescription<Line2D, Line2D> description;
       Intersection<Line2D, Line2D, Line2D> intersection(line0, description, description);
       results.push_back(intersection);
@@ -19,12 +19,12 @@ std::vector<IntersectionTypes<Line2D, Line2D>> intersections(const Line2D& line0
   }
 
   // Lines are intersecting
-  double n0 = cross(line0.point() - Point2D(0, 0), line0.direction());
-  double n1 = cross(line1.point() - Point2D(0, 0), line1.direction());
+  double n0 = cross(line0.origin() - Point2D(0, 0), line0.direction());
+  double n1 = cross(line1.origin() - Point2D(0, 0), line1.direction());
   Point2D x = Point2D(0, 0) + n1/a*line0.direction() - n0/a*line1.direction();
 
-  double s0 = (x - line0.point())*line0.direction();
-  double s1 = (x - line1.point())*line1.direction();
+  double s0 = (x - line0.origin())*line0.direction();
+  double s1 = (x - line1.origin())*line1.direction();
 
   IntersectionDescription<Line2D, Point2D> description0(s0);
   IntersectionDescription<Line2D, Point2D> description1(s1);
@@ -38,7 +38,7 @@ std::vector<IntersectionTypes<Line2D, Line2D>> intersections(const Line2D& line0
 std::vector<IntersectionTypes<Ray2D, Line2D>> intersections(const Ray2D& ray, const Line2D& line) {
   std::vector<IntersectionTypes<Ray2D, Line2D>> results;
 
-  Vector2D u_line_ray = ray.point() - line.point();
+  Vector2D u_line_ray = ray.origin() - line.origin();
   double c0 = cross(line.direction(), u_line_ray);
   double c1 = cross(line.direction(), ray.direction());
 
@@ -69,13 +69,13 @@ std::vector<IntersectionTypes<Ray2D, Line2D>> intersections(const Ray2D& ray, co
   // }
 
   // Clean intersection
-  double n0 = cross(ray.point() - Point2D(0, 0), ray.direction());
-  double n1 = cross(line.point() - Point2D(0, 0), line.direction());
+  double n0 = cross(ray.origin() - Point2D(0, 0), ray.direction());
+  double n1 = cross(line.origin() - Point2D(0, 0), line.direction());
   double a = -c1;
   Point2D x = Point2D(0, 0) + n1/a*ray.direction() - n0/a*line.direction();
 
-  double r0 = (x - ray.point())*ray.direction();
-  double r1 = (x - line.point())*line.direction();
+  double r0 = (x - ray.origin())*ray.direction();
+  double r1 = (x - line.origin())*line.direction();
 
   IntersectionDescription<Ray2D, Point2D> description0(r0);
   IntersectionDescription<Line2D, Point2D> description1(r1);
@@ -98,7 +98,7 @@ std::vector<IntersectionTypes<Line2D, Ray2D>> intersections(const Line2D& line, 
 std::vector<IntersectionTypes<Ray2D, Ray2D>> intersections(const Ray2D& ray0, const Ray2D& ray1) {
   std::vector<IntersectionTypes<Ray2D, Ray2D>> results;
 
-  Vector2D v01 = ray1.point() - ray0.point();
+  Vector2D v01 = ray1.origin() - ray0.origin();
   double c0 = cross(ray0.direction(), v01);
   double c1 = cross(ray1.direction(), v01);
   double c01 = cross(ray0.direction(), ray1.direction());
@@ -133,13 +133,13 @@ std::vector<IntersectionTypes<Ray2D, Ray2D>> intersections(const Ray2D& ray0, co
     if (r==0) {
       IntersectionDescription<Ray2D, Point2D> description0(0);
       IntersectionDescription<Ray2D, Point2D> description1(0);
-      Intersection<Ray2D, Ray2D, Point2D> intersection(ray0.point(), description0, description1);
+      Intersection<Ray2D, Ray2D, Point2D> intersection(ray0.origin(), description0, description1);
       results.push_back(intersection);
       return results;
     } else if (r>0) {
       IntersectionDescription<Ray2D, LineSegment2D> description0(0, r);
       IntersectionDescription<Ray2D, LineSegment2D> description1(0, r);
-      LineSegment2D segment(ray0.point(), ray1.point());
+      LineSegment2D segment(ray0.origin(), ray1.origin());
       Intersection<Ray2D, Ray2D, LineSegment2D> intersection(segment, description0, description1);
       results.push_back(intersection);
       return results;
@@ -149,13 +149,13 @@ std::vector<IntersectionTypes<Ray2D, Ray2D>> intersections(const Ray2D& ray0, co
   }
 
   // Clean intersection
-  double n0 = cross(ray0.point() - Point2D(0, 0), ray0.direction());
-  double n1 = cross(ray1.point() - Point2D(0, 0), ray1.direction());
+  double n0 = cross(ray0.origin() - Point2D(0, 0), ray0.direction());
+  double n1 = cross(ray1.origin() - Point2D(0, 0), ray1.direction());
   double a = c01;
   Point2D x = Point2D(0, 0) + n1/a*ray0.direction() - n0/a*ray1.direction();
 
-  double r0 = (x - ray0.point())*ray0.direction();
-  double r1 = (x - ray1.point())*ray1.direction();
+  double r0 = (x - ray0.origin())*ray0.direction();
+  double r1 = (x - ray1.origin())*ray1.direction();
 
   IntersectionDescription<Ray2D, Point2D> description0(r0);
   IntersectionDescription<Ray2D, Point2D> description1(r1);
@@ -169,8 +169,8 @@ std::vector<IntersectionTypes<Ray2D, Ray2D>> intersections(const Ray2D& ray0, co
 std::vector<IntersectionTypes<LineSegment2D, Line2D>> intersections(const LineSegment2D& segment, const Line2D& line) {
   std::vector<IntersectionTypes<LineSegment2D, Line2D>> results;
 
-  Vector2D v0 = segment.point0() - line.point();
-  Vector2D v1 = segment.point1() - line.point();
+  Vector2D v0 = segment.point0() - line.origin();
+  Vector2D v1 = segment.point1() - line.origin();
   double c0 = cross(line.direction(), v0);
   double c1 = cross(line.direction(), v1);
 
@@ -218,12 +218,12 @@ std::vector<IntersectionTypes<LineSegment2D, Line2D>> intersections(const LineSe
   double a = cross(segmentvector, line.direction());
 
   double n0 = p0.x()*p1.y() - p0.y()*p1.x();
-  double n1 = cross(line.point() - Point2D(0, 0), line.direction());
+  double n1 = cross(line.origin() - Point2D(0, 0), line.direction());
 
   Point2D x = Point2D(0, 0) + n1/a*segmentvector - n0/a*line.direction();
 
   double r0 = (x - p0)*segmentvector/segmentvector.length2();
-  double r1 = (x - line.point())*line.direction();
+  double r1 = (x - line.origin())*line.direction();
 
   IntersectionDescription<LineSegment2D, Point2D> description0(r0);
   IntersectionDescription<Line2D, Point2D> description1(r1);
@@ -246,8 +246,8 @@ std::vector<IntersectionTypes<Line2D, LineSegment2D>> intersections(const Line2D
 std::vector<IntersectionTypes<LineSegment2D, Ray2D>> intersections(const LineSegment2D& segment, const Ray2D& ray) {
   std::vector<IntersectionTypes<LineSegment2D, Ray2D>> results;
 
-  Vector2D v0 = segment.point0() - ray.point();
-  Vector2D v1 = segment.point1() - ray.point();
+  Vector2D v0 = segment.point0() - ray.origin();
+  Vector2D v1 = segment.point1() - ray.origin();
   double c_r0 = cross(ray.direction(), v0);
   double c_r1 = cross(ray.direction(), v1);
 
@@ -282,12 +282,12 @@ std::vector<IntersectionTypes<LineSegment2D, Ray2D>> intersections(const LineSeg
     if (p_r0<0) {
       p_r0 = 0;
       s0 = v0.length()/vs.length();
-      p0 = ray.point();
+      p0 = ray.origin();
     }
     if (p_r1<0) {
       p_r1 = 0;
       s1 = 1-v1.length()/vs.length();
-      p1 = ray.point();
+      p1 = ray.origin();
     }
     LineSegment2D result_segment(p0, p1);
     IntersectionDescription<LineSegment2D, LineSegment2D> description0(s0, s1);
@@ -323,12 +323,12 @@ std::vector<IntersectionTypes<LineSegment2D, Ray2D>> intersections(const LineSeg
   double a = cross(segmentvector, ray.direction());
 
   double n0 = p0.x()*p1.y() - p0.y()*p1.x();
-  double n1 = cross(ray.point() - Point2D(0, 0), ray.direction());
+  double n1 = cross(ray.origin() - Point2D(0, 0), ray.direction());
 
   Point2D x = Point2D(0, 0) + n1/a*segmentvector - n0/a*ray.direction();
 
   double r0 = (x - p0)*segmentvector/segmentvector.length2();
-  double r1 = (x - ray.point())*ray.direction();
+  double r1 = (x - ray.origin())*ray.direction();
 
   IntersectionDescription<LineSegment2D, Point2D> description0(r0);
   IntersectionDescription<Ray2D, Point2D> description1(r1);
