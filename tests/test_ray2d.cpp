@@ -6,17 +6,22 @@
 
 using namespace wigeon;
 
-TEST(RAY2D, ACCESSORS) {
+TEST(RAY2D, MODIFIERS) {
   Ray2D r;
-  r.origin().set_x(2.1);
-  r.origin().set_y(-3.2);
-  r.direction().set_x(-1.1);
-  r.direction().set_y(-4.7);
 
+  r.set_origin(Point2D(3, -1));
+  r.set_direction(Vector2D(4.2, 1.9));
+  ASSERT_DOUBLE_EQ(r.origin().x(), 3);
+  ASSERT_DOUBLE_EQ(r.origin().y(), -1);
+  ASSERT_DOUBLE_EQ(r.direction().x(), UnitVector2D(4.2, 1.9).x());
+  ASSERT_DOUBLE_EQ(r.direction().y(), UnitVector2D(4.2, 1.9).y());
+
+  r.set_origin(2.1, -3.2);
+  r.set_direction(-1.1, -4.7);
   ASSERT_DOUBLE_EQ(r.origin().x(), 2.1);
   ASSERT_DOUBLE_EQ(r.origin().y(), -3.2);
-  ASSERT_DOUBLE_EQ(r.direction().x(), -1.1);
-  ASSERT_DOUBLE_EQ(r.direction().y(), -4.7);
+  ASSERT_DOUBLE_EQ(r.direction().x(), UnitVector2D(-1.1, -4.7).x());
+  ASSERT_DOUBLE_EQ(r.direction().y(), UnitVector2D(-1.1, -4.7).y());
 }
 
 TEST(RAY2D, OPERATORS) {

@@ -2,6 +2,23 @@
 
 namespace wigeon {
 
+void Ray2D::set_origin(const Point2D& point) {
+  origin_ = point;
+}
+
+void Ray2D::set_origin(double x, double y) {
+  origin_.set_x(x);
+  origin_.set_y(y);
+}
+
+void Ray2D::set_direction(const Vector2D& vector) {
+  direction_ = vector;
+}
+
+void Ray2D::set_direction(double x, double y) {
+  direction_ = UnitVector2D(x, y);
+}
+
 Ray2D operator+(const Ray2D& ray, const Vector2D& vector) {
   return Ray2D(ray.origin() + vector, ray.direction());
 }
