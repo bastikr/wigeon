@@ -6,11 +6,31 @@
 namespace wigeon {
 
 Point2D LineSegment2D::point0() const {
-    return Point2D(data[0], data[2]);
-  }
+  return Point2D(data[0], data[2]);
+}
+
+void LineSegment2D::set_point0(const Point2D& p) {
+  data[0] = p.x();
+  data[2] = p.y();
+}
+
+void LineSegment2D::set_point0(double x, double y) {
+  data[0] = x;
+  data[2] = y;
+}
 
 Point2D LineSegment2D::point1() const {
   return Point2D(data[1], data[3]);
+}
+
+void LineSegment2D::set_point1(const Point2D& p) {
+  data[1] = p.x();
+  data[3] = p.y();
+}
+
+void LineSegment2D::set_point1(double x, double y) {
+  data[1] = x;
+  data[3] = y;
 }
 
 UnitVector2D LineSegment2D::direction() const {

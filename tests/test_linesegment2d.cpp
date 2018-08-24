@@ -6,17 +6,30 @@
 
 using namespace wigeon;
 
-TEST(SEGMENT2D, ACCESSORS) {
+TEST(SEGMENT2D, MODIFIERS) {
   LineSegment2D s;
-  s.x0() = 0.5;
-  s.y0() = 0.2;
-  s.x1() = -3.2;
-  s.y1() = -2.7;
-
+  s.set_x0(0.5);
+  s.set_y0(0.2);
+  s.set_x1(-3.2);
+  s.set_y1(-2.7);
   ASSERT_DOUBLE_EQ(s.x0(), 0.5);
   ASSERT_DOUBLE_EQ(s.y0(), 0.2);
   ASSERT_DOUBLE_EQ(s.x1(), -3.2);
   ASSERT_DOUBLE_EQ(s.y1(), -2.7);
+
+  s.set_point0(Point2D(-0.1, 1.1));
+  s.set_point1(Point2D(-0.8, 2));
+  ASSERT_DOUBLE_EQ(s.x0(), -0.1);
+  ASSERT_DOUBLE_EQ(s.y0(), 1.1);
+  ASSERT_DOUBLE_EQ(s.x1(), -0.8);
+  ASSERT_DOUBLE_EQ(s.y1(), 2);
+
+  s.set_point0(-0.7, 1.3);
+  s.set_point1(-0.5, 1.2);
+  ASSERT_DOUBLE_EQ(s.x0(), -0.7);
+  ASSERT_DOUBLE_EQ(s.y0(), 1.3);
+  ASSERT_DOUBLE_EQ(s.x1(), -0.5);
+  ASSERT_DOUBLE_EQ(s.y1(), 1.2);
 }
 
 TEST(SEGMENT2D, CONSTRUCTION) {
