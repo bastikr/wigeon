@@ -21,6 +21,27 @@ Rectangle2D::Rectangle2D(double x0, double y0, double x1, double y1, const Rotat
       rotation_(rotation) {}
 
 
+void Rectangle2D::set_origin(const Point2D& p) {
+  origin_ = p;
+}
+
+void Rectangle2D::set_origin(double x, double y) {
+  origin_.set_x(x);
+  origin_.set_y(y);
+}
+
+void Rectangle2D::set_width(double width) {
+  width_ = width;
+}
+
+void Rectangle2D::set_height(double height) {
+  height_ = height;
+}
+
+void Rectangle2D::set_rotation(const Rotation2D& rotation) {
+  rotation_ = rotation;
+}
+
 double Rectangle2D::length() const {
   return (point10()-point00()).length()
        + (point11()-point10()).length()

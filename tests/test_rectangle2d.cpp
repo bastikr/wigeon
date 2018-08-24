@@ -6,6 +6,31 @@
 
 using namespace wigeon;
 
+
+TEST(RECTANGLE2D, MODIFIERS) {
+  Rectangle2D rectangle;
+
+  rectangle.set_origin(Point2D(3, -1));
+  ASSERT_DOUBLE_EQ(rectangle.origin().x(), 3);
+  ASSERT_DOUBLE_EQ(rectangle.origin().y(), -1);
+
+  rectangle.set_origin(1, 2);
+  ASSERT_DOUBLE_EQ(rectangle.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(rectangle.origin().y(), 2);
+
+  rectangle.set_width(5);
+  ASSERT_DOUBLE_EQ(rectangle.width(), 5);
+
+  rectangle.set_height(2);
+  ASSERT_DOUBLE_EQ(rectangle.height(), 2);
+
+  rectangle.set_rotation(Rotation2D(0.5));
+  ASSERT_DOUBLE_EQ(rectangle.rotation().angle(), 0.5);
+
+  rectangle.set_rotation(0.3);
+  ASSERT_DOUBLE_EQ(rectangle.rotation().angle(), 0.3);
+}
+
 TEST(RECTANGLE2D, LENGTH) {
   Rectangle2D rectangle(0, -1.5, 2.5, 3.8);
 
