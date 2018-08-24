@@ -4,10 +4,10 @@
 
 using namespace wigeon;
 
-TEST(ROTATIONS2D, DEFAULT_CONSTRUCTION) {
+TEST(ROTATIONS2D, MODIFIERS) {
   Rotation2D r;
-  r = Rotation2D(0.2);
-  ASSERT_DOUBLE_EQ(r.angle(), 0.2);
+  r.set_angle(1.2);
+  ASSERT_DOUBLE_EQ(r.angle(), 1.2);
 }
 
 TEST(ROTATIONS2D, MULTIPLICATION) {
