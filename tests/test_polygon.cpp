@@ -36,6 +36,26 @@ TEST(POLYGON2D, CREATION) {
   ASSERT_DOUBLE_EQ(polygon2.point(2).y(), 4);
   ASSERT_DOUBLE_EQ(polygon2.point(3).x(), 1);
   ASSERT_DOUBLE_EQ(polygon2.point(3).y(), 4);
+
+  Polygon2D polygon3({Point2D(0, 1), Point2D(3, -2)});
+  ASSERT_DOUBLE_EQ(polygon3.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polygon3.point(0).y(), 1);
+  ASSERT_DOUBLE_EQ(polygon3.point(1).x(), 3);
+  ASSERT_DOUBLE_EQ(polygon3.point(1).y(), -2);
+
+  Polygon2D polygon4({{0, 1}, {3, -2}});
+  ASSERT_DOUBLE_EQ(polygon4.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polygon4.point(0).y(), 1);
+  ASSERT_DOUBLE_EQ(polygon4.point(1).x(), 3);
+  ASSERT_DOUBLE_EQ(polygon4.point(1).y(), -2);
+
+  Polygon2D polygon5;
+  polygon5.push_back(Point2D(0, 1));
+  polygon5.push_back(3, -2);
+  ASSERT_DOUBLE_EQ(polygon5.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polygon5.point(0).y(), 1);
+  ASSERT_DOUBLE_EQ(polygon5.point(1).x(), 3);
+  ASSERT_DOUBLE_EQ(polygon5.point(1).y(), -2);
 }
 
 TEST(POLYGON2D, LENGTH) {

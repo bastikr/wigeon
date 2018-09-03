@@ -14,6 +14,26 @@ TEST(POLYLINE2D, CREATION) {
   ASSERT_DOUBLE_EQ(polyline0.point(0).y(), -2);
   ASSERT_DOUBLE_EQ(polyline0.point(1).x(), -3);
   ASSERT_DOUBLE_EQ(polyline0.point(1).y(), 4);
+
+  PolyLine2D polyline3({Point2D(0, 1), Point2D(3, -2)});
+  ASSERT_DOUBLE_EQ(polyline3.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polyline3.point(0).y(), 1);
+  ASSERT_DOUBLE_EQ(polyline3.point(1).x(), 3);
+  ASSERT_DOUBLE_EQ(polyline3.point(1).y(), -2);
+
+  PolyLine2D polyline4({{0, 1}, {3, -2}});
+  ASSERT_DOUBLE_EQ(polyline4.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polyline4.point(0).y(), 1);
+  ASSERT_DOUBLE_EQ(polyline4.point(1).x(), 3);
+  ASSERT_DOUBLE_EQ(polyline4.point(1).y(), -2);
+
+  PolyLine2D polyline5;
+  polyline5.push_back(Point2D(0, 1));
+  polyline5.push_back(3, -2);
+  ASSERT_DOUBLE_EQ(polyline5.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polyline5.point(0).y(), 1);
+  ASSERT_DOUBLE_EQ(polyline5.point(1).x(), 3);
+  ASSERT_DOUBLE_EQ(polyline5.point(1).y(), -2);
 }
 
 TEST(POLYLINE2D, LENGTH) {
