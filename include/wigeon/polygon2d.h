@@ -13,7 +13,7 @@
 namespace wigeon {
 
 struct Polygon2D {
-  Polygon2D() : points() {}
+  Polygon2D() {}
   explicit Polygon2D(const LineSegment2D&);
   explicit Polygon2D(const Triangle2D&);
   explicit Polygon2D(const Rectangle2D&);

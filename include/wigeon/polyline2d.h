@@ -12,7 +12,7 @@
 namespace wigeon {
 
 struct PolyLine2D {
-  PolyLine2D() : points() {}
+  PolyLine2D() {}
   explicit PolyLine2D(const LineSegment2D&);
 
   void push_back(const Point2D&);
