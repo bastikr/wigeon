@@ -47,7 +47,7 @@ install(TARGETS wigeon DESTINATION lib)
 install(DIRECTORY include/wigeon DESTINATION include)
 
 # Testing
-option(ENABLE_TESTS "Enable tests" OFF)
+option(ENABLE_TESTS "Enable tests" ON)
 if (${ENABLE_TESTS})
     enable_testing()
     add_subdirectory(tests)
