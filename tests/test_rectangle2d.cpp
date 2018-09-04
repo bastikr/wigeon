@@ -6,6 +6,27 @@
 
 using namespace wigeon;
 
+TEST(RECTANGLE2D, CONSTRUCTORS) {
+  {
+  Rectangle2D rectangle(Point2D(1, -2), 4, 6);
+  ASSERT_DOUBLE_EQ(rectangle.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(rectangle.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(rectangle.width(), 4);
+  ASSERT_DOUBLE_EQ(rectangle.height(), 6);
+  } {
+  Rectangle2D rectangle(Point2D(-1, -5), Point2D(3, 1));
+  ASSERT_DOUBLE_EQ(rectangle.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(rectangle.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(rectangle.width(), 4);
+  ASSERT_DOUBLE_EQ(rectangle.height(), 6);
+  } {
+  Rectangle2D rectangle({-1, -5}, {3, 1});
+  ASSERT_DOUBLE_EQ(rectangle.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(rectangle.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(rectangle.width(), 4);
+  ASSERT_DOUBLE_EQ(rectangle.height(), 6);
+  }
+}
 
 TEST(RECTANGLE2D, MODIFIERS) {
   Rectangle2D rectangle;

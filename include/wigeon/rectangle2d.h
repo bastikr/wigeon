@@ -12,7 +12,7 @@ namespace wigeon {
 struct Rectangle2D {
   Rectangle2D() {}
   Rectangle2D(const Point2D& origin, double width, double height, const Rotation2D& rotation=0);
-  Rectangle2D(const Point2D& point00, Point2D& point11, const Rotation2D& rotation=0);
+  Rectangle2D(const Point2D& point00, const Point2D& point11, const Rotation2D& rotation=0);
   Rectangle2D(double x0, double y0, double x1, double y1, const Rotation2D& rotation=0);
 
   Point2D origin() const {return origin_;}

@@ -8,7 +8,7 @@ namespace wigeon {
 Rectangle2D::Rectangle2D(const Point2D& origin, double width, double height, const Rotation2D& rotation)
     : origin_(origin), width_(width), height_(height), rotation_(rotation) {}
 
-Rectangle2D::Rectangle2D(const Point2D& point00, Point2D& point11, const Rotation2D& rotation)
+Rectangle2D::Rectangle2D(const Point2D& point00, const Point2D& point11, const Rotation2D& rotation)
     : origin_(point00 + 0.5*(point11 - point00)),
       width_(point11.x()-point00.x()),
       height_(point11.y()-point00.y()),

@@ -14,6 +14,8 @@ namespace wigeon {
 
 struct Polygon2D {
   Polygon2D() {}
+  Polygon2D(std::initializer_list<Point2D> points)
+      : points(points) {}
   explicit Polygon2D(const LineSegment2D&);
   explicit Polygon2D(const Triangle2D&);
   explicit Polygon2D(const Rectangle2D&);

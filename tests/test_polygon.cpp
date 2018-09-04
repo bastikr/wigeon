@@ -37,11 +37,19 @@ TEST(POLYGON2D, CREATION) {
   ASSERT_DOUBLE_EQ(polygon2.point(3).x(), 1);
   ASSERT_DOUBLE_EQ(polygon2.point(3).y(), 4);
 
+  Polygon2D polygon3a({Point2D(0, 1)});
+  ASSERT_DOUBLE_EQ(polygon3a.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polygon3a.point(0).y(), 1);
+
   Polygon2D polygon3({Point2D(0, 1), Point2D(3, -2)});
   ASSERT_DOUBLE_EQ(polygon3.point(0).x(), 0);
   ASSERT_DOUBLE_EQ(polygon3.point(0).y(), 1);
   ASSERT_DOUBLE_EQ(polygon3.point(1).x(), 3);
   ASSERT_DOUBLE_EQ(polygon3.point(1).y(), -2);
+
+  Polygon2D polygon4a({{0, 1}});
+  ASSERT_DOUBLE_EQ(polygon4a.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polygon4a.point(0).y(), 1);
 
   Polygon2D polygon4({{0, 1}, {3, -2}});
   ASSERT_DOUBLE_EQ(polygon4.point(0).x(), 0);
