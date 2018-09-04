@@ -6,6 +6,34 @@
 
 using namespace wigeon;
 
+TEST(SEGMENT2D, CONSTRUCTION) {
+  {
+  LineSegment2D segment(Point2D(-1, -2), Point2D(3, 1));
+  ASSERT_DOUBLE_EQ(segment.point0().x(), -1);
+  ASSERT_DOUBLE_EQ(segment.point0().y(), -2);
+  ASSERT_DOUBLE_EQ(segment.point1().x(), 3);
+  ASSERT_DOUBLE_EQ(segment.point1().y(), 1);
+  } {
+  LineSegment2D segment({-1, -2}, {3, 1});
+  ASSERT_DOUBLE_EQ(segment.point0().x(), -1);
+  ASSERT_DOUBLE_EQ(segment.point0().y(), -2);
+  ASSERT_DOUBLE_EQ(segment.point1().x(), 3);
+  ASSERT_DOUBLE_EQ(segment.point1().y(), 1);
+  } {
+  LineSegment2D segment(-1, -2, 3, 1);
+  ASSERT_DOUBLE_EQ(segment.point0().x(), -1);
+  ASSERT_DOUBLE_EQ(segment.point0().y(), -2);
+  ASSERT_DOUBLE_EQ(segment.point1().x(), 3);
+  ASSERT_DOUBLE_EQ(segment.point1().y(), 1);
+  } {
+  LineSegment2D segment({-1, -2, 3, 1});
+  ASSERT_DOUBLE_EQ(segment.point0().x(), -1);
+  ASSERT_DOUBLE_EQ(segment.point0().y(), -2);
+  ASSERT_DOUBLE_EQ(segment.point1().x(), 3);
+  ASSERT_DOUBLE_EQ(segment.point1().y(), 1);
+  }
+}
+
 TEST(SEGMENT2D, MODIFIERS) {
   LineSegment2D s;
   s.set_x0(0.5);
@@ -30,31 +58,6 @@ TEST(SEGMENT2D, MODIFIERS) {
   ASSERT_DOUBLE_EQ(s.y0(), 1.3);
   ASSERT_DOUBLE_EQ(s.x1(), -0.5);
   ASSERT_DOUBLE_EQ(s.y1(), 1.2);
-}
-
-TEST(SEGMENT2D, CONSTRUCTION) {
-  LineSegment2D s0(Point2D(3, 5), Point2D(7, 9));
-  LineSegment2D s1(3, 5, 7, 9);
-
-  ASSERT_DOUBLE_EQ(s0.x0(), 3);
-  ASSERT_DOUBLE_EQ(s0.y0(), 5);
-  ASSERT_DOUBLE_EQ(s0.x1(), 7);
-  ASSERT_DOUBLE_EQ(s0.y1(), 9);
-
-  ASSERT_DOUBLE_EQ(s1.x0(), 3);
-  ASSERT_DOUBLE_EQ(s1.y0(), 5);
-  ASSERT_DOUBLE_EQ(s1.x1(), 7);
-  ASSERT_DOUBLE_EQ(s1.y1(), 9);
-
-  ASSERT_DOUBLE_EQ(s0.point0().x(), 3);
-  ASSERT_DOUBLE_EQ(s0.point0().y(), 5);
-  ASSERT_DOUBLE_EQ(s0.point1().x(), 7);
-  ASSERT_DOUBLE_EQ(s0.point1().y(), 9);
-
-  ASSERT_DOUBLE_EQ(s1.point0().x(), 3);
-  ASSERT_DOUBLE_EQ(s1.point0().y(), 5);
-  ASSERT_DOUBLE_EQ(s1.point1().x(), 7);
-  ASSERT_DOUBLE_EQ(s1.point1().y(), 9);
 }
 
 TEST(SEGMENT2D, REVERSE) {
