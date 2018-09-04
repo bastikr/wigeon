@@ -6,6 +6,34 @@
 
 using namespace wigeon;
 
+TEST(LINE2D, CONSTRUCTION) {
+  {
+  Line2D line(Point2D(-1,-2), Point2D(3, 1));
+  ASSERT_DOUBLE_EQ(line.origin().x(), -1);
+  ASSERT_DOUBLE_EQ(line.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(line.direction().x(), 4/5.);
+  ASSERT_DOUBLE_EQ(line.direction().y(), 3/5.);
+  } {
+  Line2D line(Point2D(-1,-2), Vector2D(4, 3));
+  ASSERT_DOUBLE_EQ(line.origin().x(), -1);
+  ASSERT_DOUBLE_EQ(line.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(line.direction().x(), 4/5.);
+  ASSERT_DOUBLE_EQ(line.direction().y(), 3/5.);
+  } {
+  Line2D line(LineSegment2D(-1, -2, 3, 1));
+  ASSERT_DOUBLE_EQ(line.origin().x(), -1);
+  ASSERT_DOUBLE_EQ(line.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(line.direction().x(), 4/5.);
+  ASSERT_DOUBLE_EQ(line.direction().y(), 3/5.);
+  } {
+  Line2D line({-1, -2}, Vector2D(4, 3));
+  ASSERT_DOUBLE_EQ(line.origin().x(), -1);
+  ASSERT_DOUBLE_EQ(line.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(line.direction().x(), 4/5.);
+  ASSERT_DOUBLE_EQ(line.direction().y(), 3/5.);
+  }
+}
+
 TEST(LINE2D, MODIFIERS) {
   Line2D l;
   l.set_origin(2.1, -3.2);
@@ -23,16 +51,6 @@ TEST(LINE2D, MODIFIERS) {
   l.set_direction(UnitVector2D(0, 1));
   ASSERT_DOUBLE_EQ(l.direction().x(), 0);
   ASSERT_DOUBLE_EQ(l.direction().y(), 1);
-}
-
-TEST(LINE2D, CONSTRUCTION) {
-  LineSegment2D segment(-1, -2, 3, 1);
-  Line2D line(segment);
-
-  ASSERT_DOUBLE_EQ(line.origin().x(), -1);
-  ASSERT_DOUBLE_EQ(line.origin().y(), -2);
-  ASSERT_DOUBLE_EQ(line.direction().x(), 4/5.);
-  ASSERT_DOUBLE_EQ(line.direction().y(), 3/5.);
 }
 
 TEST(LINE2D, REVERSE) {
