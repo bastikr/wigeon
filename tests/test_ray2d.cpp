@@ -6,6 +6,28 @@
 
 using namespace wigeon;
 
+TEST(RAY2D, CONSTRUCTION) {
+  {
+  Ray2D ray(Point2D(-1,-2), Point2D(3, 1));
+  ASSERT_DOUBLE_EQ(ray.origin().x(), -1);
+  ASSERT_DOUBLE_EQ(ray.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(ray.direction().x(), 4/5.);
+  ASSERT_DOUBLE_EQ(ray.direction().y(), 3/5.);
+  } {
+  Ray2D ray(Point2D(-1,-2), Vector2D(4, 3));
+  ASSERT_DOUBLE_EQ(ray.origin().x(), -1);
+  ASSERT_DOUBLE_EQ(ray.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(ray.direction().x(), 4/5.);
+  ASSERT_DOUBLE_EQ(ray.direction().y(), 3/5.);
+  } {
+  Ray2D ray({-1, -2}, Vector2D(4, 3));
+  ASSERT_DOUBLE_EQ(ray.origin().x(), -1);
+  ASSERT_DOUBLE_EQ(ray.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(ray.direction().x(), 4/5.);
+  ASSERT_DOUBLE_EQ(ray.direction().y(), 3/5.);
+  }
+}
+
 TEST(RAY2D, MODIFIERS) {
   Ray2D r;
 
