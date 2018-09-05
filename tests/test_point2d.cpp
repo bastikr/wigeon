@@ -6,6 +6,19 @@
 
 using namespace wigeon;
 
+TEST(POINT2D, CONSTRUCTION) {
+  {
+  Point2D p(-1, 3);
+  ASSERT_EQ(p.x(), -1);
+  ASSERT_EQ(p.y(), 3);
+  } {
+  Vector2D v(-1, 3);
+  Point2D p(v);
+  ASSERT_EQ(p.x(), -1);
+  ASSERT_EQ(p.y(), 3);
+  }
+}
+
 TEST(POINT2D, ACCESSORS) {
   Point2D p;
   p.set_x(2);

@@ -3,6 +3,18 @@
 
 using namespace wigeon;
 
+TEST(POINT1D, CONSTRUCTION) {
+  {
+  Point1D p(-1);
+  ASSERT_EQ(p.x(), -1);
+  } {
+  Vector1D v(-1);
+  Point1D p(v);
+  ASSERT_EQ(p.x(), -1);
+  }
+}
+
+
 TEST(POINT1D, ACCESSORS) {
   Point1D p;
   p.set_x(2);
