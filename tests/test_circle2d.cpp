@@ -23,7 +23,7 @@ TEST(CIRCLE2D, CONSTRUCTION) {
 TEST(CIRCLE2D, ACCESSORS) {
   Circle2D circle;
   circle.set_origin(Point2D(4, -3));
-  circle.radius() = 2;
+  circle.set_radius(2);
 
   ASSERT_DOUBLE_EQ(circle.origin().x(), 4);
   ASSERT_DOUBLE_EQ(circle.origin().y(), -3);
