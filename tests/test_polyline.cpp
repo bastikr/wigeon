@@ -21,11 +21,13 @@ TEST(POLYLINE2D, CONSTRUCTION) {
   ASSERT_DOUBLE_EQ(polyline3.point(1).x(), 3);
   ASSERT_DOUBLE_EQ(polyline3.point(1).y(), -2);
 
-  PolyLine2D polyline4({{0, 1}, {3, -2}});
+  PolyLine2D polyline4({{0, 1}, {3, -2}, {1, 4}});
   ASSERT_DOUBLE_EQ(polyline4.point(0).x(), 0);
   ASSERT_DOUBLE_EQ(polyline4.point(0).y(), 1);
   ASSERT_DOUBLE_EQ(polyline4.point(1).x(), 3);
   ASSERT_DOUBLE_EQ(polyline4.point(1).y(), -2);
+  ASSERT_DOUBLE_EQ(polyline4.point(2).x(), 1);
+  ASSERT_DOUBLE_EQ(polyline4.point(2).y(), 4);
 
   PolyLine2D polyline5;
   polyline5.push_back(Point2D(0, 1));

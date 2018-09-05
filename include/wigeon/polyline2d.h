@@ -13,6 +13,8 @@ namespace wigeon {
 
 struct PolyLine2D {
   PolyLine2D() {}
+  PolyLine2D(std::initializer_list<Point2D> points)
+      : points(points) {}
   explicit PolyLine2D(const LineSegment2D&);
 
   void push_back(const Point2D&);
