@@ -15,6 +15,9 @@ struct PolyLine2D {
   PolyLine2D() {}
   PolyLine2D(std::initializer_list<Point2D> points)
       : points(points) {}
+  template<class InputIt>
+  PolyLine2D(InputIt first, InputIt last)
+      : points(first, last) {}
   explicit PolyLine2D(const LineSegment2D&);
 
   void push_back(const Point2D&);

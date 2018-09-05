@@ -57,6 +57,15 @@ TEST(POLYGON2D, CONSTRUCTION) {
   ASSERT_DOUBLE_EQ(polygon4.point(1).x(), 3);
   ASSERT_DOUBLE_EQ(polygon4.point(1).y(), -2);
 
+  std::vector<Point2D> points({{0, 1}, {3, -2}, {1, 4}});
+  Polygon2D polygon4b(points.begin(), points.end());
+  ASSERT_DOUBLE_EQ(polygon4b.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polygon4b.point(0).y(), 1);
+  ASSERT_DOUBLE_EQ(polygon4b.point(1).x(), 3);
+  ASSERT_DOUBLE_EQ(polygon4b.point(1).y(), -2);
+  ASSERT_DOUBLE_EQ(polygon4b.point(2).x(), 1);
+  ASSERT_DOUBLE_EQ(polygon4b.point(2).y(), 4);
+
   Polygon2D polygon5;
   polygon5.push_back(Point2D(0, 1));
   polygon5.push_back(3, -2);

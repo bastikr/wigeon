@@ -36,6 +36,15 @@ TEST(POLYLINE2D, CONSTRUCTION) {
   ASSERT_DOUBLE_EQ(polyline5.point(0).y(), 1);
   ASSERT_DOUBLE_EQ(polyline5.point(1).x(), 3);
   ASSERT_DOUBLE_EQ(polyline5.point(1).y(), -2);
+
+  std::vector<Point2D> points({{0, 1}, {3, -2}, {1, 4}});
+  PolyLine2D polyline6(points.begin(), points.end());
+  ASSERT_DOUBLE_EQ(polyline6.point(0).x(), 0);
+  ASSERT_DOUBLE_EQ(polyline6.point(0).y(), 1);
+  ASSERT_DOUBLE_EQ(polyline6.point(1).x(), 3);
+  ASSERT_DOUBLE_EQ(polyline6.point(1).y(), -2);
+  ASSERT_DOUBLE_EQ(polyline6.point(2).x(), 1);
+  ASSERT_DOUBLE_EQ(polyline6.point(2).y(), 4);
 }
 
 TEST(POLYLINE2D, LENGTH) {

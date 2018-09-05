@@ -16,6 +16,9 @@ struct Polygon2D {
   Polygon2D() {}
   Polygon2D(std::initializer_list<Point2D> points)
       : points(points) {}
+  template<class InputIt>
+  Polygon2D(InputIt first, InputIt last)
+      : points(first, last) {}
   explicit Polygon2D(const LineSegment2D&);
   explicit Polygon2D(const Triangle2D&);
   explicit Polygon2D(const Rectangle2D&);
