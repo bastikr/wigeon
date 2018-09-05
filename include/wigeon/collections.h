@@ -4,7 +4,7 @@
 
 #include "wigeon/rotations2d.h"
 #include "wigeon/vector2d.h"
-#include "wigeon/concepts.h"
+#include "wigeon/concepts2d.h"
 
 
 namespace wigeon {

@@ -10,7 +10,7 @@
 #include "wigeon/circle2d.h"
 #include "wigeon/polygon2d.h"
 #include "wigeon/polyline2d.h"
-#include "wigeon/concepts.h"
+#include "wigeon/concepts2d.h"
 #include "wigeon/area2d.h"
 
 

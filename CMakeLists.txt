@@ -31,7 +31,7 @@ add_library(wigeon SHARED
     src/vector3d.cpp
 
     #2D algorithms
-    src/concepts.cpp
+    src/concepts2d.cpp
     src/area2d.cpp
     src/binarytree2d.cpp
     src/distances.cpp

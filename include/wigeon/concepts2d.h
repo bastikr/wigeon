@@ -1,10 +1,6 @@
 #pragma once
 
-
 #include <boost/variant.hpp>
-
-#include "wigeon/point1d.h"
-#include "wigeon/vector1d.h"
 
 #include "wigeon/point2d.h"
 #include "wigeon/vector2d.h"
@@ -16,9 +12,6 @@
 #include "wigeon/circle2d.h"
 #include "wigeon/polygon2d.h"
 #include "wigeon/polyline2d.h"
-
-#include "wigeon/point3d.h"
-#include "wigeon/vector3d.h"
 
 
 namespace wigeon {
