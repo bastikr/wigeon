@@ -15,26 +15,26 @@ struct Rectangle2D {
   Rectangle2D(const Point2D& point00, const Point2D& point11, const Rotation2D& rotation=0);
   Rectangle2D(double x0, double y0, double x1, double y1, const Rotation2D& rotation=0);
 
-  Point2D origin() const {return origin_;}
+  Point2D origin() const;
   void set_origin(const Point2D&);
   void set_origin(double x, double y);
 
-  double width() const {return width_;}
+  double width() const;
   void set_width(double);
 
-  double height() const {return height_;}
+  double height() const;
   void set_height(double);
 
-  Rotation2D rotation() const {return rotation_;}
+  Rotation2D rotation() const;
   void set_rotation(const Rotation2D&);
 
   double length() const;
   double area() const;
 
-  Point2D point00() const {return origin_ + rotate(rotation_, Vector2D(-0.5*width_, -0.5*height_));}
-  Point2D point01() const {return origin_ + rotate(rotation_, Vector2D(-0.5*width_, 0.5*height_));}
-  Point2D point10() const {return origin_ + rotate(rotation_, Vector2D(0.5*width_, -0.5*height_));}
-  Point2D point11() const {return origin_ + rotate(rotation_, Vector2D(0.5*width_, 0.5*height_));}
+  Point2D point00() const;
+  Point2D point01() const;
+  Point2D point10() const;
+  Point2D point11() const;
 
   Point2D origin_;
   double width_;

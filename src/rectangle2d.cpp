@@ -20,6 +20,9 @@ Rectangle2D::Rectangle2D(double x0, double y0, double x1, double y1, const Rotat
       height_(y1 - y0),
       rotation_(rotation) {}
 
+Point2D Rectangle2D::origin() const {
+  return origin_;
+}
 
 void Rectangle2D::set_origin(const Point2D& p) {
   origin_ = p;
@@ -30,12 +33,24 @@ void Rectangle2D::set_origin(double x, double y) {
   origin_.set_y(y);
 }
 
+double Rectangle2D::width() const {
+  return width_;
+}
+
 void Rectangle2D::set_width(double width) {
   width_ = width;
 }
 
+double Rectangle2D::height() const {
+  return height_;
+}
+
 void Rectangle2D::set_height(double height) {
   height_ = height;
+}
+
+Rotation2D Rectangle2D::rotation() const {
+  return rotation_;
 }
 
 void Rectangle2D::set_rotation(const Rotation2D& rotation) {
@@ -52,6 +67,23 @@ double Rectangle2D::length() const {
 double Rectangle2D::area() const {
   return height()*width();
 }
+
+Point2D Rectangle2D::point00() const {
+  return origin_ + rotate(rotation_, Vector2D(-0.5*width_, -0.5*height_));
+}
+
+Point2D Rectangle2D::point01() const {
+  return origin_ + rotate(rotation_, Vector2D(-0.5*width_, 0.5*height_));
+}
+
+Point2D Rectangle2D::point10() const {
+  return origin_ + rotate(rotation_, Vector2D(0.5*width_, -0.5*height_));
+}
+
+Point2D Rectangle2D::point11() const {
+  return origin_ + rotate(rotation_, Vector2D(0.5*width_, 0.5*height_));
+}
+
 
 Rectangle2D operator+(const Rectangle2D& rectangle, const Vector2D& vector) {
   return Rectangle2D(rectangle.origin() + vector, rectangle.width(), rectangle.height(), rectangle.rotation());
