@@ -5,9 +5,11 @@
 
 namespace wigeon {
 
+PolyLine2D::PolyLine2D(std::initializer_list<Point2D> points)
+    : points(points) {}
+
 PolyLine2D::PolyLine2D(const LineSegment2D& segment)
     : points({{segment.point0(), segment.point1()}}) {}
-
 
 void PolyLine2D::push_back(const Point2D& point) {
   points.push_back(point);

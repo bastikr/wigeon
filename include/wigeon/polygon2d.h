@@ -14,8 +14,7 @@ namespace wigeon {
 
 struct Polygon2D {
   Polygon2D() {}
-  Polygon2D(std::initializer_list<Point2D> points)
-      : points(points) {}
+  Polygon2D(std::initializer_list<Point2D> points);
   template<class InputIt>
   Polygon2D(InputIt first, InputIt last)
       : points(first, last) {}

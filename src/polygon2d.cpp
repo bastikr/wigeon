@@ -5,6 +5,9 @@
 
 namespace wigeon {
 
+Polygon2D::Polygon2D(std::initializer_list<Point2D> points)
+    : points(points) {}
+
 Polygon2D::Polygon2D(const LineSegment2D& segment)
     : points({{segment.point0(), segment.point1()}}) {}
 

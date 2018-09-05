@@ -13,8 +13,7 @@ namespace wigeon {
 
 struct PolyLine2D {
   PolyLine2D() {}
-  PolyLine2D(std::initializer_list<Point2D> points)
-      : points(points) {}
+  PolyLine2D(std::initializer_list<Point2D> points);
   template<class InputIt>
   PolyLine2D(InputIt first, InputIt last)
       : points(first, last) {}
