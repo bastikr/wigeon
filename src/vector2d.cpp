@@ -1,8 +1,12 @@
 #include "wigeon/vector2d.h"
+#include "wigeon/point2d.h"
 
 #include <cmath>
 
 namespace wigeon {
+
+Vector2D::Vector2D(const Point2D& p)
+    : data(p.data) {}
 
 double Vector2D::length2() const {
   return x()*x() + y()*y();

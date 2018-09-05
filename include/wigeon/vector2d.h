@@ -7,9 +7,12 @@
 
 namespace wigeon {
 
+struct Point2D;
+
 struct Vector2D {
   Vector2D() {}
   Vector2D(double x, double y) : data({{x, y}}) {}
+  explicit Vector2D(const Point2D&);
 
   double x() const {return data[0];}
   void set_x(double x) {data[0] = x;}

@@ -5,9 +5,12 @@
 
 namespace wigeon {
 
+struct Point3D;
+
 struct Vector3D {
   Vector3D() {}
   Vector3D(double x, double y, double z) : data({{x, y, z}}) {}
+  explicit Vector3D(const Point3D& p);
 
   double x() const {return data[0];}
   void set_x(double x) {data[0] = x;}

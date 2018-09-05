@@ -1,8 +1,12 @@
 #include "wigeon/vector3d.h"
+#include "wigeon/point3d.h"
 
 #include <cmath>
 
 namespace wigeon {
+
+Vector3D::Vector3D(const Point3D& p)
+    : data(p.data) {}
 
 double Vector3D::length2() const {
   return x()*x() + y()*y() + z()*z();

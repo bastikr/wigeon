@@ -1,9 +1,25 @@
 #include "wigeon/vector3d.h"
+#include "wigeon/point3d.h"
 #include "gtest/gtest.h"
 
 #include <cmath>
 
 using namespace wigeon;
+
+TEST(VECTOR3D, CONSTRUCTION) {
+  {
+  Vector3D v(-1, 3, 4);
+  ASSERT_EQ(v.x(), -1);
+  ASSERT_EQ(v.y(), 3);
+  ASSERT_EQ(v.z(), 4);
+  } {
+  Point3D p(-1, 3, 4);
+  Vector3D v(v);
+  ASSERT_EQ(v.x(), -1);
+  ASSERT_EQ(v.y(), 3);
+  ASSERT_EQ(v.z(), 4);
+  }
+}
 
 TEST(VECTOR3D, ACCESSORS) {
   Vector3D v;

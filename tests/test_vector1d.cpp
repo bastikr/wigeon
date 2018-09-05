@@ -1,7 +1,19 @@
 #include "wigeon/vector1d.h"
+#include "wigeon/point1d.h"
 #include "gtest/gtest.h"
 
 using namespace wigeon;
+
+TEST(VECTOR1D, CONSTRUCTION) {
+  {
+  Vector1D v(-1);
+  ASSERT_EQ(v.x(), -1);
+  } {
+  Point1D p(-1);
+  Vector1D v(v);
+  ASSERT_EQ(v.x(), -1);
+  }
+}
 
 TEST(VECTOR1D, ACCESSORS) {
   Vector1D v;

@@ -1,9 +1,23 @@
 #include "wigeon/vector2d.h"
+#include "wigeon/point2d.h"
 #include "gtest/gtest.h"
 
 #include <cmath>
 
 using namespace wigeon;
+
+TEST(VECTOR2D, CONSTRUCTION) {
+  {
+  Vector2D v(-1, 3);
+  ASSERT_EQ(v.x(), -1);
+  ASSERT_EQ(v.y(), 3);
+  } {
+  Point2D p(-1, 3);
+  Vector2D v(v);
+  ASSERT_EQ(v.x(), -1);
+  ASSERT_EQ(v.y(), 3);
+  }
+}
 
 TEST(VECTOR2D, ACCESSORS) {
   Vector2D v;
