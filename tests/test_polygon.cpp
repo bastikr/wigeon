@@ -6,7 +6,7 @@
 
 using namespace wigeon;
 
-TEST(POLYGON2D, CREATION) {
+TEST(POLYGON2D, CONSTRUCTION) {
   LineSegment2D segment(1, -2, -3, 4);
   Polygon2D polygon0(segment);
   ASSERT_EQ(polygon0.size(), 2);

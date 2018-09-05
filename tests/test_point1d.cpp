@@ -14,7 +14,6 @@ TEST(POINT1D, CONSTRUCTION) {
   }
 }
 
-
 TEST(POINT1D, ACCESSORS) {
   Point1D p;
   p.set_x(2);

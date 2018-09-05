@@ -6,7 +6,7 @@
 
 using namespace wigeon;
 
-TEST(POLYLINE2D, CREATION) {
+TEST(POLYLINE2D, CONSTRUCTION) {
   LineSegment2D segment(1, -2, -3, 4);
   PolyLine2D polyline0(segment);
   ASSERT_EQ(polyline0.size(), 2);

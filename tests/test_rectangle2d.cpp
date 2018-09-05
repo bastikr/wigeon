@@ -6,7 +6,7 @@
 
 using namespace wigeon;
 
-TEST(RECTANGLE2D, CONSTRUCTORS) {
+TEST(RECTANGLE2D, CONSTRUCTION) {
   {
   Rectangle2D rectangle(Point2D(1, -2), 4, 6);
   ASSERT_DOUBLE_EQ(rectangle.origin().x(), 1);
