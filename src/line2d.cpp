@@ -2,6 +2,19 @@
 
 namespace wigeon {
 
+Line2D::Line2D(const Point2D& point, const Vector2D& direction)
+    : origin_(point), direction_(direction) {}
+
+Line2D::Line2D(const Point2D& point0, const Point2D& point1)
+    : origin_(point0), direction_(point1-point0) {}
+
+Line2D::Line2D(const LineSegment2D& segment)
+    : origin_(segment.point0()), direction_(segment.direction()) {}
+
+Point2D Line2D::origin() const {
+  return origin_;
+}
+
 void Line2D::set_origin(const Point2D& p) {
   origin_ = p;
 }
@@ -9,6 +22,10 @@ void Line2D::set_origin(const Point2D& p) {
 void Line2D::set_origin(double x, double y) {
   origin_.set_x(x);
   origin_.set_y(y);
+}
+
+UnitVector2D Line2D::direction() const {
+  return direction_;
 }
 
 void Line2D::set_direction(const UnitVector2D& direction) {
