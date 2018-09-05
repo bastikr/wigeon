@@ -10,14 +10,14 @@ namespace wigeon {
 
 struct Point2D {
   Point2D() {}
-  Point2D(double x, double y) : data({{x, y}}) {}
-  explicit Point2D(const Vector2D& v) : data(v.data) {};
+  Point2D(double x, double y);
+  explicit Point2D(const Vector2D& v);
 
-  double x() const {return data[0];}
-  void set_x(double x) {data[0] = x;}
+  double x() const;
+  void set_x(double x);
 
-  double y() const {return data[1];}
-  void set_y(double y) {data[1] = y;}
+  double y() const;
+  void set_y(double y);
 
   std::array<double, 2> data;
 };

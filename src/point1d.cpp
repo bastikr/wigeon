@@ -4,6 +4,20 @@
 
 namespace wigeon {
 
+Point1D::Point1D(double x)
+  : data({{x}}) {}
+
+Point1D::Point1D(const Vector1D& v)
+  : data(v.data) {}
+
+double Point1D::x() const {
+  return data[0];
+}
+
+void Point1D::set_x(double x) {
+  data[0] = x;
+}
+
 Point1D operator+(const Point1D& point, const Vector1D& vector) {
   return Point1D(point.x() + vector.x());
 }

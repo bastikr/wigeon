@@ -9,17 +9,17 @@ namespace wigeon {
 
 struct Point3D {
   Point3D() {}
-  Point3D(double x, double y, double z) : data({{x, y, z}}) {}
-  explicit Point3D(const Vector3D& v) : data(v.data) {};
+  Point3D(double x, double y, double z);
+  explicit Point3D(const Vector3D& v);
 
-  double x() const {return data[0];}
-  void set_x(double x) {data[0] = x;}
+  double x() const;
+  void set_x(double x);
 
-  double y() const {return data[1];}
-  void set_y(double y) {data[1] = y;}
+  double y() const;
+  void set_y(double y);
 
-  double z() const {return data[2];}
-  void set_z(double z) {data[2] = z;}
+  double z() const;
+  void set_z(double z);
 
   std::array<double, 3> data;
 };
