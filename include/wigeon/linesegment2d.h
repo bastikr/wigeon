@@ -11,24 +11,20 @@ namespace wigeon {
 
 struct LineSegment2D {
   LineSegment2D() {}
+  LineSegment2D(const Point2D& p0, const Point2D& p1);
+  LineSegment2D(double x0, double y0, double x1, double y1);
 
-  LineSegment2D(const Point2D& p0, const Point2D& p1)
-      : data({{p0.x(), p1.x(), p0.y(), p1.y()}}) {}
+  double x0() const;
+  void set_x0(double x);
 
-  LineSegment2D(double x0, double y0, double x1, double y1)
-      : data({{x0, x1, y0, y1}}) {}
+  double y0() const;
+  void set_y0(double y);
 
-  double x0() const {return data[0];}
-  void set_x0(double x) {data[0] = x;}
+  double x1() const;
+  void set_x1(double x);
 
-  double y0() const {return data[2];}
-  void set_y0(double y) {data[2] = y;}
-
-  double x1() const {return data[1];}
-  void set_x1(double x) {data[1] = x;}
-
-  double y1() const {return data[3];}
-  void set_y1(double y) {data[3] = y;}
+  double y1() const;
+  void set_y1(double y);
 
   Point2D point0() const;
   void set_point0(const Point2D&);
