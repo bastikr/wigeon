@@ -9,11 +9,10 @@ class Rotation2D {
   public:
     Rotation2D() {}
     Rotation2D(double angle);
-    Rotation2D(double x, double y)
-        : data({{x, y}}) {}
+    Rotation2D(double x, double y);
 
-    double x() const {return data[0];};
-    double y() const {return data[1];};
+    double x() const;
+    double y() const;
 
     double angle() const;
     void set_angle(double);

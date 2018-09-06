@@ -8,6 +8,17 @@ namespace wigeon {
 Rotation2D::Rotation2D(double angle)
   : data({{cos(angle), sin(angle)}}) {}
 
+Rotation2D::Rotation2D(double x, double y)
+    : data({{x, y}}) {}
+
+double Rotation2D::x() const {
+  return data[0];
+}
+
+double Rotation2D::y() const {
+  return data[1];
+}
+
 double Rotation2D::angle() const {return atan2(y(), x());}
 
 void Rotation2D::set_angle(double angle) {
