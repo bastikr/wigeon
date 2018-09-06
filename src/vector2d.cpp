@@ -8,6 +8,25 @@ namespace wigeon {
 Vector2D::Vector2D(const Point2D& p)
     : data(p.data) {}
 
+Vector2D::Vector2D(double x, double y)
+    : data({{x, y}}) {}
+
+double Vector2D::x() const {
+  return data[0];
+}
+
+void Vector2D::set_x(double x) {
+  data[0] = x;
+}
+
+double Vector2D::y() const {
+  return data[1];
+}
+
+void Vector2D::set_y(double y) {
+  data[1] = y;
+}
+
 double Vector2D::length2() const {
   return x()*x() + y()*y();
 }

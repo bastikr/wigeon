@@ -8,6 +8,17 @@ namespace wigeon {
 Vector1D::Vector1D(const Point1D& p)
     : data(p.data) {}
 
+Vector1D::Vector1D(double x)
+    : data({{x}}) {}
+
+double Vector1D::x() const {
+  return data[0];
+}
+
+void Vector1D::set_x(double x) {
+  data[0] = x;
+}
+
 double Vector1D::length2() const {
   return x()*x();
 }

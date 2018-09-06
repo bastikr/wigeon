@@ -11,14 +11,14 @@ struct Point2D;
 
 struct Vector2D {
   Vector2D() {}
-  Vector2D(double x, double y) : data({{x, y}}) {}
+  Vector2D(double x, double y);
   explicit Vector2D(const Point2D&);
 
-  double x() const {return data[0];}
-  void set_x(double x) {data[0] = x;}
+  double x() const;
+  void set_x(double x);
 
-  double y() const {return data[1];}
-  void set_y(double y) {data[1] = y;}
+  double y() const;
+  void set_y(double y);
 
   double length2() const;
   double length() const;

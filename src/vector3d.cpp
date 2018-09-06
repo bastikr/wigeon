@@ -8,6 +8,33 @@ namespace wigeon {
 Vector3D::Vector3D(const Point3D& p)
     : data(p.data) {}
 
+Vector3D::Vector3D(double x, double y, double z)
+    : data({{x, y, z}}) {}
+
+double Vector3D::x() const {
+  return data[0];
+}
+
+void Vector3D::set_x(double x) {
+  data[0] = x;
+}
+
+double Vector3D::y() const {
+  return data[1];
+}
+
+void Vector3D::set_y(double y) {
+  data[1] = y;
+}
+
+double Vector3D::z() const {
+  return data[2];
+}
+
+void Vector3D::set_z(double z) {
+  data[2] = z;
+}
+
 double Vector3D::length2() const {
   return x()*x() + y()*y() + z()*z();
 }
