@@ -5,6 +5,8 @@
 
 namespace wigeon {
 
+Vector2D::Vector2D() {}
+
 Vector2D::Vector2D(const Point2D& p)
     : data(p.data) {}
 
@@ -38,6 +40,14 @@ double Vector2D::length() const {
 Vector2D Vector2D::reverse() const {
   return -(*this);
 }
+
+UnitVector2D::UnitVector2D() {}
+
+UnitVector2D::UnitVector2D(const Vector2D& v)
+    : Vector2D(v/v.length()) {}
+
+UnitVector2D::UnitVector2D(double x, double y)
+    : UnitVector2D(Vector2D(x, y)) {}
 
 Vector2D operator+(const Vector2D& vector0, const Vector2D& vector1) {
   return Vector2D(vector0.x() + vector1.x(), vector0.y() + vector1.y());
@@ -92,4 +102,4 @@ double cross(const Vector2D& vector0, const Vector2D& vector1) {
   return vector0.x()*vector1.y() - vector0.y()*vector1.x();
 }
 
-} // namepsace wigeon
+} // namespace wigeon

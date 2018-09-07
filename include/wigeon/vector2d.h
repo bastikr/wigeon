@@ -10,7 +10,7 @@ namespace wigeon {
 struct Point2D;
 
 struct Vector2D {
-  Vector2D() {}
+  Vector2D();
   Vector2D(double x, double y);
   explicit Vector2D(const Point2D&);
 
@@ -42,9 +42,9 @@ Vector2D operator/(const Vector2D&, double);
 
 
 struct UnitVector2D : public Vector2D {
-  UnitVector2D() {}
-  UnitVector2D(const Vector2D& v) : Vector2D(v/v.length()) {}
-  UnitVector2D(double x, double y) : UnitVector2D(Vector2D(x, y)) {};
+  UnitVector2D();
+  UnitVector2D(const Vector2D& v);
+  UnitVector2D(double x, double y);
 };
 
 UnitVector2D normalvector(const Vector2D&);
