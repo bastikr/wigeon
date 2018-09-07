@@ -5,6 +5,8 @@
 
 namespace wigeon {
 
+PolyLine2D::PolyLine2D() {}
+
 PolyLine2D::PolyLine2D(std::initializer_list<Point2D> points)
     : points(points) {}
 
