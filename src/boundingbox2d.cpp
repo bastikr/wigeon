@@ -22,9 +22,8 @@ BoundingBox2D::BoundingBox2D(double x0, double y0, double x1, double y1)
     : origin_((x0 + x1)/2, (y0 + y1)/2),
       width_(x1 - x0), height_(y1 - y0) {}
 
-
-bool BoundingBox2D::isnan() const {
-  return std::isnan(width_) || std::isnan(height_);
+Point2D BoundingBox2D::origin() const {
+  return origin_;
 }
 
 void BoundingBox2D::set_origin(const Point2D& p) {
@@ -36,13 +35,45 @@ void BoundingBox2D::set_origin(double x, double y) {
   origin_.set_y(y);
 }
 
+double BoundingBox2D::width() const {
+  return width_;
+}
+
 void BoundingBox2D::set_width(double width) {
   width_ = width;
+}
+
+double BoundingBox2D::height() const {
+  return height_;
 }
 
 void BoundingBox2D::set_height(double height) {
   height_ = height;
 }
+double BoundingBox2D::area() const {
+  return width_*height_;
+}
+
+bool BoundingBox2D::isnan() const {
+  return std::isnan(width_) || std::isnan(height_);
+}
+
+double BoundingBox2D::xmin() const {
+  return origin_.x() - 0.5*width_;
+}
+
+double BoundingBox2D::xmax() const {
+  return origin_.x() + 0.5*width_;
+}
+
+double BoundingBox2D::ymin() const {
+  return origin_.y() - 0.5*height_;
+}
+
+double BoundingBox2D::ymax() const {
+  return origin_.y() + 0.5*height_;
+}
+
 
 BoundingBox2D operator+(const BoundingBox2D& box, const Vector2D& vector) {
   return BoundingBox2D(box.origin() + vector, box.width(), box.height());

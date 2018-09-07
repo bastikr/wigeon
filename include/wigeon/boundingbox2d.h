@@ -22,24 +22,24 @@ struct BoundingBox2D {
   BoundingBox2D(const Point2D& point00, const Point2D& point11);
   BoundingBox2D(double x0, double y0, double x1, double y1);
 
-  Point2D origin() const {return origin_;}
+  Point2D origin() const;
   void set_origin(const Point2D&);
   void set_origin(double x, double y);
 
-  double width() const {return width_;}
+  double width() const;
   void set_width(double);
 
-  double height() const {return height_;}
+  double height() const;
   void set_height(double);
 
-  double area() const {return width_*height_;}
+  double area() const;
 
   bool isnan() const;
 
-  double xmin() const {return origin_.x() - 0.5*width_;}
-  double xmax() const {return origin_.x() + 0.5*width_;}
-  double ymin() const {return origin_.y() - 0.5*height_;}
-  double ymax() const {return origin_.y() + 0.5*height_;}
+  double xmin() const;
+  double xmax() const;
+  double ymin() const;
+  double ymax() const;
 
   Point2D origin_;
   double width_;
