@@ -8,9 +8,11 @@ TEST(VECTOR1D, CONSTRUCTION) {
   {
   Vector1D v(-1);
   ASSERT_EQ(v.x(), -1);
+  Vector1D v2(v);
+  ASSERT_EQ(v2.x(), -1);
   } {
   Point1D p(-1);
-  Vector1D v(v);
+  Vector1D v(p);
   ASSERT_EQ(v.x(), -1);
   }
 }

@@ -12,9 +12,13 @@ TEST(VECTOR3D, CONSTRUCTION) {
   ASSERT_EQ(v.x(), -1);
   ASSERT_EQ(v.y(), 3);
   ASSERT_EQ(v.z(), 4);
+  Vector3D v2(v);
+  ASSERT_EQ(v2.x(), -1);
+  ASSERT_EQ(v2.y(), 3);
+  ASSERT_EQ(v2.z(), 4);
   } {
   Point3D p(-1, 3, 4);
-  Vector3D v(v);
+  Vector3D v(p);
   ASSERT_EQ(v.x(), -1);
   ASSERT_EQ(v.y(), 3);
   ASSERT_EQ(v.z(), 4);

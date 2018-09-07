@@ -11,9 +11,12 @@ TEST(VECTOR2D, CONSTRUCTION) {
   Vector2D v(-1, 3);
   ASSERT_EQ(v.x(), -1);
   ASSERT_EQ(v.y(), 3);
+  Vector2D v2(v);
+  ASSERT_EQ(v2.x(), -1);
+  ASSERT_EQ(v2.y(), 3);
   } {
   Point2D p(-1, 3);
-  Vector2D v(v);
+  Vector2D v(p);
   ASSERT_EQ(v.x(), -1);
   ASSERT_EQ(v.y(), 3);
   }
