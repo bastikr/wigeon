@@ -20,13 +20,18 @@ TEST(CIRCLE2D, CONSTRUCTION) {
   }
 }
 
-TEST(CIRCLE2D, ACCESSORS) {
+TEST(CIRCLE2D, MODIFIERS) {
   Circle2D circle;
   circle.set_origin(Point2D(4, -3));
   circle.set_radius(2);
 
   ASSERT_DOUBLE_EQ(circle.origin().x(), 4);
   ASSERT_DOUBLE_EQ(circle.origin().y(), -3);
+  ASSERT_DOUBLE_EQ(circle.radius(), 2);
+
+  circle.set_origin(-1, 2);
+  ASSERT_DOUBLE_EQ(circle.origin().x(), -1);
+  ASSERT_DOUBLE_EQ(circle.origin().y(), 2);
   ASSERT_DOUBLE_EQ(circle.radius(), 2);
 }
 
