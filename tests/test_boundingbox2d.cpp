@@ -6,6 +6,29 @@
 
 using namespace wigeon;
 
+
+TEST(BOUNDINGBOX2D, CONSTRUCTION) {
+  {
+  BoundingBox2D boundingbox(Point2D(1, -2), 4, 6);
+  ASSERT_DOUBLE_EQ(boundingbox.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(boundingbox.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(boundingbox.width(), 4);
+  ASSERT_DOUBLE_EQ(boundingbox.height(), 6);
+  } {
+  BoundingBox2D boundingbox(Point2D(-1, -5), Point2D(3, 1));
+  ASSERT_DOUBLE_EQ(boundingbox.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(boundingbox.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(boundingbox.width(), 4);
+  ASSERT_DOUBLE_EQ(boundingbox.height(), 6);
+  } {
+  BoundingBox2D boundingbox({-1, -5}, {3, 1});
+  ASSERT_DOUBLE_EQ(boundingbox.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(boundingbox.origin().y(), -2);
+  ASSERT_DOUBLE_EQ(boundingbox.width(), 4);
+  ASSERT_DOUBLE_EQ(boundingbox.height(), 6);
+  }
+}
+
 TEST(BOUNDINGBOX2D, MODIFIERS) {
   BoundingBox2D boundingbox;
   boundingbox.set_origin(1, -2);
@@ -17,9 +40,13 @@ TEST(BOUNDINGBOX2D, MODIFIERS) {
   ASSERT_DOUBLE_EQ(boundingbox.width(), 3);
   ASSERT_DOUBLE_EQ(boundingbox.height(), 7);
 
-  boundingbox.set_origin(-2, 3);
+  boundingbox.set_origin(Point2D(-2, 3));
   ASSERT_DOUBLE_EQ(boundingbox.origin().x(), -2);
   ASSERT_DOUBLE_EQ(boundingbox.origin().y(), 3);
+
+  boundingbox.set_origin(1, -4);
+  ASSERT_DOUBLE_EQ(boundingbox.origin().x(), 1);
+  ASSERT_DOUBLE_EQ(boundingbox.origin().y(), -4);
 }
 
 TEST(BOUNDINGBOX2D, OPERATORS) {
