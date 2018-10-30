@@ -85,14 +85,14 @@ Rectangle2D PolyLine2D::bounding_box() const {
 
 Point2D PolyLine2D::point(size_t i) const {
   if (i>=size())
-    throw "Access of out-of-bounds element.";
+    throw std::out_of_range("Access of out-of-bounds element.");
   else
     return points[i];
 }
 
 LineSegment2D PolyLine2D::edge(size_t i) const {
   if (i>size()-1)
-    throw "Access of out-of-bounds element.";
+    throw std::out_of_range("Access of out-of-bounds element.");
   if (i==size()-1)
     return LineSegment2D(points[i], points[0]);
   return LineSegment2D(points[i], points[i+1]);

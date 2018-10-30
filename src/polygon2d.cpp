@@ -103,14 +103,14 @@ Rectangle2D Polygon2D::bounding_box() const {
 
 Point2D Polygon2D::point(size_t i) const {
   if (i>=size())
-    throw "Access of out-of-bounds element.";
+    throw std::out_of_range("Access of out-of-bounds element.");
   else
     return points[i];
 }
 
 LineSegment2D Polygon2D::edge(size_t i) const {
   if (i>size()-1)
-    throw "Access of out-of-bounds element.";
+    throw std::out_of_range("Access of out-of-bounds element.");
   if (i==size()-1)
     return LineSegment2D(points[i], points[0]);
   return LineSegment2D(points[i], points[i+1]);
@@ -130,14 +130,14 @@ size_t positive_modulo(int a, int b) {
 
 Point2D Polygon2D::point_looped(int i) const {
   if (size()==0)
-    throw "Can't access element of 0-size polygon.";
+    throw std::out_of_range("Can't access element of 0-size polygon.");
   int i_ = positive_modulo(i, size());
   return points[i_];
 }
 
 LineSegment2D Polygon2D::edge_looped(int i) const {
   if (size()==0)
-    throw "Can't access element of 0-size polygon.";
+    throw std::out_of_range("Can't access element of 0-size polygon.");
   int i0 = positive_modulo(i, size());
   int i1 = positive_modulo(i0 + 1, size());
   return LineSegment2D(points[i0], points[i1]);
