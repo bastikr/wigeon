@@ -83,24 +83,6 @@ Polygon2D operator-(const Polygon2D& polygon, const Vector2D& vector) {
   return polygon_new;
 }
 
-Rectangle2D Polygon2D::bounding_box() const {
-  if (size()==0)
-    throw "0-size polygon has no bounding box.";
-  double xmin = points[0].x();
-  double xmax = points[0].x();
-  double ymin = points[0].y();
-  double ymax = points[0].y();
-  Point2D p(0,0);
-  for (auto it=++points.begin(); it!=points.end(); ++it) {
-    p = *it;
-    xmin = std::min(xmin, p.x());
-    xmax = std::max(xmax, p.x());
-    ymin = std::min(ymin, p.y());
-    ymax = std::max(ymax, p.y());
-  }
-  return Rectangle2D(xmin, ymin, xmax, ymax);
-}
-
 Point2D Polygon2D::point(size_t i) const {
   if (i>=size())
     throw std::out_of_range("Access of out-of-bounds element.");

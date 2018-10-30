@@ -24,8 +24,6 @@ struct PolyLine2D {
 
   size_t size() const;
 
-  Rectangle2D bounding_box() const;
-
   double length() const;
 
   Point2D point(size_t i) const;

@@ -30,8 +30,6 @@ struct Polygon2D {
 
   double length() const;
 
-  Rectangle2D bounding_box() const;
-
   Point2D point(size_t i) const;
   LineSegment2D edge(size_t i) const;
 
