@@ -8,7 +8,7 @@ if (COVERAGE)
     target_compile_options(unittests PRIVATE --coverage)
     target_link_libraries(unittests PRIVATE --coverage ${GTEST_BOTH_LIBRARIES} wigeon)
 elseif()
-    target_link_libraries(unittests PRIVATE --coverage ${GTEST_BOTH_LIBRARIES} wigeon)
+    target_link_libraries(unittests PRIVATE ${GTEST_BOTH_LIBRARIES} wigeon)
 endif()
 
 add_test(unit ${PROJECT_BINARY_DIR}/tests/unittests)

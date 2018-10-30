@@ -46,6 +46,11 @@ add_library(wigeon SHARED
     src/printer.cpp
     src/svg.cpp)
 
+if (COVERAGE)
+    target_compile_options(wigeon PRIVATE --coverage)
+    target_link_libraries(wigeon PRIVATE --coverage)
+endif()
+
 install(TARGETS wigeon DESTINATION lib)
 install(DIRECTORY include/wigeon DESTINATION include)
 
