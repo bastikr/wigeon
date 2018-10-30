@@ -72,34 +72,65 @@ TEST(POLYLINE2D, REVERSE) {
 }
 
 TEST(POLYLINE2D, OPERATORS) {
-  PolyLine2D polyline0;
-  polyline0.push_back(0, 0);
-  polyline0.push_back(1, 0);
-  polyline0.push_back(1, 1);
+  PolyLine2D polyline;
+  polyline.push_back(0, 0);
+  polyline.push_back(1, 0);
+  polyline.push_back(1, 1);
 
   Vector2D vector(1, 1);
 
-  PolyLine2D polyline0_p = polyline0 + vector;
-  Point2D p0 = polyline0_p.point(0);
-  Point2D p1 = polyline0_p.point(1);
-  Point2D p2 = polyline0_p.point(2);
+  {
+  PolyLine2D polyline_ = polyline + vector;
+  Point2D p0 = polyline_.point(0);
+  Point2D p1 = polyline_.point(1);
+  Point2D p2 = polyline_.point(2);
   ASSERT_DOUBLE_EQ(p0.x(), 1);
   ASSERT_DOUBLE_EQ(p0.y(), 1);
   ASSERT_DOUBLE_EQ(p1.x(), 2);
   ASSERT_DOUBLE_EQ(p1.y(), 1);
   ASSERT_DOUBLE_EQ(p2.x(), 2);
   ASSERT_DOUBLE_EQ(p2.y(), 2);
+  } {
+  PolyLine2D polyline_ = vector + polyline;
+  Point2D p0 = polyline_.point(0);
+  Point2D p1 = polyline_.point(1);
+  Point2D p2 = polyline_.point(2);
+  ASSERT_DOUBLE_EQ(p0.x(), 1);
+  ASSERT_DOUBLE_EQ(p0.y(), 1);
+  ASSERT_DOUBLE_EQ(p1.x(), 2);
+  ASSERT_DOUBLE_EQ(p1.y(), 1);
+  ASSERT_DOUBLE_EQ(p2.x(), 2);
+  ASSERT_DOUBLE_EQ(p2.y(), 2);
+  } {
+  PolyLine2D polyline_ = polyline - vector;
+  Point2D p0 = polyline_.point(0);
+  Point2D p1 = polyline_.point(1);
+  Point2D p2 = polyline_.point(2);
+  ASSERT_DOUBLE_EQ(p0.x(), -1);
+  ASSERT_DOUBLE_EQ(p0.y(), -1);
+  ASSERT_DOUBLE_EQ(p1.x(), 0);
+  ASSERT_DOUBLE_EQ(p1.y(), -1);
+  ASSERT_DOUBLE_EQ(p2.x(), 0);
+  ASSERT_DOUBLE_EQ(p2.y(), 0);
+  }
+}
 
-  PolyLine2D polyline0_pm = polyline0_p - vector;
-  p0 = polyline0_pm.point(0);
-  p1 = polyline0_pm.point(1);
-  p2 = polyline0_pm.point(2);
-  ASSERT_DOUBLE_EQ(p0.x(), 0);
-  ASSERT_DOUBLE_EQ(p0.y(), 0);
-  ASSERT_DOUBLE_EQ(p1.x(), 1);
-  ASSERT_DOUBLE_EQ(p1.y(), 0);
-  ASSERT_DOUBLE_EQ(p2.x(), 1);
-  ASSERT_DOUBLE_EQ(p2.y(), 1);
+TEST(POLYLINE2D, POINT) {
+  PolyLine2D polyline;
+  polyline.push_back(0, 0);
+  polyline.push_back(1, 0);
+  polyline.push_back(0, 1);
+
+  Point2D point = polyline.point(0);
+  ASSERT_DOUBLE_EQ(point.x(), 0);
+  ASSERT_DOUBLE_EQ(point.y(), 0);
+
+  point = polyline.point(2);
+  ASSERT_DOUBLE_EQ(point.x(), 0);
+  ASSERT_DOUBLE_EQ(point.y(), 1);
+
+  ASSERT_THROW(polyline.point(-1), std::exception);
+  ASSERT_THROW(polyline.point(3), std::exception);
 }
 
 TEST(POLYLINE2D, EDGES) {
