@@ -5,6 +5,8 @@
 
 namespace wigeon {
 
+Rotation2D::Rotation2D() {}
+
 Rotation2D::Rotation2D(double angle)
   : data({{cos(angle), sin(angle)}}) {}
 
