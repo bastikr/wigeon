@@ -6,11 +6,9 @@ add_executable(unittests ${sources})
 
 if (COVERAGE)
     target_compile_options(unittests PRIVATE --coverage)
-    target_link_libraries(unittests PRIVATE --coverage)
+    target_link_libraries(unittests PRIVATE --coverage ${GTEST_BOTH_LIBRARIES} wigeon)
+elseif()
+    target_link_libraries(unittests PRIVATE --coverage ${GTEST_BOTH_LIBRARIES} wigeon)
 endif()
-
-target_link_libraries (unittests
-    ${GTEST_BOTH_LIBRARIES}
-    wigeon)
 
 add_test(unit ${PROJECT_BINARY_DIR}/tests/unittests)
