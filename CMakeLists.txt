@@ -5,6 +5,9 @@ project(wigeon)
 set (CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_FLAGS "-Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wmissing-declarations -Wredundant-decls -Woverloaded-virtual")
 
+set (COVERAGE OFF CACHE BOOL "Coverage")
+
+
 include_directories(include)
 
 add_library(wigeon SHARED
