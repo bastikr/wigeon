@@ -36,7 +36,7 @@ script:
   - ./tests/unittests
 
 after_success:
-  - coveralls --root ../src -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
+  - coveralls --root ./src -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
 
 notifications:
   email: false
