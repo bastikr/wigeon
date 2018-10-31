@@ -32,7 +32,7 @@ install:
 
 script:
   - cd build
-  - cmake -DENABLE_TESTS=ON -DCOVERAGE=ON ..
+  - cmake -DENABLE_TESTS=ON -DENABLE_COVERAGE=ON ..
   - make
   - ./tests/unittests
 
