@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.2)
 
 project(wigeon)
 
-set (CMAKE_CXX_STANDARD 11)
-set (CMAKE_CXX_FLAGS "-Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wmissing-declarations -Wredundant-decls -Woverloaded-virtual")
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wmissing-declarations -Wredundant-decls -Woverloaded-virtual")
 
 option(ENABLE_COVERAGE "Enable Coverage" OFF)
 option(ENABLE_TESTS "Enable tests" OFF)
@@ -50,7 +50,7 @@ add_library(wigeon SHARED
 
 
 # Code coverage
-if (${ENABLE_COVERAGE})
+if(${ENABLE_COVERAGE})
     target_compile_options(wigeon PRIVATE --coverage)
     target_link_libraries(wigeon PRIVATE --coverage)
 endif()
@@ -62,7 +62,7 @@ install(DIRECTORY include/wigeon DESTINATION include)
 
 
 # Testing
-if (${ENABLE_TESTS})
+if(${ENABLE_TESTS})
     enable_testing()
     add_subdirectory(tests)
 endif()
