@@ -5,7 +5,8 @@ project(wigeon)
 set (CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_FLAGS "-Wall -Wextra -Wundef -Wcast-align -Wwrite-strings -Wmissing-declarations -Wredundant-decls -Woverloaded-virtual")
 
-set (COVERAGE OFF CACHE BOOL "Coverage")
+option(ENABLE_COVERAGE "Enable Coverage" OFF)
+option(ENABLE_TESTS "Enable tests" OFF)
 
 
 include_directories(include)
@@ -44,18 +45,23 @@ add_library(wigeon SHARED
     src/offset.cpp
     src/polygon2d_simplification.cpp
     src/printer.cpp
-    src/svg.cpp)
+    src/svg.cpp
+)
 
-if (COVERAGE)
+
+# Code coverage
+if (${ENABLE_COVERAGE})
     target_compile_options(wigeon PRIVATE --coverage)
     target_link_libraries(wigeon PRIVATE --coverage)
 endif()
 
+
+# Installation
 install(TARGETS wigeon DESTINATION lib)
 install(DIRECTORY include/wigeon DESTINATION include)
 
+
 # Testing
-option(ENABLE_TESTS "Enable tests" ON)
 if (${ENABLE_TESTS})
     enable_testing()
     add_subdirectory(tests)
