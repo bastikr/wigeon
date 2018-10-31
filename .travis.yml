@@ -27,16 +27,18 @@ install:
   - sudo make
   - sudo mv libgtest* /usr/lib/
   - cd "${TRAVIS_BUILD_DIR}"
-  #- pip install --user cpp-coveralls
+  # - pip install --user cpp-coveralls
+  - sudo pip install codecov
 
 script:
   - cd build
-  - cmake -DENABLE_TESTS=On ..
+  - cmake -DENABLE_TESTS=ON -DENABLE_COVERAGE=ON ..
   - make
   - ./tests/unittests
 
 after_success:
-  #- coveralls --root ../src -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
+  # - coveralls --exclude tests --gcov-options '\-lp'
+  - codecov
 
 notifications:
   email: false
