@@ -27,7 +27,12 @@ Operations:
 ## Development status
 
   * Linux build: [![Travis build status][travis-img]][travis-url]
+  * Test coverage: [![Test coverage status on codecov][codecov-img]][codecov-url]
 
 
 [travis-url]: https://travis-ci.org/bastikr/wigeon
 [travis-img]: https://travis-ci.org/bastikr/wigeon.svg?branch=master
+
+[codecov-url]: https://codecov.io/gh/bastikr/wigeon
+[codecov-img]: https://codecov.io/gh/bastikr/wigeon/branch/master/graph/badge.svg
+
